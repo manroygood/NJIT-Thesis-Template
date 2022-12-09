@@ -1,0 +1,64 @@
+\chapter{Formatting instructions}
+\label{ch:formatting}
+
+One thing you'll notice is that the title gets converted to all caps automatically by the class file, in agreement with the NJIT style guidelines!
+
+\section{\BibTeX\ Style}
+
+The default bibliography format is set in the file \texttt{dmsthesis.cls} by the line \verb+\bibliographystyle{acm}+. There should be no reason to change it.
+
+Finally, let's try a few citations \cite{ALBERTSETAL:1994,FERSHT:1985,FISCHER:1987a,KAUFFMAN:1969,MR1191182,MR1617060}. 
+
+\section{Symbols}
+\opensymdef
+\newsym[Energy]{symE}{E}
+\newsym[Mass]{symm}{m}
+\newsym[Speed of light]{symc}{c}
+\closesymdef
+
+Now I can use the inline symbol: \symE\ defined in \texttt{symbols.tex} \[\symE=\symm \symc^2\] where
+\symE\ is the energy \ldots
+
+\section{Example Section With Figure}
+
+NJIT's style guide says that the figure caption should be left justified. The text in the caption should be repeated verbatim in the List of Figures. Both of these are taken care of automatically by the template.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=4.5in]{msgcube}
+\caption{This is the logo of MSG, the Mathematical Science Group. Do not use the alternate caption feature in \LaTeX. The entire caption must be reproduced in the list of figures.}
+\label{fig:1}
+\end{figure}
+
+
+We can also make subfigures. We can reference them separately like Figure~\ref{fig:first}, Figure~\ref{fig:second} and together like Figure~\ref{fig:doublefigure}.
+\begin{figure}
+\centering
+\begin{subfigure}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{FancyA.jpg}
+    \caption{A fancy letter A.}
+    \label{fig:first}
+\end{subfigure}
+\hfill
+\begin{subfigure}{0.4\textwidth}
+    \includegraphics[width=\textwidth]{FancyB.png}
+    \caption{A fancy letter B.}
+    \label{fig:second}
+\end{subfigure}
+\caption{A figure with two subfigures.}
+\label{fig:doublefigure}
+\end{figure}
+
+\newpage
+\subsection{Example Subsection With Table}
+
+Here is an example of a table. Note that caption of the table is written with initial capitals, like  a Section or Subsection, and note that it doesn't end with a period as figure caption. Also, the caption is above the table.  You can achieve this by put \verb#\caption{}# command all the way on the top.  You might need to forcibly add space between the text and the table so that it doesn't appear too close to the text.  View the file \texttt{table.tex} for details of the table.
+\vspace{4mm}
+
+\input{table}
+
+
+\begin{equation}
+x^2+1
+\end{equation}
+

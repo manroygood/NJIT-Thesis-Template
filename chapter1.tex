@@ -1,0 +1,87 @@
+
+\chapter{Document structure}
+
+A \LaTeX\ project, in the end, is a computer program that contains both the text of a document. Like any good computer program, it is split into functional units, which are contained in separate files. This chapter explains the structure and how all the separate files fit together.
+
+
+\section*{The parts of a dissertation, in order}
+
+First, we list the parts of the NJIT-standard dissertation, focusing on what information the reader can expect to see in each part, and indicating what ca. In the next subsection, we will discuss the contents of the various files and in
+\begin{description}
+\item [Abstract] The abstract is a summary of the dissertation that follows. It is the first page in an NJIT dissertation. Defined in \texttt{abstract.tex}.
+%
+\item [Title Page]The title and author information are contained in \texttt{biography.tex}.  Defined by the class file, pulls in data from various file. If your major is not Mathematical Sciences, modify the command \verb#\maketitle# in \texttt{dmsthesis.cls}.
+%
+\item [Copyright Page] This states who the copyright holder is, and when the copyrighted document was completed. It is generated automatically.
+%
+\item [Approval Page] This contains the names and titles of the student's dissertation advisor and committee, and has lines for each of them to sign off on the dissertation. The titles of the dissertation advisor and committee members must match the titles listed in the NJIT catalog. Be sure to ask your external committee member their exact title.  It draws information mainly from \texttt{approval.tex} below.
+\item [Biographical Sketch] In addition to a few biographical details, this section contains a list of your presentations and publications, listed in reverse chronological order. These are generated automatically from \BibTeX\ entries in the file \texttt{references.bib}. To include a bibliography entry in this list, add the field \verb+keywords = {me},+ to its \BibTeX\ entry, as is done in the entry for "How to give a great talk." See \texttt{biography.tex} below.
+%
+\item [Dedication] Optional. This can include pretty much anything that you think appropriate such as citing a poem, song lyrics, quoting someone or even including a picture of your special someone. See \texttt{dedication.tex} below.
+%
+\item [Acknowledgment] Here is where you thanks the people and institutions that helped you get to this point. Please keep the ordering used in the sample document, and put each group in its own paragraph. See \texttt{aknowledgment.tex} below.
+%
+\item [Table of Contents] Generated automatically.
+%
+\item [List of Figures] Generated automatically. If the dissertation has no figures, you must be a very pure mathematician, and are unlikely to study at NJIT. In that case, delete the command \verb+\listoffigures+ from \texttt{main.tex}.
+\item [List of Tables] Generated automatically. If the dissertation has no tables, delete the command \verb+\listoftables+ from \texttt{main.tex}.
+%
+\item [List of Symbols] (Optional) A list of symbols, with definitions, used in the dissertation. This sample document contains two lists of symbols created in two different ways. 
+\begin{enumerate}
+\item The command \texttt{listofsymbols} creates symbols automatically from symbols that are designated in the text of \texttt{chapter1}, where it is illustrated using Newton's law of mass-energy equivalence $E=m c^2$. This uses the \texttt{listofsymbols} package, which is twenty years old. It was abandoned before it was really completed: the 0.2 release was the last that came out. It's buggy can be incompatible with other packages and with a users macros.
+\item As an alternative, the template also includes a hand-written list of symbols contained in the file \texttt{listofsymbols.tex} and included via an \texttt{input} command in \texttt{main.tex}. This is built using the \LaTeX\ \textbf{description} environment, which is similar to \textbf{itemize} and \textbf{enumerate}.
+\end{enumerate}
+%
+\item [List of Definitions] An optional glossary, built using the \textbf{description} environment.
+%
+\item [Content] The preface (optional), the chapters, and the optional appendix or appendices.
+%
+\item [Bibliography] See \texttt{references.bib} below.
+\end{description}
+
+
+\section*{The files}
+
+Here we describe the files that the student must edit to put together their dissertation, and what goes in each.
+
+\begin{description}
+  \item[\texttt{dmsthesis.cls}] This \LaTeX\ \emph{class file} contains necessary definitions and formatting instructions that conform to NJIT's dissertation style guide. For the most part, you should not have to modify this file, with some exceptions noted below.
+%
+  \item[\texttt{main.tex}] This is the main \LaTeX\ file. It is essentially a control file, organizing the \texttt{.tex} files that contain the actual content. There's not much to change here, except the lines where the preface, chapters, and appendix or appendices are \texttt{input}.
+%
+  \item[\texttt{abstract.tex}] Enter your abstract here.
+%
+  \item[\texttt{approval.tex}]   In case, there are more than five people on your committee, you may have to adjust the space so they fit on one page nicely.  To do this, adjust the spacings in the definition of the \verb+\makeapproval+ command in in thee \verb#dmsthesis.cls# file.
+%
+  \item[\texttt{biography.tex}] This contains the data needed to build the \emph{Biographical Sketch}. Note this is also where the \emph{title} and \emph{author} of the dissertation are defined.  
+\verb#biography.tex# file.
+%
+  \item[\texttt{dedication.tex}] Put the content of your \emph{dedication} here. You may want to put your dedication in the middle of the page.  You can do that by adjust the values in the section of the \texttt{dmsthesis.cls} file labeled \texttt{DEDICATION PAGE FORMATTING}.
+%
+  \item[\texttt{listofdefinitions.tex}] The list of symbols. If the dissertation has no glossary, delete the command \verb+\input{listofdefinitions}+ from \texttt{main.tex}.
+%
+  \item[\texttt{listofsymbols.tex}] The list of symbols. If you choose not to have a list of symbols, delete the command \verb+\input{listofsymbols}+ from \texttt{main.tex}.
+%
+  \item[\texttt{acknowledgment.tex}] The acknowledgment.
+%
+  \item[Content Section] \phantom{hello}
+  \begin{description}
+    \item[\texttt{preface.tex}] The preface is optional.
+%
+	\item[\texttt{chapterXXX.tex}] Put each chapter in its own file. When you're working on Chapter 3, for example, you can comment out the lines inputting all the other chapters. This will reduce the time it takes \LaTeX\ to compile your document. Then, when they're all done, uncomment them all and make sure all the numbering is correct.
+%
+	\item[\texttt{appendix.tex} or \texttt{appendixXXX.txt}] Note that if there is more than one appendix, they should be labeled \textbf{A}, \textbf{B}, etc., but if there is only one appendix, it should have no such label. Look carefully at the part of \texttt{main.tex} where appendices are defined and use the \verb+\oneappendix+ command for a single appendix, and the \texttt{chapter} command if there are multiple appendices.
+%
+	\item[\texttt{references.bib}] This is a \BibTeX\ file, which the \texttt{dmsthesis.cls} class file will use to automatically build and format your bibliography. Programs such as \textbf{bibdesk} for the Mac and \textbf{jabref} can help you edit a \BibTeX\ file. Reference managers such as Zotero, Mendeley, and Papers can export \BibTeX\ citations directly. If you don't know how to use \BibTeX, you should learn it. See the next chapter for additional information on formatting the bibliography. 
+	
+	The template uses programs called BibLaTeX and Biber to process the \BibTeX\ file. This means that you do not need to separately run a \BibTeX\ program. This is done because this system can generate multiple bibliographies for the same document, which is used to generate the list of publications and presentations in the Biography section.
+	
+	You may need to run \LaTeX\ two or three times to get all the citation numbers to match up correctly.
+%
+	\item[\texttt{Graphics}] A directory to hold all the graphics files for the dissertation. Put them here to keep things neat.
+  \end{description}
+\end{description}
+
+% End of chapter1
+
+

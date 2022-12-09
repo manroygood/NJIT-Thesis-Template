@@ -1,0 +1,96 @@
+\oneappendix{Cell Signaling and Stuff}
+\label{APP:A}
+
+NJIT has an interesting rule about appendices. If you have more than one appendix, they should be numbered like A, B, and C. These are declared with the \verb#\chapter# command. See the files \texttt{appendixA.tex} and \texttt{appendixB.tex}.
+
+However, if you have only one appendix, it should not be numbered. Removing the number manually leads to all sorts of problems in numbering. equations/figures/tables.  In order that numbering works properly, we have created the \verb#\oneappendix# command that will handle all this for you. Note that's what is used above.
+
+Here's an interesting requirement about NJIT disserations! There has to be text at the beginning of the appendix before any figures or tables. Who knew?
+
+\begin{align}
+x^2+1 & = y.\\
+x-1 & = y^2.
+\end{align}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.5in]{msgcube}
+\caption{Here's the MSG logo again.}
+\label{fig:2} 
+\end{figure}
+
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=.5in]{msgcube}
+\caption{Once more with the MSG logo.}
+\label{fig:3} 
+\end{figure}
+
+\vspace{0.5in}
+\renewcommand{\baselinestretch}{0.8} %Change some spacing
+{\ssp
+\begin{table}[htbp]
+
+\caption{Useful internet sites for cell signaling and protein structure.}
+\label{table:WEBSITES}
+
+\begin{center}
+	\begin{tabular}
+	{|p{0.2in}|
+	p{2.5in}|
+	p{2.7in}|} \hline 
+		\rule{0pt}{1pt} & & \\
+			~ & 
+			\PBS\raggedright{{\em Web Site} (Cited March 25, 2001)} & 
+			\PBS\raggedright{\em Description}  \vspace{1mm} \\ \hline
+		\rule{0pt}{1pt} & & \\ 
+			$1.$ & 
+			\PBS\raggedright{http://vlib.org/Science/ Cell$\_$Biology/ signal$\_$transduction.shtml} &
+			\PBS\raggedright{The WWW Virtual Library: Cell Biology---with 
+				information on other signal transduction sites of interest} \vspace{1mm}\\
+			$2.$ &
+			\PBS\raggedright{http://www.grt.kyushu--u.ac.jp/spad/}  &
+			\PBS\raggedright{Signaling Pathway Database--- contains diagrams of cell signaling pathways}  \vspace{1mm} \\
+			$3.$ &
+			\PBS\raggedright{http://geo.nihs.go.jp/csndb/} &  
+			\PBS\raggedright{Cell Signaling Networks Database---a signal transduction database \cite{CSND:1999}} \vspace{1mm} \\
+			$4.$ &
+			\PBS\raggedright{http://www.sdsc.edu/kinases/} &
+			\PBS\raggedright{The Protein Kinase Resource---data available on the enzymology, 
+				genetics, molecular and structural properties of protein kinases \cite{PKR:1997}} \vspace{1mm}\\
+			$5.$ &
+			\PBS\raggedright{http://www.expasy.ch/sprot/}  & 
+			\PBS\raggedright{SWISS PROT Database---contains protein 
+				sequences with functional and structural information \cite{BAIROCH:2000}} \vspace{1mm} \\
+			$6.$ &
+			\PBS\raggedright{http://www.expasy.ch/prosite/} & 
+			\PBS\raggedright{Prosite Pattern Database---contains 
+				information on protein families and protein domain structure \cite{HOFMANN:1999}} \vspace{1mm}\\
+			$7.$ &
+			\PBS\raggedright{http://www.cbs.dtu.dk/databases/ PhosphoBase} &
+			\PBS\raggedright{PhosphoBase---a database of phosphorylation sites in proteins \cite{KREEGIPUU:1999}}\vspace{1mm} \\
+			$8.$ &
+			\PBS\raggedright{http://www--lmmb.ncifcrf.gov/ phosphoDB}    & 
+			\PBS\raggedright{Phosphoprotein Database---site dedicated to protein phosphorylation} \vspace{1mm} \\
+			$9.$ &
+			\PBS\raggedright{http://www.rcsb.org/pdb} & 
+			\PBS\raggedright{PBD Brookhaven Crystallographic Database---a protein data 
+				bank containing 3--d structural X-ray crystallographic data \cite{BERMAN:2000}} \vspace{1mm} \\
+			$10.$ &
+			\PBS\raggedright{http://www--nbrf.georgetown.edu/} & 
+			\PBS\raggedright{Protein Information Resource--- maintains a protein sequence database, the PIR-International
+				Protein Sequence Database \cite{BARKER:2001}} \vspace{1mm}\\
+			$11.$ &
+			\PBS\raggedright{http://www.ncbi.nlm.nih.gov/} & 
+			\PBS\raggedright{National Center for Biotechnology Information} \vspace{1mm} \\ 
+			$12.$ &
+			\PBS\raggedright{http://www.ncgr.org/software/ pathdb} & 
+			\PBS\raggedright{PATHDB: Metabolic Pathways Database---contains information on
+			pathways relating to metabolism in plants.} \vspace{1mm} \\ \hline 
+				
+	\end{tabular}
+\end{center}
+\end{table}
+\endsinglespace}
+\renewcommand{\baselinestretch}{2} % Change the spacing back

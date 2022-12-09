@@ -1,0 +1,90 @@
+% !TEX TS–program = pdflatexmk
+\documentclass[12pt]{dmsthesis}
+% This is the master file for an individual dissertation. It loads the
+
+
+% Load external packages
+\input{packages}
+\addbibresource{references.bib}
+% Load my own macros
+\input{macros}
+
+
+% Tell LaTeX the name of the directory where it will look for graphics files. This helps us keep the directories neat.
+\graphicspath{{Graphics/}}
+
+%%%%%%%%%%% May need to change horizontal and vertical offsets for a specific printer %%%%%%%%%%%
+%\hoffset = 0.0625in
+%\voffset = 0.1in
+%%%%%%%%%%% May need to change horizontal and vertical offsets for a specific printer %%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  This part contains all the initialization pages for
+%  the NJIT thesis format, including:
+%       ABSTRACT PAGE       (contained in abstract.tex)
+%       TITLE PAGE          (created by cls file)
+%       COPYRIGHT PAGE      (created by cls file)
+%       APPROVAL PAGE       (contained in approval.tex)
+%       BIOGRAPHY PAGE      (contained in biography.tex)
+%       DEDICATION PAGE     (contained in dedication.tex)
+%       ACKNOWLEDGMENT PAGE (contained in acknowledgment.tex)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\abstract{\input{abstract}}
+\input{approval}
+\input{biography}
+\dedication{\input{dedication}}
+\acknowledgment{\input{acknowledgment}}
+
+\initthesis
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Include :
+%       TABLE OF CONTENTS
+%       LIST OF TABLES
+%       LIST OF FIGURES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\tableofcontents
+\listoffigures
+\listoftables
+\listofsymbols
+\input{listofsymbols}
+\input{listofdefinitions}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% START TEXT OF THESIS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\startbody
+\input{preface}   % Remove if no preface
+\input{chapter1}
+\input{chapter2}
+
+%%%%%%%%%%%%%%%%%%
+%    Appendix    %
+%%%%%%%%%%%%%%%%%%
+
+\appendix
+% If only one appendix follow the example in appendix.tex.
+\input{appendix}
+
+% If multiple appendices, follow the examples in appendixA.tex and appendixB.tex
+%\input{appendixA}
+%\input{appendixB}
+
+
+%%%%%%%%%%%%%%%%%%
+%    bibliography    %
+%%%%%%%%%%%%%%%%%%
+
+\clearpage
+
+\addcontentsline{toc}{chapter}{REFERENCES}
+%\nocite{*}
+\printbibliography[title={References}]
+
+\end{document}
