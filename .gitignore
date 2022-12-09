@@ -1,0 +1,15 @@
+
+*.log
+*.aux
+*.bbl
+*.bcf
+*.lof
+*.lot
+main.pdf
+*.xml
+*.sub
+*.suc
+*.syc
+*.sym
+*.gz
+*.toc

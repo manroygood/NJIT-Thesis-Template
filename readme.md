@@ -1,5 +1,7 @@
 # The new DMS Thesis Template
 
+***WARNING:*** This should be considered beta software. I am still waiting for approval from the GSO to the changes I made here.
+
 In 2001, DMS doctoral student Adrienne James wrote a template file for dissertations in the NJIT Department of Mathematical Sciences. This document has circulated among students, who have made occasional additions and modifications. Many students, I am sure have made their own modifications but have not contributed them back to the circulating document.
 
 In September, 2022, Prof. Roy Goodman, Associate Chair for Graduate Studies asked his former Ph.D. student Jimmie Adriazola to help him update this document. He then asked Prof. Christina Frederick to help with some of the more technical $\LaTeX$ details in the class file.
