@@ -1,4 +1,4 @@
-# The new DMS Thesis Template
+# The new NJIT Thesis Template
 
 ***WARNING:*** This should be considered beta software. I am still waiting for approval from the GSO to the changes I made here.
 
@@ -10,7 +10,7 @@ We have made a lot of changes that should make it easier for students who are so
 
 Some highlights:
 
-* Greatly improved structure of document and folders, with different parts separated in a logical way.
+* Greatly improved structure of the document and folders, with different parts separated in a logical way.
 * The "Publications and Presentations" listing in the **Biography** section is now entered using Bib$\TeX$, in the same file as the main bibliography, so it is formatted automatically.
 * The sample file has been completely rewritten to explain all the parts of the document, all the sub-files, and some of the formatting rules. Examples of all optional parts, such as the List of Symbols, are now included in the document.
 * The numbering of the appendices now conforms to GSO rules. There are two options, depending on whether the dissertation has one appendix or multiple appendices.
