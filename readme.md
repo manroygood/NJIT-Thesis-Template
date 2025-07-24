@@ -11,7 +11,7 @@ We have made a lot of changes that should make it easier for students who are so
 Some highlights:
 
 * Greatly improved structure of the document and folders, with different parts separated in a logical way.
-* The "Publications and Presentations" listing in the **Biography** section is now entered using Bib$\TeX$, in the same file as the main bibliography, so it is formatted automatically.
+* The "Publications and Presentations" listing in the **Biography** section is now entered using BibTeX, in the same file as the main bibliography, so it is formatted automatically. Any entry with the keyword "me" will be included in the biography.
 * The sample file has been completely rewritten to explain all the parts of the document, all the sub-files, and some of the formatting rules. Examples of all optional parts, such as the List of Symbols, are now included in the document.
 * The numbering of the appendices now conforms to GSO rules. There are two options, depending on whether the dissertation has one appendix or multiple appendices.
 * Because the document is now on GitHub, students who modify the template are encouraged to make pull requests so that future students may benefit from their work.
