@@ -1,35 +1,28 @@
 % !TEX TS–program = pdflatexmk
 \documentclass[12pt]{dmsthesis}
-% This is the master file for an individual dissertation. It loads the
+% Master master file for the NJIT DMS Dissertation / Thesis template.
 
-
-% Load external packages
+% ----------------------------------------------------------------------
+% Package Imports and Macros
+% ----------------------------------------------------------------------
 \input{packages}
 \addbibresource{references.bib}
-% Load my own macros
 \input{macros}
 
-
-% Tell LaTeX the name of the directory where it will look for graphics files. This helps us keep the directories neat.
+% Graphics directory
 \graphicspath{{Graphics/}}
-
-%%%%%%%%%%% May need to change horizontal and vertical offsets for a specific printer %%%%%%%%%%%
-%\hoffset = 0.0625in
-%\voffset = 0.1in
-%%%%%%%%%%% May need to change horizontal and vertical offsets for a specific printer %%%%%%%%%%%
 
 \begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  This part contains all the initialization pages for
-%  the NJIT thesis format, including:
-%       ABSTRACT PAGE       (contained in abstract.tex)
-%       TITLE PAGE          (created by cls file)
-%       COPYRIGHT PAGE      (created by cls file)
-%       APPROVAL PAGE       (contained in approval.tex)
-%       BIOGRAPHY PAGE      (contained in biography.tex)
-%       DEDICATION PAGE     (contained in dedication.tex)
-%       ACKNOWLEDGMENT PAGE (contained in acknowledgment.tex)
+%  Front Matter Initialization Pages:
+%       ABSTRACT PAGE       (abstract.tex)
+%       TITLE PAGE          (created by class file)
+%       COPYRIGHT PAGE      (created by class file)
+%       APPROVAL PAGE       (approval.tex)
+%       BIOGRAPHY PAGE      (biography.tex)
+%       DEDICATION PAGE     (dedication.tex, optional)
+%       ACKNOWLEDGMENT PAGE (acknowledgment.tex)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \abstract{\input{abstract}}
@@ -38,53 +31,62 @@
 \dedication{\input{dedication}}
 \acknowledgment{\input{acknowledgment}}
 
+% Optional preliminary lists data
+\symbols{\input{listofsymbols}}
+\glossaryofterms{\input{listofdefinitions}}
+
+% Generate all front matter pages in NJIT prescribed order
 \initthesis
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  Include :
+%  Table of Contents and Preliminary Lists:
 %       TABLE OF CONTENTS
 %       LIST OF TABLES
 %       LIST OF FIGURES
+%       LIST OF SYMBOLS (optional)
+%       GLOSSARY OF TERMS (optional)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
 \tableofcontents
-\listoffigures
 \listoftables
-\listofsymbols
-\input{listofsymbols}
-\input{listofdefinitions}
-
+\listoffigures
+\makelistofsymbols
+\makeglossaryofterms
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% START TEXT OF THESIS
+%% START MAIN BODY OF THESIS
+%% Arabic page numbering (1, 2, 3...) begins here
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \startbody
-\input{preface}   % Remove if no preface
+
+% Optional Preface (must appear immediately before Chapter 1)
+\input{preface}
+
+% Dissertation Chapters
 \input{chapter1}
 \input{chapter2}
 
-%%%%%%%%%%%%%%%%%%
-%    Appendix    %
-%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Appendices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-% If only one appendix follow the example in appendix.tex.
+
+% --- Option A: Single Appendix (Default) ---
+% If your dissertation has only ONE appendix, use the \oneappendix{Title}
+% command inside appendix.tex. This complies with NJIT's requirement that
+% a single appendix has no letter label (not "Appendix A", just "APPENDIX").
 \input{appendix}
 
-% If multiple appendices, follow the examples in appendixA.tex and appendixB.tex
+% --- Option B: Multiple Appendices ---
+% If your dissertation has TWO OR MORE appendices, comment out the line above
+% and uncomment the lines below. Each file should start with \chapter{Title}.
 %\input{appendixA}
 %\input{appendixB}
 
-
-%%%%%%%%%%%%%%%%%%
-%    bibliography    %
-%%%%%%%%%%%%%%%%%%
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography / References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \clearpage
-
 \addcontentsline{toc}{chapter}{REFERENCES}
-%\nocite{*}
 \printbibliography[title={References}]
 
 \end{document}

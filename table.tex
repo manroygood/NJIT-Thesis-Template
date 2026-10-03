@@ -1,52 +1,24 @@
-\renewcommand{\baselinestretch}{0.8}
-\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp} 
-\let\PBS=\PreserveBackslash
+% !TeX root = main.tex
+
 \begin{table}[htbp]
 \centering
-\begin{minipage}{0.89\textwidth}
-\caption[Major Differences Between Neural Networks and Cell Signaling Networks]{Major Differences Between Neural Networks and Cell Signaling Networks\protect\footnote{You can also have footnote in table as in figure.}}
-\vskip .25in
+\begin{minipage}{\textwidth}
+\caption{Major Differences Between Neural Networks and Cell Signaling Networks\protect\footnote{Footnotes inside tables are supported using the minipage environment.}}
 \label{table:NN_DIFF}
+\vspace{6pt}
 
-  \footnotesize
-    \begin{tabular}
-	{|p{0.04 \textwidth}
-	|p{0.15 \textwidth}
-	|p{ 0.35 \textwidth}
-	|p{ 0.35 \textwidth}|} \hline
-	\rule{0pt}{1pt} & & & \\
-	\strut & 
-		\PBS\raggedright{\em Salient features of networks} &
-		\PBS\raggedright{\em Neural Networks} &
-		\PBS \raggedright{\em Cell Signaling Networks}\\
-	\rule{0pt}{1pt}& & & \\ \hline
-	\rule{0pt}{1pt}& & & \\
-	\strut (i)  & 
-		\PBS\raggedright{nodes} & 
-		\PBS\raggedright{all nodes typically identical} &
-		\PBS\raggedright{nodes are not all equivalent in performance} \\
-	\rule{0pt}{1pt}& & & \\ \hline
-	\rule{0pt}{1pt}& & & \\
-	\strut (ii) & 
-		\PBS\raggedright{structure} &
-		\PBS\raggedright{typically layered with feed-forward connections only} &
-		\PBS\raggedright{regulatory signals often give rise to feedback connections resulting in cycles} \\
-	\rule{0pt}{1pt}& & & \\ \hline
-	\rule{0pt}{1pt}& & & \\
-	\strut (iii) & 
-		\PBS\raggedright{connectivity} & 
-		\PBS\raggedright{highly connected} &
-		\PBS\raggedright{more sparsely connected} \\
-	\rule{0pt}{1pt}& & & \\ \hline
-	\rule{0pt}{1pt}& & & \\
-	\strut (iv) &  
-		\PBS\raggedright{learning rule} &
-		\PBS\raggedright{connectivity altered to perform a single function e.g.,~via a back-propagation algorithm} &
-		\PBS\raggedright{cells must be able to respond to multiple stimuli effectively;changes typically occur via evolutionary processes} \\
-
-	\rule{0pt}{1pt}& & & \\ \hline
-    \end{tabular}
-\\
+\begin{tabularx}{\linewidth}{|c|p{0.18\linewidth}|X|X|}
+\hline
+\textbf{Item} & \textbf{Salient Feature} & \textbf{Neural Networks} & \textbf{Cell Signaling Networks} \\
+\hline
+(i) & Nodes & All nodes typically identical & Nodes are not all equivalent in performance \\
+\hline
+(ii) & Structure & Typically layered with feed-forward connections only & Regulatory signals often give rise to feedback connections resulting in cycles \\
+\hline
+(iii) & Connectivity & Highly connected & More sparsely connected \\
+\hline
+(iv) & Learning Rule & Connectivity altered to perform a single function (e.g., via a back-propagation algorithm) & Cells must be able to respond to multiple stimuli effectively; changes typically occur via evolutionary processes \\
+\hline
+\end{tabularx}
 \end{minipage}
 \end{table}
-\renewcommand{\baselinestretch}{1.65}

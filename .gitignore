@@ -2,6 +2,7 @@
 *.log
 *.aux
 *.bbl
+*.blg
 *.bcf
 *.lof
 *.lot
@@ -13,3 +14,7 @@ main.pdf
 *.sym
 *.gz
 *.toc
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls

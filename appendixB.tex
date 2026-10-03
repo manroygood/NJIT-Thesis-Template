@@ -1,5 +1,40 @@
-\chapter{Very technical stuff}
-If you thought the previous section was technical, get a load of what's in this section
-$$
-e^{i\pi}+1=0.
-$$
+% !TeX root = main.tex
+
+\chapter{Supplementary Data and Computational Parameters}
+\label{app:data}
+
+This appendix illustrates a second appendix (\textbf{APPENDIX B}) when multiple appendices are present.
+
+\section{Computational Grid Settings}
+\label{sec:appB_grid}
+
+Table~\ref{table:appB_params} summarizes the numerical grid discretization and tolerance parameters employed in numerical simulations throughout this work.
+
+\begin{table}[htbp]
+\centering
+\caption{Numerical Simulation Grid and Solver Parameters}
+\label{table:appB_params}
+\vspace{6pt}
+\begin{tabularx}{0.85\linewidth}{|l|c|X|}
+\hline
+\textbf{Parameter} & \textbf{Value} & \textbf{Physical Meaning / Role} \\
+\hline
+Spatial domain $L$ & $100.0$ & Total length of periodic spatial domain \\
+\hline
+Grid points $N_x$ & $1024$ & Number of spatial Fourier discretization points \\
+\hline
+Time step $\Delta t$ & $10^{-3}$ & Integration time step \\
+\hline
+Absolute tolerance & $10^{-10}$ & Local error tolerance for adaptive time stepping \\
+\hline
+Relative tolerance & $10^{-8}$ & Relative error tolerance \\
+\hline
+\end{tabularx}
+\end{table}
+
+Euler's identity provides the celebrated benchmark relation:
+\begin{equation}
+\label{eq:appB_euler}
+e^{i\pi} + 1 = 0.
+\end{equation}
+Notice that in the Table of Contents and in Equation~\eqref{eq:appB_euler}, all references are prefixed with the letter \textbf{B}.

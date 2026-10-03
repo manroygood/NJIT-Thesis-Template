@@ -1,64 +1,146 @@
-\chapter{Formatting instructions}
+% !TeX root = main.tex
+
+\chapter{Formatting Instructions and Feature Demonstrations}
 \label{ch:formatting}
 
-One thing you'll notice is that the title gets converted to all caps automatically by the class file, in agreement with the NJIT style guidelines!
+This chapter illustrates the formatting rules mandated by NJIT's Graduate Studies Office and provides working examples of all major features supported by the \texttt{dmsthesis.cls} class file.
 
-\section{\BibTeX\ Style}
+\section{Section Headings and Hierarchy}
+\label{sec:headings}
 
-The default bibliography format is set in the file \texttt{dmsthesis.cls} by the line \verb+\bibliographystyle{acm}+. There should be no reason to change it.
+The class file formats all headings consistently according to university specifications.
 
-Finally, let's try a few citations \cite{ALBERTSETAL:1994,FERSHT:1985,FISCHER:1987a,KAUFFMAN:1969,MR1191182,MR1617060}. 
+\subsection{Subsection Headings}
+\label{subsec:subsections}
+Subsection headings are flush left and set in bold font. Notice that subsections are numbered within the chapter, such as Subsection~\ref{subsec:subsections}.
 
-\section{Symbols}
-\opensymdef
-\newsym[Energy]{symE}{E}
-\newsym[Mass]{symm}{m}
-\newsym[Speed of light]{symc}{c}
-\closesymdef
+\subsubsection{Subsubsection Headings}
+\label{subsubsec:subsubsections}
+Subsubsections provide a third tier of hierarchical organization. They are also left-aligned and bold.
 
-Now I can use the inline symbol: \symE\ defined in \texttt{symbols.tex} \[\symE=\symm \symc^2\] where
-\symE\ is the energy \ldots
+\paragraph{Paragraph Headings}
+For finer divisions without adding deeper numbering to the Table of Contents, use the \verb+\paragraph+ command. It produces an unnumbered, bold inline run-in heading.
 
-\section{Example Section With Figure}
+\section{Mathematics, Theorems, and Proofs}
+\label{sec:math}
 
-NJIT's style guide says that the figure caption should be left justified. The text in the caption should be repeated verbatim in the List of Figures. Both of these are taken care of automatically by the template.
+The template preconfigures the standard American Mathematical Society (\AmS) packages: \texttt{amsmath}, \texttt{amssymb}, and \texttt{amsthm}.
+
+\begin{definition}[Sobolev Space $H^1(\RR)$]
+\label{def:sobolev}
+The Sobolev space $H^1(\RR)$ is defined as the Hilbert space of all square-integrable functions whose weak derivative is also square-integrable:
+\begin{equation}
+\label{eq:sobolev}
+H^1(\RR) = \left\{ u \in L^2(\RR) \;\middle|\; \frac{du}{dx} \in L^2(\RR) \right\},
+\end{equation}
+equipped with the inner product
+\begin{equation}
+\label{eq:innerprod}
+\langle u, v \rangle_{H^1} = \int_{-\infty}^{\infty} \left( u(x)v(x) + \frac{du}{dx}\frac{dv}{dx} \right) dx.
+\end{equation}
+\end{definition}
+
+\begin{theorem}[Energy-Mass Equivalence]
+\label{thm:einstein}
+For a particle of invariant rest mass $m$ at rest in an inertial reference frame, its total relativistic energy $E$ satisfies
+\begin{equation}
+\label{eq:einstein}
+E = m c^2,
+\end{equation}
+where $c \approx 3 \times 10^8\text{ m/s}$ is the speed of light in vacuum.
+\end{theorem}
+
+\begin{proof}
+In relativistic mechanics, the four-momentum $P^\mu = (E/c, \bm{p})$ satisfies the dispersion relation $P^\mu P_\mu = (E/c)^2 - |\bm{p}|^2 = m^2 c^2$. Setting the spatial momentum $\bm{p} = \bm{0}$ yields $(E/c)^2 = m^2 c^2$, whence $E = mc^2$.
+\end{proof}
+
+You can cross-reference equations easily: for example, see Equation~\eqref{eq:einstein} or Definition~\ref{def:sobolev}. Notice also the use of the bold vector macro $\bm{p}$ via \verb+\bm{p}+.
+
+\section{Symbols, Notation, and Special Characters}
+\label{sec:symbols}
+
+The template supports inline symbols and notation. Defined symbols (such as $E$ for energy, $m$ for mass, and $c$ for speed of light) can be summarized in the dedicated List of Symbols generated before Chapter~1 via \texttt{listofsymbols.tex}. Special brand names or trademarks may also be formatted using the built-in \verb+\trademark+ command, e.g., MATLAB\trademark.
+
+\section{Figures and Subfigures}
+\label{sec:figures}
+
+NJIT guidelines require that figure captions be left-justified, single-spaced, and placed below the figure. The text in the caption is reproduced in the List of Figures.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=4.5in]{msgcube}
-\caption{This is the logo of MSG, the Mathematical Science Group. Do not use the alternate caption feature in \LaTeX. The entire caption must be reproduced in the list of figures.}
-\label{fig:1}
+\includegraphics[width=3.5in]{msgcube}
+\caption{The Mathematical Sciences Department logo. Captions should clearly and concisely describe the illustration.}
+\label{fig:msglogo}
 \end{figure}
 
+Multiple sub-illustrations can be combined into a single floating figure using the \texttt{subfigure} environment provided by the \texttt{subcaption} package, as shown in Figure~\ref{fig:letters}.
 
-We can also make subfigures. We can reference them separately like Figure~\ref{fig:first}, Figure~\ref{fig:second} and together like Figure~\ref{fig:doublefigure}.
-\begin{figure}
+\begin{figure}[htbp]
 \centering
-\begin{subfigure}{0.4\textwidth}
-    \includegraphics[width=\textwidth]{FancyA.jpg}
-    \caption{A fancy letter A.}
-    \label{fig:first}
+\begin{subfigure}[b]{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.85\textwidth]{FancyA.jpg}
+    \caption{Illuminated initial letter A.}
+    \label{fig:letterA}
 \end{subfigure}
 \hfill
-\begin{subfigure}{0.4\textwidth}
-    \includegraphics[width=\textwidth]{FancyB.png}
-    \caption{A fancy letter B.}
-    \label{fig:second}
+\begin{subfigure}[b]{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.85\textwidth]{FancyB.png}
+    \caption{Illuminated initial letter B.}
+    \label{fig:letterB}
 \end{subfigure}
-\caption{A figure with two subfigures.}
-\label{fig:doublefigure}
+\caption{An example figure containing two subfigures, which may be referenced individually as Figure~\ref{fig:letterA} and Figure~\ref{fig:letterB}, or collectively as Figure~\ref{fig:letters}.}
+\label{fig:letters}
 \end{figure}
 
-\newpage
-\subsection{Example Subsection With Table}
+\section{Tables: Standard and Landscape}
+\label{sec:tables}
 
-Here is an example of a table. Note that caption of the table is written with initial capitals, like  a Section or Subsection, and note that it doesn't end with a period as figure caption. Also, the caption is above the table.  You can achieve this by put \verb#\caption{}# command all the way on the top.  You might need to forcibly add space between the text and the table so that it doesn't appear too close to the text.  View the file \texttt{table.tex} for details of the table.
-\vspace{4mm}
+According to NJIT style rules:
+\begin{itemize}
+\item Table captions are placed \textbf{above} the table.
+\item Table captions are formatted in title case and do \textbf{not} end with a period.
+\item The table text is single-spaced.
+\end{itemize}
+
+\subsection{Standard Portrait Table}
+Table~\ref{table:NN_DIFF} illustrates a standard floating table placed in portrait mode, loaded from \texttt{table.tex}.
 
 \input{table}
 
+\subsection{Landscape Orientation for Wide Tables}
+Occasionally, a dissertation table or figure contains too many columns to fit within the standard 6-inch text width of a portrait page. The \texttt{dmsthesis.cls} class includes built-in landscape capability via \texttt{pdflscape}. The \texttt{landscape} environment rotates the entire page content while keeping headers, footers, and page numbers in their proper orientation, and rotates the PDF page view so that it is easily readable on a screen without neck strain.
 
-\begin{equation}
-x^2+1
-\end{equation}
+Table~\ref{table:landscape_sample} on the following page demonstrates a full landscape table.
 
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Comparison of Numerical Solvers for Stiff Partial Differential Equations}
+\label{table:landscape_sample}
+\vspace{6pt}
+\begin{tabularx}{\linewidth}{l l c c X}
+\toprule
+\textbf{Algorithm} & \textbf{Type} & \textbf{Order} & \textbf{Stability} & \textbf{Key Characteristics and Applications} \\
+\midrule
+Forward Euler & Explicit Runge--Kutta & 1 & Conditionally stable & Simple to implement; severely time-step restricted for stiff parabolic problems. \\
+Crank--Nicolson & Implicit Trapezoidal & 2 & A-stable & Unconditionally stable for linear diffusion; exhibits oscillations with discontinuous boundary data. \\
+RK4 & Explicit 4-stage RK & 4 & Conditionally stable & High accuracy for non-stiff systems; widely used for hyperbolic conservation laws. \\
+BDF2 & Multistep Backward Diff. & 2 & L-stable & Strongly damping high frequencies; standard choice for chemical reaction-diffusion equations. \\
+Radau IIA & Implicit Runge--Kutta & 5 & L-stable & Fully implicit; excellent for differential-algebraic equations (DAEs) and stiff Hamiltonian control. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{landscape}
+
+\section{Bibliography and Publications Listing}
+\label{sec:bibliography}
+
+Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{ALBERTSETAL:1994,FERSHT:1985,FISCHER:1987a,KAUFFMAN:1969,MR1191182,MR1617060}.
+
+A major advantage of \texttt{biblatex} is its ability to produce multiple independent bibliographies. In this template, the Presentations and Publications listing in the Biographical Sketch (page~iv) is populated directly from the \texttt{references.bib} database by filtering for entries that include the tag:
+\begin{verbatim}
+keywords = {me},
+\end{verbatim}
+This eliminates the need to maintain two separate citation files.

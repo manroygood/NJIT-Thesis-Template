@@ -1,13 +1,27 @@
 % !TeX root = main.tex
 
-% If you're using the same construction repeatedly, you should make macros! This
-%% (1) Saves time and typing
-%% (2) Makes the document more readable
-%% (3) Makes changing the formatting easy. Change the macro, and the change propagates to the whole document.
-\newcommand{\CC}{{\mathbb C}}
-\newcommand{\RR}{{\mathbb R}}
-\newcommand{\ZZ}{{\mathbb Z}}
+% Mathematical blackboard bold shortcuts
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\QQ}{\mathbb{Q}}
+
+% Standard BibTeX logo
 \DeclareRobustCommand{\BibTeX}{%
   {\normalfont B\kern-.05em{\scshape i\kern-.025em b}\kern-.08em \TeX}%
 }
 
+% Standard Theorem Environments (via amsthm)
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
