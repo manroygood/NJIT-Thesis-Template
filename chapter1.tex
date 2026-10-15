@@ -114,6 +114,33 @@ If running commands manually in a terminal:
 \subsection{Using Overleaf}
 The template works out of the box on Overleaf. Ensure that the project compiler is set to \textbf{pdfLaTeX} and that the bibliography engine is set to \textbf{Biber} in the Overleaf project settings.
 
+\subsection{If a package is missing}
+\label{subsec:missingpackages}
+The template loads a number of packages (listed in Appendix~\ref{app:packages}), and a \LaTeX\ installation does not necessarily include all of them. Overleaf and the \emph{full} installations of TeX Live, MacTeX, and MiKTeX include every package the template uses. Smaller installations, such as BasicTeX on a Mac or the \texttt{texlive-latex-base} package on Linux, do not.
+
+\subsubsection{Recognizing a missing package}
+A missing package stops the first \texttt{pdflatex} run with an error such as
+\begin{verbatim}
+! LaTeX Error: File `newtxtext.sty' not found.
+\end{verbatim}
+The file named in the message is what is missing; here it is \texttt{newtxtext.sty}. A missing \texttt{.cls}, \texttt{.bbx}, or \texttt{.cbx} file (a class or a \texttt{biblatex} style) is reported the same way. If the error instead says that \texttt{biber} could not be run or was not found, the \texttt{biber} program is missing, not a package. Stop the run (type \texttt{X} and press Enter, or close the log window in your editor) before installing anything.
+
+\subsubsection{Finding which package to install}
+A file and the package that contains it often have different names: \texttt{newtxtext.sty} belongs to the package \texttt{newtx}. To find the package name, search for the file name at \url{https://ctan.org}, or, with TeX Live or MacTeX, run
+\begin{verbatim}
+tlmgr search --global --file newtxtext.sty
+\end{verbatim}
+
+\subsubsection{Installing it}
+How to install the package depends on your \LaTeX\ distribution:
+\begin{itemize}
+\item \textbf{TeX Live (Windows or Linux) and MacTeX (Mac):} run \verb+tlmgr install newtx+, replacing \texttt{newtx} with the package name. On a Mac or Linux you will usually need \verb+sudo tlmgr install newtx+. On a Mac, the TeX Live Utility application does the same thing without the command line. The \texttt{biber} program installs the same way: \verb+tlmgr install biber+.
+\item \textbf{TeX Live installed through a Linux package manager} (for example \texttt{apt} on Ubuntu or Debian): \texttt{tlmgr} may not work. Install the distribution package that contains the file instead; \verb+apt-file search newtxtext.sty+ names it (here, \texttt{texlive-fonts-extra}). Installing \texttt{texlive-full} avoids the problem altogether.
+\item \textbf{MiKTeX (Windows):} MiKTeX normally offers to install a missing package the first time it is needed; accept the prompt. If it does not, open the MiKTeX Console, choose \emph{Packages}, search for the package, and install it.
+\item \textbf{Overleaf:} nothing to install, since every package on CTAN is available.
+\end{itemize}
+Then compile again. If a different file is now reported missing, repeat these steps for it.
+
 \section{Before You Submit}
 \label{sec:checklist}
 
