@@ -21,6 +21,14 @@ This chapter explains how to cite sources and choose a citation style, how the p
 
 Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{Lamport1994,Knuth1984,Mittelbach2023}. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books \cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article \cite{KnuthPlass1981}, a chapter in an edited collection \cite{Halmos1973}, a Ph.D.\ dissertation \cite{Adriazola2021}, software documentation \cite{biblatex}, and a website \cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field.
 
+Each \verb+\cite+ takes the key, or keys, of the entries in \texttt{references.bib}:
+\begin{itemize}
+\item \verb+\cite{KnuthPlass1981}+ gives \cite{KnuthPlass1981}, for one source;
+\item \verb+\cite{Lamport1994,Knuth1984}+ gives \cite{Lamport1994,Knuth1984}, for several sources, with the keys separated by commas;
+\item \verb+\cite[p.~23]{Lamport1994}+ gives \cite[p.~23]{Lamport1994}, for a specific page, given in square brackets before the key.
+\end{itemize}
+Put a tie before the citation, as in \verb+shown in~\cite{Halmos1973}+, so that it never starts a new line.
+
 Choose a citation style accepted for your discipline (Table~\ref{tab:phd-styles}) by setting \verb+\mycitestyle+ in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
 
 Most formatting problems in a bibliography come from the \texttt{.bib} file, not from \LaTeX. When you copy entries from Google Scholar or a publisher:
