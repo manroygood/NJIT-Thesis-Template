@@ -40,6 +40,10 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item[\texttt{csquotes}] Handles quotation marks. The command \verb+\MakeOuterQuote+ that follows it lets you type a straight double quote and get correct opening and closing quotation marks. It also makes that character special, so it can clash with some packages, such as \texttt{babel} shorthands for German.
 
+\item[\texttt{siunitx}] Typesets numbers and units consistently, with commands such as \verb+\qty+, \verb+\num+, and \verb+\unit+, and provides the \texttt{S} table column, which aligns numbers on the decimal point. See Section~\ref{sec:symbols}. The template uses the commands of version~3, released in 2021.
+
+\item[\texttt{algpseudocode}] Provides the \texttt{algorithmic} environment for pseudocode, as in Figure~\ref{fig:bisection}; it is part of the \texttt{algorithmicx} bundle. The two \verb+\renewcommand+ lines after it print ``Input:'' and ``Output:'' for \verb+\Require+ and \verb+\Ensure+.
+
 \item[\texttt{listings}] Typesets source code, as in Section~\ref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and cyan comments. Change \texttt{language} to match your own code.
 
 \item[\texttt{biblatex}] Formats citations and the bibliography, with \texttt{biber} as the back end. It is loaded through the \verb+\loadbiblatex+ command so that the style can be set once, with \verb+\mycitestyle+, from the table of styles in \texttt{packages.tex} (see Section~\ref{sec:bibliography}). The other options are:
@@ -49,6 +53,10 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
   \texttt{sortcites=true}, which sorts the numbers in a multiple citation, giving [1, 4, 5] rather than [5, 1, 4];
   and \texttt{defernums=true}, which assigns a number to an entry only when it is cited or printed, so entries in \texttt{references.bib} that are never used do not leave gaps in the numbering.
   The \verb+\defbibheading+ command after it gives the publications list in the Biographical Sketch an empty heading, because the class prints its own.
+
+\item[\texttt{hyperref}] Turns cross-references, citations, URLs, and Table of Contents entries into links, and adds PDF bookmarks. The option \texttt{hidelinks} keeps the links black and unboxed, so the printed copy is unchanged. It must be loaded after almost every other package, which is why it comes near the end.
+
+\item[\texttt{cleveref}] Provides \verb+\cref+, which prints the kind of item along with its number, such as ``Figure 2.1'' (see Section~\ref{sec:crossrefs}). It must be loaded after \texttt{hyperref}. The option \texttt{capitalise} capitalizes the name everywhere, and \texttt{noabbrev} spells it out (``Equation'', not ``Eq.''). The \verb+\crefname+ line after it calls a subsection a ``Subsection''.
 \end{description}
 
 \section{Packages Loaded by the Class File}

@@ -31,6 +31,16 @@
 \usepackage{csquotes}
 \MakeOuterQuote{"}
 
+% Numbers and SI units: \num{12345.678}, \unit{\metre\per\second},
+% \qty{3e8}{\metre\per\second}. Requires siunitx version 3 (2021 or later).
+\usepackage{siunitx}
+
+% Pseudocode: the algorithmic environment from algpseudocode. The sample puts
+% it inside a figure environment, so it is numbered and listed as a figure.
+\usepackage{algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
 % Source code highlighting
 \usepackage{listings}
 \lstset{basicstyle=\ttfamily\small, numbers=none}
@@ -85,3 +95,14 @@
 \defbibheading{subbibliography}[\refname]{%
 	{\normalfont\large\bfseries}%
 }
+
+% Clickable links. hyperref turns every cross-reference, citation, and Table
+% of Contents entry into a link, and adds bookmarks to the PDF. The option
+% hidelinks keeps the links black, without colored boxes, so the printed
+% copy looks the same. Load hyperref after all other packages except cleveref.
+\usepackage[hidelinks]{hyperref}
+
+% Cross-references that name what they point to: \cref{fig:eberhardt} prints
+% "Figure 2.1". Must be loaded after hyperref.
+\usepackage[capitalise,noabbrev]{cleveref}
+\crefname{subsection}{Subsection}{Subsections}

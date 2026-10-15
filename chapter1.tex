@@ -152,4 +152,7 @@ Most documents the GSO returns have one of a handful of problems. Before you sen
 \item Every advisor and committee title has been checked against the current Graduate Catalog.
 \item No cross-reference or citation shows as ``??''. Search the PDF for ``??'' to be sure.
 \item The log file (\texttt{main.log}) has no overfull-box warnings that push text into the margin.
+\item Every font in the PDF is embedded, including the fonts inside your figures. Open the PDF in Adobe Acrobat Reader, choose \emph{File}, then \emph{Properties}, then \emph{Fonts}, and check that each font is marked ``Embedded'' or ``Embedded Subset''. On the command line, \verb+pdffonts main.pdf+ (from the Poppler utilities) lists every font, with \texttt{yes} in the \texttt{emb} column for each embedded one. pdf\LaTeX\ embeds the fonts of the text itself, so a font that is not embedded almost always comes from a figure; export that figure again as described in \cref{subsec:exportplots}.
+\item The links work. Click a few entries in the Table of Contents, a few citations, and a few cross-references, and check that each one goes to the right place.
+\item The file meets the GSO's current submission instructions, such as the file name and whether a PDF/A file is required. Ask the GSO if the instructions don't say.
 \end{itemize}
