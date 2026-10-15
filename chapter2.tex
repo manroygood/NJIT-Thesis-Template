@@ -214,7 +214,7 @@ Appendix without introduction & Each appendix opens with a brief description bef
 
 Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{ALBERTSETAL:1994,FERSHT:1985,FISCHER:1987a,KAUFFMAN:1969,MR1191182,MR1617060}.
 
-Choose a citation style permitted by your program (Table~\ref{tab:phd-styles}) by setting \verb+\mycitestyle+ in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
+Choose a citation style accepted for your discipline (Table~\ref{tab:phd-styles}) by setting \verb+\mycitestyle+ in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
 
 Most formatting problems in a bibliography come from the \texttt{.bib} file, not from \LaTeX. When you copy entries from Google Scholar or a publisher:
 \begin{itemize}
@@ -226,16 +226,15 @@ Most formatting problems in a bibliography come from the \texttt{.bib} file, not
 
 \subsection{Bibliography styles}
 
-Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. Table~\ref{tab:phd-styles} lists which styles are permitted by each NJIT Ph.D. program. Some programs permit multiple styles. Table~\ref{tab:citation-styles} shows an example of each style.
+Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in Table~\ref{tab:phd-styles}; some disciplines accept several. Table~\ref{tab:style-resources} points to the official guide, or a reliable summary, for each style, and Table~\ref{tab:citation-styles} shows an example of each.
 
-\begin{landscape}
 \begin{table}[htbp]
 \centering
-\caption{Ph.D. Programs and Required Citation Styles}
+\caption{Acceptable Citation Styles by Discipline}
 \label{tab:phd-styles}
-\begin{tabularx}{\linewidth}{l l}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.45\linewidth}X}
 \toprule
-\textbf{Ph.D. Program} & \textbf{Citation Style} \\
+\textbf{Discipline} & \textbf{Acceptable Citation Styles} \\
 \midrule
 Applied Physics & ACS, AIP, Harvard \\
 Biology & ACS \\
@@ -246,8 +245,7 @@ Chemistry & ACS \\
 Civil Engineering & ACS, AIP, ASCE, Harvard, IEEE \\
 Computer Engineering & IEEE \\
 Computer Science & ACM, Chicago, IEEE \\
-Data Science (Computing Option) & ACM, IEEE \\
-Data Science (Statistics Option) & AMA, Chicago, Harvard, IEEE \\
+Data Science & ACM, AMA, Chicago, Harvard, IEEE \\
 Electrical Engineering & IEEE \\
 Engineering Science & APA, IEEE \\
 Environmental Engineering & ACS, AIP, ASCE, Chicago, Harvard \\
@@ -255,15 +253,48 @@ Environmental Science & APA \\
 Industrial Engineering & APA, IEEE \\
 Information Systems & ACM, APA \\
 Materials Science and Engineering & ACS, AIP, Chicago, Harvard \\
-Mathematical Sciences (Applied Mathematics Option) & AMS \\
-Mathematical Sciences (Applied Probability and Statistics Option) & Chicago, Harvard, Vancouver \\
+Mathematical Sciences & AMS, Chicago, Harvard, Vancouver \\
 Mechanical Engineering & ACS, AIP, Chicago, Harvard, IEEE \\
 Transportation & ACS, AIP, APA, ASCE, Chicago, IEEE, TRB \\
 Urban Systems & APA \\
 \bottomrule
 \end{tabularx}
 \end{table}
-\end{landscape}
+
+\begin{table}[htbp]
+\centering
+\caption{Guides to the Accepted Citation Styles}
+\label{tab:style-resources}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Style} & \textbf{Resource} \\
+\midrule
+ACM & ACM reference formatting:\newline {\small\url{https://www.acm.org/publications/authors/reference-formatting}} \\
+\addlinespace
+ACS & ACS Guide to Scholarly Communication:\newline {\small\url{https://pubs.acs.org/books/pages/acsguide}} \\
+\addlinespace
+AIP & AIP Style Manual, 4th edition:\newline {\small\url{https://publishing.aip.org/wp-content/uploads/2021/03/AIP_Style_4thed.pdf}} \\
+\addlinespace
+AMA & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/ama_style/index.html}} \\
+\addlinespace
+AMS & AMS Style Guide:\newline {\small\url{https://www.ams.org/publications/authors/AMS-StyleGuide-online.pdf}} \\
+\addlinespace
+APA & APA Style:\newline {\small\url{https://apastyle.apa.org}} \\
+\addlinespace
+ASCE & ASCE Library author center:\newline {\small\url{https://ascelibrary.org/author-center/preparing-manuscript}} \\
+\addlinespace
+Chicago & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/chicago_manual_17th_edition/chicago_style_introduction.html}} \\
+\addlinespace
+Harvard & Open University:\newline {\small\url{https://university.open.ac.uk/library/referencing-and-plagiarism/quick-guide-to-harvard-referencing-cite-them-right}} \\
+\addlinespace
+IEEE & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/ieee_style/ieee_overview.html}} \\
+\addlinespace
+TRB & Transportation Research Record author instructions:\newline {\small\url{https://trb.secure-platform.com/a/page/trrjournal/forauthors}} \\
+\addlinespace
+Vancouver & Purdue University Libraries:\newline {\small\url{https://guides.lib.purdue.edu/BMEQual/VancouverStyle}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \begin{table}[htbp]
 \centering
