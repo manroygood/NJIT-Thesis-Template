@@ -1,81 +1,17 @@
 % !TeX root = main.tex
+% SINGLE APPENDIX. Use this file when the document has exactly ONE appendix
+% (it is printed as "APPENDIX", with no letter). Start with
+% \oneappendix{Title}. For two or more appendices, use appendixA.tex,
+% appendixB.tex, appendixC.tex, ... instead (see main.tex). The sample text
+% is shared with appendixA.tex through appendix-rules.tex and appendix-demo.tex.
+% Every appendix needs a title and a short introduction before any figures
+% or tables (GSO). Numbering restarts at A.1.
 
 \oneappendix{Including an appendix or appendices}
 \label{app:single}
 
+\input{appendix-rules}
 
+This template uses a single appendix, so its equations, figures, and tables are numbered A.1, A.2, and so on, as below.
 
-NJIT enforces a strict rule regarding the titling and numbering of appendices:
-\begin{itemize}
-\item If your dissertation has only a \textbf{single appendix}, it must be titled \textbf{APPENDIX} (without any letter label such as "A"), followed by the appendix title.
-\item If your dissertation contains \textbf{two or more appendices}, they must be numbered sequentially as \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc.
-\end{itemize}
-
-You should not try to format this manually. Instead, follow these instructions:
-\begin{itemize}
-\item If you have two or more appendices, use the \verb+appendix+ command. Then start each new appendix with a \verb+\section+ command.
-\item If you have only one appendix, use the command \verb+oneappendix{My Title}+. This will create a single appendix titled ``My Title,'' capitalize it properly, and add it to the table of contents.
-\end{itemize}
-
-Here, we have a single appendix
-
-The dissertation style guide requires that every appendix begin with introductory text before any figures or tables appear. 
-
-\section{Equations and Figures in Appendices}
-
-Equations inside the appendix are numbered with an appendix prefix:
-\begin{align}
-\label{eq:app1}
-\nabla^2 \phi - \frac{1}{c^2}\frac{\partial^2 \phi}{\partial t^2} &= 0, \\
-\label{eq:app2}
-\oint_{\partial \Omega} \mathbf{F} \cdot d\mathbf{S} &= \iiint_{\Omega} (\nabla \cdot \mathbf{F})\, dV.
-\end{align}
-Cross-references like Equation~\eqref{eq:app1} and Equation~\eqref{eq:app2} resolve cleanly.
-
-Figures placed within the appendix also receive appropriate appendix numbering, as shown in Figure~\ref{fig:app_cube1} and Figure~\ref{fig:app_cube2}.
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=2.5in]{msgcube}
-\caption{First appendix demonstration figure.}
-\label{fig:app_cube1}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[width=2.5in]{msgcube}
-\caption{Second appendix demonstration figure.}
-\label{fig:app_cube2}
-\end{figure}
-
-\clearpage
-\section{Tables in an appendix}
-
-Here is an example of a table in an appendix showing how you might typeset a table of websites you consulted in your thesis. 
-Table~\ref{table:WEBSITES} lists common bioinformatics and signaling databases, formatted with automatic line wrapping for URLs using the \texttt{xurl} package.
-
-\begin{table}[htbp]
-\centering
-\caption{Key Online Databases for Cell Signaling and Molecular Biology}
-\label{table:WEBSITES}
-\vspace{6pt}
-\begin{tabularx}{\linewidth}{|c|p{0.32\linewidth}|X|}
-\hline
-\textbf{\#} & \textbf{Resource / URL} & \textbf{Description} \\
-\hline
-1 & \url{http://vlib.org/Science/Cell_Biology} & Virtual Library for Cell Biology with curated signal transduction pathways. \\
-\hline
-2 & \url{http://www.grt.kyushu-u.ac.jp/spad/} & Signaling Pathway Database containing curated pathway diagrams. \\
-\hline
-3 & \url{http://geo.nihs.go.jp/csndb/} & Cell Signaling Networks Database (CSNDB) \cite{CSND:1999}. \\
-\hline
-4 & \url{http://www.sdsc.edu/kinases/} & Protein Kinase Resource (PKR) for protein kinase structural data \cite{PKR:1997}. \\
-\hline
-5 & \url{http://www.expasy.ch/sprot/} & SWISS-PROT annotated protein sequence database \cite{BAIROCH:2000}. \\
-\hline
-6 & \url{http://www.expasy.ch/prosite/} & PROSITE database of protein families and functional domains \cite{HOFMANN:1999}. \\
-\hline
-7 & \url{http://www.rcsb.org/pdb/} & Protein Data Bank (PDB) for 3D macromolecular structures \cite{BERMAN:2000}. \\
-\hline
-\end{tabularx}
-\end{table}
+\input{appendix-demo}

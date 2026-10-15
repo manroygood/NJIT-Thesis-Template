@@ -1,6 +1,31 @@
-% DEFINITIONS AND SPECIFIC PERSONAL INFORMATION FOR USE WITH THESIS.TEX
-
-% format of these definitions can be found in THESIS.CLS
+% !TeX root = main.tex
+% TITLE-PAGE AND BIOGRAPHICAL SKETCH INFORMATION
+% (included via \input{biography} in main.tex)
+%
+% Everything here is set ONCE and reused on the abstract, title, copyright,
+% approval and biography pages, so the pages cannot disagree.
+%
+% \title           Type it in normal capitalization; the class sets it in
+%                  capitals where the GSO requires.
+% \author          Your name exactly as it should appear on the diploma.
+% \graduationdate  Month (May, August or December) and year you GRADUATE,
+%                  not the date you defend.
+% \thisdegree      Full name of the degree you are receiving.
+% \degreeearned    One line per degree earned, MOST RECENT FIRST, starting
+%                  with the degree you are receiving now:
+%                  \degreeearned{Degree name}{University, City, State, Year}.
+%                  Use the exact degree title from your transcript.
+% \degreelevel     Optional. Overrides the "Degree:" line of the sketch,
+%                  which defaults to "Doctor of Philosophy" (or "Master of
+%                  Science" with the thesis class option).
+%
+% For a master's thesis, use \documentclass[12pt,thesis]{njit_thesis} in
+% main.tex: the title page says "A Thesis" and the copyright page is blank.
+%
+% Presentations and publications are listed automatically from
+% references.bib, newest first: add  keywords = {me}  to each of your own
+% entries. Papers in preparation, submitted or under review may be included.
+% Date and place of birth go only in the copy submitted to the GSO.
 
 \title{Writing your NJIT dissertation: a sample and guide}
 
@@ -8,7 +33,8 @@
 
 \major{Mathematical Sciences}
 
-\defensedate{May}{9}{2022}
+% Month (May, August or December) and year you GRADUATE
+\graduationdate{May}{2026}
 
 \thisdegree{Doctor of Philosophy in Mathematical Sciences}
 \department{Department of Hoops}
@@ -23,11 +49,11 @@
 % about to graduate with (examples are given after the general format)
 
 
-\degree{Doctor of Philosophy in Mathematical Sciences}{New Jersey Institute of Technology, Newark, NJ, 2025}
+\degreeearned{Doctor of Philosophy in Mathematical Sciences}{New Jersey Institute of Technology, Newark, NJ, 2026}
 
-\degree{Master of Science in Applied Mathematics}{New Jersey Institute of Technology, Newark, NJ, 2020}
+\degreeearned{Master of Science in Applied Mathematics}{New Jersey Institute of Technology, Newark, NJ, 2020}
        
-\degree{Bachelor of Science, Mathematics}
+\degreeearned{Bachelor of Science, Mathematics}
        {Villanova University, Villanova, PA, 2018} 
        
 

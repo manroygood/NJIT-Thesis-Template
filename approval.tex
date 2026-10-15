@@ -1,9 +1,30 @@
-% Note:  Advisor's title and Committee member's title must be checked against
-% graduate catalog (example is given after the general format).
+% !TeX root = main.tex
+% APPROVAL PAGE (included via \input{approval} in main.tex)
+%
+% \advisor{Name}{Title, Institution}  your advisor (listed first)
+% \coadvisor{Name}{Title, Institution} optional; use once per co-advisor.
+%                                     Co-advisors are listed right after
+%                                     the advisor, and the advisor's line
+%                                     then also reads "Co-Advisor".
+% \member{Name}{Title, Institution}   one line per committee member
+%
+% GSO rules:
+% - A Ph.D. committee has at least five members; a master's committee at
+%   least three.
+% - List members from outside NJIT LAST, with their institution.
+% - Spell every name exactly as the person writes it, and copy each title
+%   ("Associate Professor of ...") from the faculty directory in the current
+%   Graduate Catalog. Wrong titles are a common reason for returned documents.
+% - Write "Dr.\ Name" with the backslash so LaTeX does not add a
+%   sentence-ending space after the period.
+% With the thesis class option, "Dissertation Advisor" becomes "Thesis Advisor".
 
-%The "\" after "Dr." prevents inter-sentence spacing
 \advisor{Dr.\ Courtney Vandersloot} 
 	    {Professor of Basketball, NJIT} 
+
+% Uncomment if you have a co-advisor:
+%\coadvisor{Dr.\ Caitlin Clark}
+%          {Associate Professor of Basketball, NJIT}
 
 \member{Dr.\ Betnijah Laney-Hamilton}
        {Associate Professor of Basketball, NJIT}
@@ -14,5 +35,5 @@
 \member{Dr.\ Breanna ``Stewie'' Stewart}
        {Associate Professor of Basketball, NJIT}
 	
-\member{Dr.\ Sabrina Ionescu }
+\member{Dr.\ Sabrina Ionescu}
        {Assistant Professor of Computer and Information Science, Some Other University}

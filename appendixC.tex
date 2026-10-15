@@ -1,0 +1,46 @@
+% !TeX root = main.tex
+% APPENDIX C: the template's files. If you add or rename files, update the
+% tree below (or delete this appendix from your thesis).
+
+\chapter{Files in the template}
+\label{app:filetree}
+
+The template is a folder of \LaTeX\ source files. The tree below shows every file, grouped in the order \texttt{main.tex} reads them; all of them sit together in one folder except the images, which are in \texttt{Graphics/}. To build the thesis, compile \texttt{main.tex}; see Section~\ref{sec:checklist} for what to check before you submit.
+
+{\singlespacing\small
+\begin{verbatim}
+NJIT-Thesis-Template/
+|-- readme.md                Overview and build instructions
+|-- njit_thesis.cls          Class file: the NJIT formatting rules
+|-- main.tex                 Master file; compile this one
+|-- packages.tex             Packages and citation style (Appendix B)
+|-- macros.tex               Your notation and theorem environments
+|-- references.bib           Bibliography database
+|
+|-- abstract.tex             Front matter, in the order main.tex
+|-- approval.tex               reads it; biography.tex also holds
+|-- biography.tex              the title, name, degrees, and date
+|-- dedication.tex
+|-- acknowledgment.tex
+|-- listofsymbols.tex        Two-column List of Symbols
+|-- listofdefinitions.tex    Two-column Glossary of Terms
+|
+|-- chapter1.tex             Chapter 1: structure of the template
+|-- chapter2.tex             Chapter 2: formatting rules and examples
+|-- table.tex                Sample table, \input by chapter2.tex
+|
+|-- appendixA.tex            Appendix A (several appendices)
+|-- appendixB.tex            Appendix B: packages
+|-- appendixC.tex            Appendix C: this file tree
+|-- appendix.tex             Alternative: a single appendix
+|-- appendix-rules.tex       Shared text, \input by appendix.tex
+|-- appendix-demo.tex          and appendixA.tex
+|
+`-- Graphics/                Images for figures
+    |-- FancyA.jpg
+    |-- FancyB.png
+    `-- msgcube.pdf
+\end{verbatim}
+}
+
+Compiling also creates \texttt{main.pdf} and a set of auxiliary files with the same base name (\texttt{main.aux}, \texttt{.bbl}, \texttt{.bcf}, \texttt{.blg}, \texttt{.fdb\_latexmk}, \texttt{.fls}, \texttt{.lof}, \texttt{.log}, \texttt{.lot}, \texttt{.run.xml}, \texttt{.synctex.gz}, and \texttt{.toc}). These are rebuilt on every run and can be deleted at any time.

@@ -1,4 +1,4 @@
-% !TEX TS–program = pdflatexmk
+% !TEX TS-program = pdflatexmk
 % !BIB program = biber
 \documentclass[12pt]{njit_thesis}
 % Master master file for the NJIT Thesis template.
@@ -47,6 +47,10 @@
 %       LIST OF SYMBOLS (optional)
 %       GLOSSARY OF TERMS (optional)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The titles in the Table of Contents and the Lists of Tables and Figures must
+% match the headings and captions in the text EXACTLY, word for word and in
+% capitalization (GSO). Do not use the optional short forms
+% \caption[short]{long} or \section[short]{long}.
 \tableofcontents
 \listoftables
 \listoffigures
@@ -69,23 +73,22 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
 
-% --- Option A: Single Appendix (Default) ---
-% If your dissertation has only ONE appendix, use the \oneappendix{Title}
-% command inside appendix.tex. This complies with NJIT's requirement that
-% a single appendix has no letter label (not "Appendix A", just "APPENDIX").
-\input{appendix}
+% --- Option A: Multiple Appendices (used by this sample) ---
+% With TWO OR MORE appendices, input one file per appendix. Each file starts
+% with \chapter{Title}; they are printed as APPENDIX A, APPENDIX B, ...
+\input{appendixA}
+\input{appendixB}
+\input{appendixC}
 
-% --- Option B: Multiple Appendices ---
-% If your dissertation has TWO OR MORE appendices, comment out the line above
-% and uncomment the lines below. Each file should start with \chapter{Title}.
-%\input{appendixA}
-%\input{appendixB}
+% --- Option B: Single Appendix ---
+% With only ONE appendix, comment out the lines above and uncomment the line
+% below. appendix.tex starts with \oneappendix{Title}, which prints the
+% heading as "APPENDIX" with no letter, as NJIT requires.
+%\input{appendix}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Bibliography / References
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\addcontentsline{toc}{chapter}{REFERENCES}
-\printbibliography[title={References}]
+\printbibliography[heading=bibintoc,title={REFERENCES}]
 
 \end{document}

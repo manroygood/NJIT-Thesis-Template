@@ -7,7 +7,14 @@
 \usepackage{array}
 
 % Math packages
-\usepackage{amsmath,amsfonts,amssymb,amsthm,mathtools}
+\usepackage{amsmath,amsthm,mathtools}
+
+% Fonts: the GSO requires Times New Roman (or Arial), 12 pt. newtxtext sets
+% the text in a Times clone and newtxmath supplies matching math fonts,
+% including the AMS symbols (so amssymb/amsfonts must NOT be loaded too).
+% Keep newtxmath after amsmath.
+\usepackage{newtxtext}
+\usepackage{newtxmath}
 
 % Graphics and subfigures
 \usepackage{graphicx}

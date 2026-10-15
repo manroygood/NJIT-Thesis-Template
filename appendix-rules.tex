@@ -1,0 +1,19 @@
+% !TeX root = main.tex
+% Shared text: the GSO rules for appendices. Included with \input from both
+% appendix.tex (single appendix) and appendixA.tex (several appendices), so
+% the wording lives in one place. Delete this file and its \input lines
+% when you write your own appendices.
+
+NJIT enforces a strict rule regarding the titling and numbering of appendices:
+\begin{itemize}
+\item If your dissertation has only a \textbf{single appendix}, it must be titled \textbf{APPENDIX} (without any letter label such as "A"), followed by the appendix title.
+\item If your dissertation contains \textbf{two or more appendices}, they must be numbered sequentially as \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc.
+\end{itemize}
+
+You should not try to format this manually. Instead:
+\begin{itemize}
+\item If you have \textbf{one} appendix, use \texttt{appendix.tex} and begin it with the command \verb+\oneappendix{Your Title}+. The heading prints as APPENDIX followed by your title in capitals.
+\item If you have \textbf{two or more}, switch to the multi-appendix lines in \texttt{main.tex} and begin each file with \verb+\chapter{Your Title}+. They are lettered A, B, \ldots\ automatically.
+\end{itemize}
+
+Every appendix needs a title and a brief introductory description before any equations, figures, or tables (GSO). Appendix pages are numbered continuously with the chapters, and equations, figures, and tables in an appendix are numbered with the appendix letter, starting again at 1 (A.1, B.1, \ldots).

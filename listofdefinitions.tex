@@ -1,14 +1,34 @@
 % !TeX root = main.tex
-% Glossary / List of Definitions (included via \glossaryofterms{\input{listofdefinitions}} in main.tex)
+% Glossary of Terms (included via \glossaryofterms{\input{listofdefinitions}} in main.tex)
+%
+% A two-column table: the term, then its definition. List terms in
+% alphabetical order. Start each definition with a capital letter and write
+% it in sentence case; capitalize only acronyms and proper names (GSO).
+% The table continues across pages automatically. To change the width of
+% the term column, give a width: \begin{glossarytable}[2in]
+%
+% Commands cannot be shown with \verb here, because this file is passed as an
+% argument; write \texttt{\textbackslash{}cite\{key\}} instead.
 
-\begin{description}
-\item[Accuracy] How closely an instrument measures the true or actual value of the process variable being measured or sensed.
-\item[Acidic] The condition of water or soil which contains a sufficient amount of acid substances to lower the pH below 7.0.
-\item[Alkaline] The condition of water or soil which contains a sufficient amount of alkali substances to raise the pH above 7.0.
-\item[Analog] The readout of an instrument by a pointer (or other indicating means) against a dial or scale.
-\item[Cohesion] Molecular attraction which holds two particles together.
-\item[Effective range] That portion of the design range (usually upper 90 percent) in which an instrument has acceptable accuracy.
-\item[Linearity] How closely an instrument measures actual values of a variable through its effective range; a measure used to determine the accuracy of an instrument.
-\item[Standard] A physical or chemical quantity whose value is known exactly, and is used to calibrate or standardize instruments.
-\item[Surfactant] Abbreviation for surface-active agent; the active agent in detergents that possesses high cleaning ability.
-\end{description}
+\begin{glossarytable}
+\term{Argument}{Input given to a command in braces, as in \texttt{\textbackslash{}section\{Title\}}. Optional arguments go in square brackets, as in \texttt{\textbackslash{}includegraphics[width=3in]\{file\}}.}
+\term{Auxiliary file}{A file such as \texttt{main.aux} or \texttt{main.toc} that \LaTeX\ writes during one run and reads on the next to resolve cross-references and lists. Deleting these files is a safe first step when a build behaves strangely.}
+\term{Biber}{The program that reads \texttt{references.bib} and sorts and formats the bibliography for \texttt{biblatex}. It runs between \LaTeX\ runs.}
+\term{\texttt{biblatex}}{The package that formats citations and the bibliography. The citation style is chosen once, in \texttt{packages.tex}.}
+\term{\BibTeX\ entry}{One record in a \texttt{.bib} file, such as \texttt{@article\{key, ...\}}. The key is the name used in \texttt{\textbackslash{}cite\{key\}}.}
+\term{Class file}{A file ending in \texttt{.cls} that defines a document's overall layout. This template's class, \texttt{njit\_thesis.cls}, implements the NJIT formatting rules.}
+\term{Command}{An instruction that begins with a backslash, such as \texttt{\textbackslash{}chapter} or \texttt{\textbackslash{}cite}.}
+\term{Comment}{Text after a \texttt{\%} sign on a line. \LaTeX\ ignores it, so comments are useful for notes and for temporarily removing material.}
+\term{Cross-reference}{A reference to a numbered item, made with \texttt{\textbackslash{}label} and \texttt{\textbackslash{}ref} (or \texttt{\textbackslash{}eqref} for equations). Numbers update automatically when material moves.}
+\term{Environment}{A block of material between \texttt{\textbackslash{}begin\{name\}} and \texttt{\textbackslash{}end\{name\}}, such as \texttt{figure}, \texttt{table}, or \texttt{equation}.}
+\term{Float}{A figure or table that \LaTeX\ may move to a nearby page to avoid large gaps. Always refer to floats by number, not as ``the figure below.''}
+\term{Label}{A name attached to a numbered item with \texttt{\textbackslash{}label\{name\}}, so it can be referred to with \texttt{\textbackslash{}ref\{name\}}. Prefixes such as \texttt{fig:} or \texttt{eq:} keep labels organized.}
+\term{\texttt{latexmk}}{A program that runs \LaTeX\ and Biber as many times as needed to produce a complete document. Running \texttt{latexmk -pdf main.tex} builds this thesis.}
+\term{Log file}{The file \texttt{main.log}, which records every warning and error from a run. Check it for undefined references and overfull boxes before submitting.}
+\term{Macro}{A command you define yourself with \texttt{\textbackslash{}newcommand}, usually in \texttt{macros.tex}, to keep notation consistent and save typing.}
+\term{Overfull box}{A warning that a line or object is too wide and sticks into the margin. The GSO checks margins, so fix these by rewording, adding a hyphenation point, or resizing the object.}
+\term{Overleaf}{A website for editing and compiling \LaTeX\ documents in a browser, with no local installation.}
+\term{Package}{A file loaded with \texttt{\textbackslash{}usepackage} that adds features, such as \texttt{amsmath} for mathematics or \texttt{graphicx} for images. This template loads its packages in \texttt{packages.tex}.}
+\term{Preamble}{Everything in \texttt{main.tex} before \texttt{\textbackslash{}begin\{document\}}, where the class, packages, and macros are loaded.}
+\term{Undefined reference}{A \texttt{\textbackslash{}ref} or \texttt{\textbackslash{}cite} that \LaTeX\ cannot resolve, shown as ``??'' in the PDF. It usually means a misspelled label or citation key, or that the document needs another run.}
+\end{glossarytable}

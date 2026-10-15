@@ -8,7 +8,7 @@ This repository provides the official \LaTeX\ dissertation template and user's g
 - **2002–2003:** Stephen A. Kunec, Hoa Kien Tran
 - **2014:** Shoubhik Mondal
 - **2022:** Prof. Roy Goodman, Dr. Jimmie Adriazola, Prof. Christina Frederick
-- **2026:** Comprehensive overhaul of `dmsthesis.cls` and the sample guide to modernize the codebase for TeX Live 2024–2026+, fix local/Overleaf compilation, implement clean geometry margins and `setspace` line spacing, support both single and multiple appendices conforming to GSO guidelines, and demonstrate all class features.
+- **2026:** Comprehensive overhaul of `njit_thesis.cls` and the sample guide to modernize the codebase for TeX Live 2024–2026+, fix local/Overleaf compilation, implement clean geometry margins and `setspace` line spacing, support both single and multiple appendices conforming to GSO guidelines, and demonstrate all class features.
 
 ---
 
@@ -68,7 +68,7 @@ pdflatex main.tex
 ## Project Structure
 
 ```
-├── dmsthesis.cls           # Main LaTeX document class file
+├── njit_thesis.cls         # Main LaTeX document class file
 ├── main.tex                # Master document controller
 ├── packages.tex            # External package imports
 ├── macros.tex              # Mathematical macros and theorem environments
@@ -81,12 +81,14 @@ pdflatex main.tex
 ├── acknowledgment.tex      # Acknowledgments
 ├── listofsymbols.tex       # List of symbols and notation
 ├── listofdefinitions.tex   # Glossary of terms / technical definitions
-├── preface.tex             # Optional preface
 ├── chapter1.tex            # Chapter 1: Document structure and guide
 ├── chapter2.tex            # Chapter 2: Formatting instructions and examples
-├── appendix.tex            # Single appendix example (default)
-├── appendixA.tex           # First appendix for multi-appendix setup
-└── appendixB.tex           # Second appendix for multi-appendix setup
+├── appendixA.tex           # Appendix A: how appendices work (multi-appendix setup)
+├── appendixB.tex           # Appendix B: the packages in packages.tex and their options
+├── appendixC.tex           # Appendix C: file tree of the template
+├── appendix.tex            # Alternative single-appendix setup (see main.tex)
+├── appendix-rules.tex      # Shared text, \input by appendix.tex and appendixA.tex
+└── appendix-demo.tex       # Shared equations/figures/table demo, \input by the same two
 ```
 
 ---

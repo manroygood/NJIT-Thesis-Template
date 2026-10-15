@@ -1,22 +1,17 @@
 % !TeX root = main.tex
+% APPENDIX A (one of several). Use appendixA.tex, appendixB.tex, ... when the
+% document has TWO OR MORE appendices (they are lettered A, B, ...).
+% Start each file with \chapter{Title}; \appendix in main.tex switches
+% chapters to appendix lettering. Every appendix needs a title and a short
+% introduction before any figures or tables (GSO).
+% The sample text is shared with appendix.tex through appendix-rules.tex and
+% appendix-demo.tex.
 
 \chapter{Including an appendix or appendices}
 \label{app:appendixA}
 
-NJIT enforces a strict rule regarding the titling and numbering of appendices:
-\begin{itemize}
-\item If your dissertation has only a \textbf{single appendix}, it must be titled \textbf{APPENDIX} (without any letter label such as "A"), followed by the appendix title.
-\item If your dissertation contains \textbf{two or more appendices}, they must be numbered sequentially as \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc.
-\end{itemize}
+\input{appendix-rules}
 
-You should not try to format this manually. Instead, follow these instructions:
-\begin{itemize}
-\item If you have two or more appendices, use the \verb+appendix+ command. Then start each new appendix with a \verb+\section+ command.
-\item If you have only one appendix, use the command \verb+oneappendix{My Title}+. This will create a single appendix titled ``My Title,'' capitalize it properly, and add it to the table of contents.
-\end{itemize}
+This sample has three appendices, so they are lettered: this is \textbf{APPENDIX A}, followed by Appendix~\ref{app:packages}, which describes the packages the template loads, and Appendix~\ref{app:filetree}, which shows how the template's files are organized. The class file prints the letters in the headings and the Table of Contents and prefixes equations, theorems, figures, and tables with the letter, as the examples below show. To switch to a single, unlettered appendix, follow the instructions at the end of \texttt{main.tex}.
 
-
-This appendix illustrates the first of multiple appendices. When a dissertation contains more than one appendix, each is declared with the standard \verb+\chapter{...}+ command after the \verb+\appendix+ declaration in \texttt{main.tex}.
-
-The class file automatically labels this appendix as \textbf{APPENDIX A} in both the chapter heading and the Table of Contents, and prefixes all equations, theorems, figures, and tables with the letter \textbf{A}.
-
+\input{appendix-demo}
