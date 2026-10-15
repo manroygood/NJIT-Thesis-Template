@@ -29,7 +29,7 @@ The GSO recognizes five levels of headings. The class file formats each level fo
 \item[Level 5, \texttt{\textbackslash paragraph} (X.x.x.x.x)] Italic, not bold, sentence case, ending with a period, with the text beginning on the next line. Not listed in the Table of Contents.
 \end{description}
 
-The class adds the period after level~4 and~5 titles, so do not type one. Every heading must have a title: an empty title, such as \verb+\section{}+, stops the build with an error that names the line. Use the same levels consistently in every chapter, and do not skip a level (a \verb+\subsubsection+ belongs inside a \verb+\subsection+). If you find yourself needing levels~4 and~5 often, consider whether the chapter should be split. The rest of this section demonstrates levels 3 to 5.
+The class adds the period after level~4 and~5 titles, so do not type one. Every heading must have a title: an empty title, such as \verb+\section{}+, stops the build with an error that names the line. Every heading below the chapter level must also be numbered, because the style guide does not allow unnumbered sections. If you use a starred command such as \verb+\section*+, the class prints its title in red and writes a warning to the log; remove the \verb+*+ to fix it. Use the same levels consistently in every chapter, and do not skip a level (a \verb+\subsubsection+ belongs inside a \verb+\subsection+). If you find yourself needing levels~4 and~5 often, consider whether the chapter should be split. The rest of this section demonstrates levels 3 to 5.
 
 \subsection{Subsection headings}
 \label{subsec:subsections}

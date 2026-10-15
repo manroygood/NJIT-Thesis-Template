@@ -56,6 +56,7 @@
 
 % Hooks used below (\AtEndPreamble, \ifblank, \AtBeginEnvironment)
 \RequirePackage{etoolbox}
+\RequirePackage{xcolor}
 
 % Caption formatting conforming to NJIT guidelines
 \RequirePackage{caption}
@@ -237,10 +238,19 @@
 \def\@sect#1#2#3#4#5#6[#7]#8{%
   \njit@checktitle{#1}{#8}%
   \njit@orig@sect{#1}{#2}{#3}{#4}{#5}{#6}[{#7}]{#8}}
+% Unnumbered headings below the chapter level (\section*, \subsection*,
+% \subsubsection*, \paragraph*) are not allowed by the GSO. Their titles are
+% printed in red and a warning naming the line goes to the log, so they are
+% easy to find and fix. \chapter* (used for front matter and References) is
+% not affected.
 \let\njit@orig@ssect\@ssect
 \def\@ssect#1#2#3#4#5{%
   \njit@checktitle{section*}{#5}%
-  \njit@orig@ssect{#1}{#2}{#3}{#4}{#5}}
+  \ClassWarning{njit_thesis}{Unnumbered heading `#5'.^^J%
+    NJIT does not allow unnumbered sections; its title is printed^^J%
+    in red. Remove the * to number it}%
+  \njit@orig@ssect{#1}{#2}{#3}{#4}{\njit@red{#5}}}
+\def\njit@red{\textcolor{red}}
 
 % -------------------------------------------------------------
 % Table of Contents, List of Figures, and List of Tables
