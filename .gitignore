@@ -18,3 +18,4 @@ main.pdf
 *.synctex.gz
 *.fdb_latexmk
 *.fls
+.DS_Store
