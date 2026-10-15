@@ -14,11 +14,9 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 \begin{description}
 \item[\texttt{fontenc}] Loaded with the option \texttt{T1}, which selects modern 8-bit font encoding. Accented letters then hyphenate correctly, and characters such as < and > print correctly in text.
 
-\item[\texttt{tabularx}] Provides the \texttt{tabularx} environment, whose \texttt{X} columns stretch to fill a given width. The sample tables use it to make tables exactly as wide as the text.
+\item[\texttt{tabularx}] Provides the \texttt{tabularx} environment, whose \texttt{X} columns stretch to fill a given width. The sample tables use it to make tables exactly as wide as the text. It depends on \texttt{array}, which the class file loads (Section~\ref{sec:classpackages}).
 
 \item[\texttt{booktabs}] Provides the horizontal rules \verb+\toprule+, \verb+\midrule+, and \verb+\bottomrule+, which give tables with better spacing than \verb+\hline+.
-
-\item[\texttt{array}] Extends column specifications, for example \verb+>{\raggedright}p{2in}+ to set the alignment inside a paragraph column. The class also loads it.
 
 \item[\texttt{amsmath}] The standard package for displayed mathematics: \texttt{align}, \texttt{gather}, \verb+\eqref+, \verb+\text+, and more. No options are needed.
 
@@ -32,8 +30,6 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item[\texttt{graphicx}] Provides \verb+\includegraphics+. Images are found in the \texttt{Graphics/} folder because \texttt{main.tex} sets \verb+\graphicspath{{Graphics/}}+.
 
-\item[\texttt{xcolor}] Defines colors by name. The template uses it only to color source-code listings.
-
 \item[\texttt{subcaption}] Provides the \texttt{subfigure} environment for figures with labelled parts (a), (b), and so on, as in Figure~\ref{fig:letters}. It works with the caption settings in the class.
 
 \item[\texttt{xurl}] Allows long URLs to break at any character, so URLs in tables and in the bibliography do not run into the margin.
@@ -44,7 +40,7 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item[\texttt{algpseudocode}] Provides the \texttt{algorithmic} environment for pseudocode, as in Figure~\ref{fig:bisection}; it is part of the \texttt{algorithmicx} bundle. The two \verb+\renewcommand+ lines after it print ``Input:'' and ``Output:'' for \verb+\Require+ and \verb+\Ensure+.
 
-\item[\texttt{listings}] Typesets source code, as in Section~\ref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and cyan comments. Change \texttt{language} to match your own code.
+\item[\texttt{listings}] Typesets source code, as in Section~\ref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and cyan comments. The colors come from \texttt{xcolor}, which the class file loads. Change \texttt{language} to match your own code.
 
 \item[\texttt{biblatex}] Formats citations and the bibliography, with \texttt{biber} as the back end. It is loaded through the \verb+\loadbiblatex+ command so that the style can be set once, with \verb+\mycitestyle+, from the table of styles in \texttt{packages.tex} (see Section~\ref{sec:bibliography}). The other options are:
   \texttt{backend=biber}, the program that processes \texttt{references.bib};
@@ -69,5 +65,7 @@ The class file \texttt{njit\_thesis.cls} loads these packages itself, because th
 \item \texttt{pdflscape}, for landscape pages;
 \item \texttt{caption}, for the caption layout (bold label, two spaces, no colon; table titles above, figure captions below);
 \item \texttt{etoolbox}, for the hooks the class uses internally;
-\item \texttt{array} and \texttt{longtable}, for the two-column List of Symbols and Glossary of Terms.
+\item \texttt{xcolor}, which defines colors by name; the class prints the titles of unnumbered sections in red, and the code listings in \texttt{packages.tex} use it for their colors;
+\item \texttt{array}, which extends column specifications, for example \verb+>{\raggedright}p{2in}+ to set the alignment inside a paragraph column; \texttt{tabularx} depends on it;
+\item \texttt{longtable}, for the two-column List of Symbols and Glossary of Terms, which can break across pages.
 \end{itemize}

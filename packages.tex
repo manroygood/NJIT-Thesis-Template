@@ -2,9 +2,11 @@
 \usepackage[T1]{fontenc}
 
 % Table and alignment packages
+% Package tabularx depends on the array package, which is loaded by the class
+% file. array also provides the >{\raggedright\arraybackslash} column syntax
+% used in the sample tables.
 \usepackage{tabularx}
 \usepackage{booktabs}
-\usepackage{array}
 
 % Math packages
 \usepackage{amsmath,amsthm,mathtools}
@@ -18,7 +20,6 @@
 
 % Graphics and subfigures
 \usepackage{graphicx}
-\usepackage{xcolor}
 \usepackage{subcaption}
 
 % URL breaking for references and tables
@@ -42,6 +43,8 @@
 \renewcommand{\algorithmicensure}{\textbf{Output:}}
 
 % Source code highlighting
+% The \color commands in \lstset below depend on the xcolor package, which is
+% loaded by the class file.
 \usepackage{listings}
 \lstset{basicstyle=\ttfamily\small, numbers=none}
 \lstset{language=matlab,%
