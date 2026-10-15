@@ -10,10 +10,29 @@
 % 2026: Comprehensive overhaul for modern LaTeX compatibility, clean geometry,
 %       robust appendix handling, safe continuation headers, and full feature demonstration.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CONTENTS OF THIS FILE
+%    1. Class options and base class
+%    2. Packages
+%    3. Page layout, spacing, and page numbers
+%    4. Lists and bibliography spacing
+%    5. Chapter and section headings
+%    6. Table of Contents, List of Figures, and List of Tables
+%    7. Front matter: data commands
+%    8. Front matter: page generators
+%    9. List of Symbols and Glossary of Terms
+%   10. Main body and appendices
+%   11. Footnotes and utility macros
+%   12. Compatibility with older versions of this class
+%
+% Internal macros start with \njit@ so they cannot clash with packages.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{njit_thesis}[2026/10/03 NJIT Dissertation LaTeX class]
+\ProvidesClass{njit_thesis}[2026/10/15 NJIT Dissertation LaTeX class]
 
+% =============================================================
+% 1. Class options and base class
+% =============================================================
 % Document type: "dissertation" (Ph.D., default) or "thesis" (master's)
 \newif\ifnjit@thesis
 \DeclareOption{thesis}{\njit@thesistrue}
@@ -31,9 +50,9 @@
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{2}
 
-% -------------------------------------------------------------
-% Core Required Packages
-% -------------------------------------------------------------
+% =============================================================
+% 2. Packages
+% =============================================================
 % Standard NJIT Thesis Margins:
 % 1.5 in left margin (for binding), 1.0 in right, top, and bottom margins
 \RequirePackage[
@@ -46,21 +65,20 @@
   headsep=0.3in,
   footskip=0.5in
 ]{geometry}
+\RequirePackage{setspace}   % double and single spacing
+\RequirePackage{pdflscape}  % landscape pages, rotated in the PDF viewer
+\RequirePackage{etoolbox}   % \AtEndPreamble, \ifblank, \AtBeginEnvironment
+\RequirePackage{xcolor}     % red titles of unnumbered headings
+\RequirePackage{caption}    % caption layout
+\RequirePackage{array}      % column types of the symbol and glossary tables
+\RequirePackage{longtable}  % symbol and glossary tables that break across pages
 
-% Spacing package for standard double/single spacing
-\RequirePackage{setspace}
+% =============================================================
+% 3. Page layout, spacing, and page numbers
+% =============================================================
 \doublespacing
 
-% Landscape support (pdflscape rotates PDF view for easy reading on screen)
-\RequirePackage{pdflscape}
-
-% Hooks used below (\AtEndPreamble, \ifblank, \AtBeginEnvironment)
-\RequirePackage{etoolbox}
-\RequirePackage{xcolor}
-
-% Caption formatting conforming to NJIT guidelines
-\RequirePackage{caption}
-% GSO: bold label ("Figure 2.1") followed by two spaces, no colon
+% Captions: bold label ("Figure 2.1") followed by two spaces, no colon (GSO)
 \DeclareCaptionLabelSeparator{njit}{\ \ }
 \captionsetup{
   font={singlespacing,normalsize},
@@ -72,17 +90,7 @@
 \captionsetup[table]{position=above, skip=6pt}
 \captionsetup[figure]{position=below, skip=6pt}
 
-% Line spacing aliases for backward compatibility
-\newcommand{\ssp}{\singlespacing}
-\newcommand{\msp}{\onehalfspacing}
-\newcommand{\dsp}{\doublespacing}
-
-% Caption font macro for backward compatibility
-\newcommand{\normalsizeADIE}{\normalsize}
-
-% -------------------------------------------------------------
-% Hyphenation and Widow / Orphan Control
-% -------------------------------------------------------------
+% Widow and orphan control, and line breaking
 \widowpenalty=10000
 \clubpenalty=10000
 \hyphenpenalty=1000
@@ -98,13 +106,6 @@
 \setlength\@fpsep{20\p@ \@plus 4\p@}
 \setlength\@fpbot{0\p@ \@plus 1fil}
 
-\setlength\belowdisplayskip{20pt}
-\setlength\belowdisplayshortskip{20pt}
-\setlength\abovecaptionskip{5pt}
-
-% -------------------------------------------------------------
-% Page Numbering & Plain Style
-% -------------------------------------------------------------
 % NJIT plain pagestyle: page numbers centered in footer in bold
 \def\ps@plain{%
   \let\@oddhead\@empty
@@ -114,10 +115,51 @@
 }
 \pagestyle{plain}
 
+% =============================================================
+% 4. Lists and bibliography spacing
+% =============================================================
+% Lists and references: single-spaced within an entry, one blank
+% (single-spaced) line between entries (GSO). The same gap separates
+% entries in the TOC and lists and rows of the symbol and glossary tables.
+\newlength{\njit@entrysep}
+% One single-spaced line at 12pt (14.5pt)
+{\normalsize\singlespacing\global\njit@entrysep\baselineskip}
+\def\njit@listspacing{%
+  \itemsep\njit@entrysep \parsep\z@ \partopsep\z@}
+\def\njit@listi{\leftmargin\leftmargini \njit@listspacing \topsep\njit@entrysep}
+\def\njit@listii{\leftmargin\leftmarginii
+  \labelwidth\leftmarginii \advance\labelwidth-\labelsep
+  \njit@listspacing \topsep\z@}
+\def\njit@listiii{\leftmargin\leftmarginiii
+  \labelwidth\leftmarginiii \advance\labelwidth-\labelsep
+  \njit@listspacing \topsep\z@}
+\def\njit@liststyle{%
+  \par % end the lead-in paragraph first, so it keeps double spacing
+  \singlespacing
+  \let\@listi\njit@listi \let\@listI\njit@listi
+  \let\@listii\njit@listii \let\@listiii\njit@listiii}
+\AtBeginEnvironment{itemize}{\njit@liststyle}
+\AtBeginEnvironment{enumerate}{\njit@liststyle}
 
-% -------------------------------------------------------------
-% Section & Chapter Headings
-% -------------------------------------------------------------
+\AtEndPreamble{%
+  \@ifpackageloaded{biblatex}{%
+    \AtBeginBibliography{\singlespacing\emergencystretch=2em\relax}%
+    \setlength{\bibitemsep}{\njit@entrysep}%
+    \setlength{\bibparsep}{\z@}%
+    % Unnumbered list for the Biographical Sketch publications
+    \defbibenvironment{njitpubs}
+      {\list{}{\setlength{\leftmargin}{\bibhang}%
+               \setlength{\itemindent}{-\leftmargin}%
+               \setlength{\itemsep}{\bibitemsep}%
+               \setlength{\parsep}{\bibparsep}}}
+      {\endlist}
+      {\item}%
+  }{}%
+}
+
+% =============================================================
+% 5. Chapter and section headings
+% =============================================================
 \renewcommand{\contentsname}{TABLE OF CONTENTS}
 \renewcommand{\listfigurename}{LIST OF FIGURES}
 \renewcommand{\listtablename}{LIST OF TABLES}
@@ -126,26 +168,28 @@
 \renewcommand{\bibname}{REFERENCES}
 \renewcommand{\indexname}{INDEX}
 
-% Chapter pages: plain pagestyle with centered footer page number
+% Every heading must have a title (GSO). An empty or blank title stops the
+% build with an error that names the offending heading.
+\newcommand{\njit@checktitle}[2]{%
+  \ifblank{#2}{%
+    \ClassError{njit_thesis}%
+      {Untitled \@backslashchar#1 on input line \the\inputlineno}%
+      {NJIT does not allow untitled chapters, sections, or subsections.^^J%
+       Give this \@backslashchar#1 a title. Press Enter to continue anyway.}%
+  }{}%
+}
+
+% Chapters start a new page with the plain pagestyle (centered page number)
 \def\chapter{\clearpage \thispagestyle{plain} \global\@topnum\z@
   \@afterindentfalse \secdef\@chapter\@schapter}
 
-\def\@schapter#1{%
-  \njit@checktitle{chapter*}{#1}%
-  \if@twocolumn
-    \@topnewpage[\@makeschapterhead{#1}]%
-  \else
-    \@makeschapterhead{#1}%
-    \@afterheading
-  \fi}
-
-% Numbered chapters
+% Numbered chapters, and lettered appendices after \appendix
 \def\@chapter[#1]#2{%
   \njit@checktitle{chapter}{#2}%
   \ifnum \c@secnumdepth >\m@ne
     \refstepcounter{chapter}%
     \typeout{\@chapapp\space\thechapter.}%
-    \if@appendix
+    \ifnjit@appendix
       \addcontentsline{toc}{appendix}{\protect\numberline{\appendixname~\thechapter}\protect\MakeUppercase{#1}}%
     \else
       \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}\protect\MakeUppercase{#1}}%
@@ -154,12 +198,14 @@
     \addcontentsline{toc}{chapter}{\protect\MakeUppercase{#1}}%
   \fi
   \chaptermark{#1}%
-  \if@twocolumn
-    \@topnewpage[\@makechapterhead{#2}]%
-  \else
-    \@makechapterhead{#2}%
-    \@afterheading
-  \fi}
+  \@makechapterhead{#2}%
+  \@afterheading}
+
+% Unnumbered chapters (\chapter*, used for References)
+\def\@schapter#1{%
+  \njit@checktitle{chapter*}{#1}%
+  \@makeschapterhead{#1}%
+  \@afterheading}
 
 % Heading layout for numbered chapters (centered, bold, uppercase)
 \def\@makechapterhead#1{%
@@ -191,13 +237,13 @@
 % A negative before-skip also keeps the first paragraph after the heading
 % flush left.
 
-% Section headings: Centered, Bold
+% Section headings (level 2, X.x): centered, bold
 \renewcommand\section{\@startsection{section}{1}{\z@}%
   {-34\p@ \@plus -4\p@ \@minus -2\p@}%
   {2.3ex \@plus .2ex}%
   {\normalfont\normalsize\bfseries\centering\singlespacing}}
 
-% Subsection headings: Flush left, Bold
+% Subsection headings (level 3, X.x.x): flush left, bold
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-20\p@ \@plus -4\p@ \@minus -2\p@}%
   {1.5ex \@plus .2ex}%
@@ -224,16 +270,7 @@
 \renewcommand\subsubsection{\njit@periodhead\njit@subsubsection{subsubsection}}
 \renewcommand\paragraph{\njit@periodhead\njit@paragraph{paragraph}}
 
-% Every heading must have a title (GSO). An empty or blank title stops the
-% build with an error that names the offending heading.
-\newcommand{\njit@checktitle}[2]{%
-  \ifblank{#2}{%
-    \ClassError{njit_thesis}%
-      {Untitled \@backslashchar#1 on input line \the\inputlineno}%
-      {NJIT does not allow untitled chapters, sections, or subsections.^^J%
-       Give this \@backslashchar#1 a title. Press Enter to continue anyway.}%
-  }{}%
-}
+% Check the title of every numbered heading below the chapter level
 \let\njit@orig@sect\@sect
 \def\@sect#1#2#3#4#5#6[#7]#8{%
   \njit@checktitle{#1}{#8}%
@@ -252,9 +289,9 @@
   \njit@orig@ssect{#1}{#2}{#3}{#4}{\njit@red{#5}}}
 \def\njit@red{\textcolor{red}}
 
-% -------------------------------------------------------------
-% Table of Contents, List of Figures, and List of Tables
-% -------------------------------------------------------------
+% =============================================================
+% 6. Table of Contents, List of Figures, and List of Tables
+% =============================================================
 % Column header line ("Chapter ... Page"), typeset when used so that it
 % picks up whatever text font the preamble selects.
 \newcommand{\njit@colhead}[2]{\hbox to\textwidth{\bfseries #1\hfil #2}}
@@ -343,7 +380,7 @@
 \renewcommand{\@pnumwidth}{2.5em}
 \renewcommand{\@tocrmarg}{3.5em}
 
-% Dotted TOC leader formatting
+% Entries: dot leaders, plain page numbers, one blank line between entries
 \def\@dottedtocline#1#2#3#4#5{%
   \ifnum #1>\c@tocdepth \else
     \vskip \z@ plus .2pt
@@ -368,160 +405,112 @@
 \def\l@appendix{\@dottedtocline{1}{0pt}{7.5em}}
 \def\toclevel@appendix{0}% bookmark level for hyperref
 
-% -------------------------------------------------------------
-% Appendix Implementation (Single Appendix & Multiple Appendices)
-% -------------------------------------------------------------
-\newif\if@appendix
-\@appendixfalse
+% =============================================================
+% 7. Front matter: data commands
+% =============================================================
+% Used in biography.tex, approval.tex, and main.tex. Each command stores
+% its argument; section 8 prints the pages.
 
-% For multiple appendices: \appendix then \chapter{Title}
-\renewcommand\appendix{%
-  \par
-  \setcounter{chapter}{0}%
-  \setcounter{section}{0}%
-  \@appendixtrue
-  \gdef\@chapapp{\appendixname}%
-  \gdef\thechapter{\@Alph\c@chapter}%
-}
+% Graduation month and year (May, August, or December), shown on the title
+% page, copyright page, and biographical sketch; not the defense date.
+\newcommand{\graduationdate}[2]{\gdef\njit@gradmonth{#1}\gdef\njit@gradyear{#2}}
+\def\njit@gradmonth{May}
+\def\njit@gradyear{2026}
 
-% For a single appendix: \oneappendix{Title}
-% NJIT requires that a single appendix has no letter label (not "Appendix A", just "APPENDIX").
-\newcommand{\oneappendix}[1]{%
-  \par
-  \njit@checktitle{oneappendix}{#1}%
-  \@appendixtrue
-  \gdef\@chapapp{\appendixname}%
-  \gdef\thechapter{\@Alph\c@chapter}%
-  \clearpage
-  \thispagestyle{plain}%
-  \setcounter{chapter}{0}%
-  \refstepcounter{chapter}% chapter A: resets per-chapter counters, sets \label target
-  \chaptermark{#1}%
-  \addcontentsline{toc}{chapter}{APPENDIX: \protect\MakeUppercase{#1}}%
-  \begin{center}\singlespacing
-    \bfseries APPENDIX\par
-    \vskip 12pt
-    \MakeUppercase{#1}
-  \end{center}
-  \par\nobreak\vskip 30\p@
-  \@afterindentfalse\@afterheading
-}
-
-% -------------------------------------------------------------
-% Front Matter Definitions & Metadata
-% -------------------------------------------------------------
-\def\defensedate#1#2#3{%
-  \gdef\defensemonth{#1}%
-  \gdef\defenseday{#2}%
-  \gdef\defenseyear{#3}%
-}
-% The title page, copyright page and biographical sketch show the month and
-% year of GRADUATION (May, August or December), not the defense date.
-\newcommand{\graduationdate}[2]{\gdef\defensemonth{#1}\gdef\defenseyear{#2}}
-\def\defensemonth{May}
-\def\defenseday{1}
-\def\defenseyear{2026}
-
-\newcommand{\department}[1]{\def\@department{#1}}
-\newcommand{\thisdegree}[1]{\def\@thisdegree{#1}}
-\newcommand{\institute}[1]{\def\@institute{#1}}
-\newcommand{\major}[1]{\def\@major{#1}}
+\newcommand{\department}[1]{\def\njit@department{#1}}
+\newcommand{\thisdegree}[1]{\def\njit@thisdegree{#1}}
+\newcommand{\institute}[1]{\def\njit@institute{#1}}
+\newcommand{\major}[1]{\def\njit@major{#1}}
 % Degree level printed after "Degree:" in the biographical sketch
-\newcommand{\degreelevel}[1]{\def\@degreelevel{#1}}
+\newcommand{\degreelevel}[1]{\def\njit@degreelevel{#1}}
 \ifnjit@thesis
   \def\njit@doctype{Thesis}
-  \def\@degreelevel{Master of Science}
+  \def\njit@degreelevel{Master of Science}
 \else
   \def\njit@doctype{Dissertation}
-  \def\@degreelevel{Doctor of Philosophy}
+  \def\njit@degreelevel{Doctor of Philosophy}
 \fi
 
 % Defaults
-\def\@department{Department of Mathematical Sciences}
-\def\@thisdegree{Doctor of Philosophy in Mathematical Sciences}
-\def\@institute{New Jersey Institute of Technology and \par Rutgers, The State University of New Jersey---Newark}
-\def\@major{Mathematical Sciences}
+\def\njit@department{Department of Mathematical Sciences}
+\def\njit@thisdegree{Doctor of Philosophy in Mathematical Sciences}
+\def\njit@institute{New Jersey Institute of Technology and \par Rutgers, The State University of New Jersey---Newark}
+\def\njit@major{Mathematical Sciences}
 
-\def\advisor#1#2{\gdef\@advisorname{#1}\gdef\@advisortitle{#2}}
-\def\@advisorname{\@latex@warning@no@line{No advisor given}}
-\def\@advisortitle{\@latex@warning@no@line{No advisor title given}}
+% Advisor: \advisor{Name}{Title, Institution}
+\def\advisor#1#2{\gdef\njit@advisorname{#1}\gdef\njit@advisortitle{#2}}
+\def\njit@advisorname{\@latex@warning@no@line{No advisor given}}
+\def\njit@advisortitle{\@latex@warning@no@line{No advisor title given}}
 
 % Optional co-advisor(s): \coadvisor{Name}{Title, Institution}. When one is
 % given, the advisor's line also reads "Co-Advisor", and the co-advisors are
 % listed right after the advisor, before the committee members.
-\newif\if@coadvisors
-\@coadvisorsfalse
-\def\@coadvisors{}
+\newif\ifnjit@coadvisors
+\def\njit@coadvisors{}
 \newcommand{\coadvisor}[2]{%
-  \if@coadvisors
-    \g@addto@macro\@coadvisors{,{{#1}{#2}}}%
+  \ifnjit@coadvisors
+    \g@addto@macro\njit@coadvisors{,{{#1}{#2}}}%
   \else
-    \gdef\@coadvisors{{{#1}{#2}}}%
-    \@coadvisorstrue
+    \gdef\njit@coadvisors{{{#1}{#2}}}%
+    \global\njit@coadvisorstrue
   \fi
 }
 
-% Committee member accumulation
-\newif\if@members
-\@membersfalse
-\def\@committee{}
-
+% Committee members: \member{Name}{Title, Institution}
+\newif\ifnjit@members
+\def\njit@committee{}
 \newcommand{\member}[2]{%
-  \if@members
-    \g@addto@macro\@committee{,{{#1}{#2}}}%
+  \ifnjit@members
+    \g@addto@macro\njit@committee{,{{#1}{#2}}}%
   \else
-    \gdef\@committee{{{#1}{#2}}}%
-    \@memberstrue
+    \gdef\njit@committee{{{#1}{#2}}}%
+    \global\njit@memberstrue
   \fi
 }
 
-% Degrees accumulation for Biographical Sketch
-\newif\if@degrees
-\@degreesfalse
-\def\@degrees{}
-
+% Degrees for the biographical sketch: \degreeearned{Degree}{University, City, State, Year}
+\newif\ifnjit@degrees
+\def\njit@degrees{}
 \newcommand{\degreeearned}[2]{%
-  \if@degrees
-    \g@addto@macro\@degrees{,{{#1}{#2}}}%
+  \ifnjit@degrees
+    \g@addto@macro\njit@degrees{,{{#1}{#2}}}%
   \else
-    \gdef\@degrees{{{#1}{#2}}}%
-    \@degreestrue
+    \gdef\njit@degrees{{{#1}{#2}}}%
+    \global\njit@degreestrue
   \fi
 }
-% Old name, kept for existing documents. Defined at \begin{document} so it
-% does not collide with packages such as gensymb that define \degree (the
-% degree sign); in that case use \degreeearned.
-\AtBeginDocument{\ifdefined\degree\else\let\degree\degreeearned\fi}
 
-\def\printdegrees{%
-  \begin{itemize}
-    \singlespacing
-    \@for \@deg:=\@degrees \do{%
-      \expandafter\@printonedegree\@deg
-    }%
-  \end{itemize}%
+% Abstract: \abstract{...} in main.tex. This replaces the abstract
+% environment of the report class; using \begin{abstract} stops the build
+% with an explanation instead of silently losing the text.
+\long\def\njit@setabstract#1{\gdef\njit@abstract{#1}}
+\def\abstract{\@ifnextchar\bgroup\njit@setabstract\njit@abstractenv}
+\def\njit@abstractenv{%
+  \ClassError{njit_thesis}%
+    {Use \string\abstract{...}, not \string\begin{abstract}}%
+    {Put your abstract in abstract.tex. main.tex includes it with^^J%
+     \string\abstract{\string\input{abstract}}, and \string\initthesis\space prints it.}}
+\let\endabstract\relax
+\def\njit@abstract{\@latex@warning@no@line{No abstract given}}
+
+% Dedication, acknowledgment, and glossary text (each optional)
+\long\def\dedication#1{\gdef\njit@dedication{#1}}
+\long\def\acknowledgment#1{\gdef\njit@acknowledgment{#1}}
+\long\def\glossaryofterms#1{\gdef\njit@glossaryofterms{#1}}
+
+% =============================================================
+% 8. Front matter: page generators
+% =============================================================
+% Initialize all standard front matter in NJIT prescribed order
+\newcommand{\initthesis}{%
+  \makeabstract
+  \maketitle
+  \makecopyright
+  \makeapproval
+  \makebiography
+  \makededication
+  \makeacknowledgment
 }
-\def\@printonedegree#1#2{%
-  \item #1\par
-  #2
-}
-
-% Abstract
-\long\def\abstract#1{\gdef\@abstract{#1}}
-\def\@abstract{\@latex@warning@no@line{No abstract given}}
-
-% Dedication
-\long\def\dedication#1{\gdef\@dedication{#1}}
-
-% Acknowledgment
-\long\def\acknowledgment#1{\gdef\@acknowledgment{#1}}
-
-% Glossary / List of Definitions
-\long\def\glossaryofterms#1{\gdef\@glossaryofterms{#1}}
-
-% -------------------------------------------------------------
-% Front Matter Page Generators
-% -------------------------------------------------------------
 
 % 1. Abstract Page
 \newcommand{\makeabstract}{%
@@ -538,7 +527,7 @@
     \vskip 15pt
   \end{center}
   \par\@afterindentfalse\@afterheading
-  \@abstract
+  \njit@abstract
   \clearpage
   \pagestyle{plain}%
 }
@@ -558,13 +547,13 @@
     \vfill
     A \njit@doctype\par
     Submitted to the Faculty of\par
-    \@institute\par
+    \njit@institute\par
     in Partial Fulfillment of the Requirements for the Degree of\par
-    \@thisdegree\par
+    \njit@thisdegree\par
     \vskip 18pt
-    \@department\par
+    \njit@department\par
     \vskip 18pt
-    \defensemonth~\defenseyear
+    \njit@gradmonth~\njit@gradyear
   \end{center}%
   \clearpage
 }
@@ -578,7 +567,7 @@
   \else
   \begin{center}
     \vspace*{3.0in}
-    Copyright \copyright\ \defenseyear\ by \@author\par
+    Copyright \copyright\ \njit@gradyear\ by \@author\par
     ALL RIGHTS RESERVED
   \end{center}%
   \fi
@@ -600,31 +589,31 @@
   \vskip 0.4in
   {\singlespacing\raggedright\parindent\z@
     \rule{\textwidth}{1.5pt}\par
-    \@advisorname, \njit@doctype\ \if@coadvisors Co-\fi Advisor \hfill Date\par
-    \@advisortitle\par
-    \if@coadvisors
-      \@for \@mem:=\@coadvisors \do{%
+    \njit@advisorname, \njit@doctype\ \ifnjit@coadvisors Co-\fi Advisor \hfill Date\par
+    \njit@advisortitle\par
+    \ifnjit@coadvisors
+      \@for \njit@mem:=\njit@coadvisors \do{%
         \vfill
         \rule{\textwidth}{1.5pt}\par
-        \expandafter\@printonecoadvisor\@mem
+        \expandafter\njit@printonecoadvisor\njit@mem
       }%
     \fi
-    \if@members
-      \@for \@mem:=\@committee \do{%
+    \ifnjit@members
+      \@for \njit@mem:=\njit@committee \do{%
         \vfill
         \rule{\textwidth}{1.5pt}\par
-        \expandafter\@printonemember\@mem
+        \expandafter\njit@printonemember\njit@mem
       }%
     \fi
     \vskip 0.8in
   }%
   \clearpage
 }
-\def\@printonecoadvisor#1#2{%
+\def\njit@printonecoadvisor#1#2{%
   #1, \njit@doctype\ Co-Advisor \hfill Date\par
   #2\par
 }
-\def\@printonemember#1#2{%
+\def\njit@printonemember#1#2{%
   #1, Committee Member \hfill Date\par
   #2\par
 }
@@ -640,20 +629,34 @@
   \begin{tabbing}
     \hskip 1.5in \= \kill
     \par\noindent {\bfseries Author:} \> \@author \\
-    \par\noindent {\bfseries Degree:} \> \@degreelevel \\
-    \par\noindent {\bfseries Date:} \> \defensemonth~\defenseyear \\
+    \par\noindent {\bfseries Degree:} \> \njit@degreelevel \\
+    \par\noindent {\bfseries Date:} \> \njit@gradmonth~\njit@gradyear \\
   \end{tabbing}
   \par\noindent {\bfseries Undergraduate and Graduate Education:}
   \printdegrees
   \begin{tabbing}
     \hskip 1.5in \= \kill
-    \par\noindent {\bfseries Major:} \> \@major
+    \par\noindent {\bfseries Major:} \> \njit@major
   \end{tabbing}
   \printmypublications
   \clearpage
 }
 
-% Default publications hook (uses biblatex refsection with keyword "me")
+\def\printdegrees{%
+  \begin{itemize}
+    \singlespacing
+    \@for \njit@deg:=\njit@degrees \do{%
+      \expandafter\njit@printonedegree\njit@deg
+    }%
+  \end{itemize}%
+}
+\def\njit@printonedegree#1#2{%
+  \item #1\par
+  #2
+}
+
+% Presentations and publications: entries of references.bib with
+% keywords = {me}, newest first (biblatex refsection)
 \newcommand{\printmypublications}{%
   \par\bigskip\noindent {\bfseries Presentations and Publications:}\par
   \ifdefined\printbibliography
@@ -668,7 +671,7 @@
 
 % 6. Dedication Page
 \newcommand{\makededication}{%
-  \ifdefined\@dedication
+  \ifdefined\njit@dedication
     \clearpage
     \thispagestyle{plain}%
     \begingroup
@@ -676,7 +679,7 @@
     \begin{center}
       \vspace*{3.0in}
       \begin{minipage}{4.5in}
-        \@dedication
+        \njit@dedication
       \end{minipage}
     \end{center}%
     \clearpage
@@ -686,7 +689,7 @@
 
 % 7. Acknowledgments Page
 \newcommand{\makeacknowledgment}{%
-  \ifdefined\@acknowledgment
+  \ifdefined\njit@acknowledgment
     \clearpage
     \thispagestyle{plain}%
     \begin{center}
@@ -694,69 +697,33 @@
       \vskip 20\p@
     \end{center}
     \par\@afterindentfalse\@afterheading
-    \@acknowledgment
+    \njit@acknowledgment
     \clearpage
   \fi
 }
 
-% 8. Glossary of Terms Page
-\newcommand{\makeglossaryofterms}{%
-  \ifdefined\@glossaryofterms
-    \njit@listheading[0pt]{GLOSSARY OF TERMS}{\vskip 20\p@}{}%
-    {\singlespacing \@glossaryofterms}%
-    \njit@endcontinued
-  \fi
-}
-% Alias for List of Definitions
-\let\makelistofdefinitions\makeglossaryofterms
-
-% Initialize all standard front matter in NJIT prescribed order
-\newcommand{\initthesis}{%
-  \makeabstract
-  \maketitle
-  \makecopyright
-  \makeapproval
-  \makebiography
-  \makededication
-  \makeacknowledgment
-}
-
-% -------------------------------------------------------------
-% Main Body Initialization
-% -------------------------------------------------------------
-\newcommand{\startbody}{%
-  \clearpage
-  \pagestyle{plain}%
-  \pagenumbering{arabic}%
-  \setcounter{page}{1}%
-}
-
-% -------------------------------------------------------------
-% List of Symbols Environment & Helpers
-% -------------------------------------------------------------
+% =============================================================
+% 9. List of Symbols and Glossary of Terms
+% =============================================================
+% Both are optional and print after the List of Figures. Each prints
+% nothing if its text was never given.
 \newcommand{\symheadingname}{LIST OF SYMBOLS}
+\long\def\symbols#1{\gdef\njit@symbols{#1}}
 
-% Dedicated symbols macro to store input
-\long\def\symbols#1{\gdef\@symbols{#1}}
-
-% Generator for List of Symbols (prints nothing if \symbols was not used)
 \newcommand{\makelistofsymbols}{%
-  \ifdefined\@symbols
+  \ifdefined\njit@symbols
     \njit@listheading{\symheadingname}{\vskip 10pt}{}%
-    {\singlespacing \@symbols}%
+    {\singlespacing \njit@symbols}%
     \njit@endcontinued
   \fi
 }
-% Provide \listofsymbols as alias/generator
-\let\listofsymbols\makelistofsymbols
 
-% Dedicated List of Symbols environment
-\newenvironment{symbolslist}{%
-  \njit@listheading{\symheadingname}{\vskip 10pt}{}%
-  \begin{singlespace}
-}{%
-  \end{singlespace}
-  \njit@endcontinued
+\newcommand{\makeglossaryofterms}{%
+  \ifdefined\njit@glossaryofterms
+    \njit@listheading[0pt]{GLOSSARY OF TERMS}{\vskip 20\p@}{}%
+    {\singlespacing \njit@glossaryofterms}%
+    \njit@endcontinued
+  \fi
 }
 
 % Two-column table for the List of Symbols and Glossary of Terms (GSO: "a simple table with two
@@ -766,8 +733,6 @@
 %   \end{symboltable}
 % Rows are single-spaced, with one blank line between rows, and the table
 % breaks across pages. Optional argument: width of the symbol column.
-\RequirePackage{array}
-\RequirePackage{longtable}
 \newlength{\njit@symcolwidth}
 \newenvironment{symboltable}[1][1.25in]{%
   \setlength{\njit@symcolwidth}{#1}%
@@ -789,56 +754,55 @@
   \endsymboltable
 }
 
-% Fallback support for symbol macros (\opensymdef, \newsym, etc.)
-\ifdefined\opensymdef\else
-  \newcommand{\opensymdef}{}
-  \newcommand{\closesymdef}{}
-  \newcommand{\newsym}[3][]{\expandafter\gdef\csname #2\endcsname{#3}}
-\fi
-
-% -------------------------------------------------------------
-% Lists and References: single-spaced within an entry, one blank
-% (single-spaced) line between entries (GSO)
-% -------------------------------------------------------------
-\newlength{\njit@entrysep}
-% One single-spaced line at 12pt (14.5pt), measured while double spacing is on
-{\normalsize\singlespacing\global\njit@entrysep\baselineskip}
-\def\njit@listspacing{%
-  \itemsep\njit@entrysep \parsep\z@ \partopsep\z@}
-\def\njit@listi{\leftmargin\leftmargini \njit@listspacing \topsep\njit@entrysep}
-\def\njit@listii{\leftmargin\leftmarginii
-  \labelwidth\leftmarginii \advance\labelwidth-\labelsep
-  \njit@listspacing \topsep\z@}
-\def\njit@listiii{\leftmargin\leftmarginiii
-  \labelwidth\leftmarginiii \advance\labelwidth-\labelsep
-  \njit@listspacing \topsep\z@}
-\def\njit@liststyle{%
-  \par % end the lead-in paragraph first, so it keeps double spacing
-  \singlespacing
-  \let\@listi\njit@listi \let\@listI\njit@listi
-  \let\@listii\njit@listii \let\@listiii\njit@listiii}
-\AtBeginEnvironment{itemize}{\njit@liststyle}
-\AtBeginEnvironment{enumerate}{\njit@liststyle}
-
-\AtEndPreamble{%
-  \@ifpackageloaded{biblatex}{%
-    \AtBeginBibliography{\singlespacing\emergencystretch=2em\relax}%
-    \setlength{\bibitemsep}{\njit@entrysep}%
-    \setlength{\bibparsep}{\z@}%
-    % Unnumbered list for the Biographical Sketch publications
-    \defbibenvironment{njitpubs}
-      {\list{}{\setlength{\leftmargin}{\bibhang}%
-               \setlength{\itemindent}{-\leftmargin}%
-               \setlength{\itemsep}{\bibitemsep}%
-               \setlength{\parsep}{\bibparsep}}}
-      {\endlist}
-      {\item}%
-  }{}%
+% =============================================================
+% 10. Main body and appendices
+% =============================================================
+% Arabic page numbering starts at Chapter 1
+\newcommand{\startbody}{%
+  \clearpage
+  \pagestyle{plain}%
+  \pagenumbering{arabic}%
+  \setcounter{page}{1}%
 }
 
-% -------------------------------------------------------------
-% Footnotes & Quotes
-% -------------------------------------------------------------
+\newif\ifnjit@appendix
+
+% For multiple appendices: \appendix then \chapter{Title}, lettered A, B, ...
+\renewcommand\appendix{%
+  \par
+  \setcounter{chapter}{0}%
+  \setcounter{section}{0}%
+  \njit@appendixtrue
+  \gdef\@chapapp{\appendixname}%
+  \gdef\thechapter{\@Alph\c@chapter}%
+}
+
+% For a single appendix: \oneappendix{Title}
+% NJIT requires that a single appendix has no letter label (not "Appendix A", just "APPENDIX").
+\newcommand{\oneappendix}[1]{%
+  \par
+  \njit@checktitle{oneappendix}{#1}%
+  \njit@appendixtrue
+  \gdef\@chapapp{\appendixname}%
+  \gdef\thechapter{\@Alph\c@chapter}%
+  \clearpage
+  \thispagestyle{plain}%
+  \setcounter{chapter}{0}%
+  \refstepcounter{chapter}% chapter A: resets per-chapter counters, sets \label target
+  \chaptermark{#1}%
+  \addcontentsline{toc}{chapter}{APPENDIX: \protect\MakeUppercase{#1}}%
+  \begin{center}\singlespacing
+    \bfseries APPENDIX\par
+    \vskip 12pt
+    \MakeUppercase{#1}
+  \end{center}
+  \par\nobreak\vskip 30\p@
+  \@afterindentfalse\@afterheading
+}
+
+% =============================================================
+% 11. Footnotes and utility macros
+% =============================================================
 \renewcommand\footnoterule{%
   \kern-3\p@
   \vskip 10pt
@@ -850,13 +814,49 @@
   \noindent
   \hb@xt@0.4em{\hss\@makefnmark}#1}
 
-% -------------------------------------------------------------
-% Utility Macros
-% -------------------------------------------------------------
 \providecommand{\bm}[1]{\boldsymbol{#1}}
 \providecommand{\trademark}{\textsuperscript{\texttrademark}}
 
-% Index environment for compatibility
+% =============================================================
+% 12. Compatibility with older versions of this class
+% =============================================================
+% Nothing in the current template uses these. They are kept so documents
+% written with earlier versions still compile; new documents should not
+% need them.
+
+% Spacing shortcuts and caption font
+\newcommand{\ssp}{\singlespacing}
+\newcommand{\msp}{\onehalfspacing}
+\newcommand{\dsp}{\doublespacing}
+\newcommand{\normalsizeADIE}{\normalsize}
+
+% \defensedate{Month}{Day}{Year}: replaced by \graduationdate{Month}{Year}
+\def\defensedate#1#2#3{\graduationdate{#1}{#3}}
+
+% \degree: old name of \degreeearned. Defined at \begin{document} so it
+% does not collide with packages such as gensymb that define \degree (the
+% degree sign); in that case use \degreeearned.
+\AtBeginDocument{\ifdefined\degree\else\let\degree\degreeearned\fi}
+
+% Old names of the list generators
+\let\listofsymbols\makelistofsymbols
+\let\makelistofdefinitions\makeglossaryofterms
+
+% Old List of Symbols environment and symbol-definition macros
+\newenvironment{symbolslist}{%
+  \njit@listheading{\symheadingname}{\vskip 10pt}{}%
+  \begin{singlespace}
+}{%
+  \end{singlespace}
+  \njit@endcontinued
+}
+\ifdefined\opensymdef\else
+  \newcommand{\opensymdef}{}
+  \newcommand{\closesymdef}{}
+  \newcommand{\newsym}[3][]{\expandafter\gdef\csname #2\endcsname{#3}}
+\fi
+
+% Index (with makeidx): listed in the TOC, plain page style
 \renewenvironment{theindex}{%
   \clearpage
   \if@twocolumn \@restonecolfalse \else \@restonecoltrue \fi
