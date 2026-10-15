@@ -71,8 +71,15 @@ You edit only a few of the template's files; Appendix~\ref{app:filetree} describ
 \item Replace the sample entries in \texttt{listofsymbols.tex} and \texttt{listofdefinitions.tex}, or comment out their lines in \texttt{main.tex}.
 \item Write each chapter in its own file, \texttt{chapter1.tex}, \texttt{chapter2.tex}, and so on, and list them with \verb+\input+ in \texttt{main.tex}. While drafting, you can comment out finished chapters to compile faster.
 \item Put your sources in \texttt{references.bib} and your images in the \texttt{Graphics/} folder.
+\item Set the citation style for your discipline with \verb+\mycitestyle+ in \texttt{packages.tex}. Table~\ref{tab:phd-styles} in Section~\ref{sec:citestyles} lists the styles the GSO accepts for each discipline, and Chapter~\ref{ch:references} explains how to cite sources and build the bibliography.
 \item Load any packages you need in \texttt{packages.tex}, before the \texttt{hyperref} line, and define your own notation and theorem environments in \texttt{macros.tex}.
 \end{enumerate}
+For a master's thesis, add the \texttt{thesis} option to the \verb+\documentclass+ line at the top of \texttt{main.tex}:
+\begin{verbatim}
+\documentclass[12pt,thesis]{njit_thesis}
+\end{verbatim}
+The title page then reads ``A Thesis'', the advisor is listed as ``Thesis Advisor'' on the approval page, and the copyright page is replaced by the blank page the GSO requires. In \texttt{biography.tex}, change \verb+\thisdegree+ to the full name of your master's degree, and if your degree is not a Master of Science, set the ``Degree:'' line of the Biographical Sketch with \verb+\degreelevel+. Two limits also change: a thesis abstract may be only one page long, where a dissertation abstract may be two, and a thesis committee needs at least three members, including the advisor, where a dissertation committee needs five.
+
 You should not need to edit the class file, \texttt{njit\_thesis.cls}.
 
 \section{Compiling the Dissertation}
