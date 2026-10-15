@@ -1,33 +1,22 @@
 % !TeX root = main.tex
 
-\chapter{Supplementary Proofs and Mathematical Derivations}
-\label{app:proofs}
+\chapter{Including an appendix or appendices}
+\label{app:appendixA}
+
+NJIT enforces a strict rule regarding the titling and numbering of appendices:
+\begin{itemize}
+\item If your dissertation has only a \textbf{single appendix}, it must be titled \textbf{APPENDIX} (without any letter label such as "A"), followed by the appendix title.
+\item If your dissertation contains \textbf{two or more appendices}, they must be numbered sequentially as \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc.
+\end{itemize}
+
+You should not try to format this manually. Instead, follow these instructions:
+\begin{itemize}
+\item If you have two or more appendices, use the \verb+appendix+ command. Then start each new appendix with a \verb+\section+ command.
+\item If you have only one appendix, use the command \verb+oneappendix{My Title}+. This will create a single appendix titled ``My Title,'' capitalize it properly, and add it to the table of contents.
+\end{itemize}
+
 
 This appendix illustrates the first of multiple appendices. When a dissertation contains more than one appendix, each is declared with the standard \verb+\chapter{...}+ command after the \verb+\appendix+ declaration in \texttt{main.tex}.
 
 The class file automatically labels this appendix as \textbf{APPENDIX A} in both the chapter heading and the Table of Contents, and prefixes all equations, theorems, figures, and tables with the letter \textbf{A}.
 
-\section{Derivation of the Asymptotic Dispersion Relation}
-\label{sec:appA_derivation}
-
-Consider a one-dimensional wave packet propagating through a dispersive medium governed by the linearized Klein--Gordon equation:
-\begin{equation}
-\label{eq:appA_kg}
-\frac{\partial^2 \psi}{\partial t^2} - c^2 \frac{\partial^2 \psi}{\partial x^2} + \omega_0^2 \psi = 0.
-\end{equation}
-Substituting a plane-wave ansatz $\psi(x,t) = A e^{i(kx - \omega t)}$ into Equation~\eqref{eq:appA_kg} yields the algebraic dispersion relation:
-\begin{equation}
-\label{eq:appA_dispersion}
-\omega(k) = \pm \sqrt{c^2 k^2 + \omega_0^2}.
-\end{equation}
-
-\begin{proposition}[Group Velocity Bound]
-\label{prop:group_vel}
-For all wave numbers $k \in \RR$, the group velocity $v_g = \frac{d\omega}{dk}$ is strictly subluminal:
-\begin{equation}
-|v_g(k)| = \frac{c^2 |k|}{\sqrt{c^2 k^2 + \omega_0^2}} < c.
-\end{equation}
-\end{proposition}
-\begin{proof}
-Differentiating Equation~\eqref{eq:appA_dispersion} with respect to $k$ yields $v_g(k) = \frac{c^2 k}{\sqrt{c^2 k^2 + \omega_0^2}}$. Since $\omega_0 > 0$, the denominator satisfies $\sqrt{c^2 k^2 + \omega_0^2} > c|k|$, which immediately implies $|v_g(k)| < c$.
-\end{proof}

@@ -3,7 +3,7 @@
 \chapter{Formatting Instructions and Feature Demonstrations}
 \label{ch:formatting}
 
-This chapter illustrates the formatting rules mandated by NJIT's Graduate Studies Office and provides working examples of all major features supported by the \texttt{dmsthesis.cls} class file.
+This chapter illustrates the formatting rules mandated by NJIT's Graduate Studies Office and provides working examples of all major features supported by the \texttt{njit\_thesis.cls} class file.
 
 \section{Section Headings and Hierarchy}
 \label{sec:headings}
@@ -24,7 +24,7 @@ For finer divisions without adding deeper numbering to the Table of Contents, us
 \section{Mathematics, Theorems, and Proofs}
 \label{sec:math}
 
-The template preconfigures the standard American Mathematical Society (\AmS) packages: \texttt{amsmath}, \texttt{amssymb}, and \texttt{amsthm}.
+The template preconfigures the standard American Mathematical Society (\AmS) packages: \texttt{amsmath}, \texttt{amssymb}, and \texttt{amsthm}. I also recommend that applied math and physics students consider using the \texttt{physics} package for useful macros for differential and integral calculus, ``bra'' and ``ket'' notation, and more. Here are some examples.
 
 \begin{definition}[Sobolev Space $H^1(\RR)$]
 \label{def:sobolev}
@@ -54,12 +54,29 @@ where $c \approx 3 \times 10^8\text{ m/s}$ is the speed of light in vacuum.
 In relativistic mechanics, the four-momentum $P^\mu = (E/c, \bm{p})$ satisfies the dispersion relation $P^\mu P_\mu = (E/c)^2 - |\bm{p}|^2 = m^2 c^2$. Setting the spatial momentum $\bm{p} = \bm{0}$ yields $(E/c)^2 = m^2 c^2$, whence $E = mc^2$.
 \end{proof}
 
-You can cross-reference equations easily: for example, see Equation~\eqref{eq:einstein} or Definition~\ref{def:sobolev}. Notice also the use of the bold vector macro $\bm{p}$ via \verb+\bm{p}+.
+You can cross-reference equations easily: for example, see Equation~\eqref{eq:einstein} or Definition~\ref{def:sobolev}. Notice also the use of the bold vector macro $\bm{p}$ via \verb+\bm{p}+. Note that I used \verb+\eqref+ to automatically put parentheses around equation number references and \verb+\ref+ for all other references.
 
 \section{Symbols, Notation, and Special Characters}
 \label{sec:symbols}
 
 The template supports inline symbols and notation. Defined symbols (such as $E$ for energy, $m$ for mass, and $c$ for speed of light) can be summarized in the dedicated List of Symbols generated before Chapter~1 via \texttt{listofsymbols.tex}. Special brand names or trademarks may also be formatted using the built-in \verb+\trademark+ command, e.g., MATLAB\trademark.
+
+\section{Source code highlighting}
+\label{sec:source_code}
+
+If your dissertation has a computational component, you may want to include source code. Here I use the \verb+\lstlisting+ command defined in the \texttt{listings} package included in \texttt{packages.tex}.
+
+\begin{lstlisting}[numbers=none]{matlab}
+%%%%% BEGIN MATLAB CODE LISTING %%%%%
+x=linspace(0,2*pi);  % set up the x-values
+y=sin(x);            % set up the y-values
+plot(x,y);           % plot the result
+if 0>1
+  fprintf('Zero is greater than one\n')
+end
+%%%%%  END MATLAB CODE LISTING  %%%%%
+\end{lstlisting}
+
 
 \section{Figures and Subfigures}
 \label{sec:figures}
@@ -99,8 +116,8 @@ Multiple sub-illustrations can be combined into a single floating figure using t
 
 According to NJIT style rules:
 \begin{itemize}
-\item Table captions are placed \textbf{above} the table.
-\item Table captions are formatted in title case and do \textbf{not} end with a period.
+\item Table titles are placed \textbf{above} the table.
+\item Table titles are formatted in title case and do \textbf{not} end with a period.
 \item The table text is single-spaced.
 \end{itemize}
 
@@ -110,7 +127,7 @@ Table~\ref{table:NN_DIFF} illustrates a standard floating table placed in portra
 \input{table}
 
 \subsection{Landscape Orientation for Wide Tables}
-Occasionally, a dissertation table or figure contains too many columns to fit within the standard 6-inch text width of a portrait page. The \texttt{dmsthesis.cls} class includes built-in landscape capability via \texttt{pdflscape}. The \texttt{landscape} environment rotates the entire page content while keeping headers, footers, and page numbers in their proper orientation, and rotates the PDF page view so that it is easily readable on a screen without neck strain.
+Occasionally, a dissertation table or figure contains too many columns to fit within the standard 6-inch text width of a portrait page. The \texttt{njit\_thesis.cls} class includes built-in landscape capability via \texttt{pdflscape}. The \texttt{landscape} environment rotates the entire page content while keeping headers, footers, and page numbers in their proper orientation, and rotates the PDF page view so that it is easily readable on a screen without neck strain.
 
 Table~\ref{table:landscape_sample} on the following page demonstrates a full landscape table.
 
@@ -139,6 +156,83 @@ Radau IIA & Implicit Runge--Kutta & 5 & L-stable & Fully implicit; excellent for
 
 Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{ALBERTSETAL:1994,FERSHT:1985,FISCHER:1987a,KAUFFMAN:1969,MR1191182,MR1617060}.
 
+\subsection{Bibliography styles}
+
+Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. Table~\ref{tab:phd-styles} lists which styles are permitted by each NJIT Ph.D. program. Some programs permit multiple styles. Table~\ref{tab:citation-styles} shows an example of each style.
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Ph.D. Programs and Required Citation Styles}
+\label{tab:phd-styles}
+\begin{tabularx}{\linewidth}{l l}
+\toprule
+\textbf{Ph.D. Program} & \textbf{Citation Style} \\
+\midrule
+Applied Physics & ACS, AIP, Harvard \\
+Biology & ACS \\
+Biomedical Engineering & ACS, AMA, IEEE \\
+Business Data Science & APA \\
+Chemical Engineering & ACS, AIP, Chicago, Harvard \\
+Chemistry & ACS \\
+Civil Engineering & ACS, AIP, ASCE, Harvard, IEEE \\
+Computer Engineering & IEEE \\
+Computer Science & ACM, Chicago, IEEE \\
+Data Science (Computing Option) & ACM, IEEE \\
+Data Science (Statistics Option) & AMA, Chicago, Harvard, IEEE \\
+Electrical Engineering & IEEE \\
+Engineering Science & APA, IEEE \\
+Environmental Engineering & ACS, AIP, ASCE, Chicago, Harvard \\
+Environmental Science & APA \\
+Industrial Engineering & APA, IEEE \\
+Information Systems & ACM, APA \\
+Materials Science and Engineering & ACS, AIP, Chicago, Harvard \\
+Mathematical Sciences (Applied Mathematics Option) & AMS \\
+Mathematical Sciences (Applied Probability and Statistics Option) & Chicago, Harvard, Vancouver \\
+Mechanical Engineering & ACS, AIP, Chicago, Harvard, IEEE \\
+Transportation & ACS, AIP, APA, ASCE, Chicago, IEEE, TRB \\
+Urban Systems & APA \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{landscape}
+
+\begin{table}[htbp]
+\centering
+\caption{Citation Formats for ``PRIMES is in P'' Across Bibliography Styles }
+\label{tab:citation-styles}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Style} & \textbf{Citation} \\
+\midrule
+ACM & M. Agrawal, N. Kayal, and N. Saxena. 2004. PRIMES is in P. \textit{Annals of Mathematics} 160, 2 (2004), 781--793. \\
+\addlinespace
+ACS & Agrawal, M.; Kayal, N.; Saxena, N. PRIMES is in P. \textit{Annals of Mathematics} \textbf{2004}, \textit{160} (2), 781--793. \\
+\addlinespace
+AIP & M. Agrawal, N. Kayal, and N. Saxena, PRIMES is in P, \textit{Annals of Mathematics} \textbf{160} (2), 781--793 (2004). \\
+\addlinespace
+AMA & Agrawal M, Kayal N, Saxena N. PRIMES is in P. \textit{Annals of Mathematics}. 2004;160(2):781--793. \\
+\addlinespace
+AMS & M. Agrawal, N. Kayal, and N. Saxena, \textit{PRIMES is in P}, Annals of Mathematics \textbf{160} (2004), no. 2, 781--793. \\
+\addlinespace
+APA & Agrawal, M., Kayal, N., \& Saxena, N. (2004). PRIMES is in P. \textit{Annals of Mathematics}, \textit{160}(2), 781--793. \\
+\addlinespace
+ASCE & Agrawal, M., Kayal, N., and Saxena, N. (2004). ``PRIMES is in P.'' \textit{Annals of Mathematics}, 160(2), 781--793. \\
+\addlinespace
+Chicago & Agrawal, Manindra, Neeraj Kayal, and Nitin Saxena. 2004. ``PRIMES is in P.'' \textit{Annals of Mathematics} 160 (2): 781--793. \\
+\addlinespace
+Harvard & Agrawal, M., Kayal, N. and Saxena, N., 2004. PRIMES is in P. \textit{Annals of Mathematics}, 160(2), pp.781--793. \\
+\addlinespace
+IEEE & M. Agrawal, N. Kayal, and N. Saxena, ``PRIMES is in P,'' \textit{Annals of Mathematics}, vol. 160, no. 2, pp. 781--793, 2004. \\
+\addlinespace
+TRB & Agrawal, M., N. Kayal, and N. Saxena. PRIMES is in P. \textit{Annals of Mathematics}, Vol. 160, No. 2, 2004, pp. 781--793. \\
+\addlinespace
+Vancouver & Agrawal M, Kayal N, Saxena N. PRIMES is in P. Annals of Mathematics. 2004;160(2):781--793. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Managing multiple bibliographies}
 A major advantage of \texttt{biblatex} is its ability to produce multiple independent bibliographies. In this template, the Presentations and Publications listing in the Biographical Sketch (page~iv) is populated directly from the \texttt{references.bib} database by filtering for entries that include the tag:
 \begin{verbatim}
 keywords = {me},

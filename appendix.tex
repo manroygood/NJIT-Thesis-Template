@@ -1,7 +1,9 @@
 % !TeX root = main.tex
 
-\oneappendix{Cell Signaling and Computational Biology Resources}
+\oneappendix{Including an appendix or appendices}
 \label{app:single}
+
+
 
 NJIT enforces a strict rule regarding the titling and numbering of appendices:
 \begin{itemize}
@@ -9,11 +11,17 @@ NJIT enforces a strict rule regarding the titling and numbering of appendices:
 \item If your dissertation contains \textbf{two or more appendices}, they must be numbered sequentially as \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc.
 \end{itemize}
 
-Removing the letter label manually from a standard \LaTeX\ chapter command often breaks numbering for equations, figures, and tables inside the appendix. To solve this, \texttt{dmsthesis.cls} provides the dedicated \verb+\oneappendix{Title}+ command. It sets the centered title correctly, adds the entry to the Table of Contents as \texttt{APPENDIX: TITLE}, and properly configures subordinate numbering.
+You should not try to format this manually. Instead, follow these instructions:
+\begin{itemize}
+\item If you have two or more appendices, use the \verb+appendix+ command. Then start each new appendix with a \verb+\section+ command.
+\item If you have only one appendix, use the command \verb+oneappendix{My Title}+. This will create a single appendix titled ``My Title,'' capitalize it properly, and add it to the table of contents.
+\end{itemize}
 
-University guidelines also require that every appendix begin with introductory text before any figures or tables appear.
+Here, we have a single appendix
 
-\section*{Appendix Equations and Figures}
+The dissertation style guide requires that every appendix begin with introductory text before any figures or tables appear. 
+
+\section{Equations and Figures in Appendices}
 
 Equations inside the appendix are numbered with an appendix prefix:
 \begin{align}
@@ -41,8 +49,9 @@ Figures placed within the appendix also receive appropriate appendix numbering, 
 \end{figure}
 
 \clearpage
-\section*{Appendix Web Resources Table}
+\section{Tables in an appendix}
 
+Here is an example of a table in an appendix showing how you might typeset a table of websites you consulted in your thesis. 
 Table~\ref{table:WEBSITES} lists common bioinformatics and signaling databases, formatted with automatic line wrapping for URLs using the \texttt{xurl} package.
 
 \begin{table}[htbp]

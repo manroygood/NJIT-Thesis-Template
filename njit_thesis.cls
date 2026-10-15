@@ -12,7 +12,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{dmsthesis}[2026/10/03 NJIT DMS Dissertation LaTeX class (Overhauled)]
+\ProvidesClass{njit_thesis}[2026/10/03 NJIT Dissertation LaTeX class]
 
 % Pass any options to the underlying report class
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{report}}
@@ -580,13 +580,13 @@
   \fi
 }
 
-% 7. Acknowledgment Page
+% 7. Acknowledgments Page
 \newcommand{\makeacknowledgment}{%
   \ifdefined\@acknowledgment
     \clearpage
     \thispagestyle{plain}%
     \begin{center}
-      \bfseries ACKNOWLEDGMENT\par
+      \bfseries ACKNOWLEDGMENTs\par
       \vskip 20\p@
     \end{center}
     \@acknowledgment

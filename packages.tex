@@ -1,4 +1,5 @@
 % !TeX root = main.tex
+\usepackage[T1]{fontenc}
 
 % Table and alignment packages
 \usepackage{tabularx}
@@ -10,17 +11,64 @@
 
 % Graphics and subfigures
 \usepackage{graphicx}
+\usepackage{xcolor}
 \usepackage{subcaption}
 
 % URL breaking for references and tables
 \usepackage{xurl}
 
 % Quotations
+% This fixes an old-fashioned problem in LaTeX. To get properly formatted
+% left and right quotations requires the user to write ``My quote.'' The following
+% line allows you to type "My quote," and still get a proper formatting.
 \usepackage{csquotes}
 \MakeOuterQuote{"}
 
+% Source code highlighting
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small, numbers=none}
+\lstset{language=matlab,%
+    breaklines=true,%
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    showstringspaces=false,
+    emph=[1]{if,for,end,break},emphstyle=[1]\color{red}, %some words to emphasize
+    commentstyle = \color{cyan}
+}
+
 %% Bibliography (BibLaTeX with Biber backend)
-\usepackage[backend=biber,doi=false,url=false,defernums=true,sortcites=true]{biblatex}
+
+% 1. Set the citation style here:
+
+% ==============================================================================
+% BIBLATEX CITATION STYLE SELECTION
+% Set \mycitestyle to one of the valid style codes below based on your Ph.D. program.
+% (No extra \usepackage commands needed)
+%
+% Citation Style  | \mycitestyle Value   | Style Type
+% ------------------------------------------------------------------------------
+% ACM             | acm                  | Numeric
+% ACS             | chem-acs             | Numeric
+% AIP             | chem-aip             | Numeric
+% AMA             | ama                  | Numeric (or use 'numeric')
+% AMS             | alphabetic           | Alphabetic (or use 'numeric')
+% APA             | apa                  | Author-Year
+% ASCE            | numeric              | Numeric
+% Chicago         | chicago-authordate   | Author-Year
+% Harvard         | authoryear           | Author-Year
+% IEEE            | ieee                 | Numeric
+% TRB             | numeric              | Numeric
+% Vancouver       | vancouver            | Numeric
+% ==============================================================================
+\newcommand{\mycitestyle}{numeric}
+
+% 2. Build and execute the \usepackage command dynamically:
+\edef\loadbiblatex{%
+  \noexpand\usepackage[style=\mycitestyle,backend=biber,doi=false,url=false,defernums=true,sortcites=true,isbn=false,giveninits=true]{biblatex}%
+}
+\loadbiblatex
+
 
 \defbibheading{subbibliography}[\refname]{%
 	{\normalfont\large\bfseries}%

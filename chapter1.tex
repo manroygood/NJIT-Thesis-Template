@@ -5,7 +5,7 @@
 
 A \LaTeX\ dissertation project is structured like a well-organized software codebase: split into modular functional units contained in separate files. This chapter explains the overall structure required by the New Jersey Institute of Technology Office of Graduate Studies (GSO), how each file in this template contributes to the final document, and how to compile the project locally and on Overleaf.
 
-\section*{The Parts of a Dissertation, in Order}
+\section{The Parts of a Dissertation, in Order}
 
 An NJIT dissertation consists of three primary divisions: the preliminary front matter, the main body (chapters and appendices), and the back matter (references). These components appear in the following strict order:
 
@@ -44,19 +44,19 @@ An NJIT dissertation consists of three primary divisions: the preliminary front 
 \item[References] The bibliography, styled consistently and sorted according to the field's standard conventions. Generated from \texttt{references.bib} via \texttt{biblatex} and \texttt{biber}.
 \end{description}
 
-\section*{The Template Files}
+\section{The Template Files}
 
 Here is a breakdown of the files included in this template and how each should be edited:
 
 \begin{description}
 \emergencystretch=2.5em
-  \item[\texttt{dmsthesis.cls}] The \LaTeX\ class file. It encapsulates all official NJIT Graduate Studies Office formatting rules, including 1.5-inch left margins for binding, 1.0-inch top/bottom/right margins, double line spacing for body text, centered bold uppercase chapter titles, multi-page continuation headers for the Table of Contents, Lists of Figures and Tables, and correct appendix handling. You should not need to edit this class file directly.
+  \item[\texttt{njit\_thesis.cls}] The \LaTeX\ class file. It encapsulates all official NJIT Graduate Studies Office formatting rules, including 1.5-inch left margins for binding, 1.0-inch top/bottom/right margins, double line spacing for body text, centered bold uppercase chapter titles, multi-page continuation headers for the Table of Contents, Lists of Figures and Tables, and correct appendix handling. You should not need to edit this class file directly.
 
   \item[\texttt{main.tex}] The master control document. It loads the class, includes packages and macros, sets the graphicspath, loads the front matter, and arranges the chapters and appendices via \verb+\input+ statements.
 
   \item[\texttt{packages.tex}] Loads optional \LaTeX\ packages (such as \texttt{tabularx}, \texttt{amsmath}, \texttt{amssymb}, \texttt{amsthm}, \texttt{graphicx}, \texttt{subcaption}, \texttt{booktabs}, \texttt{xurl}, and \texttt{biblatex}). Add any additional packages needed for your research here.
 
-  \item[\texttt{macros.tex}] Defines custom mathematical shortcuts and theorem environments (e.g., Theorem, Lemma, Definition, Proposition, Corollary).
+  \item[\texttt{macros.tex}] Defines custom mathematical shortcuts and theorem environments (e.g., Theorem, Lemma, Definition, Proposition, Corollary). The file contains some examples. Well-defined and consistently used macros can make writing and editing your thesis much easier.
 
   \item[\texttt{abstract.tex}] Enter the text of your abstract here. The class file automatically supplies the centered title and author header.
 
@@ -83,16 +83,16 @@ Here is a breakdown of the files included in this template and how each should b
   \item[\texttt{Graphics/}] Directory containing all figures, plots, and diagrams.
 \end{description}
 
-\section*{Compiling the Dissertation}
+\section{Compiling the Dissertation}
 
-\subsection*{Recommended: \texttt{latexmk}}
+\subsection{Recommended: \texttt{latexmk}}
 The easiest and most reliable way to compile your dissertation locally is with \texttt{latexmk}:
 \begin{verbatim}
 latexmk -pdf main.tex
 \end{verbatim}
 \texttt{latexmk} monitors all file dependencies, automatically invokes \texttt{biber} for the bibliography and publications list, and runs \texttt{pdflatex} as many times as necessary to ensure all cross-references, Table of Contents entries, and list page numbers are completely up to date.
 
-\subsection*{Manual Compilation Steps}
+\subsection{Manual Compilation Steps}
 If running commands manually in a terminal:
 \begin{enumerate}
   \item \verb+pdflatex main.tex+ (generates auxiliary files and bibliography requests)
@@ -101,5 +101,5 @@ If running commands manually in a terminal:
   \item \verb+pdflatex main.tex+ (resolves final page numbers for TOC and lists)
 \end{enumerate}
 
-\subsection*{Working on Overleaf}
+\subsection{Using Overleaf}
 The template works out of the box on Overleaf. Ensure that the project compiler is set to **pdfLaTeX** and that the bibliography engine is set to **Biber** in the Overleaf project settings.
