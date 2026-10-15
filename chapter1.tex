@@ -14,7 +14,7 @@
 \chapter{Getting Started}
 \label{ch:start}
 
-A \LaTeX\ dissertation project is structured like a well-organized software codebase: split into modular functional units contained in separate files. This chapter lists the parts an NJIT dissertation must contain, in the order required by the New Jersey Institute of Technology Office of Graduate Studies (GSO), summarizes the formatting rules the template applies for you, explains which files you edit, and shows how to compile the project locally and on Overleaf. Chapter~\ref{ch:writing} covers writing the text, Chapter~\ref{ch:figtables} covers figures and tables, and Chapter~\ref{ch:references} covers references and the checks to make before you submit.
+A \LaTeX\ dissertation project is structured like a well-organized software codebase: split into modular functional units contained in separate files. This chapter lists the parts an NJIT dissertation must contain, in the order required by the New Jersey Institute of Technology Office of Graduate Studies (GSO), summarizes the formatting rules the template applies for you, explains which files you edit, and shows how to compile the project locally and on Overleaf. Chapter~\ref{ch:writing} covers writing the text, Chapter~\ref{ch:figtables} covers figures and tables, and Chapter~\ref{ch:references} covers references and the checks to make before you submit. Four appendices follow. Appendix~\ref{app:appendixA} explains what belongs in an appendix and how to set one up, Appendix~\ref{app:citestyles} collects guides and examples for the accepted citation styles, Appendix~\ref{app:packages} describes the packages the template loads, and Appendix~\ref{app:filetree} lists the template's files.
 
 \section{The Parts of a Dissertation, in Order}
 
@@ -49,7 +49,7 @@ An NJIT dissertation consists of three primary divisions: the preliminary front 
 
 \item[Main Body] The dissertation chapters, beginning with Arabic page number~1 at \verb+\startbody+. Each chapter is housed in its own file (e.g., \texttt{chapter1.tex}, \texttt{chapter2.tex}). Page numbers are centered at the bottom of every page in bold (GSO).
 
-\item[Appendices] Supplementary mathematical proofs, data tables, or algorithm listings. NJIT enforces a strict rule: if there is only a \textbf{single appendix}, it must be labeled \textbf{APPENDIX} (without a letter like "A"). If there are \textbf{multiple appendices}, they must be numbered \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc. This template fully automates both cases.
+\item[Appendices] Supplementary mathematical proofs, data tables, or algorithm listings. NJIT enforces a strict rule: if there is only a \textbf{single appendix}, it must be labeled \textbf{APPENDIX} (without a letter like "A"). If there are \textbf{multiple appendices}, they must be numbered \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc. This template fully automates both cases; Appendix~\ref{app:appendixA} explains how, and what material belongs in an appendix.
 
 \item[References] The bibliography, styled consistently and sorted according to the field's standard conventions. Generated from \texttt{references.bib} via \texttt{biblatex} and \texttt{biber}.
 \end{description}
