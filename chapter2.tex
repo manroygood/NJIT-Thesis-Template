@@ -110,7 +110,7 @@ end
 
 Every figure must be placed in a \texttt{figure} environment with a \verb+\caption+ and a \verb+\label+. The rules, all handled by the class except where noted:
 \begin{itemize}
-\item Figures are numbered by chapter: Figure~\ref{fig:msglogo} is the first figure in Chapter~\ref{ch:formatting} (GSO).
+\item Figures are numbered by chapter: Figure~\ref{fig:eberhardt} is the first figure in Chapter~\ref{ch:formatting} (GSO).
 \item The caption goes \textbf{below} the figure, single-spaced and left-justified. The label is bold and followed by two spaces, with no colon (``\textbf{Figure 2.1}'').
 \item The caption text appears word for word in the List of Figures, so do not use the short-caption form \verb+\caption[short]{long}+.
 \item A page that holds only figures or tables starts them at the top of the page.
@@ -121,9 +121,13 @@ Make sure figures are legible at their printed size: axis labels and legends sho
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=3.5in]{msgcube}
-\caption{The Mathematical Sciences Department logo. Captions should clearly and concisely describe the illustration.}
-\label{fig:msglogo}
+% Place a photograph at Graphics/EberhardtHall.jpg. Until then a framed
+% placeholder of the same size is printed, so the document still compiles.
+\IfFileExists{Graphics/EberhardtHall.jpg}%
+  {\includegraphics[width=4in]{EberhardtHall.jpg}}%
+  {\fbox{\parbox[c][2.6in][c]{3.9in}{\centering Photograph of Eberhardt Hall\\(add \texttt{Graphics/EberhardtHall.jpg})}}}
+\caption{Eberhardt Hall, the oldest building on the NJIT campus, built in 1857 as the Newark Orphan Asylum and restored in 2005 as the university's alumni center \cite{EberhardtWiki}. A caption should say what the figure shows, give anything the reader needs to interpret it, and credit the source of any image you did not create.}
+\label{fig:eberhardt}
 \end{figure}
 
 Multiple sub-illustrations can be combined into a single floating figure using the \texttt{subfigure} environment provided by the \texttt{subcaption} package, as shown in Figure~\ref{fig:letters}.
@@ -184,25 +188,25 @@ Table~\ref{table:landscape_sample} on the following page demonstrates a full lan
 \textbf{Problem} & \textbf{What the GSO Expects} & \textbf{How to Avoid It} \\
 \midrule
 Title differs between pages & The same title, word for word, on the abstract, title page, and approval page & Set it once with \verb+\title+ in \texttt{biography.tex}; never retype it \\
-\addlinespace
+\addlinespace[2pt]
 Wrong degree, department, or date & A valid degree and department combination from the GSO list; the graduation month and year & Check the GSO list; set \verb+\graduationdate+, not the defense date \\
-\addlinespace
+\addlinespace[2pt]
 Faculty names or titles wrong & Names spelled correctly and titles as in the current Graduate Catalog & Confirm each one with your department administrator before filling in \texttt{approval.tex} \\
-\addlinespace
+\addlinespace[2pt]
 Committee too small & At least five members for a dissertation and three for a thesis, including the advisor; external members listed last & List members in \texttt{approval.tex} in that order \\
-\addlinespace
+\addlinespace[2pt]
 Lists do not match the text & Table of Contents and Lists of Tables and Figures identical to the headings and captions & Let \LaTeX\ generate them; do not give \verb+\caption+ or headings a different short title in square brackets \\
-\addlinespace
+\addlinespace[2pt]
 Inconsistent capitalization & Level 2 headings and table titles in title case; levels 3 to 5 in sentence case & Type each heading in the right case; the class does not change it \\
-\addlinespace
+\addlinespace[2pt]
 Spelling and grammar errors & No errors anywhere, including text inside figures and tables & Spell-check the \texttt{.tex} files and proofread the labels in your figures \\
-\addlinespace
+\addlinespace[2pt]
 Missing references & No ``??'' in place of a citation or cross-reference & Compile until the log reports no undefined references; search the PDF for ``??'' \\
-\addlinespace
+\addlinespace[2pt]
 Text in the margin & Nothing extends past the margins & Fix every ``Overfull \textbackslash hbox'' warning in \texttt{main.log}, usually from wide equations, tables, or URLs \\
-\addlinespace
+\addlinespace[2pt]
 Abstract too long & One page for a thesis, two for a dissertation, in the third person & Check the length of the first page of the PDF \\
-\addlinespace
+\addlinespace[2pt]
 Appendix without introduction & Each appendix opens with a brief description before any figures or tables & Start every appendix with a paragraph of text \\
 \bottomrule
 \end{tabularx}
@@ -212,7 +216,7 @@ Appendix without introduction & Each appendix opens with a brief description bef
 \section{Bibliography and Publications Listing}
 \label{sec:bibliography}
 
-Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{ALBERTSETAL:1994,FERSHT:1985,FISCHER:1987a,KAUFFMAN:1969,MR1191182,MR1617060}.
+Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{Lamport1994,Knuth1984,Mittelbach2023}. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books \cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article \cite{KnuthPlass1981}, a chapter in an edited collection \cite{Halmos1973}, a Ph.D.\ dissertation \cite{Adriazola2021}, software documentation \cite{biblatex}, and a website \cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field.
 
 Choose a citation style accepted for your discipline (Table~\ref{tab:phd-styles}) by setting \verb+\mycitestyle+ in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
 
