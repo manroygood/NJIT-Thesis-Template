@@ -45,7 +45,7 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item[\texttt{biblatex}] Formats citations and the bibliography, with \texttt{biber} as the back end. It is loaded through the \verb+\loadbiblatex+ command so that the style can be set once, with \verb+\mycitestyle+, from the table of styles in \texttt{packages.tex} (see Section~\ref{sec:bibliography}). The other options are:
   \texttt{backend=biber}, the program that processes \texttt{references.bib};
-  \texttt{doi=false}, \texttt{url=false}, and \texttt{isbn=false}, which leave DOIs, URLs, and ISBNs out of the reference list;
+  \texttt{doi=false}, \texttt{url=false}, and \texttt{isbn=false}, which leave DOIs, URLs, and ISBNs out of the reference list (a URL still prints for an \texttt{@online} entry, or for any entry with the field \verb+options = {url=true}+);
   \texttt{giveninits=true}, which shortens given names to initials;
   \texttt{sortcites=true}, which sorts the numbers in a multiple citation, giving [1, 4, 5] rather than [5, 1, 4];
   and \texttt{defernums=true}, which assigns a number to an entry only when it is cited or printed, so entries in \texttt{references.bib} that are never used do not leave gaps in the numbering.
