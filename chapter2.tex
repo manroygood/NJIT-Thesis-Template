@@ -1,6 +1,6 @@
 % !TeX root = main.tex
-% Chapter 2: formatting rules, with working examples of headings, math,
-% figures, tables, code listings and citations.
+% Chapter 2: writing the text: headings, mathematics and units, code and
+% pseudocode, cross-references, and common typing mistakes.
 %
 % Each chapter lives in its own file, included from main.tex with \input.
 % Start the file with \chapter{Title}; type the title in normal
@@ -11,10 +11,10 @@
 %   \paragraph     level 5, sentence case, italic (the class adds the period)
 % Every heading needs a title; an empty one stops the build with an error.
 
-\chapter{Formatting Instructions and Feature Demonstrations}
-\label{ch:formatting}
+\chapter{Writing the Text}
+\label{ch:writing}
 
-This chapter illustrates the formatting rules mandated by NJIT's Graduate Studies Office and provides working examples of all major features supported by the \texttt{njit\_thesis.cls} class file.
+This chapter covers the parts of the text you type yourself: headings, mathematics, code, and cross-references, and the typing conventions that \LaTeX\ expects.
 
 \section{Section Headings and Hierarchy}
 \label{sec:headings}
@@ -42,8 +42,9 @@ Subsubsections (level 4, X.x.x.x) are bold, in sentence case, and run into the t
 \paragraph{Paragraph headings}
 The \verb+\paragraph+ command gives level 5 (X.x.x.x.x): numbered, italic, in sentence case, followed by a period, with the text starting on the next line. Like level 4, it does not appear in the Table of Contents.
 
-\section{Mathematics, Theorems, and Proofs}
+\section{Mathematics, Symbols, and Units}
 \label{sec:math}
+\label{sec:symbols}
 
 The template preconfigures the standard American Mathematical Society (\AmS) packages \texttt{amsmath} and \texttt{amsthm}, together with \texttt{mathtools}; the AMS symbols come with the \texttt{newtxmath} font package. I also recommend that applied math and physics students consider using the \texttt{physics} package for useful macros for differential and integral calculus, ``bra'' and ``ket'' notation, and more. Here are some examples.
 
@@ -83,10 +84,8 @@ Displayed equations are part of the sentence that introduces them and take punct
 
 \textbf{Theorems.} Theorems, lemmas, definitions, and the like share one counter and are numbered by chapter. Add new environments in \texttt{macros.tex}, not in the chapter files, so they are numbered consistently.
 
-\section{Symbols, Notation, and Special Characters}
-\label{sec:symbols}
 
-The template supports inline symbols and notation. Defined symbols (such as $E$ for energy, $m$ for mass, and $c$ for speed of light) can be summarized in the dedicated List of Symbols generated before Chapter~1 via \texttt{listofsymbols.tex}. Special brand names or trademarks may also be formatted using the built-in \verb+\trademark+ command, e.g., MATLAB\trademark.
+\textbf{Symbols.} The template supports inline symbols and notation. Defined symbols (such as $E$ for energy, $m$ for mass, and $c$ for speed of light) can be summarized in the dedicated List of Symbols generated before Chapter~1 via \texttt{listofsymbols.tex}. Special brand names or trademarks may also be formatted using the built-in \verb+\trademark+ command, e.g., MATLAB\trademark.
 
 \textbf{Numbers and units.} Type quantities with the \texttt{siunitx} package rather than by hand, so that numbers, units, and the space between them are set the same way everywhere. For example:
 \begin{itemize}
@@ -97,7 +96,7 @@ The template supports inline symbols and notation. Defined symbols (such as $E$ 
 \end{itemize}
 The same commands work in text and in math. In a table, the column type \texttt{S} lines numbers up on their decimal points.
 
-\section{Source Code Highlighting}
+\section{Source Code and Pseudocode}
 \label{sec:source_code}
 
 If your dissertation has a computational component, you may want to include source code. Here I use the \verb+\lstlisting+ command defined in the \texttt{listings} package included in \texttt{packages.tex}.
@@ -132,296 +131,6 @@ end
 \caption{The bisection method for finding a root of a continuous function. Each pass through the loop halves the interval known to contain the root.}
 \label{fig:bisection}
 \end{figure}
-
-
-\section{Figures and Subfigures}
-\label{sec:figures}
-
-Every figure must be placed in a \texttt{figure} environment with a \verb+\caption+ and a \verb+\label+. The rules, all handled by the class except where noted:
-\begin{itemize}
-\item Figures are numbered by chapter: Figure~\ref{fig:bisection} is the first figure in Chapter~\ref{ch:formatting} (GSO).
-\item The caption goes \textbf{below} the figure, single-spaced and left-justified. The label is bold and followed by two spaces, with no colon (``\textbf{Figure 2.1}'').
-\item The caption text appears word for word in the List of Figures, so do not use the short-caption form \verb+\caption[short]{long}+.
-\item A page that holds only figures or tables starts them at the top of the page.
-\item Refer to every figure in the text, before or near where it appears, using \verb+\ref+. (Not handled by the class.)
-\item Run spell-check on the text \emph{inside} your figures, such as axis labels and legends; the GSO checks it. (Not handled by the class.)
-\end{itemize}
-Make sure figures are legible at their printed size: axis labels and legends should be no smaller than about 8--10\,pt after scaling. \Cref{subsec:exportplots} explains how to export plots at the right size from MATLAB, Mathematica, and Python. Let \LaTeX\ place floats; the \verb+[htbp]+ placement option used here is a good default, and forcing positions with \verb+[H]+ usually produces large gaps.
-
-\begin{figure}[htbp]
-\centering
-% Place a photograph at Graphics/EberhardtHall.jpg. Until then a framed
-% placeholder of the same size is printed, so the document still compiles.
-\IfFileExists{Graphics/EberhardtHall.jpg}%
-  {\includegraphics[width=4in]{EberhardtHall.jpg}}%
-  {\fbox{\parbox[c][2.6in][c]{3.9in}{\centering Photograph of Eberhardt Hall\\(add \texttt{Graphics/EberhardtHall.jpg})}}}
-\caption{Eberhardt Hall, the oldest building on the NJIT campus, built in 1857 as the Newark Orphan Asylum and restored in 2005 as the university's alumni center \cite{EberhardtWiki}. A caption should say what the figure shows, give anything the reader needs to interpret it, and credit the source of any image you did not create.}
-\label{fig:eberhardt}
-\end{figure}
-
-Multiple sub-illustrations can be combined into a single floating figure using the \texttt{subfigure} environment provided by the \texttt{subcaption} package, as shown in Figure~\ref{fig:letters}.
-
-\begin{figure}[htbp]
-\centering
-\begin{subfigure}[b]{0.42\textwidth}
-    \centering
-    \includegraphics[width=0.85\textwidth]{FancyA.jpg}
-    \caption{Illuminated initial letter A.}
-    \label{fig:letterA}
-\end{subfigure}
-\hfill
-\begin{subfigure}[b]{0.42\textwidth}
-    \centering
-    \includegraphics[width=0.85\textwidth]{FancyB.png}
-    \caption{Illuminated initial letter B.}
-    \label{fig:letterB}
-\end{subfigure}
-\caption{An example figure containing two subfigures, which may be referenced individually as Figure~\ref{fig:letterA} and Figure~\ref{fig:letterB}, or collectively as Figure~\ref{fig:letters}.}
-\label{fig:letters}
-\end{figure}
-
-\subsection{Exporting plots from MATLAB, Mathematica, and Python}
-\label{subsec:exportplots}
-Save plots as vector PDF files whenever you can. A vector plot stays sharp at any magnification, and its text can be searched. Save photographs and other images as JPEG or PNG files with at least 300 pixels per inch at their printed size.
-
-Make each plot at the size it will be printed, rather than scaling it in \LaTeX. If a plot drawn 8 inches wide is shrunk to 6 inches, its labels shrink by a quarter too. The text block is 6 inches wide, so a full-width plot should be about 6 inches wide, and each half of a two-part figure like \cref{fig:letters} about 3 inches. Then include it at its natural size, \verb+\includegraphics{plot.pdf}+, with no \texttt{width} option. Set the labels in a 10 or 11~pt font, and in Times if you can, so they match the text.
-\begin{description}
-\item[MATLAB] Set the size and font, then save with \texttt{exportgraphics} (MATLAB R2020a or later):
-\begin{verbatim}
-fig = figure('Units','inches','Position',[1 1 6 4]);
-plot(x, y);
-set(gca, 'FontName','Times', 'FontSize',11);
-exportgraphics(fig,'Graphics/plot.pdf','ContentType','vector');
-\end{verbatim}
-\item[Mathematica] Give the width in printer's points (72 per inch) and export:
-\begin{verbatim}
-p = Plot[Sin[x], {x, 0, 2 Pi}, ImageSize -> 6*72,
-      BaseStyle -> {FontFamily -> "Times", FontSize -> 11}];
-Export["Graphics/plot.pdf", p]
-\end{verbatim}
-\item[Python (Matplotlib)] Give the size in inches. The \texttt{pdf.fonttype} setting embeds the fonts as TrueType rather than Type~3 fonts, which some PDF checkers reject:
-\begin{verbatim}
-import matplotlib.pyplot as plt
-plt.rcParams.update({"font.family": "serif",
-    "font.serif": ["Times New Roman"], "font.size": 11,
-    "pdf.fonttype": 42})
-fig, ax = plt.subplots(figsize=(6, 4))
-ax.plot(x, y)
-fig.savefig("Graphics/plot.pdf")
-\end{verbatim}
-\end{description}
-Another option is to draw the plot in \LaTeX\ itself with the \texttt{pgfplots} package, which sets the labels in the document's own fonts and accepts any \LaTeX\ math in them. It takes more work, and the package is not loaded by the template. MATLAB users can convert existing figures to \texttt{pgfplots} code with the \texttt{matlab2tikz} script. Whatever you use, check that the fonts in your figures are embedded in the final PDF (\cref{sec:checklist}).
-
-\subsection{Using figures you did not create}
-\label{subsec:figurepermission}
-Credit and permission are separate questions. Every figure, photograph, or table you did not create needs a credit in its caption, as in \cref{fig:eberhardt}. Some also need written permission from the copyright holder, because a dissertation is published, unlike a class paper.
-\begin{itemize}
-\item \textbf{No permission needed:} works in the public domain, such as most images made by U.S.\ federal agencies, and works under a license that allows reuse, such as most Creative Commons licenses. Follow the license's terms for the credit line.
-\item \textbf{Permission usually needed:} figures copied from journal articles and books. This includes figures from your own published papers if you transferred the copyright to the publisher. Most publishers grant reuse in a dissertation quickly and without charge; look for a ``Rights and permissions'' link on the article's web page.
-\item \textbf{Redrawn figures:} a figure you redraw from someone else's design or data is still adapted from their work. It needs a credit, and it may need permission if it closely copies the original.
-\end{itemize}
-Typical credit lines are ``Reprinted from [12], with permission from Elsevier'' and ``Adapted from [12].'' Keep the permission letters or license records. If you are unsure whether you need permission, ask the NJIT Library or the GSO before you submit.
-
-\section{Tables: Standard and Landscape}
-\label{sec:tables}
-
-According to NJIT style rules:
-\begin{itemize}
-\item Table titles are placed \textbf{above} the table.
-\item Table titles are formatted in title case and do \textbf{not} end with a period.
-\item The table text is single-spaced.
-\item Tables are numbered by chapter, like figures.
-\item A small table must not be split across pages (GSO).
-\item The title appears word for word in the List of Tables.
-\item Put the column units in the column header, not in every cell.
-\end{itemize}
-
-\subsection{Standard portrait table}
-Table~\ref{table:gso_rules} illustrates a standard floating table placed in portrait mode, loaded from \texttt{table.tex}. It also summarizes the GSO's main formatting rules and shows which ones the template takes care of and which are up to you.
-The table is kept in its own file and pulled in with \verb+\input+. This is optional, but it keeps large tables, or tables generated by a script, out of the chapter text. The \texttt{booktabs} rules used in Table~\ref{table:landscape_sample} (\verb+\toprule+, \verb+\midrule+, \verb+\bottomrule+, and no vertical lines) usually read more cleanly than a full grid.
-
-\input{table}
-
-\subsection{Landscape orientation for wide tables}
-Occasionally, a dissertation table or figure contains too many columns to fit within the standard 6-inch text width of a portrait page. The \texttt{njit\_thesis.cls} class includes built-in landscape capability via \texttt{pdflscape}. The \texttt{landscape} environment rotates the entire page content while keeping headers, footers, and page numbers in their proper orientation, and rotates the PDF page view so that it is easily readable on a screen without neck strain.
-
-The GSO requires that on a landscape page the bottom of the table or figure faces the outer edge of the page, while the page number stays in its normal portrait position. The \texttt{landscape} environment does both.
-
-Table~\ref{table:landscape_sample} on the following page demonstrates a full landscape table. It lists the problems that most often cause the GSO to return a document, and how to avoid each one.
-
-\begin{landscape}
-\begin{table}[htbp]
-\centering
-\caption{Common Reasons the GSO Returns a Document and How to Avoid Them}
-\label{table:landscape_sample}
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
-\toprule
-\textbf{Problem} & \textbf{What the GSO Expects} & \textbf{How to Avoid It} \\
-\midrule
-Title differs between pages & The same title, word for word, on the abstract, title page, and approval page & Set it once with \verb+\title+ in \texttt{biography.tex}; never retype it \\
-\addlinespace[2pt]
-Wrong degree, department, or date & A valid degree and department combination from the GSO list; the graduation month and year & Check the GSO list; set \verb+\graduationdate+, not the defense date \\
-\addlinespace[2pt]
-Faculty names or titles wrong & Names spelled correctly and titles as in the current Graduate Catalog & Confirm each one with your department administrator before filling in \texttt{approval.tex} \\
-\addlinespace[2pt]
-Committee too small & At least five members for a dissertation and three for a thesis, including the advisor; external members listed last & List members in \texttt{approval.tex} in that order \\
-\addlinespace[2pt]
-Lists do not match the text & Table of Contents and Lists of Tables and Figures identical to the headings and captions & Let \LaTeX\ generate them; do not give \verb+\caption+ or headings a different short title in square brackets \\
-\addlinespace[2pt]
-Inconsistent capitalization & Level 2 headings and table titles in title case; levels 3 to 5 in sentence case & Type each heading in the right case; the class does not change it \\
-\addlinespace[2pt]
-Spelling and grammar errors & No errors anywhere, including text inside figures and tables & Spell-check the \texttt{.tex} files and proofread the labels in your figures \\
-\addlinespace[2pt]
-Missing references & No ``??'' in place of a citation or cross-reference & Compile until the log reports no undefined references; search the PDF for ``??'' \\
-\addlinespace[2pt]
-Text in the margin & Nothing extends past the margins & Fix every ``Overfull \textbackslash hbox'' warning in \texttt{main.log}, usually from wide equations, tables, or URLs \\
-\addlinespace[2pt]
-Abstract too long & One page for a thesis, two for a dissertation, in the third person & Check the length of the first page of the PDF \\
-\addlinespace[2pt]
-Appendix without introduction & Each appendix opens with a brief description before any figures or tables & Start every appendix with a paragraph of text \\
-\bottomrule
-\end{tabularx}
-\end{table}
-\end{landscape}
-
-\section{Bibliography and Publications Listing}
-\label{sec:bibliography}
-
-Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{Lamport1994,Knuth1984,Mittelbach2023}. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books \cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article \cite{KnuthPlass1981}, a chapter in an edited collection \cite{Halmos1973}, a Ph.D.\ dissertation \cite{Adriazola2021}, software documentation \cite{biblatex}, and a website \cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field.
-
-Choose a citation style accepted for your discipline (Table~\ref{tab:phd-styles}) by setting \verb+\mycitestyle+ in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
-
-Most formatting problems in a bibliography come from the \texttt{.bib} file, not from \LaTeX. When you copy entries from Google Scholar or a publisher:
-\begin{itemize}
-\item Protect capitals that must survive, such as proper names and acronyms, with braces: \verb+title = {Stability of {KdV} solitons in {Hilbert} space}+.
-\item Check that author names are separated by \verb+and+, not commas.
-\item Write journal names out in full, such as \emph{Journal of Fluid Mechanics} rather than \emph{J.\ Fluid Mech.} Publisher and Google Scholar entries often use abbreviations, so check the \verb+journal+ field of each entry.
-\item Check every entry for missing volumes, pages, and years; the style cannot print what isn't there.
-\end{itemize}
-
-\subsection{Bibliography styles}
-
-Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in Table~\ref{tab:phd-styles}; some disciplines accept several. Table~\ref{tab:style-resources} points to the official guide, or a reliable summary, for each style, and Table~\ref{tab:citation-styles} shows an example of each.
-
-\begin{table}[htbp]
-\centering
-\caption{Acceptable Citation Styles by Discipline}
-\label{tab:phd-styles}
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.45\linewidth}X}
-\toprule
-\textbf{Discipline} & \textbf{Acceptable Citation Styles} \\
-\midrule
-Applied Physics & ACS, AIP, Harvard \\
-Biology & ACS \\
-Biomedical Engineering & ACS, AMA, IEEE \\
-Business Data Science & APA \\
-Chemical Engineering & ACS, AIP, Chicago, Harvard \\
-Chemistry & ACS \\
-Civil Engineering & ACS, AIP, ASCE, Harvard, IEEE \\
-Computer Engineering & IEEE \\
-Computer Science & ACM, Chicago, IEEE \\
-Data Science & ACM, AMA, Chicago, Harvard, IEEE \\
-Electrical Engineering & IEEE \\
-Engineering Science & APA, IEEE \\
-Environmental Engineering & ACS, AIP, ASCE, Chicago, Harvard \\
-Environmental Science & APA \\
-Industrial Engineering & APA, IEEE \\
-Information Systems & ACM, APA \\
-Materials Science and Engineering & ACS, AIP, Chicago, Harvard \\
-Mathematical Sciences & AMS, Chicago, Harvard, Vancouver \\
-Mechanical Engineering & ACS, AIP, Chicago, Harvard, IEEE \\
-Transportation & ACS, AIP, APA, ASCE, Chicago, IEEE, TRB \\
-Urban Systems & APA \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\caption{Guides to the Accepted Citation Styles}
-\label{tab:style-resources}
-\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}X}
-\toprule
-\textbf{Style} & \textbf{Resource} \\
-\midrule
-ACM & ACM reference formatting:\newline {\small\url{https://www.acm.org/publications/authors/reference-formatting}} \\
-\addlinespace
-ACS & ACS Guide to Scholarly Communication:\newline {\small\url{https://pubs.acs.org/books/pages/acsguide}} \\
-\addlinespace
-AIP & AIP Style Manual, 4th edition:\newline {\small\url{https://publishing.aip.org/wp-content/uploads/2021/03/AIP_Style_4thed.pdf}} \\
-\addlinespace
-AMA & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/ama_style/index.html}} \\
-\addlinespace
-AMS & AMS Style Guide:\newline {\small\url{https://www.ams.org/publications/authors/AMS-StyleGuide-online.pdf}} \\
-\addlinespace
-APA & APA Style:\newline {\small\url{https://apastyle.apa.org}} \\
-\addlinespace
-ASCE & ASCE Library author center:\newline {\small\url{https://ascelibrary.org/author-center/preparing-manuscript}} \\
-\addlinespace
-Chicago & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/chicago_manual_17th_edition/chicago_style_introduction.html}} \\
-\addlinespace
-Harvard & Open University:\newline {\small\url{https://university.open.ac.uk/library/referencing-and-plagiarism/quick-guide-to-harvard-referencing-cite-them-right}} \\
-\addlinespace
-IEEE & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/ieee_style/ieee_overview.html}} \\
-\addlinespace
-TRB & Transportation Research Record author instructions:\newline {\small\url{https://trb.secure-platform.com/a/page/trrjournal/forauthors}} \\
-\addlinespace
-Vancouver & Purdue University Libraries:\newline {\small\url{https://guides.lib.purdue.edu/BMEQual/VancouverStyle}} \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\begin{table}[htbp]
-\centering
-\caption{Citation Formats for ``PRIMES is in P'' Across Bibliography Styles }
-\label{tab:citation-styles}
-\begin{tabularx}{\textwidth}{l X}
-\toprule
-\textbf{Style} & \textbf{Citation} \\
-\midrule
-ACM & M. Agrawal, N. Kayal, and N. Saxena. 2004. PRIMES is in P. \textit{Annals of Mathematics} 160, 2 (2004), 781--793. \\
-\addlinespace
-ACS & Agrawal, M.; Kayal, N.; Saxena, N. PRIMES is in P. \textit{Annals of Mathematics} \textbf{2004}, \textit{160} (2), 781--793. \\
-\addlinespace
-AIP & M. Agrawal, N. Kayal, and N. Saxena, PRIMES is in P, \textit{Annals of Mathematics} \textbf{160} (2), 781--793 (2004). \\
-\addlinespace
-AMA & Agrawal M, Kayal N, Saxena N. PRIMES is in P. \textit{Annals of Mathematics}. 2004;160(2):781--793. \\
-\addlinespace
-AMS & M. Agrawal, N. Kayal, and N. Saxena, \textit{PRIMES is in P}, Annals of Mathematics \textbf{160} (2004), no. 2, 781--793. \\
-\addlinespace
-APA & Agrawal, M., Kayal, N., \& Saxena, N. (2004). PRIMES is in P. \textit{Annals of Mathematics}, \textit{160}(2), 781--793. \\
-\addlinespace
-ASCE & Agrawal, M., Kayal, N., and Saxena, N. (2004). ``PRIMES is in P.'' \textit{Annals of Mathematics}, 160(2), 781--793. \\
-\addlinespace
-Chicago & Agrawal, Manindra, Neeraj Kayal, and Nitin Saxena. 2004. ``PRIMES is in P.'' \textit{Annals of Mathematics} 160 (2): 781--793. \\
-\addlinespace
-Harvard & Agrawal, M., Kayal, N. and Saxena, N., 2004. PRIMES is in P. \textit{Annals of Mathematics}, 160(2), pp.781--793. \\
-\addlinespace
-IEEE & M. Agrawal, N. Kayal, and N. Saxena, ``PRIMES is in P,'' \textit{Annals of Mathematics}, vol. 160, no. 2, pp. 781--793, 2004. \\
-\addlinespace
-TRB & Agrawal, M., N. Kayal, and N. Saxena. PRIMES is in P. \textit{Annals of Mathematics}, Vol. 160, No. 2, 2004, pp. 781--793. \\
-\addlinespace
-Vancouver & Agrawal M, Kayal N, Saxena N. PRIMES is in P. Annals of Mathematics. 2004;160(2):781--793. \\
-\bottomrule
-\end{tabularx}
-\end{table}
-
-\subsection{Managing multiple bibliographies}
-A major advantage of \texttt{biblatex} is its ability to produce multiple independent bibliographies. In this template, the Presentations and Publications listing in the Biographical Sketch (page~iv) is populated directly from the \texttt{references.bib} database by filtering for entries that include the tag:
-\begin{verbatim}
-keywords = {me},
-\end{verbatim}
-This eliminates the need to maintain two separate citation files.
-
-\subsection{Reference managers}
-You don't have to type \texttt{.bib} entries by hand. A reference manager stores your sources, often together with their PDFs, and writes the \texttt{.bib} file for you.
-\begin{itemize}
-\item \textbf{Zotero} (free, all platforms) adds a source from a button in your web browser. With its Better BibTeX add-on, it keeps \texttt{references.bib} up to date as you add sources and gives every entry a stable citation key.
-\item \textbf{JabRef} (free, all platforms) edits \texttt{.bib} files directly and can fetch an entry from a DOI or an arXiv number.
-\item \textbf{BibDesk} (free, Mac only, included with MacTeX) also edits \texttt{.bib} files directly.
-\item \textbf{Mendeley} and \textbf{EndNote} can export a \texttt{.bib} file.
-\end{itemize}
-Whichever you use, check the entries it produces against the list in \cref{sec:bibliography}. Reference managers copy abbreviated journal names and lowercase acronyms from their sources.
 
 \section{Cross-References and Links}
 \label{sec:crossrefs}

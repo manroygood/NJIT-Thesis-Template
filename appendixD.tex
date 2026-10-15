@@ -1,0 +1,92 @@
+% !TeX root = main.tex
+% APPENDIX D: the template's files. If you add or rename files, update the
+% tree and the descriptions below (or delete this appendix from your thesis).
+
+\chapter{Files in the template}
+\label{app:filetree}
+
+The template is a folder of \LaTeX\ source files. The tree below shows every file, grouped in the order \texttt{main.tex} reads them; all of them sit together in one folder except the images, which are in \texttt{Graphics/}. Section~\ref{sec:filedescriptions} describes what each file contains. To build the thesis, compile \texttt{main.tex}; see Section~\ref{sec:checklist} for what to check before you submit.
+
+{\singlespacing\small
+\begin{verbatim}
+NJIT-Thesis-Template/
+|-- readme.md                Overview and build instructions
+|-- njit_thesis.cls          Class file: the NJIT formatting rules
+|-- main.tex                 Master file; compile this one
+|-- packages.tex             Packages and citation style (Appendix C)
+|-- macros.tex               Your notation and theorem environments
+|-- references.bib           Bibliography database
+|
+|-- abstract.tex             Front matter, in the order main.tex
+|-- approval.tex               reads it; biography.tex also holds
+|-- biography.tex              the title, name, degrees, and date
+|-- dedication.tex
+|-- acknowledgment.tex
+|-- listofsymbols.tex        Two-column List of Symbols
+|-- listofdefinitions.tex    Two-column Glossary of Terms
+|
+|-- chapter1.tex             Chapter 1: getting started
+|-- table.tex                Sample table, \input by chapter1.tex
+|-- chapter2.tex             Chapter 2: writing the text
+|-- chapter3.tex             Chapter 3: figures and tables
+|-- chapter4.tex             Chapter 4: references and submission
+|
+|-- appendixA.tex            Appendix A (several appendices)
+|-- appendixB.tex            Appendix B: citation styles
+|-- appendixC.tex            Appendix C: packages
+|-- appendixD.tex            Appendix D: this list of files
+|-- appendix.tex             Alternative: a single appendix
+|-- appendix-rules.tex       Shared text, \input by appendix.tex
+|-- appendix-demo.tex          and appendixA.tex
+|
+`-- Graphics/                Images for figures
+    |-- FancyA.jpg
+    |-- FancyB.png
+    `-- msgcube.pdf
+\end{verbatim}
+}
+
+Compiling also creates \texttt{main.pdf} and a set of auxiliary files with the same base name (\texttt{main.aux}, \texttt{.bbl}, \texttt{.bcf}, \texttt{.blg}, \texttt{.fdb\_latexmk}, \texttt{.fls}, \texttt{.lof}, \texttt{.log}, \texttt{.lot}, \texttt{.run.xml}, \texttt{.synctex.gz}, and \texttt{.toc}). These are rebuilt on every run and can be deleted at any time.
+
+\section{What Each File Contains}
+\label{sec:filedescriptions}
+
+Here is what each file contains and how to edit it.
+
+\begin{description}
+\emergencystretch=2.5em
+  \item[\texttt{njit\_thesis.cls}] The \LaTeX\ class file. It encapsulates all official NJIT Graduate Studies Office formatting rules, including 1.5-inch left margins for binding, 1.0-inch top/bottom/right margins, double line spacing for body text, centered bold uppercase chapter titles, multi-page continuation headers for the Table of Contents, Lists of Figures and Tables, and correct appendix handling. You should not need to edit this class file directly.
+
+  \item[\texttt{main.tex}] The master control document. It loads the class, includes packages and macros, sets the graphicspath, loads the front matter, and arranges the chapters and appendices via \verb+\input+ statements.
+
+  \item[\texttt{packages.tex}] Loads optional \LaTeX\ packages (such as \texttt{tabularx}, \texttt{amsmath}, \texttt{amsthm}, the Times fonts \texttt{newtxtext} and \texttt{newtxmath}, \texttt{graphicx}, \texttt{subcaption}, \texttt{booktabs}, \texttt{xurl}, and \texttt{biblatex}). Add any packages your research needs there, before the \texttt{hyperref} line.
+
+  \item[\texttt{macros.tex}] Defines custom mathematical shortcuts and theorem environments (e.g., Theorem, Lemma, Definition, Proposition, Corollary). The file contains some examples. Well-defined and consistently used macros can make writing and editing your thesis much easier.
+
+  \item[\texttt{abstract.tex}] Enter the text of your abstract here. The class file automatically supplies the centered title and author header.
+
+  \item[\texttt{approval.tex}] Defines the dissertation advisor and committee members using the \verb+\advisor+ and \verb+\member+ commands. If you have a co-advisor, add \verb+\coadvisor{Name}{Title, Institution}+ after \verb+\advisor+; both advisors are then labeled ``Co-Advisor'' and listed before the committee. Faculty titles must match the catalog.
+
+  \item[\texttt{biography.tex}] Contains your dissertation title, author name, major, degree title, department, institution, graduation date (\verb+\graduationdate+), and degrees earned (entered with the \verb+\degreeearned+ command; the older name \verb+\degree+ still works unless a package such as \texttt{gensymb} defines it). Also includes the hook for \verb+\printmypublications+. Date and place of birth are added only in the copy submitted to the GSO.
+
+  \item[\texttt{dedication.tex}] Contains your optional dedication. If you do not wish to include a dedication, simply comment out \verb+\dedication{\input{dedication}}+ in \texttt{main.tex}.
+
+  \item[\texttt{acknowledgment.tex}] Contains your acknowledgments. Thank your advisor first, then your committee; the GSO Front Matter guide then lists other contributors, family, funding sources, and technical support.
+
+  \item[\texttt{listofsymbols.tex}] Contains a two-column table of symbols and their meanings, one \verb+\sym{symbol}{meaning}+ per row. Included via \verb+\symbols+ in \texttt{main.tex}.
+
+  \item[\texttt{listofdefinitions.tex}] Contains a two-column table of terms and definitions in alphabetical order, one \verb+\term{term}{definition}+ per row. Included via \verb+\glossaryofterms+ in \texttt{main.tex}.
+
+
+  \item[\texttt{chapter1.tex}, \texttt{chapter2.tex}, \ldots] The individual chapter files. Keeping chapters in separate files allows you to comment out finished chapters while drafting new ones to speed up compilation. The sample has four chapters: getting started, writing the text, figures and tables, and references and submission.
+
+  \item[\texttt{table.tex}] The sample Table~\ref{table:gso_rules}, kept in its own file and pulled into \texttt{chapter1.tex} with \verb+\input+, to show how a large or script-generated table can be kept out of the chapter text.
+
+  \item[\texttt{appendixA.tex} to \texttt{appendixD.tex}] The sample's four appendices, each starting with \verb+\chapter+: how appendices work, guides and examples for the citation styles, the packages the template loads, and this list of files.
+
+  \item[\texttt{appendix.tex}] The alternative for a document with a single appendix, which starts with \verb+\oneappendix+ instead; switch to it in \texttt{main.tex}. Sample text shared with \texttt{appendixA.tex} lives in \texttt{appendix-rules.tex} and \texttt{appendix-demo.tex}, pulled in with \verb+\input+; delete them when you write your own appendices.
+
+  \item[\texttt{references.bib}] A standard \BibTeX\ database of citations. Any entry with the field \verb+keywords = {me}+ will also be included automatically in the Presentations and Publications section of your Biographical Sketch.
+
+  \item[\texttt{Graphics/}] Directory containing all figures, plots, and diagrams. Figure~\ref{fig:eberhardt} expects a photograph named \texttt{EberhardtHall.jpg} here and prints a placeholder until you add one.
+\end{description}

@@ -1,73 +1,78 @@
 % !TeX root = main.tex
-% APPENDIX B: describes the packages loaded in packages.tex. If you change
-% packages.tex, update this appendix to match (or delete it from your thesis).
+% APPENDIX B: guides to the citation styles the GSO accepts, and the same
+% article cited in each style. Delete this appendix from your thesis.
 
-\chapter{Packages loaded by the template}
-\label{app:packages}
+\chapter{Citation style guides and examples}
+\label{app:citestyles}
 
-Further information on each package, including its full documentation, is available at \url{https://ctan.org}, the Comprehensive \TeX\ Archive Network: search for the package by name. If compiling stops because a package is missing, see Subsection~\ref{subsec:missingpackages}.
+This appendix supports Section~\ref{sec:citestyles}. Table~\ref{tab:style-resources} points to the official guide, or a reliable summary, for each citation style the GSO accepts, and Table~\ref{tab:citation-styles} shows how one journal article is cited in each style. Use them to check the output of the style you set with \verb+\mycitestyle+ in \texttt{packages.tex}.
 
-This appendix lists every package loaded in \texttt{packages.tex}, in the order it is loaded, with the options the template chooses and why. Add packages your research needs at the end of that file. Packages that the template needs for its layout are loaded by the class file itself and are listed in Section~\ref{sec:classpackages}; you should not need to load those again.
+\begin{table}[htbp]
+\centering
+\caption{Guides to the Accepted Citation Styles}
+\label{tab:style-resources}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.13\linewidth}>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Style} & \textbf{Resource} \\
+\midrule
+ACM & ACM reference formatting:\newline {\small\url{https://www.acm.org/publications/authors/reference-formatting}} \\
+\addlinespace
+ACS & ACS Guide to Scholarly Communication:\newline {\small\url{https://pubs.acs.org/books/pages/acsguide}} \\
+\addlinespace
+AIP & AIP Style Manual, 4th edition:\newline {\small\url{https://publishing.aip.org/wp-content/uploads/2021/03/AIP_Style_4thed.pdf}} \\
+\addlinespace
+AMA & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/ama_style/index.html}} \\
+\addlinespace
+AMS & AMS Style Guide:\newline {\small\url{https://www.ams.org/publications/authors/AMS-StyleGuide-online.pdf}} \\
+\addlinespace
+APA & APA Style:\newline {\small\url{https://apastyle.apa.org}} \\
+\addlinespace
+ASCE & ASCE Library author center:\newline {\small\url{https://ascelibrary.org/author-center/preparing-manuscript}} \\
+\addlinespace
+Chicago & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/chicago_manual_17th_edition/chicago_style_introduction.html}} \\
+\addlinespace
+Harvard & Open University:\newline {\small\url{https://university.open.ac.uk/library/referencing-and-plagiarism/quick-guide-to-harvard-referencing-cite-them-right}} \\
+\addlinespace
+IEEE & Purdue OWL:\newline {\small\url{https://owl.purdue.edu/owl/research_and_citation/ieee_style/ieee_overview.html}} \\
+\addlinespace
+TRB & Transportation Research Record author instructions:\newline {\small\url{https://trb.secure-platform.com/a/page/trrjournal/forauthors}} \\
+\addlinespace
+Vancouver & Purdue University Libraries:\newline {\small\url{https://guides.lib.purdue.edu/BMEQual/VancouverStyle}} \\
+\bottomrule
+\end{tabularx}
+\end{table}
 
-\section{Packages in \texttt{packages.tex}}
-
-\begin{description}
-\item[\texttt{fontenc}] Loaded with the option \texttt{T1}, which selects modern 8-bit font encoding. Accented letters then hyphenate correctly, and characters such as < and > print correctly in text.
-
-\item[\texttt{tabularx}] Provides the \texttt{tabularx} environment, whose \texttt{X} columns stretch to fill a given width. The sample tables use it to make tables exactly as wide as the text.
-
-\item[\texttt{booktabs}] Provides the horizontal rules \verb+\toprule+, \verb+\midrule+, and \verb+\bottomrule+, which give tables with better spacing than \verb+\hline+.
-
-\item[\texttt{array}] Extends column specifications, for example \verb+>{\raggedright}p{2in}+ to set the alignment inside a paragraph column. The class also loads it.
-
-\item[\texttt{amsmath}] The standard package for displayed mathematics: \texttt{align}, \texttt{gather}, \verb+\eqref+, \verb+\text+, and more. No options are needed.
-
-\item[\texttt{amsthm}] Provides \verb+\newtheorem+ styles and the \texttt{proof} environment. The theorem environments themselves are defined in \texttt{macros.tex}.
-
-\item[\texttt{mathtools}] Extends \texttt{amsmath} with fixes and additions such as \verb+\coloneqq+ and paired delimiters.
-
-\item[\texttt{newtxtext}] Sets the text in a Times clone (TeX Gyre Termes). The GSO requires Times New Roman or Arial at 12~pt.
-
-\item[\texttt{newtxmath}] Sets mathematics in fonts that match the Times text, and provides the AMS symbol fonts, so \texttt{amssymb} and \texttt{amsfonts} must \emph{not} be loaded as well. It must be loaded after \texttt{amsmath}.
-
-\item[\texttt{graphicx}] Provides \verb+\includegraphics+. Images are found in the \texttt{Graphics/} folder because \texttt{main.tex} sets \verb+\graphicspath{{Graphics/}}+.
-
-\item[\texttt{xcolor}] Defines colors by name. The template uses it only to color source-code listings.
-
-\item[\texttt{subcaption}] Provides the \texttt{subfigure} environment for figures with labelled parts (a), (b), and so on, as in Figure~\ref{fig:letters}. It works with the caption settings in the class.
-
-\item[\texttt{xurl}] Allows long URLs to break at any character, so URLs in tables and in the bibliography do not run into the margin.
-
-\item[\texttt{csquotes}] Handles quotation marks. The command \verb+\MakeOuterQuote+ that follows it lets you type a straight double quote and get correct opening and closing quotation marks. It also makes that character special, so it can clash with some packages, such as \texttt{babel} shorthands for German.
-
-\item[\texttt{siunitx}] Typesets numbers and units consistently, with commands such as \verb+\qty+, \verb+\num+, and \verb+\unit+, and provides the \texttt{S} table column, which aligns numbers on the decimal point. See Section~\ref{sec:symbols}. The template uses the commands of version~3, released in 2021.
-
-\item[\texttt{algpseudocode}] Provides the \texttt{algorithmic} environment for pseudocode, as in Figure~\ref{fig:bisection}; it is part of the \texttt{algorithmicx} bundle. The two \verb+\renewcommand+ lines after it print ``Input:'' and ``Output:'' for \verb+\Require+ and \verb+\Ensure+.
-
-\item[\texttt{listings}] Typesets source code, as in Section~\ref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and cyan comments. Change \texttt{language} to match your own code.
-
-\item[\texttt{biblatex}] Formats citations and the bibliography, with \texttt{biber} as the back end. It is loaded through the \verb+\loadbiblatex+ command so that the style can be set once, with \verb+\mycitestyle+, from the table of styles in \texttt{packages.tex} (see Section~\ref{sec:bibliography}). The other options are:
-  \texttt{backend=biber}, the program that processes \texttt{references.bib};
-  \texttt{doi=false}, \texttt{url=false}, and \texttt{isbn=false}, which leave DOIs, URLs, and ISBNs out of the reference list;
-  \texttt{giveninits=true}, which shortens given names to initials;
-  \texttt{sortcites=true}, which sorts the numbers in a multiple citation, giving [1, 4, 5] rather than [5, 1, 4];
-  and \texttt{defernums=true}, which assigns a number to an entry only when it is cited or printed, so entries in \texttt{references.bib} that are never used do not leave gaps in the numbering.
-  The \verb+\defbibheading+ command after it gives the publications list in the Biographical Sketch an empty heading, because the class prints its own.
-
-\item[\texttt{hyperref}] Turns cross-references, citations, URLs, and Table of Contents entries into links, and adds PDF bookmarks. The option \texttt{hidelinks} keeps the links black and unboxed, so the printed copy is unchanged. It must be loaded after almost every other package, which is why it comes near the end.
-
-\item[\texttt{cleveref}] Provides \verb+\cref+, which prints the kind of item along with its number, such as ``Figure 2.1'' (see Section~\ref{sec:crossrefs}). It must be loaded after \texttt{hyperref}. The option \texttt{capitalise} capitalizes the name everywhere, and \texttt{noabbrev} spells it out (``Equation'', not ``Eq.''). The \verb+\crefname+ line after it calls a subsection a ``Subsection''.
-\end{description}
-
-\section{Packages Loaded by the Class File}
-\label{sec:classpackages}
-
-The class file \texttt{njit\_thesis.cls} loads these packages itself, because the NJIT layout depends on them:
-\begin{itemize}
-\item \texttt{geometry}, for the 1.5-inch left margin and 1-inch top, bottom, and right margins;
-\item \texttt{setspace}, for double spacing of the text and single spacing of headings, captions, lists, and references;
-\item \texttt{pdflscape}, for landscape pages;
-\item \texttt{caption}, for the caption layout (bold label, two spaces, no colon; table titles above, figure captions below);
-\item \texttt{etoolbox}, for the hooks the class uses internally;
-\item \texttt{array} and \texttt{longtable}, for the two-column List of Symbols and Glossary of Terms.
-\end{itemize}
+\begin{table}[htbp]
+\centering
+\caption{Citation Formats for ``PRIMES is in P'' Across Bibliography Styles }
+\label{tab:citation-styles}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Style} & \textbf{Citation} \\
+\midrule
+ACM & M. Agrawal, N. Kayal, and N. Saxena. 2004. PRIMES is in P. \textit{Annals of Mathematics} 160, 2 (2004), 781--793. \\
+\addlinespace
+ACS & Agrawal, M.; Kayal, N.; Saxena, N. PRIMES is in P. \textit{Annals of Mathematics} \textbf{2004}, \textit{160} (2), 781--793. \\
+\addlinespace
+AIP & M. Agrawal, N. Kayal, and N. Saxena, PRIMES is in P, \textit{Annals of Mathematics} \textbf{160} (2), 781--793 (2004). \\
+\addlinespace
+AMA & Agrawal M, Kayal N, Saxena N. PRIMES is in P. \textit{Annals of Mathematics}. 2004;160(2):781--793. \\
+\addlinespace
+AMS & M. Agrawal, N. Kayal, and N. Saxena, \textit{PRIMES is in P}, Annals of Mathematics \textbf{160} (2004), no. 2, 781--793. \\
+\addlinespace
+APA & Agrawal, M., Kayal, N., \& Saxena, N. (2004). PRIMES is in P. \textit{Annals of Mathematics}, \textit{160}(2), 781--793. \\
+\addlinespace
+ASCE & Agrawal, M., Kayal, N., and Saxena, N. (2004). ``PRIMES is in P.'' \textit{Annals of Mathematics}, 160(2), 781--793. \\
+\addlinespace
+Chicago & Agrawal, Manindra, Neeraj Kayal, and Nitin Saxena. 2004. ``PRIMES is in P.'' \textit{Annals of Mathematics} 160 (2): 781--793. \\
+\addlinespace
+Harvard & Agrawal, M., Kayal, N. and Saxena, N., 2004. PRIMES is in P. \textit{Annals of Mathematics}, 160(2), pp.781--793. \\
+\addlinespace
+IEEE & M. Agrawal, N. Kayal, and N. Saxena, ``PRIMES is in P,'' \textit{Annals of Mathematics}, vol. 160, no. 2, pp. 781--793, 2004. \\
+\addlinespace
+TRB & Agrawal, M., N. Kayal, and N. Saxena. PRIMES is in P. \textit{Annals of Mathematics}, Vol. 160, No. 2, 2004, pp. 781--793. \\
+\addlinespace
+Vancouver & Agrawal M, Kayal N, Saxena N. PRIMES is in P. Annals of Mathematics. 2004;160(2):781--793. \\
+\bottomrule
+\end{tabularx}
+\end{table}

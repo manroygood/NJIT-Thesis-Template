@@ -1,0 +1,131 @@
+% !TeX root = main.tex
+% Chapter 3: figures, exporting plots, reusing figures, and tables.
+%
+% Each chapter lives in its own file, included from main.tex with \input.
+% Start the file with \chapter{Title}; type the title in normal
+% capitalization (the class sets it in capitals). Headings below it:
+%   \section       level 2, Title Case
+%   \subsection    level 3, sentence case
+%   \subsubsection level 4, sentence case, run-in (the class adds the period)
+%   \paragraph     level 5, sentence case, italic (the class adds the period)
+% Every heading needs a title; an empty one stops the build with an error.
+
+\chapter{Figures and Tables}
+\label{ch:figtables}
+
+This chapter explains how to place figures and tables, how to export plots so they look right on the page, and when you need permission to reuse a figure.
+
+\section{Figures and Subfigures}
+\label{sec:figures}
+
+Every figure must be placed in a \texttt{figure} environment with a \verb+\caption+ and a \verb+\label+. The rules, all handled by the class except where noted:
+\begin{itemize}
+\item Figures are numbered by chapter: Figure~\ref{fig:eberhardt} is the first figure in Chapter~\ref{ch:figtables} (GSO).
+\item The caption goes \textbf{below} the figure, single-spaced and left-justified. The label is bold and followed by two spaces, with no colon (``\textbf{Figure 3.1}'').
+\item The caption text appears word for word in the List of Figures, so do not use the short-caption form \verb+\caption[short]{long}+.
+\item A page that holds only figures or tables starts them at the top of the page.
+\item Refer to every figure in the text, before or near where it appears, using \verb+\ref+. (Not handled by the class.)
+\item Run spell-check on the text \emph{inside} your figures, such as axis labels and legends; the GSO checks it. (Not handled by the class.)
+\end{itemize}
+Make sure figures are legible at their printed size: axis labels and legends should be no smaller than about 8--10\,pt after scaling. \Cref{sec:exportplots} explains how to export plots at the right size from MATLAB, Mathematica, and Python. Let \LaTeX\ place floats; the \verb+[htbp]+ placement option used here is a good default, and forcing positions with \verb+[H]+ usually produces large gaps.
+
+\begin{figure}[htbp]
+\centering
+% Place a photograph at Graphics/EberhardtHall.jpg. Until then a framed
+% placeholder of the same size is printed, so the document still compiles.
+\IfFileExists{Graphics/EberhardtHall.jpg}%
+  {\includegraphics[width=4in]{EberhardtHall.jpg}}%
+  {\fbox{\parbox[c][2.6in][c]{3.9in}{\centering Photograph of Eberhardt Hall\\(add \texttt{Graphics/EberhardtHall.jpg})}}}
+\caption{Eberhardt Hall, the oldest building on the NJIT campus, built in 1857 as the Newark Orphan Asylum and restored in 2005 as the university's alumni center \cite{EberhardtWiki}. A caption should say what the figure shows, give anything the reader needs to interpret it, and credit the source of any image you did not create.}
+\label{fig:eberhardt}
+\end{figure}
+
+Multiple sub-illustrations can be combined into a single floating figure using the \texttt{subfigure} environment provided by the \texttt{subcaption} package, as shown in Figure~\ref{fig:letters}.
+
+\begin{figure}[htbp]
+\centering
+\begin{subfigure}[b]{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.85\textwidth]{FancyA.jpg}
+    \caption{Illuminated initial letter A.}
+    \label{fig:letterA}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.42\textwidth}
+    \centering
+    \includegraphics[width=0.85\textwidth]{FancyB.png}
+    \caption{Illuminated initial letter B.}
+    \label{fig:letterB}
+\end{subfigure}
+\caption{An example figure containing two subfigures, which may be referenced individually as Figure~\ref{fig:letterA} and Figure~\ref{fig:letterB}, or collectively as Figure~\ref{fig:letters}.}
+\label{fig:letters}
+\end{figure}
+
+\section{Exporting Plots from MATLAB, Mathematica, and Python}
+\label{sec:exportplots}
+
+Save plots as vector PDF files whenever you can. A vector plot stays sharp at any magnification, and its text can be searched. Save photographs and other images as JPEG or PNG files with at least 300 pixels per inch at their printed size.
+
+Make each plot at the size it will be printed, rather than scaling it in \LaTeX. If a plot drawn 8 inches wide is shrunk to 6 inches, its labels shrink by a quarter too. The text block is 6 inches wide, so a full-width plot should be about 6 inches wide, and each half of a two-part figure like \cref{fig:letters} about 3 inches. Then include it at its natural size, \verb+\includegraphics{plot.pdf}+, with no \texttt{width} option. Set the labels in a 10 or 11~pt font, and in Times if you can, so they match the text.
+\begin{description}
+\item[MATLAB] Set the size and font, then save with \texttt{exportgraphics} (MATLAB R2020a or later):
+\begin{verbatim}
+fig = figure('Units','inches','Position',[1 1 6 4]);
+plot(x, y);
+set(gca, 'FontName','Times', 'FontSize',11);
+exportgraphics(fig,'Graphics/plot.pdf','ContentType','vector');
+\end{verbatim}
+\item[Mathematica] Give the width in printer's points (72 per inch) and export:
+\begin{verbatim}
+p = Plot[Sin[x], {x, 0, 2 Pi}, ImageSize -> 6*72,
+      BaseStyle -> {FontFamily -> "Times", FontSize -> 11}];
+Export["Graphics/plot.pdf", p]
+\end{verbatim}
+\item[Python (Matplotlib)] Give the size in inches. The \texttt{pdf.fonttype} setting embeds the fonts as TrueType rather than Type~3 fonts, which some PDF checkers reject:
+\begin{verbatim}
+import matplotlib.pyplot as plt
+plt.rcParams.update({"font.family": "serif",
+    "font.serif": ["Times New Roman"], "font.size": 11,
+    "pdf.fonttype": 42})
+fig, ax = plt.subplots(figsize=(6, 4))
+ax.plot(x, y)
+fig.savefig("Graphics/plot.pdf")
+\end{verbatim}
+\end{description}
+Another option is to draw the plot in \LaTeX\ itself with the \texttt{pgfplots} package, which sets the labels in the document's own fonts and accepts any \LaTeX\ math in them. It takes more work, and the package is not loaded by the template. MATLAB users can convert existing figures to \texttt{pgfplots} code with the \texttt{matlab2tikz} script. Whatever you use, check that the fonts in your figures are embedded in the final PDF (\cref{sec:checklist}).
+
+\section{Using Figures You Did Not Create}
+\label{sec:figurepermission}
+
+Credit and permission are separate questions. Every figure, photograph, or table you did not create needs a credit in its caption, as in \cref{fig:eberhardt}. Some also need written permission from the copyright holder, because a dissertation is published, unlike a class paper.
+\begin{itemize}
+\item \textbf{No permission needed:} works in the public domain, such as most images made by U.S.\ federal agencies, and works under a license that allows reuse, such as most Creative Commons licenses. Follow the license's terms for the credit line.
+\item \textbf{Permission usually needed:} figures copied from journal articles and books. This includes figures from your own published papers if you transferred the copyright to the publisher. Most publishers grant reuse in a dissertation quickly and without charge; look for a ``Rights and permissions'' link on the article's web page.
+\item \textbf{Redrawn figures:} a figure you redraw from someone else's design or data is still adapted from their work. It needs a credit, and it may need permission if it closely copies the original.
+\end{itemize}
+Typical credit lines are ``Reprinted from [12], with permission from Elsevier'' and ``Adapted from [12].'' Keep the permission letters or license records. If you are unsure whether you need permission, ask the NJIT Library or the GSO before you submit.
+
+\section{Tables}
+\label{sec:tables}
+
+According to NJIT style rules:
+\begin{itemize}
+\item Table titles are placed \textbf{above} the table.
+\item Table titles are formatted in title case and do \textbf{not} end with a period.
+\item The table text is single-spaced.
+\item Tables are numbered by chapter, like figures.
+\item A small table must not be split across pages (GSO).
+\item The title appears word for word in the List of Tables.
+\item Put the column units in the column header, not in every cell.
+\end{itemize}
+
+\subsection{Standard portrait table}
+Table~\ref{table:gso_rules}, in Chapter~\ref{ch:start}, is a standard floating table in portrait mode. It is kept in its own file, \texttt{table.tex}, and pulled in with \verb+\input+. This is optional, but it keeps large tables, or tables generated by a script, out of the chapter text. The \texttt{booktabs} rules used in Table~\ref{table:landscape_sample} (\verb+\toprule+, \verb+\midrule+, \verb+\bottomrule+, and no vertical lines) usually read more cleanly than the full grid of Table~\ref{table:gso_rules}.
+
+\subsection{Landscape orientation for wide tables}
+\label{subsec:landscape}
+Occasionally, a dissertation table or figure contains too many columns to fit within the standard 6-inch text width of a portrait page. The \texttt{njit\_thesis.cls} class includes built-in landscape capability via \texttt{pdflscape}. The \texttt{landscape} environment rotates the entire page content while keeping headers, footers, and page numbers in their proper orientation, and rotates the PDF page view so that it is easily readable on a screen without neck strain.
+
+The GSO requires that on a landscape page the bottom of the table or figure faces the outer edge of the page, while the page number stays in its normal portrait position. The \texttt{landscape} environment does both.
+
+Table~\ref{table:landscape_sample}, in Section~\ref{sec:checklist}, is a full landscape table. Its source in \texttt{chapter4.tex} shows how to set one up: put the \texttt{table} environment inside a \texttt{landscape} environment.

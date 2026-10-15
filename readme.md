@@ -31,7 +31,7 @@ This repository provides the official \LaTeX\ dissertation template and user's g
 
 4. **Rich Feature Demonstrations:**
    - **Headings:** Chapters, sections, subsections, subsubsections, and run-in paragraphs.
-   - **Mathematics & Theorems:** Built-in `amsmath`, `amssymb`, and `amsthm` environments (`theorem`, `lemma`, `proposition`, `corollary`, `definition`, `example`, `remark`, `proof`).
+   - **Mathematics & Theorems:** Built-in `amsmath` and `amsthm` environments (`theorem`, `lemma`, `proposition`, `corollary`, `definition`, `example`, `remark`, `proof`).
    - **Graphics & Subfigures:** Standard figures and subfigures with `subcaption`.
    - **Tables:** Standard floating tables with `tabularx` and footnotes.
    - **Landscape Pages:** Built-in `pdflscape` for wide tables and large figures that rotate the PDF page view for screen reading.
@@ -81,11 +81,15 @@ pdflatex main.tex
 ├── acknowledgment.tex      # Acknowledgments
 ├── listofsymbols.tex       # List of symbols and notation
 ├── listofdefinitions.tex   # Glossary of terms / technical definitions
-├── chapter1.tex            # Chapter 1: Document structure and guide
-├── chapter2.tex            # Chapter 2: Formatting instructions and examples
+├── chapter1.tex            # Chapter 1: Getting started (parts, files, compiling)
+├── table.tex               # Sample table, \input by chapter1.tex
+├── chapter2.tex            # Chapter 2: Writing the text
+├── chapter3.tex            # Chapter 3: Figures and tables
+├── chapter4.tex            # Chapter 4: References and submission
 ├── appendixA.tex           # Appendix A: how appendices work (multi-appendix setup)
-├── appendixB.tex           # Appendix B: the packages in packages.tex and their options
-├── appendixC.tex           # Appendix C: file tree of the template
+├── appendixB.tex           # Appendix B: citation style guides and examples
+├── appendixC.tex           # Appendix C: the packages in packages.tex and their options
+├── appendixD.tex           # Appendix D: the template's files
 ├── appendix.tex            # Alternative single-appendix setup (see main.tex)
 ├── appendix-rules.tex      # Shared text, \input by appendix.tex and appendixA.tex
 └── appendix-demo.tex       # Shared equations/figures/table demo, \input by the same two

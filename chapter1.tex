@@ -1,5 +1,6 @@
 % !TeX root = main.tex
-% Chapter 1: how the template is organized and how to compile it.
+% Chapter 1: the parts of a dissertation, what the template handles, the
+% files you edit, and how to compile.
 %
 % Each chapter lives in its own file, included from main.tex with \input.
 % Start the file with \chapter{Title}; type the title in normal
@@ -10,10 +11,10 @@
 %   \paragraph     level 5, sentence case, italic (the class adds the period)
 % Every heading needs a title; an empty one stops the build with an error.
 
-\chapter{Document Structure}
-\label{ch:structure}
+\chapter{Getting Started}
+\label{ch:start}
 
-A \LaTeX\ dissertation project is structured like a well-organized software codebase: split into modular functional units contained in separate files. This chapter explains the overall structure required by the New Jersey Institute of Technology Office of Graduate Studies (GSO), how each file in this template contributes to the final document, and how to compile the project locally and on Overleaf.
+A \LaTeX\ dissertation project is structured like a well-organized software codebase: split into modular functional units contained in separate files. This chapter lists the parts an NJIT dissertation must contain, in the order required by the New Jersey Institute of Technology Office of Graduate Studies (GSO), summarizes the formatting rules the template applies for you, explains which files you edit, and shows how to compile the project locally and on Overleaf. Chapter~\ref{ch:writing} covers writing the text, Chapter~\ref{ch:figtables} covers figures and tables, and Chapter~\ref{ch:references} covers references and the checks to make before you submit.
 
 \section{The Parts of a Dissertation, in Order}
 
@@ -53,45 +54,26 @@ An NJIT dissertation consists of three primary divisions: the preliminary front 
 \item[References] The bibliography, styled consistently and sorted according to the field's standard conventions. Generated from \texttt{references.bib} via \texttt{biblatex} and \texttt{biber}.
 \end{description}
 
-\section{The Template Files}
+\section{What the Template Does for You}
+\label{sec:template-does}
 
-Here is a breakdown of the files included in this template and how each should be edited:
+The class file applies most of the GSO's formatting rules automatically. Table~\ref{table:gso_rules} lists the main rules and shows which ones the template takes care of and which are up to you.
 
-\begin{description}
-\emergencystretch=2.5em
-  \item[\texttt{njit\_thesis.cls}] The \LaTeX\ class file. It encapsulates all official NJIT Graduate Studies Office formatting rules, including 1.5-inch left margins for binding, 1.0-inch top/bottom/right margins, double line spacing for body text, centered bold uppercase chapter titles, multi-page continuation headers for the Table of Contents, Lists of Figures and Tables, and correct appendix handling. You should not need to edit this class file directly.
+\input{table}
 
-  \item[\texttt{main.tex}] The master control document. It loads the class, includes packages and macros, sets the graphicspath, loads the front matter, and arranges the chapters and appendices via \verb+\input+ statements.
+\section{Setting Up Your Files}
+\label{sec:setup}
 
-  \item[\texttt{packages.tex}] Loads optional \LaTeX\ packages (such as \texttt{tabularx}, \texttt{amsmath}, \texttt{amsthm}, the Times fonts \texttt{newtxtext} and \texttt{newtxmath}, \texttt{graphicx}, \texttt{subcaption}, \texttt{booktabs}, \texttt{xurl}, and \texttt{biblatex}). Add any additional packages needed for your research here.
-
-  \item[\texttt{macros.tex}] Defines custom mathematical shortcuts and theorem environments (e.g., Theorem, Lemma, Definition, Proposition, Corollary). The file contains some examples. Well-defined and consistently used macros can make writing and editing your thesis much easier.
-
-  \item[\texttt{abstract.tex}] Enter the text of your abstract here. The class file automatically supplies the centered title and author header.
-
-  \item[\texttt{approval.tex}] Defines the dissertation advisor and committee members using the \verb+\advisor+ and \verb+\member+ commands. If you have a co-advisor, add \verb+\coadvisor{Name}{Title, Institution}+ after \verb+\advisor+; both advisors are then labeled ``Co-Advisor'' and listed before the committee. Faculty titles must match the catalog.
-
-  \item[\texttt{biography.tex}] Contains your dissertation title, author name, major, degree title, department, institution, graduation date (\verb+\graduationdate+), and degrees earned (entered with the \verb+\degreeearned+ command; the older name \verb+\degree+ still works unless a package such as \texttt{gensymb} defines it). Also includes the hook for \verb+\printmypublications+. Date and place of birth are added only in the copy submitted to the GSO.
-
-  \item[\texttt{dedication.tex}] Contains your optional dedication. If you do not wish to include a dedication, simply comment out \verb+\dedication{\input{dedication}}+ in \texttt{main.tex}.
-
-  \item[\texttt{acknowledgment.tex}] Contains your acknowledgments. Thank your advisor first, then your committee; the GSO Front Matter guide then lists other contributors, family, funding sources, and technical support.
-
-  \item[\texttt{listofsymbols.tex}] Contains a two-column table of symbols and their meanings, one \verb+\sym{symbol}{meaning}+ per row. Included via \verb+\symbols+ in \texttt{main.tex}.
-
-  \item[\texttt{listofdefinitions.tex}] Contains a two-column table of terms and definitions in alphabetical order, one \verb+\term{term}{definition}+ per row. Included via \verb+\glossaryofterms+ in \texttt{main.tex}.
-
-
-  \item[\texttt{chapter1.tex}, \texttt{chapter2.tex}, \ldots] The individual chapter files. Keeping chapters in separate files allows you to comment out finished chapters while drafting new ones to speed up compilation.
-
-  \item[\texttt{appendixA.tex}, \texttt{appendixB.tex}, \texttt{appendixC.tex}] The sample's three appendices, each starting with \verb+\chapter+: how appendices work, the packages the template loads, and the template's file tree.
-
-  \item[\texttt{appendix.tex}] The alternative for a document with a single appendix, which starts with \verb+\oneappendix+ instead; switch to it in \texttt{main.tex}. Sample text shared with \texttt{appendixA.tex} lives in \texttt{appendix-rules.tex} and \texttt{appendix-demo.tex}, pulled in with \verb+\input+; delete them when you write your own appendices.
-
-  \item[\texttt{references.bib}] A standard \BibTeX\ database of citations. Any entry with the field \verb+keywords = {me}+ will also be included automatically in the Presentations and Publications section of your Biographical Sketch.
-
-  \item[\texttt{Graphics/}] Directory containing all figures, plots, and diagrams.
-\end{description}
+You edit only a few of the template's files; Appendix~\ref{app:filetree} describes every one. To start your own dissertation:
+\begin{enumerate}
+\item Enter your title, name, degree, department, and graduation date in \texttt{biography.tex}, and your advisor and committee in \texttt{approval.tex}. The class prints them on every page that needs them.
+\item Replace the sample text of the abstract, the dedication, and the acknowledgment, in the files named after them. If you do not want a dedication, comment out its line in \texttt{main.tex}.
+\item Replace the sample entries in \texttt{listofsymbols.tex} and \texttt{listofdefinitions.tex}, or comment out their lines in \texttt{main.tex}.
+\item Write each chapter in its own file, \texttt{chapter1.tex}, \texttt{chapter2.tex}, and so on, and list them with \verb+\input+ in \texttt{main.tex}. While drafting, you can comment out finished chapters to compile faster.
+\item Put your sources in \texttt{references.bib} and your images in the \texttt{Graphics/} folder.
+\item Load any packages you need in \texttt{packages.tex}, before the \texttt{hyperref} line, and define your own notation and theorem environments in \texttt{macros.tex}.
+\end{enumerate}
+You should not need to edit the class file, \texttt{njit\_thesis.cls}.
 
 \section{Compiling the Dissertation}
 
@@ -140,19 +122,3 @@ How to install the package depends on your \LaTeX\ distribution:
 \item \textbf{Overleaf:} nothing to install, since every package on CTAN is available.
 \end{itemize}
 Then compile again. If a different file is now reported missing, repeat these steps for it.
-
-\section{Before You Submit}
-\label{sec:checklist}
-
-Most documents the GSO returns have one of a handful of problems. Before you send yours, check that:
-\begin{itemize}
-\item You have run a spell-checker over the whole document, including the text in figures and tables.
-\item The title is identical on the abstract, title, and approval pages (automatic if you set it only with \verb+\title+).
-\item The Table of Contents and the Lists of Tables and Figures match the headings and captions in the text exactly.
-\item Every advisor and committee title has been checked against the current Graduate Catalog.
-\item No cross-reference or citation shows as ``??''. Search the PDF for ``??'' to be sure.
-\item The log file (\texttt{main.log}) has no overfull-box warnings that push text into the margin.
-\item Every font in the PDF is embedded, including the fonts inside your figures. Open the PDF in Adobe Acrobat Reader, choose \emph{File}, then \emph{Properties}, then \emph{Fonts}, and check that each font is marked ``Embedded'' or ``Embedded Subset''. On the command line, \verb+pdffonts main.pdf+ (from the Poppler utilities) lists every font, with \texttt{yes} in the \texttt{emb} column for each embedded one. pdf\LaTeX\ embeds the fonts of the text itself, so a font that is not embedded almost always comes from a figure; export that figure again as described in \cref{subsec:exportplots}.
-\item The links work. Click a few entries in the Table of Contents, a few citations, and a few cross-references, and check that each one goes to the right place.
-\item The file meets the GSO's current submission instructions, such as the file name and whether a PDF/A file is required. Ask the GSO if the instructions don't say.
-\end{itemize}
