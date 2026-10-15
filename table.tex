@@ -12,20 +12,36 @@
 
 \begin{table}[htbp]
 \centering
-\caption{Major Differences Between Neural Networks and Cell Signaling Networks}
-\label{table:NN_DIFF}
+\caption{GSO Formatting Rules and How the Template Handles Them}
+\label{table:gso_rules}
 
-\begin{tabularx}{\linewidth}{|c|p{0.18\linewidth}|X|X|}
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{0.16\linewidth}|>{\raggedright\arraybackslash}X|>{\raggedright\arraybackslash}X|}
 \hline
-\textbf{Item} & \textbf{Salient Feature} & \textbf{Neural Networks} & \textbf{Cell Signaling Networks} \\
+\textbf{Element} & \textbf{GSO Rule} & \textbf{In This Template} \\
 \hline
-(i) & Nodes & All nodes typically identical & Nodes are not all equivalent in performance \\
+Margins & 1.5 in on the left; 1 in at the top, bottom, and right & Automatic \\
 \hline
-(ii) & Structure & Typically layered with feed-forward connections only & Regulatory signals often give rise to feedback connections resulting in cycles \\
+Font & Times New Roman or Arial, 12 pt, including headings & Automatic (Times, through \texttt{newtx}) \\
 \hline
-(iii) & Connectivity & Highly connected & More sparsely connected \\
+Spacing & Text double-spaced; headings, captions, tables, lists, and references single-spaced & Automatic \\
 \hline
-(iv) & Learning Rule & Connectivity altered to perform a single function (e.g., via a back-propagation algorithm) & Cells must be able to respond to multiple stimuli effectively; changes typically occur via evolutionary processes \\
+Page numbers & Bold, centered at the bottom; title page counts as i; first number shown is iv, on the Biographical Sketch; Arabic numbering starts at Chapter 1 & Automatic \\
+\hline
+Front matter & Fixed order, from the abstract to the lists; copyright page for dissertations only & Automatic; use the \texttt{thesis} class option for a master's thesis \\
+\hline
+Dates & Graduation month and year, not the defense date & Set \verb+\graduationdate+ in \texttt{biography.tex} \\
+\hline
+Names and titles & Faculty titles exactly as in the Graduate Catalog & Check them yourself in \texttt{approval.tex} \\
+\hline
+Headings & Every heading numbered and titled; level 2 in title case, levels 3 to 5 in sentence case & Layout automatic; you type the capitalization \\
+\hline
+Table of Contents & Starts at Chapter 1; chapter titles in capitals; dot leaders; ``(Continued)'' on later pages & Automatic \\
+\hline
+Captions & Table titles above, figure captions below; numbered by chapter; table titles in title case with no final period & Layout automatic; you write the titles \\
+\hline
+Appendices & One appendix is ``APPENDIX''; several are ``APPENDIX A'', ``APPENDIX B'', and so on; each opens with introductory text & Labels automatic; you write the introduction \\
+\hline
+References & The citation style used in your discipline & Choose it with \verb+\mycitestyle+ in \texttt{packages.tex} \\
 \hline
 \end{tabularx}
 \end{table}
