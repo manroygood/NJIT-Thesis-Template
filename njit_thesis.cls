@@ -90,15 +90,12 @@
 \captionsetup[table]{position=above, skip=6pt}
 \captionsetup[figure]{position=below, skip=6pt}
 
-% Widow and orphan control, and line breaking
+% No widow or orphan lines. Hyphenation uses the LaTeX defaults;
+% \emergencystretch lets TeX loosen a line slightly instead of letting
+% it run into the margin.
 \widowpenalty=10000
 \clubpenalty=10000
-\hyphenpenalty=1000
-\tolerance=1000
-\exhyphenpenalty=1000
-\uchyph=0
-\lefthyphenmin=5
-\righthyphenmin=6
+\setlength{\emergencystretch}{1.5em}
 
 % A page holding only floats starts them at the top of the page instead of
 % centering them vertically (GSO).
