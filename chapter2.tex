@@ -172,23 +172,38 @@ Occasionally, a dissertation table or figure contains too many columns to fit wi
 
 The GSO requires that on a landscape page the bottom of the table or figure faces the outer edge of the page, while the page number stays in its normal portrait position. The \texttt{landscape} environment does both.
 
-Table~\ref{table:landscape_sample} on the following page demonstrates a full landscape table.
+Table~\ref{table:landscape_sample} on the following page demonstrates a full landscape table. It lists the problems that most often cause the GSO to return a document, and how to avoid each one.
 
 \begin{landscape}
 \begin{table}[htbp]
 \centering
-\caption{Comparison of Numerical Solvers for Stiff Partial Differential Equations}
+\caption{Common Reasons the GSO Returns a Document and How to Avoid Them}
 \label{table:landscape_sample}
-\vspace{6pt}
-\begin{tabularx}{\linewidth}{l l c c X}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
 \toprule
-\textbf{Algorithm} & \textbf{Type} & \textbf{Order} & \textbf{Stability} & \textbf{Key Characteristics and Applications} \\
+\textbf{Problem} & \textbf{What the GSO Expects} & \textbf{How to Avoid It} \\
 \midrule
-Forward Euler & Explicit Runge--Kutta & 1 & Conditionally stable & Simple to implement; severely time-step restricted for stiff parabolic problems. \\
-Crank--Nicolson & Implicit Trapezoidal & 2 & A-stable & Unconditionally stable for linear diffusion; exhibits oscillations with discontinuous boundary data. \\
-RK4 & Explicit 4-stage RK & 4 & Conditionally stable & High accuracy for non-stiff systems; widely used for hyperbolic conservation laws. \\
-BDF2 & Multistep Backward Diff. & 2 & L-stable & Strongly damping high frequencies; standard choice for chemical reaction-diffusion equations. \\
-Radau IIA & Implicit Runge--Kutta & 5 & L-stable & Fully implicit; excellent for differential-algebraic equations (DAEs) and stiff Hamiltonian control. \\
+Title differs between pages & The same title, word for word, on the abstract, title page, and approval page & Set it once with \verb+\title+ in \texttt{biography.tex}; never retype it \\
+\addlinespace
+Wrong degree, department, or date & A valid degree and department combination from the GSO list; the graduation month and year & Check the GSO list; set \verb+\graduationdate+, not the defense date \\
+\addlinespace
+Faculty names or titles wrong & Names spelled correctly and titles as in the current Graduate Catalog & Confirm each one with your department administrator before filling in \texttt{approval.tex} \\
+\addlinespace
+Committee too small & At least five members for a dissertation and three for a thesis, including the advisor; external members listed last & List members in \texttt{approval.tex} in that order \\
+\addlinespace
+Lists do not match the text & Table of Contents and Lists of Tables and Figures identical to the headings and captions & Let \LaTeX\ generate them; do not give \verb+\caption+ or headings a different short title in square brackets \\
+\addlinespace
+Inconsistent capitalization & Level 2 headings and table titles in title case; levels 3 to 5 in sentence case & Type each heading in the right case; the class does not change it \\
+\addlinespace
+Spelling and grammar errors & No errors anywhere, including text inside figures and tables & Spell-check the \texttt{.tex} files and proofread the labels in your figures \\
+\addlinespace
+Missing references & No ``??'' in place of a citation or cross-reference & Compile until the log reports no undefined references; search the PDF for ``??'' \\
+\addlinespace
+Text in the margin & Nothing extends past the margins & Fix every ``Overfull \textbackslash hbox'' warning in \texttt{main.log}, usually from wide equations, tables, or URLs \\
+\addlinespace
+Abstract too long & One page for a thesis, two for a dissertation, in the third person & Check the length of the first page of the PDF \\
+\addlinespace
+Appendix without introduction & Each appendix opens with a brief description before any figures or tables & Start every appendix with a paragraph of text \\
 \bottomrule
 \end{tabularx}
 \end{table}
