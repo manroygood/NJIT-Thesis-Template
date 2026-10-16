@@ -14,58 +14,61 @@ Equations inside the appendix are numbered with an appendix prefix:
 \label{eq:app2}
 \oint_{\partial \Omega} \mathbf{F} \cdot d\mathbf{S} &= \iiint_{\Omega} (\nabla \cdot \mathbf{F})\, dV.
 \end{align}
-Cross-references like Equation~\eqref{eq:app1} and Equation~\eqref{eq:app2} resolve cleanly.
+Cross-references like \cref{eq:app1} and \cref{eq:app2} resolve cleanly.
 
-Figures placed within the appendix also receive appropriate appendix numbering, as shown in Figure~\ref{fig:app_cube1} and Figure~\ref{fig:app_cube2}.
+Figures placed within the appendix also receive appropriate appendix numbering, as shown in \cref{fig:app_numeral1} and \cref{fig:app_numeral2}.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=2.5in]{drop_cap_1.png}
 \caption{An ornamental numeral 1, the first appendix demonstration figure.}
-\label{fig:app_cube1}
+\label{fig:app_numeral1}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=2.5in]{drop_cap_2.png}
 \caption{An ornamental numeral 2, the second appendix demonstration figure.}
-\label{fig:app_cube2}
+\label{fig:app_numeral2}
 \end{figure}
 
-\clearpage
-\section{Tables in an appendix}
+\section{Tables in an Appendix}
 
-Here is an example of a table in an appendix showing how you might list websites you consulted. Table~\ref{table:latexresources} lists free resources for learning \LaTeX\ and for answering questions as you write; long URLs wrap automatically because of the \texttt{xurl} package.
+Here is an example of a table in an appendix showing how you might list websites you consulted. \cref{table:latexresources} lists free resources for learning \LaTeX\ and for answering questions as you write. The addresses are printed without the \texttt{https://} prefix, which keeps them short enough to fit the column, but each one still links to the full address:
+\begin{verbatim}
+\href{https://www.learnlatex.org}{\nolinkurl{www.learnlatex.org}}
+\end{verbatim}
+For an address printed in full, \verb+\url+ breaks long addresses at any character, thanks to the \texttt{xurl} package.
 
 \begin{table}[htbp]
 \centering
 \caption{Free Resources for Learning \LaTeX}
 \label{table:latexresources}
-\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{0.24\linewidth}|>{\raggedright\arraybackslash}p{0.32\linewidth}|>{\raggedright\arraybackslash}X|}
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{0.24\linewidth}|>{\raggedright\arraybackslash}p{0.36\linewidth}|>{\raggedright\arraybackslash}X|}
 \hline
 \textbf{Resource} & \textbf{Address} & \textbf{Good For} \\
 \hline
-Learn \LaTeX\ in 30 Minutes (Overleaf) & \url{https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes} & A first introduction, with examples you can edit online \\
+Learn \LaTeX\ in 30 Minutes (Overleaf) & \href{https://www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes}{\nolinkurl{www.overleaf.com/learn/latex/Learn_LaTeX_in_30_minutes}} & A first introduction, with examples you can edit online \\
 \hline
-learnlatex.org & \url{https://www.learnlatex.org} & Short interactive lessons covering the basics \\
+learnlatex.org & \href{https://www.learnlatex.org}{\nolinkurl{www.learnlatex.org}} & Short interactive lessons covering the basics \\
 \hline
-Overleaf documentation & \url{https://www.overleaf.com/learn} & Task-based help on tables, figures, mathematics, and bibliographies \\
+Overleaf documentation & \href{https://www.overleaf.com/learn}{\nolinkurl{www.overleaf.com/learn}} & Task-based help on tables, figures, mathematics, and bibliographies \\
 \hline
-The Not So Short Introduction to \LaTeX & \url{https://ctan.org/pkg/lshort} & A complete free textbook \\
+The Not So Short Introduction to \LaTeX & \href{https://ctan.org/pkg/lshort}{\nolinkurl{ctan.org/pkg/lshort}} & A complete free textbook \\
 \hline
-\LaTeX\ Wikibook & \url{https://en.wikibooks.org/wiki/LaTeX} & A searchable reference organized by topic \\
+\LaTeX\ Wikibook & \href{https://en.wikibooks.org/wiki/LaTeX}{\nolinkurl{en.wikibooks.org/wiki/LaTeX}} & A searchable reference organized by topic \\
 \hline
-How Should We \LaTeX? (Roy Goodman) & \url{https://roygoodman.net/post/how-to-latex/} & Style habits that manuals skip: meaningful macros, consistent notation, punctuating equations, and coauthoring \\
+How Should We \LaTeX? (Roy Goodman) & \href{https://roygoodman.net/post/how-to-latex/}{\nolinkurl{roygoodman.net/post/how-to-latex}} & Style habits that manuals skip: meaningful macros, consistent notation, punctuating equations, and coauthoring \\
 \hline
-Short Math Guide for \LaTeX\ (AMS) & \url{https://ctan.org/pkg/short-math-guide} & The commands of \texttt{amsmath} at a glance \\
+Short Math Guide for \LaTeX\ (AMS) & \href{https://ctan.org/pkg/short-math-guide}{\nolinkurl{ctan.org/pkg/short-math-guide}} & The commands of \texttt{amsmath} at a glance \\
 \hline
-Detexify & \url{https://detexify.kirelabs.org} & Finding the command for a symbol by drawing it \\
+Detexify & \href{https://detexify.kirelabs.org}{\nolinkurl{detexify.kirelabs.org}} & Finding the command for a symbol by drawing it \\
 \hline
-Comprehensive \LaTeX\ Symbol List & \url{https://ctan.org/pkg/comprehensive} & Every symbol available, with the package that provides it \\
+Comprehensive \LaTeX\ Symbol List & \href{https://ctan.org/pkg/comprehensive}{\nolinkurl{ctan.org/pkg/comprehensive}} & Every symbol available, with the package that provides it \\
 \hline
-TeX Stack Exchange & \url{https://tex.stackexchange.com} & Answers to specific questions; search before asking \\
+TeX Stack Exchange & \href{https://tex.stackexchange.com}{\nolinkurl{tex.stackexchange.com}} & Answers to specific questions; search before asking \\
 \hline
-CTAN & \url{https://ctan.org} & Documentation for every package \\
+CTAN & \href{https://ctan.org}{\nolinkurl{ctan.org}} & Documentation for every package \\
 \hline
 \end{tabularx}
 \end{table}

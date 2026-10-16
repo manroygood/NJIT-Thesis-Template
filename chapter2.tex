@@ -33,7 +33,7 @@ The class adds the period after level~4 and~5 titles, so do not type one. Every 
 
 \subsection{Subsection headings}
 \label{subsec:subsections}
-Subsection headings (level 3, X.x.x) are flush left, bold, and in sentence case. Notice that subsections are numbered within the chapter, such as Subsection~\ref{subsec:subsections}.
+Subsection headings (level 3, X.x.x) are flush left, bold, and in sentence case. Notice that subsections are numbered within the chapter, such as \cref{subsec:subsections}.
 
 \subsubsection{Subsubsection headings}
 \label{subsubsec:subsubsections}
@@ -44,9 +44,8 @@ The \verb+\paragraph+ command gives level 5 (X.x.x.x.x): numbered, italic, in se
 
 \section{Mathematics, Symbols, and Units}
 \label{sec:math}
-\label{sec:symbols}
 
-The template preconfigures the standard American Mathematical Society (\AmS) packages \texttt{amsmath} and \texttt{amsthm}, together with \texttt{mathtools}; the AMS symbols come with the \texttt{newtxmath} font package. I also recommend that applied math and physics students consider using the \texttt{physics} package for useful macros for differential and integral calculus, ``bra'' and ``ket'' notation, and more. Here are some examples.
+The template preconfigures the standard American Mathematical Society (\AmS) packages \texttt{amsmath} and \texttt{amsthm}, together with \texttt{mathtools}; the AMS symbols come with the \texttt{newtxmath} font package. Students in applied mathematics and physics may also want the \texttt{physics} package, which provides macros for derivatives, integrals, ``bra'' and ``ket'' notation, and more; it is not loaded by the template, so add it in \texttt{packages.tex}. Here are some examples.
 
 \begin{definition}[Sobolev Space $H^1(\RR)$]
 \label{def:sobolev}
@@ -58,11 +57,11 @@ H^1(\RR) = \left\{ u \in L^2(\RR) \;\middle|\; \frac{du}{dx} \in L^2(\RR) \right
 equipped with the inner product
 \begin{equation}
 \label{eq:innerprod}
-\langle u, v \rangle_{H^1} = \int_{-\infty}^{\infty} \left( u(x)v(x) + \frac{du}{dx}\frac{dv}{dx} \right) dx.
+\langle u, v \rangle_{H^1} = \int_{-\infty}^{\infty} \left( u(x)v(x) + \frac{du}{dx}\frac{dv}{dx} \right) \, dx.
 \end{equation}
 \end{definition}
 
-\begin{theorem}[Energy-Mass Equivalence]
+\begin{theorem}[Energy--Mass Equivalence]
 \label{thm:einstein}
 For a particle of invariant rest mass $m$ at rest in an inertial reference frame, its total relativistic energy $E$ satisfies
 \begin{equation}
@@ -76,16 +75,16 @@ where $c \approx \qty{3e8}{\metre\per\second}$ is the speed of light in vacuum.
 In relativistic mechanics, the four-momentum $P^\mu = (E/c, \bm{p})$ satisfies the dispersion relation $P^\mu P_\mu = (E/c)^2 - |\bm{p}|^2 = m^2 c^2$. Setting the spatial momentum $\bm{p} = \bm{0}$ yields $(E/c)^2 = m^2 c^2$, whence $E = mc^2$.
 \end{proof}
 
-You can cross-reference equations easily: for example, see Equation~\eqref{eq:einstein} or Definition~\ref{def:sobolev}. Notice also the use of the bold vector macro $\bm{p}$ via \verb+\bm{p}+. Note that I used \verb+\eqref+ to automatically put parentheses around equation number references and \verb+\ref+ for all other references. \Cref{sec:crossrefs} explains cross-references in more detail.
+You can cross-reference equations easily: for example, see \cref{eq:einstein} or \cref{def:sobolev}. Both were typed with \verb+\cref+, which adds the name (and, for equations, the parentheses) automatically; \cref{sec:crossrefs} explains cross-references in more detail. The bold vector $\bm{p}$ is typed \verb+\bm{p}+, from the \texttt{bm} package.
 
-\textbf{Equation numbering.} Equations are numbered by chapter, not by section, as in Equation~\eqref{eq:einstein} (GSO). The class does this automatically. Number only the equations you refer to later; use \verb+equation*+ or \verb+\nonumber+ for the rest.
+\textbf{Equation numbering.} Equations are numbered by chapter, not by section, as in \cref{eq:einstein} (GSO). The class does this automatically. Number only the equations you refer to later; use \verb+equation*+ or \verb+\nonumber+ for the rest.
 
 Displayed equations are part of the sentence that introduces them and take punctuation accordingly: a comma or period at the end of the display, inside the math. Never refer to an equation by typing its number; always use \verb+\label+ and \verb+\eqref+, so the numbers stay correct when you move material between chapters. Leave room around displays, and do not use \verb+\vspace+ to squeeze equations onto a page.
 
 \textbf{Theorems.} Theorems, lemmas, definitions, and the like share one counter and are numbered by chapter. Add new environments in \texttt{macros.tex}, not in the chapter files, so they are numbered consistently.
 
 
-\textbf{Symbols.} The template supports inline symbols and notation. Defined symbols (such as $E$ for energy, $m$ for mass, and $c$ for speed of light) can be summarized in the dedicated List of Symbols generated before Chapter~1 via \texttt{listofsymbols.tex}. Special brand names or trademarks may also be formatted using the built-in \verb+\trademark+ command, e.g., MATLAB\trademark.
+\textbf{Symbols.} The template supports inline symbols and notation. Defined symbols (such as $E$ for energy, $m$ for mass, and $c$ for speed of light) can be summarized in the dedicated List of Symbols generated before Chapter~1 via \texttt{listofsymbols.tex}. Brand names can carry a trademark sign with the \verb+\trademark+ command defined in \texttt{macros.tex}, as in MATLAB\trademark.
 
 \textbf{Numbers and units.} Type quantities with the \texttt{siunitx} package rather than by hand, so that numbers, units, and the space between them are set the same way everywhere. For example:
 \begin{itemize}
@@ -99,9 +98,9 @@ The same commands work in text and in math. In a table, the column type \texttt{
 \section{Source Code and Pseudocode}
 \label{sec:source_code}
 
-If your dissertation has a computational component, you may want to include source code. Here I use the \verb+\lstlisting+ command defined in the \texttt{listings} package included in \texttt{packages.tex}.
+If your dissertation has a computational component, you may want to include source code. The listing below uses the \texttt{lstlisting} environment from the \texttt{listings} package, loaded in \texttt{packages.tex}. The option \texttt{language=Matlab} chooses which words are highlighted; change it to match your code, for example \texttt{language=Python} or \texttt{language=C}.
 
-\begin{lstlisting}[numbers=none]{matlab}
+\begin{lstlisting}[language=Matlab]
 %%%%% BEGIN MATLAB CODE LISTING %%%%%
 x=linspace(0,2*pi);  % set up the x-values
 y=sin(x);            % set up the y-values
@@ -139,19 +138,19 @@ Never type the number of a chapter, section, equation, figure, table, or page. P
 \begin{itemize}
 \item Place \verb+\label+ right after \verb+\caption+ in a figure or table, right after the heading command for a chapter or section, and inside the environment for an equation or theorem. A \verb+\label+ placed before \verb+\caption+ points to the section instead of the figure.
 \item Start each label with a prefix that says what it is, such as \texttt{fig:}, \texttt{tab:}, \texttt{eq:}, \texttt{sec:}, or \texttt{ch:}. Labels never appear in the PDF, so keep them short and without spaces.
-\item \verb+\cref+ prints the name and the number together: \verb+\cref{fig:eberhardt}+ gives ``\cref{fig:eberhardt}'', and \verb+\cref{eq:sobolev,eq:innerprod}+ gives ``\cref{eq:sobolev,eq:innerprod}''. It comes from the \texttt{cleveref} package.
+\item \verb+\cref+, which this sample uses, prints the name and the number together. Typing \verb+\cref{eq:sobolev,eq:innerprod}+ gives ``\cref{eq:sobolev,eq:innerprod}'', and typing \verb+\cref{fig:eberhardt}+ gives ``\cref{fig:eberhardt}''. It comes from the \texttt{cleveref} package.
 \item With \verb+\ref+ you type the name yourself. Put a tie (\verb+~+) between the name and the reference, as in \verb+Figure~\ref{fig:eberhardt}+, so that a line break never separates them. For equations, use \verb+\eqref+, which adds the parentheses. For example, ``Equation~\eqref{eq:einstein}'' is typed as \verb+Equation~\eqref{eq:einstein}+.
 \item \verb+\pageref+ gives the page an item is on, as in ``page~\pageref{fig:eberhardt}''.
 \item Until every reference is resolved, \LaTeX\ prints ``??'' in place of the number. Compile until the log no longer reports undefined references.
 \end{itemize}
-Choose either \verb+\cref+ or \verb+\ref+ and use it throughout the document.
+Choose either \verb+\cref+ or \verb+\ref+ and use it throughout the document. This sample uses \verb+\cref+ everywhere except in the examples above.
 
 The \texttt{hyperref} package, loaded at the end of \texttt{packages.tex}, turns every cross-reference, citation, and Table of Contents entry into a link in the PDF, and adds bookmarks for the chapters and sections. The links are not colored, so the printed pages look the same. For a web address, use \verb+\url{https://ctan.org}+, which breaks long addresses at the end of a line, or \verb+\href{https://ctan.org}{CTAN}+ to make a word into a link.
 
 \section{Common Typing Mistakes}
 \label{sec:typing}
 
-\LaTeX\ handles most typography for you, but a few things depend on what you type.
+\LaTeX\ handles most typography for you, but a few things depend on what you type.\footnote{A footnote is typed with \texttt{\textbackslash footnote\{...\}} right where its mark should appear, with no space before it. The class sets footnotes single-spaced at the bottom of the page and numbers them through each chapter.}
 \begin{description}
 \item[Quotation marks] Type \verb+``this''+, with two grave accents and two apostrophes. In this template you can also type plain double quotes, \verb+"this"+, because the \texttt{csquotes} package converts them.
 \item[Dashes] A hyphen (\verb+-+) joins words, as in ``well-posed''. An en dash (\verb+--+) marks a range, as in pages 19--48. An em dash (\verb+---+) sets off a phrase. A minus sign belongs in math mode: type \verb+$-1$+, not \verb+-1+.

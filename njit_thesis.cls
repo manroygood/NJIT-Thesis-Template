@@ -7,9 +7,14 @@
 % 2003: Hoa Kien Tran, revisions
 % 2014: Shoubhik Mondal, revisions
 % 2022: Jimmie Adriazola, Prof. Roy Goodman, & Prof. Christina Frederick, revisions
-% 2026: Comprehensive overhaul for modern LaTeX compatibility, clean geometry,
-%       robust appendix handling, safe continuation headers, and full feature demonstration.
+% 2026: Prof. Roy Goodman, with help from Claude: rewrite for the GSO's
+%       current rules, master's theses, and a sample that teaches
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% This file may be distributed and/or modified under the conditions of the
+% LaTeX Project Public License, either version 1.3c of this license or (at
+% your option) any later version: https://www.latex-project.org/lppl.txt
+% Current Maintainer: Roy Goodman (goodman@njit.edu). See LICENSE.
 %
 % CONTENTS OF THIS FILE
 %    1. Class options and base class
@@ -500,6 +505,7 @@
 % =============================================================
 % Initialize all standard front matter in NJIT prescribed order
 \newcommand{\initthesis}{%
+  \njit@pdfinfo
   \makeabstract
   \maketitle
   \makecopyright
@@ -508,6 +514,15 @@
   \makededication
   \makeacknowledgment
 }
+
+% Copy the title and author into the PDF's document properties (used by
+% ProQuest, library catalogs, and screen readers) when hyperref is loaded.
+% Done here, not in the preamble, because \title and \author are set in
+% biography.tex, after \begin{document}.
+\newcommand{\njit@pdfinfo}{%
+  \ifdefined\hypersetup
+    \hypersetup{pdftitle={\@title},pdfauthor={\@author}}%
+  \fi}
 
 % 1. Abstract Page
 \newcommand{\makeabstract}{%
@@ -811,15 +826,19 @@
   \noindent
   \hb@xt@0.4em{\hss\@makefnmark}#1}
 
-\providecommand{\bm}[1]{\boldsymbol{#1}}
-\providecommand{\trademark}{\textsuperscript{\texttrademark}}
-
 % =============================================================
 % 12. Compatibility with older versions of this class
 % =============================================================
 % Nothing in the current template uses these. They are kept so documents
 % written with earlier versions still compile; new documents should not
 % need them.
+
+% \bm and \trademark used to be defined here. The sample now loads the bm
+% package in packages.tex and defines \trademark in macros.tex; these
+% fallbacks apply only if neither is done.
+\AtBeginDocument{%
+  \providecommand{\bm}[1]{\boldsymbol{#1}}%
+  \providecommand{\trademark}{\textsuperscript{\texttrademark}}}
 
 % Spacing shortcuts and caption font
 \newcommand{\ssp}{\singlespacing}

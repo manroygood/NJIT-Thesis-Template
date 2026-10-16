@@ -18,6 +18,10 @@
 \usepackage{newtxtext}
 \usepackage{newtxmath}
 
+% Bold math symbols: \bm{p} gives a bold italic p, for vectors. Load bm after
+% the math fonts.
+\usepackage{bm}
+
 % Graphics and subfigures
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -50,11 +54,10 @@
 \lstset{language=matlab,%
     breaklines=true,%
     keywordstyle=\color{blue},%
-    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
     identifierstyle=\color{black},%
     showstringspaces=false,
     emph=[1]{if,for,end,break},emphstyle=[1]\color{red}, %some words to emphasize
-    commentstyle = \color{cyan}
+    commentstyle=\color{green!40!black}% dark green stays readable when printed
 }
 
 %% Bibliography (BibLaTeX with Biber backend)
@@ -63,10 +66,10 @@
 
 % ==============================================================================
 % BIBLATEX CITATION STYLE SELECTION
-% Set \mycitestyle to one of the valid style codes below based on your Ph.D. program.
-% (No extra \usepackage commands needed)
+% Set style= in the \usepackage[...]{biblatex} line below to one of the
+% style codes in this table, for your discipline (see Table 4.1 in the sample).
 %
-% Citation Style  | \mycitestyle Value   | Style Type
+% Citation Style  | style= value         | Style Type
 % ------------------------------------------------------------------------------
 % ACM             | acm                  | Numeric
 % ACS             | chem-acs             | Numeric
@@ -86,13 +89,11 @@
 % substitutes: AIP -> phys (biblatex-phys); ACM -> acmnumeric (from the acmart
 % package, untested here); AMA has no biblatex style, so vancouver is closest.
 % Waiting on the GSO's answer before changing them.
-\newcommand{\mycitestyle}{numeric}
 
-% 2. Build and execute the \usepackage command dynamically:
-\edef\loadbiblatex{%
-  \noexpand\usepackage[style=\mycitestyle,backend=biber,doi=false,url=false,defernums=true,sortcites=true,isbn=false,giveninits=true]{biblatex}%
-}
-\loadbiblatex
+% 2. Load biblatex with that style. Change only the style= value.
+\usepackage[style=numeric,% <-- your citation style
+  backend=biber,doi=false,url=false,defernums=true,sortcites=true,%
+  isbn=false,giveninits=true]{biblatex}
 
 
 \defbibheading{subbibliography}[\refname]{%
@@ -109,3 +110,6 @@
 % "Figure 2.1". Must be loaded after hyperref.
 \usepackage[capitalise,noabbrev]{cleveref}
 \crefname{subsection}{Subsection}{Subsections}
+% Sections inside an appendix are still "Section C.1", not "Appendix C.1"
+\crefname{subappendix}{Section}{Sections}
+\crefname{subsubappendix}{Subsection}{Subsections}

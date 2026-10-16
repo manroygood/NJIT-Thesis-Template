@@ -19,7 +19,7 @@ This chapter explains how to cite sources and choose a citation style, how the p
 \section{Citing Sources}
 \label{sec:bibliography}
 
-Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command, for example \cite{Lamport1994,Knuth1984,Mittelbach2023}. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books \cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article \cite{KnuthPlass1981}, a chapter in an edited collection \cite{Halmos1973}, a Ph.D.\ dissertation \cite{Adriazola2021}, software documentation \cite{biblatex}, and a website \cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field. For software, give the version number and its release date.
+Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books~\cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article~\cite{KnuthPlass1981}, a chapter in a book~\cite{Halmos1973}, a Ph.D.\ dissertation~\cite{Adriazola2021}, software documentation~\cite{biblatex}, and a website~\cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field. For software, give the version number and its release date.
 
 Each \verb+\cite+ takes the key, or keys, of the entries in \texttt{references.bib}:
 \begin{itemize}
@@ -29,7 +29,7 @@ Each \verb+\cite+ takes the key, or keys, of the entries in \texttt{references.b
 \end{itemize}
 Put a tie before the citation, as in \verb+shown in~\cite{Halmos1973}+, so that it never starts a new line.
 
-Choose a citation style accepted for your discipline (Table~\ref{tab:phd-styles}) by setting \verb+\mycitestyle+ in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
+Choose a citation style accepted for your discipline (\cref{tab:phd-styles}) by setting the \texttt{style=} option on the \texttt{biblatex} line in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
 
 Most formatting problems in a bibliography come from the \texttt{.bib} file, not from \LaTeX. When you copy entries from Google Scholar or a publisher:
 \begin{itemize}
@@ -42,7 +42,7 @@ Most formatting problems in a bibliography come from the \texttt{.bib} file, not
 \section{Choosing a Citation Style}
 \label{sec:citestyles}
 
-Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in Table~\ref{tab:phd-styles}; some disciplines accept several. Appendix~\ref{app:citestyles} points to the official guide, or a reliable summary, for each style, and shows the same article cited in each one.
+Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in \cref{tab:phd-styles}; some disciplines accept several. \cref{app:citestyles} points to the official guide, or a reliable summary, for each style, and shows the same article cited in each one.
 
 \begin{table}[htbp]
 \centering
@@ -92,7 +92,7 @@ Whichever you use, check the entries it produces against the list in \cref{sec:b
 
 \section{The Publications List in the Biographical Sketch}
 \label{sec:publist}
-A major advantage of \texttt{biblatex} is its ability to produce multiple independent bibliographies. In this template, the Presentations and Publications listing in the Biographical Sketch (page~iv) is populated directly from the \texttt{references.bib} database by filtering for entries that include the tag:
+A major advantage of \texttt{biblatex} is its ability to produce multiple independent bibliographies. In this template, the Presentations and Publications listing in the Biographical Sketch is populated directly from the \texttt{references.bib} database by filtering for entries that include the tag:
 \begin{verbatim}
 keywords = {me},
 \end{verbatim}
@@ -106,6 +106,9 @@ Most documents the GSO returns have one of a handful of problems. Before you sen
 \item You have run a spell-checker over the whole document, including the text in figures and tables.
 \item The title is identical on the abstract, title, and approval pages (automatic if you set it only with \verb+\title+).
 \item The Table of Contents and the Lists of Tables and Figures match the headings and captions in the text exactly.
+\item The degree and department on the title page are a valid combination from the GSO's list, and the graduation month and year are correct.
+\item Every figure, table, and appendix is referred to in the text.
+\item The page numbers run without gaps, and there are no blank pages other than the one that replaces the copyright page in a master's thesis.
 \item Every advisor and committee title has been checked against the current Graduate Catalog.
 \item No cross-reference or citation shows as ``??''. Search the PDF for ``??'' to be sure.
 \item The log file (\texttt{main.log}) has no overfull-box warnings that push text into the margin.
@@ -114,7 +117,7 @@ Most documents the GSO returns have one of a handful of problems. Before you sen
 \item The file meets the GSO's current submission instructions, such as the file name and whether a PDF/A file is required. Ask the GSO if the instructions don't say.
 \end{itemize}
 
-Table~\ref{table:landscape_sample} lists the problems that most often cause the GSO to return a document, and how to avoid each one. It is also the sample's landscape table (Subsection~\ref{subsec:landscape}).
+\cref{table:landscape_sample} lists the problems that most often cause the GSO to return a document, and how to avoid each one. It is also the sample's landscape table (\cref{subsec:landscape}).
 
 \begin{landscape}
 \begin{table}[htbp]
@@ -125,15 +128,15 @@ Table~\ref{table:landscape_sample} lists the problems that most often cause the 
 \toprule
 \textbf{Problem} & \textbf{What the GSO Expects} & \textbf{How to Avoid It} \\
 \midrule
-Title differs between pages & The same title, word for word, on the abstract, title page, and approval page & Set it once with \verb+\title+ in \texttt{biography.tex}; never retype it \\
+Title differs between pages & The same title, word for word, on the abstract, title page, and approval page & Set it once with \texttt{\textbackslash title} in \texttt{biography.tex}; never retype it \\
 \addlinespace[2pt]
-Wrong degree, department, or date & A valid degree and department combination from the GSO list; the graduation month and year & Check the GSO list; set \verb+\graduationdate+, not the defense date \\
+Wrong degree, department, or date & A valid degree and department combination from the GSO list; the graduation month and year & Check the GSO list; set \texttt{\textbackslash graduationdate}, not the defense date \\
 \addlinespace[2pt]
 Faculty names or titles wrong & Names spelled correctly and titles as in the current Graduate Catalog & Confirm each one with your department administrator before filling in \texttt{approval.tex} \\
 \addlinespace[2pt]
 Committee too small & At least five members for a dissertation and three for a thesis, including the advisor; external members listed last & List members in \texttt{approval.tex} in that order \\
 \addlinespace[2pt]
-Lists do not match the text & Table of Contents and Lists of Tables and Figures identical to the headings and captions & Let \LaTeX\ generate them; do not give \verb+\caption+ or headings a different short title in square brackets \\
+Lists do not match the text & Table of Contents and Lists of Tables and Figures identical to the headings and captions & Let \LaTeX\ generate them; do not give \texttt{\textbackslash caption} or headings a different short title in square brackets \\
 \addlinespace[2pt]
 Inconsistent capitalization & Level 2 headings and table titles in title case; levels 3 to 5 in sentence case & Type each heading in the right case; the class does not change it \\
 \addlinespace[2pt]

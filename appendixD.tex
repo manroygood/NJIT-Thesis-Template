@@ -5,12 +5,13 @@
 \chapter{Files in the template}
 \label{app:filetree}
 
-The template is a folder of \LaTeX\ source files. The tree below shows every file, grouped in the order \texttt{main.tex} reads them; all of them sit together in one folder except the images, which are in \texttt{Graphics/}. Section~\ref{sec:filedescriptions} describes what each file contains. To build the thesis, compile \texttt{main.tex}; see Section~\ref{sec:checklist} for what to check before you submit.
+The template is a folder of \LaTeX\ source files. The tree below shows every file, grouped in the order \texttt{main.tex} reads them; all of them sit together in one folder except the images, which are in \texttt{Graphics/}. \cref{sec:filedescriptions} describes what each file contains. To build the thesis, compile \texttt{main.tex}; see \cref{sec:checklist} for what to check before you submit.
 
 {\singlespacing\small
 \begin{verbatim}
 NJIT-Thesis-Template/
 |-- readme.md                Overview and build instructions
+|-- LICENSE                  License (LPPL) for the class file
 |-- njit_thesis.cls          Class file: the NJIT formatting rules
 |-- main.tex                 Master file; compile this one
 |-- packages.tex             Packages and citation style (Appendix C)
@@ -80,7 +81,7 @@ Here is what each file contains and how to edit it.
 
   \item[\texttt{chapter1.tex}, \texttt{chapter2.tex}, \ldots] The individual chapter files. Keeping chapters in separate files allows you to comment out finished chapters while drafting new ones to speed up compilation. The sample has four chapters: getting started, writing the text, figures and tables, and references and submission.
 
-  \item[\texttt{table.tex}] The sample Table~\ref{table:gso_rules}, kept in its own file and pulled into \texttt{chapter1.tex} with \verb+\input+, to show how a large or script-generated table can be kept out of the chapter text.
+  \item[\texttt{table.tex}] The sample \cref{table:gso_rules}, kept in its own file and pulled into \texttt{chapter1.tex} with \verb+\input+, to show how a large or script-generated table can be kept out of the chapter text.
 
   \item[\texttt{appendixA.tex} to \texttt{appendixD.tex}] The sample's four appendices, each starting with \verb+\chapter+: how appendices work, guides and examples for the citation styles, the packages the template loads, and this list of files.
 
@@ -88,5 +89,5 @@ Here is what each file contains and how to edit it.
 
   \item[\texttt{references.bib}] A standard \BibTeX\ database of citations. Any entry with the field \verb+keywords = {me}+ will also be included automatically in the Presentations and Publications section of your Biographical Sketch.
 
-  \item[\texttt{Graphics/}] Directory containing all figures, plots, and diagrams. If an image that a figure uses is missing, such as \texttt{EberhardtHall.jpg} for Figure~\ref{fig:eberhardt}, the sample prints a framed placeholder instead.
+  \item[\texttt{Graphics/}] Directory containing all figures, plots, and diagrams. If an image that a figure uses is missing, such as \texttt{EberhardtHall.jpg} for \cref{fig:eberhardt}, the sample prints a framed placeholder instead.
 \end{description}
