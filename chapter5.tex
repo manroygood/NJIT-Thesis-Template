@@ -1,0 +1,155 @@
+% !TEX root = main.tex
+% Chapter 5: citing sources, citation styles, reference managers, the
+% publications list, and the checklist before submitting.
+%
+% Each chapter lives in its own file, included from main.tex with \input.
+% Start the file with \chapter{Title}; type the title in normal
+% capitalization (the class sets it in capitals). Headings below it:
+%   \section       level 2, Title Case
+%   \subsection    level 3, sentence case
+%   \subsubsection level 4, sentence case, run-in (the class adds the period)
+%   \paragraph     level 5, sentence case, italic (the class adds the period)
+% Every heading needs a title; an empty one stops the build with an error.
+
+\chapter{References and Submission}
+\label{ch:references}
+
+This chapter explains how to cite sources and choose a citation style, how the publications list in the Biographical Sketch is built, and what to check before you send the document to the GSO.
+
+\section{Citing Sources}
+\label{sec:bibliography}
+
+Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books~\cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article~\cite{KnuthPlass1981}, a chapter in a book~\cite{Halmos1973}, a Ph.D.\ dissertation~\cite{Adriazola2021}, software documentation~\cite{biblatex}, and a website~\cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field. For software, give the version number and its release date.
+
+Each \verb+\cite+ takes the key, or keys, of the entries in \texttt{references.bib}:
+\begin{itemize}
+\item \verb+\cite{KnuthPlass1981}+ gives \cite{KnuthPlass1981}, for one source;
+\item \verb+\cite{Lamport1994,Knuth1984}+ gives \cite{Lamport1994,Knuth1984}, for several sources, with the keys separated by commas;
+\item \verb+\cite[p.~23]{Lamport1994}+ gives \cite[p.~23]{Lamport1994}, for a specific page, given in square brackets before the key.
+\end{itemize}
+Put a tie before the citation, as in \verb+shown in~\cite{Halmos1973}+, so that it never starts a new line.
+
+Choose a citation style accepted for your discipline (\cref{tab:phd-styles}) by setting the \texttt{style=} option on the \texttt{biblatex} line in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
+
+Most formatting problems in a bibliography come from the \texttt{.bib} file, not from \LaTeX. When you copy entries from Google Scholar or a publisher:
+\begin{itemize}
+\item Protect capitals that must survive, such as proper names and acronyms, with braces: \verb+title = {Stability of {KdV} solitons in {Hilbert} space}+.
+\item Check that author names are separated by \verb+and+, not commas.
+\item Write journal names out in full, such as \emph{Journal of Fluid Mechanics} rather than \emph{J.\ Fluid Mech.} Publisher and Google Scholar entries often use abbreviations, so check the \verb+journal+ field of each entry.
+\item Check every entry for missing volumes, pages, and years; the style cannot print what isn't there.
+\end{itemize}
+
+\section{Choosing a Citation Style}
+\label{sec:citestyles}
+
+Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in \cref{tab:phd-styles}; some disciplines accept several. \cref{app:citestyles} points to the official guide, or a reliable summary, for each style, and shows the same article cited in each one.
+
+\begin{table}[htbp]
+\centering
+\caption{Acceptable Citation Styles by Discipline}
+\label{tab:phd-styles}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.45\linewidth}X}
+\toprule
+\textbf{Discipline} & \textbf{Acceptable Citation Styles} \\
+\midrule
+Applied Physics & ACS, AIP, Harvard \\
+Biology & ACS \\
+Biomedical Engineering & ACS, AMA, IEEE \\
+Business Data Science & APA \\
+Chemical Engineering & ACS, AIP, Chicago, Harvard \\
+Chemistry & ACS \\
+Civil Engineering & ACS, AIP, ASCE, Harvard, IEEE \\
+Computer Engineering & IEEE \\
+Computer Science & ACM, Chicago, IEEE \\
+Data Science (Computing Option) & ACM, IEEE \\
+Data Science (Statistics Option) & AMA, Chicago, Harvard, IEEE \\
+Electrical Engineering & IEEE \\
+Engineering Science & APA, IEEE \\
+Environmental Engineering & ACS, AIP, ASCE, Chicago, Harvard \\
+Environmental Science & APA \\
+Industrial Engineering & APA, IEEE \\
+Information Systems & ACM, APA \\
+Materials Science and Engineering & ACS, AIP, Chicago, Harvard \\
+Mathematical Sciences (Applied Mathematics Option) & AMS \\
+Mathematical Sciences (Applied Probability and Statistics Option) & Chicago, Harvard, Vancouver \\
+Mechanical Engineering & ACS, AIP, Chicago, Harvard, IEEE \\
+Transportation & ACS, AIP, APA, ASCE, Chicago, IEEE, TRB \\
+Urban Systems & APA \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Reference Managers}
+\label{sec:refmanagers}
+You don't have to type \texttt{.bib} entries by hand. A reference manager stores your sources, often together with their PDFs, and writes the \texttt{.bib} file for you.
+\begin{itemize}
+\item \textbf{Zotero} (free, all platforms) adds a source from a button in your web browser. With its Better BibTeX add-on, it keeps \texttt{references.bib} up to date as you add sources and gives every entry a stable citation key.
+\item \textbf{JabRef} (free, all platforms) edits \texttt{.bib} files directly and can fetch an entry from a DOI or an arXiv number.
+\item \textbf{BibDesk} (free, Mac only, included with MacTeX) also edits \texttt{.bib} files directly.
+\item \textbf{Mendeley} and \textbf{EndNote} can export a \texttt{.bib} file.
+\end{itemize}
+Whichever you use, check the entries it produces against the list in \cref{sec:bibliography}. Reference managers copy abbreviated journal names and lowercase acronyms from their sources.
+
+\section{The Publications List in the Biographical Sketch}
+\label{sec:publist}
+A major advantage of \texttt{biblatex} is its ability to produce multiple independent bibliographies. In this template, the Presentations and Publications listing in the Biographical Sketch is populated directly from the \texttt{references.bib} database by filtering for entries that include the tag:
+\begin{verbatim}
+keywords = {me},
+\end{verbatim}
+This eliminates the need to maintain two separate citation files.
+
+\section{Before You Submit}
+\label{sec:checklist}
+
+Most documents the GSO returns have one of a handful of problems. Before you send yours, check that:
+\begin{itemize}
+\item You have run a spell-checker over the whole document, including the text in figures and tables.
+\item The title is identical on the abstract, title, and approval pages (automatic if you set it only with \verb+\title+).
+\item The Table of Contents and the Lists of Tables and Figures match the headings and captions in the text exactly.
+\item The degree and department on the title page are a valid combination from the GSO's list, and the graduation month and year are correct.
+\item Every figure, table, and appendix is referred to in the text.
+\item The page numbers run without gaps, and there are no blank pages other than the one that replaces the copyright page in a master's thesis.
+\item Every advisor and committee title has been checked against the current Graduate Catalog.
+\item No cross-reference or citation shows as ``??''. Search the PDF for ``??'' to be sure.
+\item The log file (\texttt{main.log}) has no overfull-box warnings that push text into the margin.
+\item Every font in the PDF is embedded, including the fonts inside your figures. Open the PDF in Adobe Acrobat Reader, choose \emph{File}, then \emph{Properties}, then \emph{Fonts}, and check that each font is marked ``Embedded'' or ``Embedded Subset''. On the command line, \verb+pdffonts main.pdf+ (from the Poppler utilities) lists every font, with \texttt{yes} in the \texttt{emb} column for each embedded one. pdf\LaTeX\ embeds the fonts of the text itself, so a font that is not embedded almost always comes from a figure; export that figure again as described in \cref{sec:exportplots}.
+\item The links work. Click a few entries in the Table of Contents, a few citations, and a few cross-references, and check that each one goes to the right place.
+\item The file meets the GSO's current submission instructions, such as the file name and whether a PDF/A file is required. Ask the GSO if the instructions don't say.
+\end{itemize}
+
+\cref{table:landscape_sample} lists the problems that most often cause the GSO to return a document, and how to avoid each one. It is also the sample's landscape table (\cref{subsec:landscape}).
+
+\begin{landscape}
+\begin{table}[htbp]
+\centering
+\caption{Common Reasons the GSO Returns a Document and How to Avoid Them}
+\label{table:landscape_sample}
+\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}p{0.2\linewidth}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}
+\toprule
+\textbf{Problem} & \textbf{What the GSO Expects} & \textbf{How to Avoid It} \\
+\midrule
+Title differs between pages & The same title, word for word, on the abstract, title page, and approval page & Set it once with \texttt{\textbackslash title} in \texttt{biography.tex}; never retype it \\
+\addlinespace[2pt]
+Wrong degree, department, or date & A valid degree and department combination from the GSO list; the graduation month and year & Check the GSO list; set \texttt{\textbackslash graduationdate}, not the defense date \\
+\addlinespace[2pt]
+Faculty names or titles wrong & Names spelled correctly and titles as in the current Graduate Catalog & Confirm each one with your department administrator before filling in \texttt{approval.tex} \\
+\addlinespace[2pt]
+Committee too small & At least five members for a dissertation and three for a thesis, including the advisor; external members listed last & List members in \texttt{approval.tex} in that order \\
+\addlinespace[2pt]
+Lists do not match the text & Table of Contents and Lists of Tables and Figures identical to the headings and captions & Let \LaTeX\ generate them; do not give \texttt{\textbackslash caption} or headings a different short title in square brackets \\
+\addlinespace[2pt]
+Inconsistent capitalization & Level 2 headings and table titles in title case; levels 3 to 5 in sentence case & Type each heading in the right case; the class does not change it \\
+\addlinespace[2pt]
+Spelling and grammar errors & No errors anywhere, including text inside figures and tables & Spell-check the \texttt{.tex} files and proofread the labels in your figures \\
+\addlinespace[2pt]
+Missing references & No ``??'' in place of a citation or cross-reference & Compile until the log reports no undefined references; search the PDF for ``??'' \\
+\addlinespace[2pt]
+Text in the margin & Nothing extends past the margins & Fix every ``Overfull \textbackslash hbox'' warning in \texttt{main.log}, usually from wide equations, tables, or URLs \\
+\addlinespace[2pt]
+Abstract too long & One page for a thesis, two for a dissertation, in the third person & Check the length of the first page of the PDF \\
+\addlinespace[2pt]
+Appendix without introduction & Each appendix opens with a brief description before any figures or tables & Start every appendix with a paragraph of text \\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{landscape}

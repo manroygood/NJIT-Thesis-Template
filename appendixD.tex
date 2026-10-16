@@ -27,10 +27,11 @@ NJIT-Thesis-Template/
 |-- listofdefinitions.tex    Two-column Glossary of Terms
 |
 |-- chapter1.tex             Chapter 1: getting started
-|-- table.tex                Sample table, \input by chapter1.tex
-|-- chapter2.tex             Chapter 2: writing the text
-|-- chapter3.tex             Chapter 3: figures and tables
-|-- chapter4.tex             Chapter 4: references and submission
+|-- chapter2.tex             Chapter 2: what the GSO requires
+|-- table.tex                Sample table, \input by chapter2.tex
+|-- chapter3.tex             Chapter 3: writing the text
+|-- chapter4.tex             Chapter 4: figures and tables
+|-- chapter5.tex             Chapter 5: references and submission
 |-- appendixA.tex            Appendix A (several appendices)
 |-- appendixB.tex            Appendix B: citation styles
 |-- appendixC.tex            Appendix C: packages
@@ -79,9 +80,9 @@ Here is what each file contains and how to edit it.
   \item[\texttt{listofdefinitions.tex}] Contains a two-column table of terms and definitions in alphabetical order, one \verb+\term{term}{definition}+ per row. Included via \verb+\glossaryofterms+ in \texttt{main.tex}.
 
 
-  \item[\texttt{chapter1.tex}, \texttt{chapter2.tex}, \ldots] The individual chapter files. Keeping chapters in separate files allows you to comment out finished chapters while drafting new ones to speed up compilation. The sample has four chapters: getting started, writing the text, figures and tables, and references and submission.
+  \item[\texttt{chapter1.tex}, \texttt{chapter2.tex}, \ldots] The individual chapter files. Keeping chapters in separate files allows you to comment out finished chapters while drafting new ones to speed up compilation. The sample has five chapters: getting started, what the GSO requires, writing the text, figures and tables, and references and submission.
 
-  \item[\texttt{table.tex}] The sample \cref{table:gso_rules}, kept in its own file and pulled into \texttt{chapter1.tex} with \verb+\input+, to show how a large or script-generated table can be kept out of the chapter text.
+  \item[\texttt{table.tex}] The sample \cref{table:gso_rules}, kept in its own file and pulled into \texttt{chapter2.tex} with \verb+\input+, to show how a large or script-generated table can be kept out of the chapter text.
 
   \item[\texttt{appendixA.tex} to \texttt{appendixD.tex}] The sample's four appendices, each starting with \verb+\chapter+: how appendices work, guides and examples for the citation styles, the packages the template loads, and this list of files.
 

@@ -11,8 +11,8 @@ The sample document is itself the user's guide. A compiled copy, `main.pdf`, is 
 1. Compile the sample without changing anything (see [How to Compile](#how-to-compile)) and check that you get the same PDF as the released copy.
 2. In `biography.tex`, enter your title, name, degrees, and graduation date. In `approval.tex`, enter your advisor and committee.
 3. Replace the sample text in `abstract.tex`, `acknowledgment.tex`, and `dedication.tex`.
-4. Replace the text of `chapter1.tex` through `chapter4.tex` with your own chapters, and delete the sample appendices and other sample material (Section 1.4 of the sample lists what to delete).
-5. Compile again after every few changes, so an error is easy to locate. Section 1.6 of the sample explains the most common errors.
+4. Replace the text of `chapter1.tex` through `chapter5.tex` with your own chapters, and delete the sample appendices and other sample material (Section 1.2 of the sample lists what to delete).
+5. Compile again after every few changes, so an error is easy to locate. Section 1.4 of the sample explains the most common errors.
 
 For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.tex`.
 
@@ -94,10 +94,11 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── listofsymbols.tex       # List of Symbols
 ├── listofdefinitions.tex   # Glossary of Terms
 ├── chapter1.tex            # Chapter 1: getting started
-├── table.tex               # Sample table, \input by chapter1.tex
-├── chapter2.tex            # Chapter 2: writing the text
-├── chapter3.tex            # Chapter 3: figures and tables
-├── chapter4.tex            # Chapter 4: references and submission
+├── chapter2.tex            # Chapter 2: what the GSO requires
+├── table.tex               # Sample table, \input by chapter2.tex
+├── chapter3.tex            # Chapter 3: writing the text
+├── chapter4.tex            # Chapter 4: figures and tables
+├── chapter5.tex            # Chapter 5: references and submission
 ├── appendixA.tex           # Appendix A: how appendices work (several appendices)
 ├── appendixB.tex           # Appendix B: citation style guides and examples
 ├── appendixC.tex           # Appendix C: the packages and their options

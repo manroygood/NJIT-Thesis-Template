@@ -1,6 +1,6 @@
 % !TEX root = main.tex
-% Chapter 2: writing the text: headings, mathematics and units, code and
-% pseudocode, cross-references, and common typing mistakes.
+% Chapter 2: the parts of a dissertation, in the GSO's order, and the
+% formatting rules the template applies for you.
 %
 % Each chapter lives in its own file, included from main.tex with \input.
 % Start the file with \chapter{Title}; type the title in normal
@@ -11,152 +11,54 @@
 %   \paragraph     level 5, sentence case, italic (the class adds the period)
 % Every heading needs a title; an empty one stops the build with an error.
 
-\chapter{Writing the Text}
-\label{ch:writing}
+\chapter{What the GSO Requires}
+\label{ch:requirements}
 
-This chapter covers the parts of the text you type yourself: headings, mathematics, code, and cross-references, and the typing conventions that \LaTeX\ expects.
+The Graduate Studies Office (GSO) checks every dissertation against its formatting rules before accepting it. This chapter lists the parts a dissertation must contain, in the required order, and shows which rules the template applies for you and which are up to you.
 
-\section{Section Headings and Hierarchy}
-\label{sec:headings}
+\section{The Parts of a Dissertation, in Order}
 
-The GSO recognizes five levels of headings. The class file formats each level for you; what you control is the \emph{capitalization} of the text you type, because \LaTeX\ cannot reliably convert titles to title case.
+An NJIT dissertation consists of three primary divisions: the preliminary front matter, the main body (chapters and appendices), and the back matter (references). These components appear in the following strict order:
 
 \begin{description}
-\item[Level 1, \texttt{\textbackslash chapter}] Bold, all capitals, centered. Type the title normally; the class capitalizes it.
-\item[Level 2, \texttt{\textbackslash section} (X.x)] Bold, centered, in \textbf{title case}: Capitalize Every Word Except Articles, Prepositions, and Conjunctions.
-\item[Level 3, \texttt{\textbackslash subsection} (X.x.x)] Bold, flush left, in \textbf{sentence case}: only the first word and proper names are capitalized.
-\item[Level 4, \texttt{\textbackslash subsubsection} (X.x.x.x)] Bold, sentence case, ending with a period, with the text continuing on the same line. Not listed in the Table of Contents.
-\item[Level 5, \texttt{\textbackslash paragraph} (X.x.x.x.x)] Italic, not bold, sentence case, ending with a period, with the text beginning on the next line. Not listed in the Table of Contents.
+\emergencystretch=2em
+\item[Abstract] A concise summary of the research questions, methodology, and conclusions. By NJIT guidelines, this page is unnumbered and precedes the title page. Written in \texttt{abstract.tex}.
+
+\item[Title Page] The formal title page declaring degree, department, joint institution (if applicable), and graduation month and year. This page is considered Roman numeral~i, but no number is displayed on the page. Built from the information in \texttt{biography.tex}.
+
+\item[Copyright Page] Declares the copyright holder and year. Unnumbered. Required only for doctoral dissertations; a master's thesis has a blank page in its place (GSO), which the \texttt{thesis} class option produces. Built automatically.
+
+\item[Approval Page] Contains the signature lines for the dissertation advisor (and co-advisor, if any) and committee members with their official academic titles as listed in the graduate catalog. Unnumbered. Configured in \texttt{approval.tex}.
+
+\item[Biographical Sketch] Displays academic background, degrees earned (in reverse chronological order), major field of study, and a listing of presentations and publications. Roman page numbering begins visibly here (typically on page~iv). Configured in \texttt{biography.tex}. The publication list is generated automatically via \BibTeX\ / \texttt{biblatex} using the keyword \texttt{me}.
+
+\item[Dedication] (Optional) A brief personal dedication. Centered and formatted with single spacing. Written in \texttt{dedication.tex}.
+
+\item[Acknowledgment] Formal recognition of academic guidance, committee assistance, grant funding and financial support, technical and administrative assistance, and personal gratitude. Written in \texttt{acknowledgment.tex}.
+
+The command \verb+\initthesis+ in \texttt{main.tex} prints all of the pages above, in this order. (Behind the scenes it calls \verb+\makeabstract+, \verb+\maketitle+, and so on, one command per page.)
+
+\item[Table of Contents] Lists the chapters, their sections (X.x) and subsections (X.x.x), the appendices, and the References, with dot leaders connecting titles to page numbers. It starts at Chapter~1: the front matter and the lists that follow the Table of Contents are not included (GSO). Generated automatically by \verb+\tableofcontents+.
+
+\item[List of Tables] Generated automatically by \verb+\listoftables+. If your dissertation contains no tables, comment out this command in \texttt{main.tex}.
+
+\item[List of Figures] Generated automatically by \verb+\listoffigures+. If your dissertation contains no figures, comment out this command in \texttt{main.tex}.
+
+\item[List of Symbols] (Optional) Defines mathematical symbols and physical constants used throughout the text. Configured in \texttt{listofsymbols.tex} and printed by \verb+\makelistofsymbols+ in \texttt{main.tex}.
+
+\item[Glossary of Terms] (Optional) An alphabetical list of definitions. Configured in \texttt{listofdefinitions.tex} and printed by \verb+\makeglossaryofterms+ in \texttt{main.tex}.
+
+
+\item[Main Body] The dissertation chapters, beginning with Arabic page number~1 at \verb+\startbody+. Each chapter is housed in its own file (e.g., \texttt{chapter1.tex}, \texttt{chapter2.tex}). Page numbers are centered at the bottom of every page in bold (GSO).
+
+\item[Appendices] Supplementary mathematical proofs, data tables, or algorithm listings. NJIT enforces a strict rule: if there is only a \textbf{single appendix}, it must be labeled \textbf{APPENDIX} (without a letter like "A"). If there are \textbf{multiple appendices}, they must be numbered \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc. This template fully automates both cases; \cref{app:appendixA} explains how, and what material belongs in an appendix.
+
+\item[References] The bibliography, styled consistently and sorted according to the field's standard conventions. Generated from \texttt{references.bib} via \texttt{biblatex} and \texttt{biber}.
 \end{description}
 
-The class adds the period after level~4 and~5 titles, so do not type one. Every heading must have a title: an empty title, such as \verb+\section{}+, stops the build with an error that names the line. Every heading below the chapter level must also be numbered, because the style guide does not allow unnumbered sections. If you use a starred command such as \verb+\section*+, the class prints its title in red and writes a warning to the log; remove the \verb+*+ to fix it. Use the same levels consistently in every chapter, and do not skip a level (a \verb+\subsubsection+ belongs inside a \verb+\subsection+). If you find yourself needing levels~4 and~5 often, consider whether the chapter should be split. The rest of this section demonstrates levels 3 to 5.
+\section{What the Template Does for You}
+\label{sec:template-does}
 
-\subsection{Subsection headings}
-\label{subsec:subsections}
-Subsection headings (level 3, X.x.x) are flush left, bold, and in sentence case. Notice that subsections are numbered within the chapter, such as \cref{subsec:subsections}.
+The class file applies most of the GSO's formatting rules automatically. \cref{table:gso_rules} lists the main rules and shows which ones the template takes care of and which are up to you.
 
-\subsubsection{Subsubsection headings}
-\label{subsubsec:subsubsections}
-Subsubsections (level 4, X.x.x.x) are bold, in sentence case, and run into the text. The class adds the period after the title, so do not type one. They do not appear in the Table of Contents.
-
-\paragraph{Paragraph headings}
-The \verb+\paragraph+ command gives level 5 (X.x.x.x.x): numbered, italic, in sentence case, followed by a period, with the text starting on the next line. Like level 4, it does not appear in the Table of Contents.
-
-\section{Mathematics, Symbols, and Units}
-\label{sec:math}
-
-The template preconfigures the standard American Mathematical Society (\AmS) packages \texttt{amsmath} and \texttt{amsthm}, together with \texttt{mathtools}; the AMS symbols come with the \texttt{newtxmath} font package. Students in applied mathematics and physics may also want the \texttt{physics} package, which provides macros for derivatives, integrals, ``bra'' and ``ket'' notation, and more; it is not loaded by the template, so add it in \texttt{packages.tex}. Here are some examples.
-
-\begin{definition}[Sobolev Space $H^1(\RR)$]
-\label{def:sobolev}
-The Sobolev space $H^1(\RR)$ is defined as the Hilbert space of all square-integrable functions whose weak derivative is also square-integrable:
-\begin{equation}
-\label{eq:sobolev}
-H^1(\RR) = \left\{ u \in L^2(\RR) \;\middle|\; \frac{du}{dx} \in L^2(\RR) \right\},
-\end{equation}
-equipped with the inner product
-\begin{equation}
-\label{eq:innerprod}
-\langle u, v \rangle_{H^1} = \int_{-\infty}^{\infty} \left( u(x)v(x) + \frac{du}{dx}\frac{dv}{dx} \right) \, dx.
-\end{equation}
-\end{definition}
-
-\begin{theorem}[Energy--Mass Equivalence]
-\label{thm:einstein}
-For a particle of invariant rest mass $m$ at rest in an inertial reference frame, its total relativistic energy $E$ satisfies
-\begin{equation}
-\label{eq:einstein}
-E = m c^2,
-\end{equation}
-where $c \approx \qty{3e8}{\metre\per\second}$ is the speed of light in vacuum.
-\end{theorem}
-
-\begin{proof}
-In relativistic mechanics, the four-momentum $P^\mu = (E/c, \bm{p})$ satisfies the dispersion relation $P^\mu P_\mu = (E/c)^2 - |\bm{p}|^2 = m^2 c^2$. Setting the spatial momentum $\bm{p} = \bm{0}$ yields $(E/c)^2 = m^2 c^2$, whence $E = mc^2$.
-\end{proof}
-
-You can cross-reference equations easily: for example, see \cref{eq:einstein} or \cref{def:sobolev}. Both were typed with \verb+\cref+, which adds the name (and, for equations, the parentheses) automatically; \cref{sec:crossrefs} explains cross-references in more detail. The bold vector $\bm{p}$ is typed \verb+\bm{p}+, from the \texttt{bm} package.
-
-\textbf{Equation numbering.} Equations are numbered by chapter, not by section, as in \cref{eq:einstein} (GSO). The class does this automatically. Number only the equations you refer to later; use \verb+equation*+ or \verb+\nonumber+ for the rest.
-
-Displayed equations are part of the sentence that introduces them and take punctuation accordingly: a comma or period at the end of the display, inside the math. Never refer to an equation by typing its number; always use \verb+\label+ and \verb+\eqref+, so the numbers stay correct when you move material between chapters. Leave room around displays, and do not use \verb+\vspace+ to squeeze equations onto a page.
-
-\textbf{Theorems.} Theorems, lemmas, definitions, and the like share one counter and are numbered by chapter. Add new environments in \texttt{macros.tex}, not in the chapter files, so they are numbered consistently.
-
-
-\textbf{Symbols.} The template supports inline symbols and notation. Defined symbols (such as $E$ for energy, $m$ for mass, and $c$ for speed of light) can be summarized in the dedicated List of Symbols generated before Chapter~1 via \texttt{listofsymbols.tex}. Brand names can carry a trademark sign with the \verb+\trademark+ command defined in \texttt{macros.tex}, as in MATLAB\trademark.
-
-\textbf{Numbers and units.} Type quantities with the \texttt{siunitx} package rather than by hand, so that numbers, units, and the space between them are set the same way everywhere. For example:
-\begin{itemize}
-\item \verb+\qty{3e8}{\metre\per\second}+ gives \qty{3e8}{\metre\per\second};
-\item \verb+\num{0.000125}+ gives \num{0.000125};
-\item \verb+\unit{\kilo\gram\per\cubic\metre}+ gives \unit{\kilo\gram\per\cubic\metre};
-\item \verb+\qtyrange{10}{20}{\celsius}+ gives \qtyrange{10}{20}{\celsius}.
-\end{itemize}
-The same commands work in text and in math. In a table, the column type \texttt{S} lines numbers up on their decimal points.
-
-\section{Source Code and Pseudocode}
-\label{sec:source_code}
-
-If your dissertation has a computational component, you may want to include source code. The listing below uses the \texttt{lstlisting} environment from the \texttt{listings} package, loaded in \texttt{packages.tex}. The option \texttt{language=Matlab} chooses which words are highlighted; change it to match your code, for example \texttt{language=Python} or \texttt{language=C}.
-
-\begin{lstlisting}[language=Matlab]
-%%%%% BEGIN MATLAB CODE LISTING %%%%%
-x=linspace(0,2*pi);  % set up the x-values
-y=sin(x);            % set up the y-values
-plot(x,y);           % plot the result
-if 0>1
-  fprintf('Zero is greater than one\n')
-end
-%%%%%  END MATLAB CODE LISTING  %%%%%
-\end{lstlisting}
-
-\textbf{Pseudocode.} To describe an algorithm without tying it to one programming language, write it as pseudocode with the \texttt{algorithmic} environment from the \texttt{algpseudocode} package, as in \cref{fig:bisection}. The front matter has lists of tables, figures, symbols, and terms, but none for algorithms, so the sample places the pseudocode in a \texttt{figure} environment. It is then numbered, captioned, and listed in the List of Figures like any other figure. Ask the GSO before adding a separate List of Algorithms.
-
-\begin{figure}[htbp]
-\begin{algorithmic}[1]
-\Require a continuous function $f$, an interval $[a,b]$ with $f(a)f(b)<0$, and a tolerance $\varepsilon>0$
-\Ensure a point within $\varepsilon$ of a root of $f$
-\While{$b-a > 2\varepsilon$}
-  \State $m \gets (a+b)/2$
-  \If{$f(a)f(m) \le 0$}
-    \State $b \gets m$
-  \Else
-    \State $a \gets m$
-  \EndIf
-\EndWhile
-\State \Return $(a+b)/2$
-\end{algorithmic}
-\caption{The bisection method for finding a root of a continuous function. Each pass through the loop halves the interval known to contain the root.}
-\label{fig:bisection}
-\end{figure}
-
-\section{Cross-References and Links}
-\label{sec:crossrefs}
-
-Never type the number of a chapter, section, equation, figure, table, or page. Put a \verb+\label+ on the item and refer to it by that label, so the numbers stay correct when you add or move material.
-\begin{itemize}
-\item Place \verb+\label+ right after \verb+\caption+ in a figure or table, right after the heading command for a chapter or section, and inside the environment for an equation or theorem. A \verb+\label+ placed before \verb+\caption+ points to the section instead of the figure.
-\item Start each label with a prefix that says what it is, such as \texttt{fig:}, \texttt{tab:}, \texttt{eq:}, \texttt{sec:}, or \texttt{ch:}. Labels never appear in the PDF, so keep them short and without spaces.
-\item \verb+\cref+, which this sample uses, prints the name and the number together. Typing \verb+\cref{eq:sobolev,eq:innerprod}+ gives ``\cref{eq:sobolev,eq:innerprod}'', and typing \verb+\cref{fig:eberhardt}+ gives ``\cref{fig:eberhardt}''. It comes from the \texttt{cleveref} package.
-\item With \verb+\ref+ you type the name yourself. Put a tie (\verb+~+) between the name and the reference, as in \verb+Figure~\ref{fig:eberhardt}+, so that a line break never separates them. For equations, use \verb+\eqref+, which adds the parentheses. For example, ``Equation~\eqref{eq:einstein}'' is typed as \verb+Equation~\eqref{eq:einstein}+.
-\item \verb+\pageref+ gives the page an item is on, as in ``page~\pageref{fig:eberhardt}''.
-\item Until every reference is resolved, \LaTeX\ prints ``??'' in place of the number. Compile until the log no longer reports undefined references.
-\end{itemize}
-Choose either \verb+\cref+ or \verb+\ref+ and use it throughout the document. This sample uses \verb+\cref+ everywhere except in the examples above.
-
-The \texttt{hyperref} package, loaded at the end of \texttt{packages.tex}, turns every cross-reference, citation, and Table of Contents entry into a link in the PDF, and adds bookmarks for the chapters and sections. The links are not colored, so the printed pages look the same. For a web address, use \verb+\url{https://ctan.org}+, which breaks long addresses at the end of a line, or \verb+\href{https://ctan.org}{CTAN}+ to make a word into a link.
-
-\section{Common Typing Mistakes}
-\label{sec:typing}
-
-\LaTeX\ handles most typography for you, but a few things depend on what you type.\footnote{A footnote is typed with \texttt{\textbackslash footnote\{...\}} right where its mark should appear, with no space before it. The class sets footnotes single-spaced at the bottom of the page and numbers them through each chapter.}
-\begin{description}
-\item[Quotation marks] Type \verb+``this''+, with two grave accents and two apostrophes. In this template you can also type plain double quotes, \verb+"this"+, because the \texttt{csquotes} package converts them.
-\item[Dashes] A hyphen (\verb+-+) joins words, as in ``well-posed''. An en dash (\verb+--+) marks a range, as in pages 19--48. An em dash (\verb+---+) sets off a phrase. A minus sign belongs in math mode: type \verb+$-1$+, not \verb+-1+.
-\item[Spaces after periods] \LaTeX\ puts extra space after a period it takes to end a sentence. After an abbreviation, type a backslash and a space, or a tie: \verb+e.g.\ this+, \verb+Dr.~Smith+. When a sentence ends with a capital letter, type \verb+\@+ before the period: \verb+measured by NASA\@.+
-\item[Ellipsis] Type \verb+\ldots+, not three periods. In math, use \verb+\dots+ or \verb+\cdots+.
-\item[Math in the text] Put every variable in math mode, even a single letter: \verb+$x$+, not \verb+x+. Use \verb+\text{...}+ for words inside math, and \verb+\sin+, \verb+\log+, or \verb+\max+ for function names, so they are set upright.
-\item[Spacing and layout] Leave a blank line between paragraphs. Do not end lines with \verb+\\+, and do not adjust the layout with \verb+\vspace+ or \verb+\newpage+; the class sets all the spacing the GSO requires.
-\item[Special characters] The characters \verb+# $ % & _ { } ~ ^ \+ have special meanings. To print them, type \verb+\#+, \verb+\$+, \verb+\%+, \verb+\&+, \verb+\_+, \verb+\{+, \verb+\}+, \verb+\textasciitilde+, \verb+\textasciicircum+, and \verb+\textbackslash+.
-\end{description}
+\input{table}
