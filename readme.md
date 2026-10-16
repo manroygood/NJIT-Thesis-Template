@@ -29,11 +29,11 @@ For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.t
 1. **GSO formatting, applied automatically**
    - 1.5-inch left margin; 1-inch top, bottom, and right margins.
    - Times font at 12 pt (`newtx`), for text and mathematics.
-   - Body text double-spaced, including the abstract and acknowledgment; headings, captions, tables, footnotes, lists, and references single-spaced.
-   - Front matter in the GSO's order: Abstract (unnumbered), Title Page (counts as i, unnumbered), Copyright Page (unnumbered; blank for a master's thesis), Approval Page (unnumbered), Biographical Sketch (first page number shown, iv), Dedication (optional), Acknowledgment, Table of Contents, List of Tables, List of Figures, List of Symbols (optional), Glossary of Terms (optional).
+   - Body text double-spaced, including the abstract and acknowledgments, with 0.5-inch paragraph indents; headings, captions, tables, footnotes, lists, and references single-spaced.
+   - Front matter in the GSO's order: Abstract (unnumbered), Title Page (counts as i, unnumbered), Copyright Page (unnumbered; blank for a master's thesis), Approval Page (unnumbered), Biographical Sketch (first page number shown, iv), Dedication (optional), Acknowledgments, Table of Contents, List of Tables, List of Figures, List of Symbols (optional), Glossary of Terms (optional).
    - Table of Contents starting at Chapter 1, with dot leaders and "(Continued)" headers on later pages.
-   - Five numbered heading levels; untitled headings stop the build, and unnumbered ones are flagged.
-   - Captions with a bold label and no colon, table titles above and figure captions below, numbered by chapter.
+   - Five numbered heading levels, with four blank lines above each level 2 heading and three above each level 3 heading; untitled headings stop the build, and unnumbered ones are flagged.
+   - Captions with a bold label and no colon, table titles above and figure captions below, numbered by chapter. `\floatsource{...}` puts the source of a borrowed figure on a 10 pt line below the caption, where it stays out of the List of Figures.
 
 2. **Information entered once.** The title, name, degree, and date are set in `biography.tex` and printed on the abstract, title, copyright, approval, and biography pages, so the pages cannot disagree. The title and author are also written into the PDF's document properties.
 
@@ -100,7 +100,7 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── chapter4.tex            # Chapter 4: figures and tables
 ├── chapter5.tex            # Chapter 5: references and submission
 ├── appendixA.tex           # Appendix A: how appendices work (several appendices)
-├── appendixB.tex           # Appendix B: citation style guides and examples
+├── appendixB.tex           # Appendix B: citation style guides
 ├── appendixC.tex           # Appendix C: the packages and their options
 ├── appendixD.tex           # Appendix D: the template's files
 ├── appendix.tex            # Alternative: a single appendix (see main.tex)

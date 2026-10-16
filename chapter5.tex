@@ -29,7 +29,7 @@ Each \verb+\cite+ takes the key, or keys, of the entries in \texttt{references.b
 \end{itemize}
 Put a tie before the citation, as in \verb+shown in~\cite{Halmos1973}+, so that it never starts a new line.
 
-Choose a citation style accepted for your discipline (\cref{tab:phd-styles}) by setting the \texttt{style=} option on the \texttt{biblatex} line in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format, and that book titles be italicized, not placed in quotation marks. The class sets each reference single-spaced, with a blank line between references.
+Choose a citation style accepted for your discipline (\cref{tab:phd-styles}) by setting the \texttt{style=} option on the \texttt{biblatex} line in \texttt{packages.tex}; do not format references by hand. Whatever the style, the GSO asks that references be consistent in capitalization, punctuation, and format. Follow the rules of the style you choose, even where they differ from other styles: book titles are italic in most styles, for example, but not in Vancouver. If every entry follows the same style, your references will be consistent. The class sets each reference single-spaced, with a blank line between references.
 
 Most formatting problems in a bibliography come from the \texttt{.bib} file, not from \LaTeX. When you copy entries from Google Scholar or a publisher:
 \begin{itemize}
@@ -42,7 +42,7 @@ Most formatting problems in a bibliography come from the \texttt{.bib} file, not
 \section{Choosing a Citation Style}
 \label{sec:citestyles}
 
-Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in \cref{tab:phd-styles}; some disciplines accept several. \cref{app:citestyles} points to the official guide, or a reliable summary, for each style, and shows the same article cited in each one.
+Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in \cref{tab:phd-styles}; some disciplines accept several. \cref{app:citestyles} points to the official guide, or a reliable summary, for each style.
 
 \begin{table}[htbp]
 \centering
@@ -96,7 +96,7 @@ A major advantage of \texttt{biblatex} is its ability to produce multiple indepe
 \begin{verbatim}
 keywords = {me},
 \end{verbatim}
-This eliminates the need to maintain two separate citation files.
+This eliminates the need to maintain two separate citation files. The publications you list in the Biographical Sketch must be formatted in the same style as the References (GSO), and because both lists come from \texttt{biblatex}, they automatically are.
 
 \section{Before You Submit}
 \label{sec:checklist}
@@ -114,7 +114,6 @@ Most documents the GSO returns have one of a handful of problems. Before you sen
 \item The log file (\texttt{main.log}) has no overfull-box warnings that push text into the margin.
 \item Every font in the PDF is embedded, including the fonts inside your figures. Open the PDF in Adobe Acrobat Reader, choose \emph{File}, then \emph{Properties}, then \emph{Fonts}, and check that each font is marked ``Embedded'' or ``Embedded Subset''. On the command line, \verb+pdffonts main.pdf+ (from the Poppler utilities) lists every font, with \texttt{yes} in the \texttt{emb} column for each embedded one. pdf\LaTeX\ embeds the fonts of the text itself, so a font that is not embedded almost always comes from a figure; export that figure again as described in \cref{sec:exportplots}.
 \item The links work. Click a few entries in the Table of Contents, a few citations, and a few cross-references, and check that each one goes to the right place.
-\item The file meets the GSO's current submission instructions, such as the file name and whether a PDF/A file is required. Ask the GSO if the instructions don't say.
 \end{itemize}
 
 \cref{table:landscape_sample} lists the problems that most often cause the GSO to return a document, and how to avoid each one. It is also the sample's landscape table (\cref{subsec:landscape}).

@@ -12,40 +12,40 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 \section{Packages in \texttt{packages.tex}}
 \label{sec:packagestex}
 
-\begin{description}
-\item[\texttt{fontenc}] Loaded with the option \texttt{T1}, which selects modern 8-bit font encoding. Accented letters then hyphenate correctly, and characters such as < and > print correctly in text.
+\begin{itemize}
+\item \texttt{fontenc}: Loaded with the option \texttt{T1}, which selects modern 8-bit font encoding. Accented letters then hyphenate correctly, and characters such as < and > print correctly in text.
 
-\item[\texttt{tabularx}] Provides the \texttt{tabularx} environment, whose \texttt{X} columns stretch to fill a given width. The sample tables use it to make tables exactly as wide as the text. It depends on \texttt{array}, which the class file loads (\cref{sec:classpackages}).
+\item \texttt{tabularx}: Provides the \texttt{tabularx} environment, whose \texttt{X} columns stretch to fill a given width. The sample tables use it to make tables exactly as wide as the text. It depends on \texttt{array}, which the class file loads (\cref{sec:classpackages}).
 
-\item[\texttt{booktabs}] Provides the horizontal rules \verb+\toprule+, \verb+\midrule+, and \verb+\bottomrule+, which give tables with better spacing than \verb+\hline+.
+\item \texttt{booktabs}: Provides the horizontal rules \verb+\toprule+, \verb+\midrule+, and \verb+\bottomrule+, which give tables with better spacing than \verb+\hline+.
 
-\item[\texttt{amsmath}] The standard package for displayed mathematics: \texttt{align}, \texttt{gather}, \verb+\eqref+, \verb+\text+, and more. No options are needed.
+\item \texttt{amsmath}: The standard package for displayed mathematics: \texttt{align}, \texttt{gather}, \verb+\eqref+, \verb+\text+, and more. No options are needed.
 
-\item[\texttt{amsthm}] Provides \verb+\newtheorem+ styles and the \texttt{proof} environment. The theorem environments themselves are defined in \texttt{macros.tex}.
+\item \texttt{amsthm}: Provides \verb+\newtheorem+ styles and the \texttt{proof} environment. The theorem environments themselves are defined in \texttt{macros.tex}.
 
-\item[\texttt{mathtools}] Extends \texttt{amsmath} with fixes and additions such as \verb+\coloneqq+ and paired delimiters.
+\item \texttt{mathtools}: Extends \texttt{amsmath} with fixes and additions such as \verb+\coloneqq+ and paired delimiters.
 
-\item[\texttt{newtxtext}] Sets the text in a Times clone (TeX Gyre Termes). The GSO requires Times New Roman or Arial at 12~pt.
+\item \texttt{newtxtext}: Sets the text in a Times clone (TeX Gyre Termes). The GSO requires Times New Roman or Arial at 12~pt.
 
-\item[\texttt{newtxmath}] Sets mathematics in fonts that match the Times text, and provides the AMS symbol fonts, so \texttt{amssymb} and \texttt{amsfonts} must \emph{not} be loaded as well. It must be loaded after \texttt{amsmath}.
+\item \texttt{newtxmath}: Sets mathematics in fonts that match the Times text, and provides the AMS symbol fonts, so \texttt{amssymb} and \texttt{amsfonts} must \emph{not} be loaded as well. It must be loaded after \texttt{amsmath}.
 
-\item[\texttt{bm}] Provides \verb+\bm+, which makes any math symbol bold, as in the vector $\bm{p}$ in \cref{sec:math}. It is loaded after the math fonts so that it uses their bold versions.
+\item \texttt{bm}: Provides \verb+\bm+, which makes any math symbol bold, as in the vector $\bm{p}$ in \cref{sec:math}. It is loaded after the math fonts so that it uses their bold versions.
 
-\item[\texttt{graphicx}] Provides \verb+\includegraphics+. Images are found in the \texttt{Graphics/} folder because \texttt{main.tex} sets \verb+\graphicspath{{Graphics/}}+.
+\item \texttt{graphicx}: Provides \verb+\includegraphics+. Images are found in the \texttt{Graphics/} folder because \texttt{main.tex} sets \verb+\graphicspath{{Graphics/}}+.
 
-\item[\texttt{subcaption}] Provides the \texttt{subfigure} environment for figures with labelled parts (a), (b), and so on, as in \cref{fig:letters}. It works with the caption settings in the class.
+\item \texttt{subcaption}: Provides the \texttt{subfigure} environment for figures with labelled parts (a), (b), and so on, as in \cref{fig:letters}. It works with the caption settings in the class.
 
-\item[\texttt{xurl}] Allows long URLs to break at any character, so URLs in tables and in the bibliography do not run into the margin.
+\item \texttt{xurl}: Allows long URLs to break at any character, so URLs in tables and in the bibliography do not run into the margin.
 
-\item[\texttt{csquotes}] Handles quotation marks. The command \verb+\MakeOuterQuote+ that follows it lets you type a straight double quote and get correct opening and closing quotation marks. It also makes that character special, so it can clash with some packages, such as \texttt{babel} shorthands for German.
+\item \texttt{csquotes}: Handles quotation marks. The command \verb+\MakeOuterQuote+ that follows it lets you type a straight double quote and get correct opening and closing quotation marks. It also makes that character special, so it can clash with some packages, such as \texttt{babel} shorthands for German.
 
-\item[\texttt{siunitx}] Typesets numbers and units consistently, with commands such as \verb+\qty+, \verb+\num+, and \verb+\unit+, and provides the \texttt{S} table column, which aligns numbers on the decimal point. See \cref{sec:math}. The template uses the commands of version~3, released in 2021.
+\item \texttt{siunitx}: Typesets numbers and units consistently, with commands such as \verb+\qty+, \verb+\num+, and \verb+\unit+, and provides the \texttt{S} table column, which aligns numbers on the decimal point. See \cref{sec:math}. The template uses the commands of version~3, released in 2021.
 
-\item[\texttt{algpseudocode}] Provides the \texttt{algorithmic} environment for pseudocode, as in \cref{fig:bisection}; it is part of the \texttt{algorithmicx} bundle. The two \verb+\renewcommand+ lines after it print ``Input:'' and ``Output:'' for \verb+\Require+ and \verb+\Ensure+.
+\item \texttt{algpseudocode}: Provides the \texttt{algorithmic} environment for pseudocode, as in \cref{sec:source_code}; it is part of the \texttt{algorithmicx} bundle. The two \verb+\renewcommand+ lines after it print ``Input:'' and ``Output:'' for \verb+\Require+ and \verb+\Ensure+.
 
-\item[\texttt{listings}] Typesets source code, as in \cref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and dark green comments, which stay readable when printed. The colors come from \texttt{xcolor}, which the class file loads. Change \texttt{language} to match your own code.
+\item \texttt{listings}: Typesets source code, as in \cref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and dark green comments, which stay readable when printed. The colors come from \texttt{xcolor}, which the class file loads. Change \texttt{language} to match your own code.
 
-\item[\texttt{biblatex}] Formats citations and the bibliography, with \texttt{biber} as the back end. The option \texttt{style=numeric} sets the citation style; change it to one of the codes in the table of styles just above it in \texttt{packages.tex} (see \cref{sec:bibliography}). The other options are:
+\item \texttt{biblatex}: Formats citations and the bibliography, with \texttt{biber} as the back end. The option \texttt{style=numeric} sets the citation style; change it to one of the codes in the table of styles just above it in \texttt{packages.tex} (see \cref{sec:bibliography}). The other options are:
   \texttt{backend=biber}, the program that processes \texttt{references.bib};
   \texttt{doi=false}, \texttt{url=false}, and \texttt{isbn=false}, which leave DOIs, URLs, and ISBNs out of the reference list (a URL still prints for an \texttt{@online} entry, or for any entry with the field \verb+options = {url=true}+);
   \texttt{giveninits=true}, which shortens given names to initials;
@@ -53,10 +53,10 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
   and \texttt{defernums=true}, which assigns a number to an entry only when it is cited or printed, so entries in \texttt{references.bib} that are never used do not leave gaps in the numbering.
   The \verb+\defbibheading+ command after it gives the publications list in the Biographical Sketch an empty heading, because the class prints its own.
 
-\item[\texttt{hyperref}] Turns cross-references, citations, URLs, and Table of Contents entries into links, and adds PDF bookmarks. The option \texttt{hidelinks} keeps the links black and unboxed, so the printed copy is unchanged. It must be loaded after almost every other package, which is why it comes near the end.
+\item \texttt{hyperref}: Turns cross-references, citations, URLs, and Table of Contents entries into links, and adds PDF bookmarks. The option \texttt{hidelinks} keeps the links black and unboxed, so the printed copy is unchanged. It must be loaded after almost every other package, which is why it comes near the end.
 
-\item[\texttt{cleveref}] Provides \verb+\cref+, which prints the kind of item along with its number, such as ``Figure 2.1'' (see \cref{sec:crossrefs}). It must be loaded after \texttt{hyperref}. The option \texttt{capitalise} capitalizes the name everywhere, and \texttt{noabbrev} spells it out (``Equation'', not ``Eq.''). The \verb+\crefname+ line after it calls a subsection a ``Subsection''.
-\end{description}
+\item \texttt{cleveref}: Provides \verb+\cref+, which prints the kind of item along with its number, such as ``Figure 2.1'' (see \cref{sec:crossrefs}). It must be loaded after \texttt{hyperref}. The option \texttt{capitalise} capitalizes the name everywhere, and \texttt{noabbrev} spells it out (``Equation'', not ``Eq.''). The \verb+\crefname+ line after it calls a subsection a ``Subsection''.
+\end{itemize}
 
 \section{Packages Loaded by the Class File}
 \label{sec:classpackages}

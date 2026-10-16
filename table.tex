@@ -7,7 +7,9 @@
 % - The title (\caption) goes ABOVE the table, in title case, with no final
 %   period. It appears word for word in the List of Tables.
 % - Tables are numbered by chapter (Table 1.1).
-% - Table text is single-spaced; a small table must not split across pages.
+% - Table text is single-spaced. Do not split a table across pages if it
+%   fits on a single page; a longer table shows "Table X.x (Continued)" on
+%   each page after the first.
 % Refer to every table in the text with \cref{label}.
 
 \begin{table}[htbp]
@@ -23,7 +25,7 @@ Margins & 1.5 in on the left; 1 in at the top, bottom, and right & Automatic \\
 \hline
 Font & Times New Roman or Arial, 12 pt, including headings & Automatic (Times, through \texttt{newtx}) \\
 \hline
-Spacing & Text double-spaced; headings, captions, tables, lists, and references single-spaced & Automatic \\
+Spacing & Text double-spaced, paragraphs indented 0.5 in; four blank lines above a level 2 heading and three above a level 3 heading; headings, captions, tables, lists, and references single-spaced & Automatic \\
 \hline
 Page numbers & Bold, centered at the bottom; title page counts as i; first number shown is iv, on the Biographical Sketch; Arabic numbering starts at Chapter 1 & Automatic \\
 \hline
@@ -37,7 +39,7 @@ Headings & Every heading numbered and titled; level 2 in title case, levels 3 to
 \hline
 Table of Contents & Starts at Chapter 1; chapter titles in capitals; dot leaders; ``(Continued)'' on later pages & Automatic \\
 \hline
-Captions & Table titles above, figure captions below; numbered by chapter; table titles in title case with no final period & Layout automatic; you write the titles \\
+Captions & Table titles above, figure captions below; numbered by chapter; table titles in title case with no final period; the source of a borrowed figure on a 10 pt line below the caption & Layout automatic; you write the titles and the \texttt{\textbackslash floatsource} line \\
 \hline
 Appendices & One appendix is ``APPENDIX''; several are ``APPENDIX A'', ``APPENDIX B'', and so on; each opens with introductory text & Labels automatic; you write the introduction \\
 \hline

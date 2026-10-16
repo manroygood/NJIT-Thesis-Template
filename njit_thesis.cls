@@ -83,6 +83,9 @@
 % =============================================================
 \doublespacing
 
+% Paragraph indent: 0.5 in (GSO)
+\setlength{\parindent}{0.5in}
+
 % Captions: bold label ("Figure 2.1") followed by two spaces, no colon (GSO)
 \DeclareCaptionLabelSeparator{njit}{\ \ }
 \captionsetup{
@@ -94,6 +97,14 @@
 }
 \captionsetup[table]{position=above, skip=6pt}
 \captionsetup[figure]{position=below, skip=6pt}
+
+% Source of a figure or table that you did not create: \floatsource{...}
+% after the \caption of a figure, or after the tabular of a table. It prints
+% "Source: ..." in 10 pt below the figure description, and it is not
+% copied into the List of Figures or List of Tables (GSO).
+\newcommand{\floatsource}[1]{%
+  \par\vskip 4\p@
+  {\footnotesize\singlespacing\raggedright\parindent\z@ Source: #1\par}}
 
 % No widow or orphan lines. Hyphenation uses the LaTeX defaults;
 % \emergencystretch lets TeX loosen a line slightly instead of letting
@@ -107,6 +118,12 @@
 \setlength\@fptop{0\p@}
 \setlength\@fpsep{20\p@ \@plus 4\p@}
 \setlength\@fpbot{0\p@ \@plus 1fil}
+% Let a large figure or table share a page with text, at the top or bottom,
+% instead of getting a page to itself that interrupts the text around it.
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.8}
 
 % NJIT plain pagestyle: page numbers centered in footer in bold
 \def\ps@plain{%
@@ -234,28 +251,28 @@
   }}
 
 % Headings that run over one line are single-spaced (GSO). The before-skips
-% put an X.x heading on the 4th single-spaced line below the preceding text
-% and an X.x.x heading on the 3rd (GSO "Avoiding Format Problems").
+% leave four blank single-spaced lines between the preceding text and an
+% X.x heading, and three before an X.x.x heading (GSO).
 % A negative before-skip also keeps the first paragraph after the heading
 % flush left.
 
 % Section headings (level 2, X.x): centered, bold
 \renewcommand\section{\@startsection{section}{1}{\z@}%
-  {-34\p@ \@plus -4\p@ \@minus -2\p@}%
+  {-46\p@ \@plus -4\p@ \@minus -2\p@}%
   {2.3ex \@plus .2ex}%
   {\normalfont\normalsize\bfseries\centering\singlespacing}}
 
 % Subsection headings (level 3, X.x.x): flush left, bold
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-  {-20\p@ \@plus -4\p@ \@minus -2\p@}%
+  {-32\p@ \@plus -4\p@ \@minus -2\p@}%
   {1.5ex \@plus .2ex}%
   {\normalfont\normalsize\bfseries\singlespacing}}
 
 % Level 4 (subsubsection, X.x.x.x): bold, sentence case, ends with a period,
-% text continues on the same line. Not in the TOC.
+% text continues on the same line after a tab (0.5 in, GSO). Not in the TOC.
 \newcommand\njit@subsubsection{\@startsection{subsubsection}{3}{\z@}%
   {-3.25ex \@plus -1ex \@minus -.2ex}%
-  {-1em}%
+  {-0.5in}%
   {\normalfont\normalsize\bfseries}}
 % Level 5 (paragraph, X.x.x.x.x): italic, not bold, sentence case, ends with
 % a period, text begins on the next line. Not in the TOC.
@@ -310,16 +327,16 @@
 \newif\ifnjit@contshifted
 % #1 = list name, #2 = column header (may be empty)
 \newcommand{\njit@begincontinued}[2]{%
+  % No center environment or \singlespacing here: both add space above the
+  % header, which would push it below the 1 in top margin.
   \global\setbox\njit@contbox\vbox{%
     \hsize\textwidth \linewidth\textwidth \parindent\z@ \normalfont
-    \begin{center}
-      \singlespacing\bfseries
-      #1\par
-      \vskip 2pt
-      (Continued)\par
-      \ifx\relax#2\relax\else \vskip 8pt #2\fi
-    \end{center}
-    \par\vspace{2ex}}%
+    \setstretch{1}\bfseries\centering
+    \vbox to\topskip{\vfil\hbox to\hsize{\hfil #1\hfil}}%
+    \vskip 2pt
+    (Continued)\par
+    \ifx\relax#2\relax\else \vskip 8pt \noindent #2\par\fi
+    \vspace{2ex}}%
   \global\njit@contht\ht\njit@contbox
   \global\let\@texttop\njit@contfirst}
 \def\njit@contfirst{% runs while the first page of the list is assembled
