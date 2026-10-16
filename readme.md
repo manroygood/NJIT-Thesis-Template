@@ -99,4 +99,4 @@ pdflatex main.tex
 
 ## Contributions & Pull Requests
 
-Students and faculty who make improvements, add features, or update guidelines are encouraged to submit pull requests on GitHub so future students may benefit.
+Maintainer: Prof. Roy Goodman (goodman@njit.edu). Students and faculty who fix errors, add guidance, or update the template to new GSO rules are encouraged to send a pull request to [github.com/manroygood/NJIT-Thesis-Template](https://github.com/manroygood/NJIT-Thesis-Template), or to email suggestions. Contributors are credited in the history at the top of `njit_thesis.cls`.
