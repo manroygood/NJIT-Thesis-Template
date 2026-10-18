@@ -40,8 +40,11 @@
 % \qty{3e8}{\metre\per\second}. Requires siunitx version 3 (2021 or later).
 \usepackage{siunitx}
 
-% Pseudocode: the algorithmic environment from algpseudocode. Put it in the
-% text, like a code listing, not in a figure environment (GSO).
+% Algorithms: the algorithm environment numbers each one by chapter
+% (Algorithm 3.1), sets its title above it between rules, and lists it in
+% the List of Algorithms. Write the pseudocode inside it with the algorithmic
+% environment from algpseudocode. Do not put algorithms in a figure (GSO).
+\usepackage[chapter]{algorithm}
 \usepackage{algpseudocode}
 \renewcommand{\algorithmicrequire}{\textbf{Input:}}
 \renewcommand{\algorithmicensure}{\textbf{Output:}}

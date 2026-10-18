@@ -29,8 +29,8 @@ For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.t
 1. **GSO formatting, applied automatically**
    - 1.5-inch left margin; 1-inch top, bottom, and right margins.
    - Times font at 12 pt (`newtx`), for text and mathematics.
-   - Body text double-spaced, including the abstract and acknowledgments, with 0.5-inch paragraph indents; headings, captions, tables, footnotes, lists, and references single-spaced.
-   - Front matter in the GSO's order: Abstract (unnumbered), Title Page (counts as i, unnumbered), Copyright Page (unnumbered; blank for a master's thesis), Approval Page (unnumbered), Biographical Sketch (first page number shown, iv), Dedication (optional), Acknowledgments, Table of Contents, List of Tables, List of Figures, List of Symbols (optional), Glossary of Terms (optional).
+   - Body text double-spaced, including the abstract and acknowledgments, with 0.5-inch paragraph indents; headings, captions, tables, footnotes, lists, code, algorithms, and references single-spaced.
+   - Front matter in the GSO's order: Abstract (unnumbered), Title Page (counts as i, unnumbered), Copyright Page (unnumbered; blank for a master's thesis), Approval Page (unnumbered), Biographical Sketch (first page number shown, iv), Dedication (optional), Acknowledgments, Table of Contents, List of Tables, List of Figures, List of Algorithms (optional), List of Symbols (optional), Glossary of Terms (optional).
    - Table of Contents starting at Chapter 1, with dot leaders and "(Continued)" headers on later pages.
    - Five numbered heading levels, with four blank lines above each level 2 heading and three above each level 3 heading; untitled headings stop the build, and unnumbered ones are flagged.
    - Captions with a bold label and no colon, table titles above and figure captions below, numbered by chapter. `\floatsource{...}` puts the source of a borrowed figure on a 10 pt line below the caption, where it stays out of the List of Figures.
@@ -41,7 +41,7 @@ For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.t
 
 4. **Appendices labeled the GSO's way.** One appendix (`\oneappendix{Title}` in `appendix.tex`) is labeled APPENDIX with no letter; several (`\chapter{Title}` in `appendixA.tex`, `appendixB.tex`, ...) are labeled APPENDIX A, APPENDIX B, and so on.
 
-5. **A sample that teaches.** The sample demonstrates every heading level, theorem environments, numbered equations, figures and subfigures, `booktabs` and grid tables, a landscape table, code listings, pseudocode, units with `siunitx`, footnotes, cross-references with `cleveref`, and a two-column List of Symbols and Glossary of Terms. It also covers exporting plots from MATLAB, Mathematica, and Python, permission to reuse figures, choosing a citation style, and a checklist of the problems that most often cause the GSO to return a document.
+5. **A sample that teaches.** The sample demonstrates every heading level, theorem environments, numbered equations, figures and subfigures, `booktabs` and grid tables, a landscape table, code listings, numbered algorithms with a List of Algorithms, units with `siunitx`, footnotes, cross-references with `cleveref`, and a two-column List of Symbols and Glossary of Terms. It also covers exporting plots from MATLAB, Mathematica, and Python, permission to reuse figures, choosing a citation style, and a checklist of the problems that most often cause the GSO to return a document.
 
 ---
 
@@ -119,7 +119,7 @@ Students and faculty of the NJIT Department of Mathematical Sciences have built 
 - **2002–2003:** Stephen A. Kunec, Hoa Kien Tran
 - **2014:** Shoubhik Mondal
 - **2022:** Prof. Roy Goodman, Dr. Jimmie Adriazola, Prof. Christina Frederick
-- **2026:** Prof. Roy Goodman, with help from Claude: a rewritten class file that follows the GSO's current rules, support for master's theses, and a sample document rewritten as a guide for students in every program
+- **2026:** Prof. Roy Goodman, with help from Claude: a rewritten class file that follows the GSO's current rules, support for master's theses, and a sample document rewritten as a guide for students in every program. Ester Flaim of the Graduate Studies Office contributed to and edited this revision
 
 ## Contributing
 

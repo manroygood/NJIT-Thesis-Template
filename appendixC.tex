@@ -41,7 +41,9 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item \texttt{siunitx}: Typesets numbers and units consistently, with commands such as \verb+\qty+, \verb+\num+, and \verb+\unit+, and provides the \texttt{S} table column, which aligns numbers on the decimal point. See \cref{sec:math}. The template uses the commands of version~3, released in 2021.
 
-\item \texttt{algpseudocode}: Provides the \texttt{algorithmic} environment for pseudocode, as in \cref{sec:source_code}; it is part of the \texttt{algorithmicx} bundle. The two \verb+\renewcommand+ lines after it print ``Input:'' and ``Output:'' for \verb+\Require+ and \verb+\Ensure+.
+\item \texttt{algorithm}: Provides the \texttt{algorithm} environment, which numbers an algorithm by chapter, sets its title above it between rules, and lists it in the List of Algorithms, as for \cref{alg:bisection}. The option \texttt{chapter} numbers algorithms within chapters, like figures and tables.
+
+\item \texttt{algpseudocode}: Provides the \texttt{algorithmic} environment for the pseudocode inside an \texttt{algorithm} environment, as in \cref{alg:bisection}; it is part of the \texttt{algorithmicx} bundle. The two \verb+\renewcommand+ lines after it print ``Input:'' and ``Output:'' for \verb+\Require+ and \verb+\Ensure+.
 
 \item \texttt{listings}: Typesets source code, as in \cref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and dark green comments, which stay readable when printed. The colors come from \texttt{xcolor}, which the class file loads. Change \texttt{language} to match your own code.
 

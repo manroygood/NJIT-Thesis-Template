@@ -8,7 +8,8 @@
 % 2014: Shoubhik Mondal, revisions
 % 2022: Jimmie Adriazola, Prof. Roy Goodman, & Prof. Christina Frederick, revisions
 % 2026: Prof. Roy Goodman, with help from Claude: rewrite for the GSO's
-%       current rules, master's theses, and a sample that teaches
+%       current rules, master's theses, and a sample that teaches;
+%       Ester Flaim (Graduate Studies Office) contributed and edited
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % This file may be distributed and/or modified under the conditions of the
@@ -158,6 +159,11 @@
   \let\@listi\njit@listi \let\@listI\njit@listi
   \let\@listii\njit@listii \let\@listiii\njit@listiii}
 \AtBeginEnvironment{itemize}{\njit@liststyle}
+% Source code and pseudocode are single-spaced (GSO). \par first, so the
+% paragraph before keeps double spacing.
+\AtBeginEnvironment{verbatim}{\par\setstretch{1}}
+\AtBeginEnvironment{lstlisting}{\par\setstretch{1}}
+\AtBeginEnvironment{algorithmic}{\par\setstretch{1}}
 \AtBeginEnvironment{enumerate}{\njit@liststyle}
 
 \AtEndPreamble{%
@@ -390,6 +396,16 @@
   \njit@endcontinued
 }
 
+% List of Algorithms, for the algorithm environment of the algorithm
+% package (loaded in packages.tex), in the same format as the other lists
+\AtBeginDocument{%
+  \@ifundefined{listofalgorithms}{}{%
+    \let\l@algorithm\l@figure
+    \renewcommand\listofalgorithms{%
+      \njit@listheading{LIST OF ALGORITHMS}{\vskip 10pt\njit@colhead{Algorithm}{Page}}{\njit@colhead{Algorithm}{Page}}%
+      {\singlespacing\emergencystretch=2.5em \@starttoc{loa}}%
+      \njit@endcontinued}}}
+
 \renewcommand\listoftables{%
   \njit@listheading{\listtablename}{\vskip 10pt\njit@colhead{Table}{Page}}{\njit@colhead{Table}{Page}}%
   {\singlespacing\emergencystretch=2.5em \@starttoc{lot}}%
@@ -462,7 +478,7 @@
 \def\njit@advisortitle{\@latex@warning@no@line{No advisor title given}}
 
 % Optional co-advisor(s): \coadvisor{Name}{Title, Institution}. When one is
-% given, the advisor's line also reads "Co-Advisor", and the co-advisors are
+% given, the advisor's line also reads "Co-advisor" (lowercase a, GSO), and the co-advisors are
 % listed right after the advisor, before the committee members.
 \newif\ifnjit@coadvisors
 \def\njit@coadvisors{}
@@ -618,7 +634,7 @@
   \vskip 0.4in
   {\singlespacing\raggedright\parindent\z@
     \rule{\textwidth}{1.5pt}\par
-    \njit@advisorname, \njit@doctype\ \ifnjit@coadvisors Co-\fi Advisor \hfill Date\par
+    \njit@advisorname, \njit@doctype\ \ifnjit@coadvisors Co-advisor\else Advisor\fi \hfill Date\par
     \njit@advisortitle\par
     \ifnjit@coadvisors
       \@for \njit@mem:=\njit@coadvisors \do{%
@@ -639,7 +655,7 @@
   \clearpage
 }
 \def\njit@printonecoadvisor#1#2{%
-  #1, \njit@doctype\ Co-Advisor \hfill Date\par
+  #1, \njit@doctype\ Co-advisor \hfill Date\par
   #2\par
 }
 \def\njit@printonemember#1#2{%
@@ -819,7 +835,8 @@
   \setcounter{chapter}{0}%
   \refstepcounter{chapter}% chapter A: resets per-chapter counters, sets \label target
   \chaptermark{#1}%
-  \addcontentsline{toc}{chapter}{APPENDIX: \protect\MakeUppercase{#1}}%
+  % TOC line "APPENDIX  TITLE", no colon (GSO), aligned like APPENDIX A
+  \addcontentsline{toc}{appendix}{\protect\numberline{\appendixname}\protect\MakeUppercase{#1}}%
   \begin{center}\singlespacing
     \bfseries APPENDIX\par
     \vskip 12pt

@@ -111,8 +111,13 @@ end
 %%%%%  END MATLAB CODE LISTING  %%%%%
 \end{lstlisting}
 
-\textbf{Pseudocode.} To describe an algorithm without tying it to one programming language, write it as pseudocode with the \texttt{algorithmic} environment from the \texttt{algpseudocode} package. Like a code listing, pseudocode goes in the text where you discuss it, not in a \texttt{figure} environment: an algorithm is not a figure, and a figure may not run onto a second page (GSO). Introduce it with a sentence, as here for the bisection method, which finds a root of a continuous function by halving the interval known to contain it on each pass through the loop:
+Source code and pseudocode are single-spaced (GSO); the class does this for you. Syntax highlighting in color is allowed.
 
+\textbf{Pseudocode.} To describe an algorithm without tying it to one programming language, write it as pseudocode with the \texttt{algorithmic} environment from the \texttt{algpseudocode} package, and put it in an \texttt{algorithm} environment, as in \cref{alg:bisection}. The \texttt{algorithm} environment works like a table: give it a \verb+\caption+, typed in title case, and a \verb+\label+. The class numbers it by chapter, sets its title above it between two rules, and lists it in the List of Algorithms. Do not put an algorithm in a \texttt{figure} environment; the GSO does not count it as a figure. Like a figure, an algorithm must fit on one page.
+
+\begin{algorithm}[htbp]
+\caption{Bisection Method for a Root of a Continuous Function}
+\label{alg:bisection}
 \begin{algorithmic}[1]
 \Require a continuous function $f$, an interval $[a,b]$ with $f(a)f(b)<0$, and a tolerance $\varepsilon>0$
 \Ensure a point within $\varepsilon$ of a root of $f$
@@ -126,6 +131,7 @@ end
 \EndWhile
 \State \Return $(a+b)/2$
 \end{algorithmic}
+\end{algorithm}
 
 \section{Cross-References and Links}
 \label{sec:crossrefs}
