@@ -13,8 +13,8 @@
 %                    2nd ed. Springer; 2007:101-130.
 %   Dissertation     Adriazola J. Coherent Control of Dispersive Waves.
 %                    Dissertation. New Jersey Institute of Technology; 2021.
-%   Website          Author. Page title. Site name. Accessed October 15, 2026.
-%                    https://...
+%   Website          Author. Page title. Site name. Updated April 23, 2026.
+%                    Accessed October 15, 2026. https://...
 % (Journal and book titles are italic.)
 %
 % Up to six authors are listed; with seven or more, the first three are
@@ -57,7 +57,7 @@
 \renewcommand*{\newunitpunct}{\addperiod\space}
 \renewcommand*{\intitlepunct}{\addcolon\space}
 
-\NewBibliographyString{published}
+\NewBibliographyString{published,updated}
 % For a document in English or American English (with or without babel).
 \DefineBibliographyStrings{english}{
   andothers   = {et al},
@@ -70,6 +70,7 @@
   mathesis    = {Master's thesis},
   urlseen     = {Accessed},
   published   = {Published},
+  updated     = {Updated},
 }
 \DefineBibliographyStrings{american}{
   andothers   = {et al},
@@ -82,6 +83,7 @@
   mathesis    = {Master's thesis},
   urlseen     = {Accessed},
   published   = {Published},
+  updated     = {Updated},
 }
 
 % Hyphens in page ranges (1119-1184) and citation ranges (1-3), as in AMA.
@@ -303,15 +305,16 @@
   \usebibmacro{njit@ama:doi+url}%
   \usebibmacro{njit@ama:end}}
 
-% Web page: Author. Title. Site name. Accessed date. URL  (the URL always
-% prints, even with url=false).
+% Web page: Author. Title. Site name. Updated date. Accessed date. URL
+% The date field holds the date the page was last updated. The URL always
+% prints, even with url=false.
 \DeclareBibliographyDriver{online}{%
   \usebibmacro{njit@ama:begin}%
   \printlist{organization}%
   \newunit\newblock
   \iffieldundef{year}
     {}
-    {\bibstring{published}\space\printdate}%
+    {\bibstring{updated}\space\printdate}%
   \newunit\newblock
   \iftoggle{bbx:doi}
     {\printfield{doi}}
