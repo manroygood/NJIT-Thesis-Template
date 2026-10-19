@@ -81,7 +81,7 @@
 % AMS             | alphabetic           | Alphabetic (or use 'numeric')
 % APA             | apa                  | Author-Year
 % ASCE            | numeric              | Numeric
-% Chicago         | chicago-authordate   | Author-Year
+% Chicago         | (see note below)     | Author-Year
 % Harvard         | authoryear           | Author-Year
 % IEEE            | ieee                 | Numeric
 % TRB             | numeric              | Numeric
@@ -91,8 +91,16 @@
 % them: the files njit-acm, njit-aip, and njit-ama (.bbx and .cbx) in this
 % folder. Each file explains at the top what it does. The folder
 % citation-styles/ shows every style in this table applied to the same sources.
+%
+% Chicago is loaded through its own package, biblatex-chicago, instead of
+% style=. Replace the whole \usepackage[...]{biblatex} line below with
+%   \usepackage[authordate,backend=biber,doi=false,url=false,%
+%     isbn=false]{biblatex-chicago}
+% (Chicago spells out given names, so giveninits is left out.) If the next
+% run stops with errors, delete main.bbl and main.bcf and compile again.
 
-% 2. Load biblatex with that style. Change only the style= value.
+% 2. Load biblatex with that style. Change only the style= value (for
+% Chicago, replace the line as described above).
 \usepackage[style=numeric,% <-- your citation style
   backend=biber,doi=false,url=false,defernums=true,sortcites=true,%
   isbn=false,giveninits=true]{biblatex}

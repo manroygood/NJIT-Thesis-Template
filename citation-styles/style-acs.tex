@@ -2,4 +2,10 @@
 % ACS. One page of the citation-style samples; see style-page.tex.
 \newcommand{\stylename}{ACS}
 \newcommand{\stylecode}{chem-acs}
+\newcommand{\stylefeatures}{%
+  \item Citations are numbered in order of first citation; the reference list puts the numbers in parentheses. ACS journals print the numbers as superscripts, which \texttt{\textbackslash autocite} gives.
+  \item Family name first, then initials, with semicolons between authors: \emph{Knuth, D.~E.; Plass, M.~F.}
+  \item Article titles are left out.
+  \item Journal name italic, year bold, volume italic: \emph{Software: Practice and Experience} \textbf{1981}, \emph{11}, 1119--1184.
+  \item Books: \emph{Title}, edition; Publisher: City, Year. ACS journals abbreviate journal names; write them out in full anyway, as Chapter~5 of the sample asks.}
 \input{style-page}

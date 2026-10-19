@@ -10,6 +10,10 @@
 % from Terminal, run  latexmk  in this folder.
 
 \documentclass[12pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{booktabs}
 \usepackage{pdfpages}
 \usepackage[hidelinks]{hyperref}
 
@@ -23,6 +27,43 @@
      \section*{#1}Compile style-#2.tex first.\clearpage}}
 
 \begin{document}
+\thispagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6\baselineskip}
+
+{\Large\bfseries Citation Styles for NJIT Theses and Dissertations\par}
+
+The sample thesis that comes with this template lists, in its Table~5.1, the citation styles that the Graduate Studies Office accepts for each discipline. This document shows a sample of each of those styles, so that you can make an informed decision.
+
+Each of the following pages is devoted to one style. It lists the style's main distinguishing features, then gives a paragraph that cites the same sources from the template's \texttt{references.bib} on every page, and ends with the reference list the style produces from them. Compare the pages for the styles your discipline accepts, and ask your advisor which one your field prefers.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Style} & \textbf{Setting in \texttt{packages.tex}} & \textbf{Citations in the text} \\
+\midrule
+ACM       & \texttt{style=njit-acm}  & Numbers, [1] \\
+ACS       & \texttt{style=chem-acs}  & Numbers, [1] or superscript \\
+AIP       & \texttt{style=njit-aip}  & Numbers, [1] or superscript \\
+AMA       & \texttt{style=njit-ama}  & Superscript numbers \\
+AMS       & \texttt{style=alphabetic} & Labels, [KP81] \\
+APA       & \texttt{style=apa}       & Author and year \\
+ASCE      & \texttt{style=numeric}   & Numbers, [1] \\
+Chicago   & \texttt{biblatex-chicago} package & Author and year \\
+Harvard   & \texttt{style=authoryear} & Author and year \\
+IEEE      & \texttt{style=ieee}      & Numbers, [1] \\
+TRB       & \texttt{style=numeric}   & Numbers, [1] \\
+Vancouver & \texttt{style=vancouver} & Numbers, [1] \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+To use a style, set \texttt{style=} on the \texttt{biblatex} line in \texttt{packages.tex} to the value in the table, and compile the thesis again; nothing else changes. Chicago is the exception: replace the \texttt{biblatex} line as the comment in \texttt{packages.tex} shows. The ACM, AIP, and AMA styles come with the template, because \texttt{biblatex} has none of its own.
+
+A style can format only what is in \texttt{references.bib}. Type titles in title case and protect proper nouns and acronyms with braces, as in \texttt{\{NumPy\}}, so that styles which change capitalization keep them; write journal names out in full; and fill in every field a style needs. Appendix~B of the sample points to the official guide for each style, so you can check the output.
+\clearpage
+
 \stylepage{ACM}{acm}
 \stylepage{ACS}{acs}
 \stylepage{AIP}{aip}
