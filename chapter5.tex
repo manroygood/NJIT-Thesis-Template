@@ -19,7 +19,7 @@ This chapter explains how to cite sources and choose a citation style, how the p
 \section{Citing Sources}
 \label{sec:bibliography}
 
-Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books~\cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article~\cite{KnuthPlass1981}, a chapter in a book~\cite{Halmos1973}, a Ph.D.\ dissertation~\cite{Adriazola2021}, software documentation~\cite{biblatex}, and a website~\cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field. For software, give the version number and its release date.
+Bibliographic citations are managed by the modern \texttt{biblatex} package backed by \texttt{biber}. Citations in the text are inserted using the standard \verb+\cite+ command. The sample \texttt{references.bib} holds one entry of each common type, so you can copy the one you need: books~\cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article~\cite{KnuthPlass1981}, an article with many authors~\cite{Harris2020}, a chapter in a book~\cite{Halmos1973}, a Ph.D.\ dissertation~\cite{Adriazola2021}, software documentation~\cite{biblatex}, and a website~\cite{EberhardtWiki}. For a website, record the date you consulted it in the \texttt{urldate} field. For software, give the version number and its release date.
 
 Each \verb+\cite+ takes the key, or keys, of the entries in \texttt{references.bib}:
 \begin{itemize}
@@ -43,6 +43,8 @@ Most formatting problems in a bibliography come from the \texttt{.bib} file, not
 \label{sec:citestyles}
 
 Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in \cref{tab:phd-styles}; some disciplines accept several. \cref{app:citestyles} points to the official guide, or a reliable summary, for each style.
+
+The table of style codes in \texttt{packages.tex} gives the \texttt{style=} value for each style. \texttt{biblatex} has no ACM, AIP, or AMA style of its own, so the template supplies three: \texttt{njit-acm}, \texttt{njit-aip}, and \texttt{njit-ama}, in the files with those names in the template folder. AMA citations are superscript numbers that go after a period or comma; write \verb+as shown\autocite{Halmos1973}.+ and the period moves in front of the number. To compare the styles before you choose, open the folder \texttt{citation-styles} and compile \texttt{citation-styles.tex}: it shows every style in the table applied to the same sources, one style per page.
 
 \begin{table}[htbp]
 \centering

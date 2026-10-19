@@ -47,10 +47,10 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item \texttt{listings}: Typesets source code, as in \cref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and dark green comments, which stay readable when printed. The colors come from \texttt{xcolor}, which the class file loads. Change \texttt{language} to match your own code.
 
-\item \texttt{biblatex}: Formats citations and the bibliography, with \texttt{biber} as the back end. The option \texttt{style=numeric} sets the citation style; change it to one of the codes in the table of styles just above it in \texttt{packages.tex} (see \cref{sec:bibliography}). The other options are:
+\item \texttt{biblatex}: Formats citations and the bibliography, with \texttt{biber} as the back end. The option \texttt{style=numeric} sets the citation style; change it to one of the codes in the table of styles just above it in \texttt{packages.tex} (see \cref{sec:bibliography}). Three of those codes, \texttt{njit-acm}, \texttt{njit-aip}, and \texttt{njit-ama}, are styles that come with the template (see \cref{sec:filedescriptions}). The other options are:
   \texttt{backend=biber}, the program that processes \texttt{references.bib};
   \texttt{doi=false}, \texttt{url=false}, and \texttt{isbn=false}, which leave DOIs, URLs, and ISBNs out of the reference list (a URL still prints for an \texttt{@online} entry, or for any entry with the field \verb+options = {url=true}+);
-  \texttt{giveninits=true}, which shortens given names to initials;
+  \texttt{giveninits=true}, which shortens given names to initials (\texttt{njit-acm} ignores it, because ACM spells out given names);
   \texttt{sortcites=true}, which sorts the numbers in a multiple citation, giving [1, 4, 5] rather than [5, 1, 4];
   and \texttt{defernums=true}, which assigns a number to an entry only when it is cited or printed, so entries in \texttt{references.bib} that are never used do not leave gaps in the numbering.
   The \verb+\defbibheading+ command after it gives the publications list in the Biographical Sketch an empty heading, because the class prints its own.

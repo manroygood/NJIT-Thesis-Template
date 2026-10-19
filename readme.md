@@ -84,6 +84,9 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── njit_thesis.cls         # Class file: the NJIT formatting rules
 ├── main.tex                # Master file; compile this one
 ├── packages.tex            # Packages and citation style
+├── njit-acm.bbx, .cbx      # ACM citation style (biblatex has none)
+├── njit-aip.bbx, .cbx      # AIP citation style
+├── njit-ama.bbx, .cbx      # AMA citation style
 ├── macros.tex              # Your notation and theorem environments
 ├── references.bib          # Bibliography database
 ├── abstract.tex            # Abstract text
@@ -106,7 +109,8 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── appendix.tex            # Alternative: a single appendix (see main.tex)
 ├── appendix-rules.tex      # Shared text, \input by appendix.tex and appendixA.tex
 ├── appendix-demo.tex       # Shared equations, figures, and table, \input by the same two
-└── Graphics/               # Images for the figures
+├── Graphics/               # Images for the figures
+└── citation-styles/        # Every citation style on the same sources, one per page
 ```
 
 ---

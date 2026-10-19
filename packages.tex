@@ -74,10 +74,10 @@
 %
 % Citation Style  | style= value         | Style Type
 % ------------------------------------------------------------------------------
-% ACM             | acm                  | Numeric
+% ACM             | njit-acm             | Numeric
 % ACS             | chem-acs             | Numeric
-% AIP             | chem-aip             | Numeric
-% AMA             | ama                  | Numeric (or use 'numeric')
+% AIP             | njit-aip             | Numeric
+% AMA             | njit-ama             | Numeric (superscript)
 % AMS             | alphabetic           | Alphabetic (or use 'numeric')
 % APA             | apa                  | Author-Year
 % ASCE            | numeric              | Numeric
@@ -87,11 +87,10 @@
 % TRB             | numeric              | Numeric
 % Vancouver       | vancouver            | Numeric
 % ==============================================================================
-% TODO (2026-10-15): three codes in the table above are not biblatex styles and
-% stop the build with a "not found" error: acm, chem-aip, and ama. Possible
-% substitutes: AIP -> phys (biblatex-phys); ACM -> acmnumeric (from the acmart
-% package, untested here); AMA has no biblatex style, so vancouver is closest.
-% Waiting on the GSO's answer before changing them.
+% biblatex has no ACM, AIP, or AMA style of its own, so the template supplies
+% them: the files njit-acm, njit-aip, and njit-ama (.bbx and .cbx) in this
+% folder. Each file explains at the top what it does. The folder
+% citation-styles/ shows every style in this table applied to the same sources.
 
 % 2. Load biblatex with that style. Change only the style= value.
 \usepackage[style=numeric,% <-- your citation style

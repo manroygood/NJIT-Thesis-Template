@@ -1,0 +1,126 @@
+% njit-acm.bbx: ACM citation style for the NJIT thesis template.
+% Select it with style=njit-acm in packages.tex.
+%
+% A thin layer over acmnumeric, the biblatex version of the ACM Reference
+% Format that ships with the acmart class. On its own, acmnumeric works only
+% inside acmart; this file makes it work with njit_thesis.cls and corrects
+% a few entries to match ACM's reference formatting guide
+% (https://www.acm.org/publications/authors/reference-formatting):
+%   - authors' given names are spelled out, as ACM requires, even with the
+%     giveninits=true option on the biblatex line in packages.tex;
+%   - the bibliography is set in the 12 pt text font, not footnote size;
+%   - articles read  Journal 50, 1 (Jan. 2007), 36-44.
+%   - an edition follows the title in parentheses:  Title (2nd ed.).
+%   - chapters and conference papers read
+%       In Book Title (2nd ed.), Editor (Ed.). Publisher, City, 19-33.
+%     and a chapter in a book (@inbook) keeps its author.
+% Journal names print exactly as written in references.bib. Write them out
+% in full; the GSO does not accept abbreviated journal names.
+%
+% Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
+
+\ProvidesFile{njit-acm.bbx}[2026/10/19 v1.0 NJIT thesis: ACM bibliography style]
+
+% acmnumeric sets \bibfont to \bibliofont\footnotesize, and only acmart
+% defines \bibliofont.
+\providecommand*{\bibliofont}{}
+
+\RequireBibliographyStyle{acmnumeric}
+
+\renewcommand*{\bibfont}{\normalfont\normalsize}
+
+% Full given names whatever the giveninits option says.
+\DeclareNameFormat{given-family}{%
+  \usebibmacro{name:given-family}
+    {\namepartfamily}
+    {\namepartgiven}
+    {\namepartprefix}
+    {\namepartsuffix}%
+  \usebibmacro{name:andothers}}
+
+% Journal Volume, Number (Month Year), Pages.
+\renewbibmacro*{journal+issuetitle}{%
+  \usebibmacro{journal}%
+  \setunit*{\addspace}%
+  \printfield{volume}%
+  \setunit*{\addcomma\space}%
+  \printfield{number}%
+  \setunit*{\addcomma\space}%
+  \printfield{articleno}%
+  \setunit{\addspace}%
+  \usebibmacro{date}%
+  \setunit{\addcomma\space}%
+  \iffieldundef{pages}
+    {\printfield{numpages}}
+    {\printfield{pages}}%
+  \newunit}
+
+% Title (2nd ed.).  The edition is printed here, so the drivers skip it.
+\letbibmacro*{njit@acm@maintitle+title}{maintitle+title}
+\renewbibmacro*{maintitle+title}{%
+  \usebibmacro{njit@acm@maintitle+title}%
+  \setunit{\addspace}%
+  \printfield{edition}%
+  \clearfield{edition}}
+
+% In Book Title (2nd ed.), Book Authors, Editor (Ed.).
+\newbibmacro*{njit@acm@in}{%
+  \usebibmacro{in:}%
+  \usebibmacro{maintitle+booktitle}%
+  \setunit{\addspace}%
+  \printfield{edition}%
+  \setunit{\addcomma\space}%
+  \printnames{bookauthor}%
+  \setunit{\addcomma\space}%
+  \ifnameundef{editor}
+    {}
+    {\printnames{editor}%
+     \setunit{\addspace}%
+     \ifnumgreater{\value{editor}}{1}
+       {\bibstring{editors}}
+       {\bibstring{editor}}%
+     % "(Ed.)" ends in a parenthesis, not an abbreviation dot, so the
+     % period after it must still print.
+     \spacefactor\@m}%
+  \newunit\newblock
+  \usebibmacro{series+number}%
+  \newunit\newblock
+  \printfield{note}%
+  \newunit\newblock
+  \printlist{organization}%
+  \newunit
+  \usebibmacro{publisher+location+date}%
+  \setunit{\addcomma\space}%
+  \printfield{chapter}%
+  \setunit{\addcomma\space}%
+  \printfield{pages}}
+
+% One driver for chapters (@inbook, @incollection) and conference papers.
+\newbibmacro*{njit@acm@driver@in}{%
+  \usebibmacro{bibindex}%
+  \usebibmacro{begentry}%
+  \usebibmacro{author/translator+others}%
+  \setunit{\labelnamepunct}\newblock
+  \usebibmacro{year}%
+  \newunit\newblock
+  \usebibmacro{title}%
+  \newunit\newblock
+  \usebibmacro{njit@acm@in}%
+  \newunit\newblock
+  \iftoggle{bbx:isbn}
+    {\printfield{isbn}}
+    {}%
+  \newunit\newblock
+  \usebibmacro{doi+eprint+url}%
+  \newunit\newblock
+  \usebibmacro{addendum+pubstate}%
+  \setunit{\bibpagerefpunct}\newblock
+  \usebibmacro{pageref}%
+  \newunit\newblock
+  \usebibmacro{finentry}}
+
+\DeclareBibliographyDriver{inbook}{\usebibmacro{njit@acm@driver@in}}
+\DeclareBibliographyDriver{incollection}{\usebibmacro{njit@acm@driver@in}}
+\DeclareBibliographyDriver{inproceedings}{\usebibmacro{njit@acm@driver@in}}
+
+\endinput

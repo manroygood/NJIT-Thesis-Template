@@ -1,0 +1,49 @@
+% njit-ama.cbx: citation part of the AMA style; see njit-ama.bbx.
+% Citations are superscript numbers in order of first citation, with ranges
+% compressed: 1-3 and 1,4,5. AMA puts them after periods and commas but
+% before colons and semicolons. Write  ...as shown\autocite{key}.  and the
+% period moves in front of the number for you. \cite also gives a
+% superscript, and removes any space or ~ typed before it. A page goes in
+% parentheses inside the superscript: \cite[23]{key} gives 1(p23).
+%
+% Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
+
+\ProvidesFile{njit-ama.cbx}[2026/10/19 v1.0 NJIT thesis: AMA citation style]
+
+\RequireCitationStyle{numeric-comp}
+
+\ExecuteBibliographyOptions{
+  autocite  = superscript,
+  autopunct = true,
+  sortcites = true
+}
+
+% Superscript numbers separated by commas with no space: 1,4,5
+\renewcommand*{\multicitedelim}{\addcomma}
+\renewcommand*{\supercitedelim}{\addcomma}
+
+% Page numbers: (p23), (pp23-25)
+\DeclareFieldFormat{postnote}{\mkbibparens{\mkpageprefix[pagination][\mknormrange]{#1}}}
+\renewcommand*{\ppspace}{}
+\DefineBibliographyStrings{english}{page = {p}, pages = {pp}}
+\DefineBibliographyStrings{american}{page = {p}, pages = {pp}}
+
+\renewcommand*{\postnotedelim}{}
+
+% \cite and \supercite (which \autocite uses) are the same command here.
+\newcommand*{\njit@ama@cite}[1]{%
+  \DeclareCiteCommand{#1}[\mkbibsuperscript]
+    {\usebibmacro{cite:init}%
+     \let\multicitedelim=\supercitedelim
+     \iffieldundef{prenote}
+       {}
+       {\BibliographyWarning{Ignoring prenote argument}}}
+    {\usebibmacro{citeindex}%
+     \usebibmacro{cite:comp}}
+    {}
+    {\usebibmacro{cite:dump}%
+     \usebibmacro{postnote}}}
+\njit@ama@cite{\cite}
+\njit@ama@cite{\supercite}
+
+\endinput

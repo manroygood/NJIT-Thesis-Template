@@ -1,0 +1,38 @@
+% !TEX TS-program = pdflatexmk
+% CITATION-STYLE SAMPLES: every citation style in the table in
+% ../packages.tex, applied to the same sources, one style per page.
+%
+% biblatex allows only one style per document, so each style is its own
+% one-page document (style-acm.tex, style-acs.tex, ...), and this file
+% collects their PDFs. Compile this file with latexmk (TeXShop's pdflatexmk
+% engine does this): the latexmkrc file in this folder tells latexmk to
+% build any style-*.pdf that is missing or out of date first. To build
+% from Terminal, run  latexmk  in this folder.
+
+\documentclass[12pt,letterpaper]{article}
+\usepackage{pdfpages}
+\usepackage[hidelinks]{hyperref}
+
+% \stylepage{name}{file} includes style-file.pdf. If that PDF does not exist
+% yet, it logs "No file style-file.pdf.", which tells latexmk to build it.
+\newcommand{\stylepage}[2]{%
+  \IfFileExists{style-#2.pdf}
+    {\includepdf[pages=-,pagecommand={},
+       addtotoc={1,section,1,#1,style-#2}]{style-#2.pdf}}
+    {\typeout{No file style-#2.pdf.}%
+     \section*{#1}Compile style-#2.tex first.\clearpage}}
+
+\begin{document}
+\stylepage{ACM}{acm}
+\stylepage{ACS}{acs}
+\stylepage{AIP}{aip}
+\stylepage{AMA}{ama}
+\stylepage{AMS}{ams}
+\stylepage{APA}{apa}
+\stylepage{ASCE}{asce}
+\stylepage{Chicago}{chicago}
+\stylepage{Harvard}{harvard}
+\stylepage{IEEE}{ieee}
+\stylepage{TRB}{trb}
+\stylepage{Vancouver}{vancouver}
+\end{document}

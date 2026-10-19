@@ -19,3 +19,4 @@ main.pdf
 *.fdb_latexmk
 *.fls
 .DS_Store
+citation-styles/style-*.pdf

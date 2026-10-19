@@ -1,0 +1,35 @@
+% !TEX root = citation-styles.tex
+% One page of the citation-style samples. Each style-*.tex file sets
+% \stylename and \stylecode and then reads this file, so every page cites
+% the same sources from ../references.bib in the same words. To try another
+% style, copy one of the style-*.tex files, change its two lines, and add it
+% to citation-styles.tex.
+
+\documentclass[12pt,letterpaper]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{newtxtext,newtxmath}
+\usepackage{csquotes}
+\usepackage{xurl}
+
+% The same options as the biblatex line in ../packages.tex; only the style
+% changes from page to page.
+\usepackage[style=\stylecode,%
+  backend=biber,doi=false,url=false,defernums=true,sortcites=true,%
+  isbn=false,giveninits=true]{biblatex}
+\addbibresource{../references.bib}
+\usepackage[hidelinks]{hyperref}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5\baselineskip}
+\setlength{\bibitemsep}{0.4\baselineskip}
+
+\begin{document}
+{\Large\bfseries \stylename\par}
+\verb|style=|\texttt{\stylecode}
+
+Books~\cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article~\cite{KnuthPlass1981}, an article with many authors~\cite{Harris2020}, a chapter in a book~\cite{Halmos1973}, a dissertation~\cite{Adriazola2021}, software documentation~\cite{biblatex}, a website~\cite{EberhardtWiki}, a talk~\cite{conference2019}, and another article~\cite{CSND:1999}. A citation of a page: \verb|\cite[23]{Lamport1994}| gives~\cite[23]{Lamport1994}.
+
+\printbibliography
+\end{document}

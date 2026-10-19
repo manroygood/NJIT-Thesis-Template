@@ -1,0 +1,28 @@
+% njit-aip.bbx: AIP citation style for the NJIT thesis template.
+% Select it with style=njit-aip in packages.tex.
+%
+% A thin layer over the phys style of the biblatex-phys package (Joseph
+% Wright), which implements the AIP Style Manual. It sets the phys options
+% that suit a thesis; you can still override any of them on the biblatex line
+% in packages.tex:
+%   articletitle=true   print the titles of journal articles
+%   chaptertitle=true   print the titles of book chapters
+%   pageranges=true     print the full page range, not only the first page
+%   biblabel=brackets   number the reference list [1], [2], ...
+% Journal names print exactly as written in references.bib. Write them out
+% in full; the GSO does not accept abbreviated journal names.
+%
+% Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
+
+\ProvidesFile{njit-aip.bbx}[2026/10/19 v1.0 NJIT thesis: AIP bibliography style]
+
+\RequireBibliographyStyle{phys}
+
+\ExecuteBibliographyOptions{
+  articletitle = true,
+  chaptertitle = true,
+  pageranges   = true,
+  biblabel     = brackets
+}
+
+\endinput
