@@ -3,9 +3,11 @@
 \newcommand{\stylename}{ACS}
 \newcommand{\stylecode}{chem-acs}
 \newcommand{\stylefeatures}{%
-  \item Citations are numbered in order of first citation; the reference list puts the numbers in parentheses. ACS journals print the numbers as superscripts, which \texttt{\textbackslash autocite} gives.
+  \item Citations are numbered in order of first citation. In the text they are superscripts, as in ACS journals; the reference list puts the numbers in parentheses.
   \item Family name first, then initials, with semicolons between authors: \emph{Knuth, D.~E.; Plass, M.~F.}
   \item Article titles are left out.
   \item Journal name italic, year bold, volume italic: \emph{Software: Practice and Experience} \textbf{1981}, \emph{11}, 1119--1184.
   \item Books: \emph{Title}, edition; Publisher: City, Year. ACS journals abbreviate journal names; write them out in full anyway, as Chapter~5 of the sample asks.}
+\newcommand{\stylespecial}{%
+  A superscript is not a word: write ``Knuth and Plass\textsuperscript{4} showed'', never ``Reference\textsuperscript{4} shows'' or ``as shown in\textsuperscript{4}''. Type the citation before a period or comma; the number is moved after it.}
 \input{style-page}

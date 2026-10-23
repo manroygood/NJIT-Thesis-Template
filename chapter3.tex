@@ -45,7 +45,7 @@ The \verb+\paragraph+ command gives level 5 (X.x.x.x.x): numbered, italic, in se
 \section{Mathematics, Symbols, and Units}
 \label{sec:math}
 
-The template preconfigures the standard American Mathematical Society (\AmS) packages \texttt{amsmath} and \texttt{amsthm}, together with \texttt{mathtools}; the AMS symbols come with the \texttt{newtxmath} font package. Students in applied mathematics and physics may also want the \texttt{physics} package, which provides macros for derivatives, integrals, ``bra'' and ``ket'' notation, and more; it is not loaded by the template, so add it in \texttt{packages.tex}. Here are some examples.
+The template preconfigures the standard American Mathematical Society (\AmS) packages \texttt{amsmath} and \texttt{amsthm}, together with \texttt{mathtools}; the AMS symbols come with the \texttt{newtxmath} font package. Students in applied mathematics and physics may also want two more packages. The \texttt{derivative} package typesets derivatives: \verb+\odv{y}{x}+ and \verb+\pdv{u}{t}+ give $\frac{\mathrm{d}y}{\mathrm{d}x}$ and $\frac{\partial u}{\partial t}$. The \texttt{physics2} package provides automatically sized brackets, ``bra'' and ``ket'' notation, and more, in modules you choose, as in \verb+\usephysicsmodule{ab,braket}+. Do not use the older \texttt{physics} package, which is no longer maintained and clashes with other packages. Neither package is loaded by the template, so add them in \texttt{packages.tex}. Here are some examples.
 
 \begin{definition}[Sobolev Space $H^1(\RR)$]
 \label{def:sobolev}

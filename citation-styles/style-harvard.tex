@@ -3,9 +3,11 @@
 \newcommand{\stylename}{Harvard}
 \newcommand{\stylecode}{authoryear}
 \newcommand{\stylefeatures}{%
-  \item Citations give the author and year: Knuth and Plass 1981. \texttt{\textbackslash autocite} adds parentheses.
+  \item Citations give the author and year in parentheses: (Knuth and Plass 1981).
   \item Harvard is a family of similar styles rather than a single standard; \texttt{authoryear} is the generic version in \texttt{biblatex}.
   \item Family name, then initials; the year, in parentheses, follows the authors.
   \item Article titles are in quotation marks; book and journal titles are italic.
   \item The reference list is in alphabetical order, with no numbers.}
+\newcommand{\stylespecial}{%
+  When the authors are part of the sentence, use \texttt{\textbackslash textcite}: ``\textcite{KnuthPlass1981} showed''.}
 \input{style-page}

@@ -1,7 +1,8 @@
 % !TEX root = citation-styles.tex
 % One page of the citation-style samples. Each style-*.tex file sets
-% \stylename, \stylecode, and \stylefeatures (the items of a bulleted list)
-% and then reads this file, so every page cites the same sources from
+% \stylename, \stylecode, and \stylefeatures (the items of a bulleted list),
+% and \stylespecial (Special Instructions, if the style has any), and then
+% reads this file, so every page cites the same sources from
 % ../references.bib in the same words. To try another style, copy one of
 % the style-*.tex files, change its definitions, and add it to
 % citation-styles.tex.
@@ -49,11 +50,17 @@
 \noindent\stylesetup
 
 \begin{itemize}[nosep,leftmargin=1.5em,topsep=\baselineskip]
+\item Cite with \texttt{\textbackslash autocite}, as \texttt{biblatex} recommends; every citation on this page does.
 \stylefeatures
 \end{itemize}
 
+\ifdefined\stylespecial
+  \par\smallskip\noindent\textbf{Special Instructions}\par
+  \noindent\stylespecial\par\medskip
+\fi
 
-Books~\cite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article~\cite{KnuthPlass1981}, an article with many authors~\cite{Harris2020}, a chapter in a book~\cite{Halmos1973}, a dissertation~\cite{Adriazola2021}, software documentation~\cite{biblatex}, and a website~\cite{EberhardtWiki}. A citation of a page: \verb|\cite[23]{Lamport1994}| gives~\cite[23]{Lamport1994}. \texttt{\textbackslash autocite}, the form the style recommends, cites the journal article like this~\autocite{KnuthPlass1981}.
+
+The sources cited on this page are books \autocite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article \autocite{KnuthPlass1981}, an article with many authors \autocite{Harris2020}, a chapter in a book \autocite{Halmos1973}, a dissertation \autocite{Adriazola2021}, software documentation \autocite{biblatex}, and a website \autocite{EberhardtWiki}. A citation of a single page, typed \verb|\autocite[23]{Lamport1994}|, looks like this \autocite[23]{Lamport1994}.
 
 \printbibliography[title={References}]
 \end{document}

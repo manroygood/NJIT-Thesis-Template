@@ -3,8 +3,10 @@
 \newcommand{\stylename}{ASCE}
 \newcommand{\stylecode}{njit-asce}
 \newcommand{\stylefeatures}{%
-  \item Citations give the author and year in parentheses, (Knuth and Plass 1981), with \texttt{\textbackslash cite} or \texttt{\textbackslash autocite}; \texttt{\textbackslash textcite} gives Knuth and Plass (1981).
+  \item Citations give the author and year in parentheses: (Knuth and Plass 1981).
   \item \texttt{biblatex} has no ASCE style, so the template supplies \texttt{njit-asce}, built on \texttt{authoryear}.
   \item Family name, then initials, for every author; the year, in parentheses, follows the authors. Article titles are in quotation marks; book and journal titles are italic.
   \item ASCE abbreviates journal names, but NJIT dissertations write them out in full.}
+\newcommand{\stylespecial}{%
+  When the authors are part of the sentence, use \texttt{\textbackslash textcite}: ``\textcite{KnuthPlass1981} showed''.}
 \input{style-page}

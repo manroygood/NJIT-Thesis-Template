@@ -3,9 +3,10 @@
 \newcommand{\stylename}{APA}
 \newcommand{\stylecode}{apa}
 \newcommand{\stylefeatures}{%
-  \item Citations give the author and year. \texttt{\textbackslash autocite} adds parentheses: (Knuth \& Plass, 1981).
+  \item Citations give the author and year in parentheses: (Knuth \& Plass, 1981).
   \item Family name, then initials, with an ampersand before the last author: Knuth, D.~E., \& Plass, M.~F.
-  \item The year, in parentheses, follows the authors.
-  \item Article and book titles are in sentence case; book titles are italic.
-  \item Journal name and volume are italic: \emph{Software: Practice and Experience, 11}(11), 1119--1184. The reference list is in alphabetical order.}
+  \item The year, in parentheses, follows the authors. Article and book titles are in sentence case; book titles are italic.
+  \item Journal name and volume are italic: \emph{Software: Practice and Experience, 11}(11), 1119--1184.}
+\newcommand{\stylespecial}{%
+  When the authors are part of the sentence, use \texttt{\textbackslash textcite}: ``\textcite{KnuthPlass1981} showed''.}
 \input{style-page}

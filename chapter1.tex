@@ -103,6 +103,6 @@ Read the first error only; later errors are often caused by the first one. The n
 \item \textbf{Missing \$ inserted}: A math command such as \verb+^+, \verb+_+, or \verb+\alpha+ is used outside math mode, or a \verb+$+ is missing.
 \item \textbf{Missing \} inserted, or Runaway argument}: A brace \verb+{+ is not closed. Check the lines just before the one reported.
 \item \textbf{File not found}: A package or image is missing, or its name is misspelled. For packages, see \cref{sec:missingpackages}; for images, check the name and the \texttt{Graphics/} folder.
-\item \textbf{Citation or reference undefined (a warning, shown as ``??'')}: Compile again; if it persists, the key in \verb+\cite+ or \verb+\ref+ does not match any \verb+\label+ or \texttt{.bib} entry.
+\item \textbf{Citation or reference undefined (a warning, shown as ``??'')}: Compile again; if it persists, the key in \verb+\autocite+ or \verb+\ref+ does not match any \verb+\label+ or \texttt{.bib} entry.
 \end{itemize}
 If the PDF does not change or the errors make no sense, delete the auxiliary files (\cref{app:filetree} lists them) and compile again. If you are stuck, search for the exact error message; TeX Stack Exchange (\url{https://tex.stackexchange.com}) has answers to almost all of them.

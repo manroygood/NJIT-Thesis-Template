@@ -4,8 +4,10 @@
 \newcommand{\stylecode}{authoryear}
 \newcommand{\stylefeatures}{%
   \item \texttt{biblatex} has no TRB style, so this page uses the generic author-year style, \texttt{authoryear}. Check your references against the TRB author instructions in Appendix~B of the sample.
-  \item Citations give the author and year: Knuth and Plass 1981. \texttt{\textbackslash autocite} adds parentheses.
+  \item Citations give the author and year in parentheses: (Knuth and Plass 1981).
   \item Family name, then initials; the year, in parentheses, follows the authors.
   \item Article titles are in quotation marks; book and journal titles are italic.
   \item The reference list is in alphabetical order, with no numbers.}
+\newcommand{\stylespecial}{%
+  When the authors are part of the sentence, use \texttt{\textbackslash textcite}: ``\textcite{KnuthPlass1981} showed''.}
 \input{style-page}

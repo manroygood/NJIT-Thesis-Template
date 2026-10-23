@@ -1,12 +1,17 @@
 % njit-aip.cbx: citation part of the AIP style; see njit-aip.bbx.
-% Citations are numbered in order of first citation, with ranges compressed:
-% [1-3]. AIP journals also use superscript numbers; to get them, cite with
-% \autocite (it is a superscript in this style) instead of \cite.
+% Citations are numbered in order of first citation, with ranges compressed.
+% Cite with \autocite, as biblatex recommends: it gives superscript numbers,
+% as in AIP journals, placed after a following period or comma. \cite gives
+% the numbers in square brackets, [1-3].
 %
 % Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
 
 \ProvidesFile{njit-aip.cbx}[2026/10/19 v1.0 NJIT thesis: AIP citation style]
 
 \RequireCitationStyle{phys}
+
+% A superscript citation typed before a period or comma is moved after it,
+% as in AIP journals (phys leaves it in front).
+\ExecuteBibliographyOptions{autopunct=true}
 
 \endinput

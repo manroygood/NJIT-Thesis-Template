@@ -42,9 +42,9 @@ CITATION STYLES FOR NJIT THESES AND DISSERTATIONS
 
 \noindent The sample dissertation that comes with this template lists, in its Table~5.1, the citation styles that the Graduate Studies Office accepts for each discipline. This document shows a sample of each of those styles, so that you can make an informed decision.
 
-Each of the following pages is devoted to one style. It lists the style's main distinguishing features, then gives a paragraph that cites the same sources from the template's \texttt{references.bib} on every page, and ends with the reference list the style produces from them. Compare the pages for the styles your discipline accepts, and ask your advisor which one your field prefers.
+Each of the following pages is devoted to one style. It lists the style's main distinguishing features, then gives a paragraph that cites the same sources from the template's \texttt{references.bib} on every page, and ends with the reference list the style produces from them. Compare the pages for the styles your discipline accepts, and ask your advisor which one your field prefers. Every citation is typed with \verb+\autocite+, which is best practice with \texttt{biblatex}: it gives the form of citation that the chosen style calls for, so the same text works in every style. Where a style needs more care, the page adds Special Instructions.
 
-Choose your citation style early, before you write much of the text, because the style changes how you write sentences that mention a source. In a style that cites with superscript numbers, such as AMA, or ACS and AIP when they cite with \verb+\autocite+, the number is not a word of the sentence: you cannot write ``In Reference\textsuperscript{5} it is shown that \ldots'' or ``as shown in\textsuperscript{5}''. You must name the authors instead, as in ``Knuth and Plass\textsuperscript{5} showed that \ldots''. In an author-year style, such as APA, Chicago, or Harvard, the authors' names are already part of the citation, and \verb+\textcite+ makes them part of the sentence: ``Knuth and Plass (1981) showed that \ldots''. Changing to a style of a different kind late in the work means rewriting these sentences by hand throughout the dissertation.
+Choose your citation style early, before you write much of the text, because the style changes how you write sentences that mention a source. In a style that cites with superscript numbers, such as AMA, ACS, or AIP, the number is not a word of the sentence: you cannot write ``In Reference\textsuperscript{5} it is shown that \ldots'' or ``as shown in\textsuperscript{5}''. You must name the authors instead, as in ``Knuth and Plass\textsuperscript{5} showed that \ldots''. In an author-year style, such as APA, Chicago, or Harvard, the authors' names are already part of the citation, and \verb+\textcite+ makes them part of the sentence: ``Knuth and Plass (1981) showed that \ldots''. Changing to a style of a different kind late in the work means rewriting these sentences by hand throughout the dissertation.
 
 \begin{center}
 \small\setstretch{1}
@@ -53,8 +53,8 @@ Choose your citation style early, before you write much of the text, because the
 \textbf{Style} & \textbf{Setting in \texttt{packages.tex}} & \textbf{Citations in the text} \\
 \midrule
 ACM       & \texttt{style=njit-acm}  & Numbers, [1] \\
-ACS       & \texttt{style=chem-acs}  & Numbers, [1] or superscript \\
-AIP       & \texttt{style=njit-aip}  & Numbers, [1] or superscript \\
+ACS       & \texttt{style=chem-acs}  & Superscript numbers \\
+AIP       & \texttt{style=njit-aip}  & Superscript numbers \\
 AMA       & \texttt{style=njit-ama}  & Superscript numbers \\
 AMS       & \texttt{style=alphabetic} & Labels, [KP81] \\
 APA       & \texttt{style=apa}       & Author and year \\

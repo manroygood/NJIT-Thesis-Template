@@ -3,8 +3,9 @@
 \newcommand{\stylename}{Chicago}
 \newcommand{\stylecode}{chicago-authordate}
 \newcommand{\stylefeatures}{%
-  \item Author and year, no comma: Knuth and Plass 1981; with a page: Lamport 1994, 23.
+  \item Author and year in parentheses, with no comma: (Knuth and Plass 1981).
   \item Given names in full; only the first author is inverted: Knuth, Donald E., and Michael F. Plass.
-  \item Article titles are in quotation marks; book and journal titles are italic.
-  \item Loaded with the \texttt{biblatex-chicago} package, not \texttt{style=}; see \texttt{packages.tex}.}
+  \item Article titles are in quotation marks; book and journal titles are italic.}
+\newcommand{\stylespecial}{%
+  When the authors are part of the sentence, use \texttt{\textbackslash textcite}: ``\textcite{KnuthPlass1981} showed''.}
 \input{style-page}
