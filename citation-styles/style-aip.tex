@@ -3,9 +3,9 @@
 \newcommand{\stylename}{AIP}
 \newcommand{\stylecode}{njit-aip}
 \newcommand{\stylefeatures}{%
-  \item Citations are numbered in order of first citation: superscripts in the text, as in many AIP journals, and numbers in square brackets in the reference list.
+  \item Citations are numbered in order of first citation, in square brackets, [1], or as superscripts (see Special Instructions).
   \item Initials come first (D.~E. Knuth); article titles are in quotation marks; journal names are not italic.
   \item An article ends with \emph{11, 1119--1184 (1981)}; a book ends with \emph{(Publisher, City, Year)}.}
 \newcommand{\stylespecial}{%
-  A superscript is not a word: write ``Knuth and Plass\textsuperscript{4} showed'', never ``Reference\textsuperscript{4} shows'' or ``as shown in\textsuperscript{4}''. Type the citation before a period or comma; the number is moved after it.}
+  Here \texttt{\textbackslash cite} gives numbers in square brackets. Many AIP journals print superscripts, which \texttt{\textbackslash autocite} gives: ``Knuth and Plass\autocite{KnuthPlass1981} showed''. A superscript is not a word, so never write ``Reference\textsuperscript{4} shows''.}
 \input{style-page}
