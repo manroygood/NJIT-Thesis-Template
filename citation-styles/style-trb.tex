@@ -1,10 +1,11 @@
 % !TEX TS-program = pdflatexmk
 % TRB. One page of the citation-style samples; see style-page.tex.
 \newcommand{\stylename}{TRB}
-\newcommand{\stylecode}{numeric}
+\newcommand{\stylecode}{authoryear}
 \newcommand{\stylefeatures}{%
-  \item \texttt{biblatex} has no TRB style, so this page uses the generic \texttt{numeric} style. Check your references against the TRB author instructions in Appendix~B of the sample.
-  \item Citations are numbers in square brackets, [1]; the reference list is in alphabetical order and numbered in that order.
-  \item Initials come before the family name; article titles are in quotation marks; book and journal titles are italic.
-  \item An article ends with \emph{In: Journal 11.11 (1981), pp.~1119--1184}.}
+  \item \texttt{biblatex} has no TRB style, so this page uses the generic author-year style, \texttt{authoryear}. Check your references against the TRB author instructions in Appendix~B of the sample.
+  \item Citations give the author and year: Knuth and Plass 1981. \texttt{\textbackslash autocite} adds parentheses.
+  \item Family name, then initials; the year, in parentheses, follows the authors.
+  \item Article titles are in quotation marks; book and journal titles are italic.
+  \item The reference list is in alphabetical order, with no numbers.}
 \input{style-page}
