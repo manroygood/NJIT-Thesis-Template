@@ -18,6 +18,8 @@ NJIT-Thesis-Template/
 |-- njit-acm.bbx, .cbx       ACM citation style
 |-- njit-aip.bbx, .cbx       AIP citation style
 |-- njit-ama.bbx, .cbx       AMA citation style
+|-- njit-asce.bbx, .cbx      ASCE citation style
+|-- njit-vancouver.bbx, .cbx Vancouver citation style
 |-- macros.tex               Your notation and theorem environments
 |-- references.bib           Bibliography database
 |
@@ -40,6 +42,7 @@ NJIT-Thesis-Template/
 |-- appendixC.tex            Appendix C: packages
 |-- appendixD.tex            Appendix D: this list of files
 |-- appendix.tex             Alternative: a single appendix
+|-- supplementary.tex        List of supplementary files
 |-- appendix-rules.tex       Shared text, \input by appendix.tex
 |-- appendix-demo.tex          and appendixA.tex
 |-- Graphics/                Images for figures
@@ -71,7 +74,7 @@ Here is what each file contains and how to edit it.
 
   \item \texttt{packages.tex}: Loads optional \LaTeX\ packages (such as \texttt{tabularx}, \texttt{amsmath}, \texttt{amsthm}, the Times fonts \texttt{newtxtext} and \texttt{newtxmath}, \texttt{graphicx}, \texttt{subcaption}, \texttt{booktabs}, \texttt{xurl}, and \texttt{biblatex}). Add any packages your research needs there, before the \texttt{hyperref} line.
 
-  \item \texttt{njit-acm.bbx}, \texttt{njit-aip.bbx}, \texttt{njit-ama.bbx}, and the matching \texttt{.cbx} files: The ACM, AIP, and AMA citation styles, which \texttt{biblatex} lacks. Select one with \texttt{style=njit-acm}, \texttt{style=njit-aip}, or \texttt{style=njit-ama} in \texttt{packages.tex}. The \texttt{.bbx} file formats the reference list and the \texttt{.cbx} file the citations; the comments at the top of each say what it does. \texttt{njit-acm} builds on the \texttt{acmnumeric} style of the \texttt{acmart} package, and \texttt{njit-aip} on the \texttt{phys} style of \texttt{biblatex-phys}; both packages come with every full \TeX\ installation and with Overleaf.
+  \item \texttt{njit-acm.bbx}, \texttt{njit-aip.bbx}, \texttt{njit-ama.bbx}, \texttt{njit-asce.bbx}, \texttt{njit-vancouver.bbx}, and the matching \texttt{.cbx} files: The ACM, AIP, AMA, and ASCE citation styles, which \texttt{biblatex} lacks, and a Vancouver style that separates authors with commas only, as the Vancouver guide asks. Select one with \texttt{style=njit-acm}, \texttt{style=njit-aip}, \texttt{style=njit-ama}, \texttt{style=njit-asce}, or \texttt{style=njit-vancouver} in \texttt{packages.tex}. The \texttt{.bbx} file formats the reference list and the \texttt{.cbx} file the citations; the comments at the top of each say what it does. \texttt{njit-acm} builds on the \texttt{acmnumeric} style of the \texttt{acmart} package, \texttt{njit-aip} on the \texttt{phys} style of \texttt{biblatex-phys}, \texttt{njit-asce} on the standard \texttt{authoryear} style, and \texttt{njit-vancouver} on the \texttt{vancouver} style of \texttt{biblatex-vancouver}; these packages come with every full \TeX\ installation and with Overleaf.
 
   \item \texttt{macros.tex}: Defines custom mathematical shortcuts and theorem environments (e.g., Theorem, Lemma, Definition, Proposition, Corollary). The file contains some examples. Well-defined and consistently used macros can make writing and editing your thesis much easier.
 
@@ -79,7 +82,7 @@ Here is what each file contains and how to edit it.
 
   \item \texttt{approval.tex}: Defines the dissertation advisor and committee members using the \verb+\advisor+ and \verb+\member+ commands. If you have a co-advisor, add \verb+\coadvisor{Name}{Title, Institution}+ after \verb+\advisor+; both advisors are then labeled ``Co-advisor'' and listed before the committee. Faculty titles must match the catalog.
 
-  \item \texttt{biography.tex}: Contains your dissertation title, author name, major, degree title, department, institution, graduation date (\verb+\graduationdate+), and degrees earned (entered with the \verb+\degreeearned+ command; the older name \verb+\degree+ still works unless a package such as \texttt{gensymb} defines it). Also includes the hook for \verb+\printmypublications+. Date and place of birth are added only in the copy submitted to the GSO.
+  \item \texttt{biography.tex}: Contains your dissertation title, author name, major, degree title, department, institution, graduation date (\verb+\graduationdate+), and degrees earned (entered with the \verb+\degreeearned+ command; the older name \verb+\degree+ still works unless a package such as \texttt{gensymb} defines it). Also includes the hook for \verb+\printmypublications+.
 
   \item \texttt{dedication.tex}: Contains your optional dedication. If you do not wish to include a dedication, simply comment out \verb+\dedication{\input{dedication}}+ in \texttt{main.tex}.
 
@@ -97,6 +100,8 @@ Here is what each file contains and how to edit it.
   \item \texttt{appendixA.tex} to \texttt{appendixD.tex}: The sample's four appendices, each starting with \verb+\chapter+: how appendices work, guides to the citation styles, the packages the template loads, and this list of files.
 
   \item \texttt{appendix.tex}: The alternative for a document with a single appendix, which starts with \verb+\oneappendix+ instead; switch to it in \texttt{main.tex}. Sample text shared with \texttt{appendixA.tex} lives in \texttt{appendix-rules.tex} and \texttt{appendix-demo.tex}, pulled in with \verb+\input+; delete them when you write your own appendices.
+
+  \item \texttt{supplementary.tex}: The list of supplementary files uploaded to ProQuest with the dissertation, an unlabeled appendix that comes after the References. It starts with \verb+\supplementaryappendix+ and lists the files in a \texttt{supplementaryfiles} table. Delete it and its \verb+\input+ line in \texttt{main.tex} if you upload no supplementary files.
 
   \item \texttt{references.bib}: A standard \BibTeX\ database of citations. Any entry with the field \verb+keywords = {me}+ will also be included automatically in the Presentations and Publications section of your Biographical Sketch.
 

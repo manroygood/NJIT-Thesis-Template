@@ -57,8 +57,8 @@
 \listoftables
 \listoffigures
 \listofalgorithms % comment out if you have no algorithms
-\makelistofsymbols
-\makeglossaryofterms
+\makelistofsymbols % comment out if you have no symbols
+\makeglossaryofterms % comment out if you have no glossary
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% START MAIN BODY OF THESIS
@@ -97,5 +97,13 @@
 %% Bibliography / References
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \printbibliography[heading=bibintoc,title={REFERENCES}]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Supplementary files (optional)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Only if you upload supplementary files (videos, data, software archives)
+% to ProQuest: they are listed in an unlabeled appendix after the
+% References. Otherwise delete this line and supplementary.tex.
+\input{supplementary}
 
 \end{document}

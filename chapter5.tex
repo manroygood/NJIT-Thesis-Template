@@ -44,9 +44,9 @@ Most formatting problems in a bibliography come from the \texttt{.bib} file, not
 
 Different fields of study have adopted different bibliography styles, which are conventions for formatting bibliography entries. The GSO accepts only the styles listed for your discipline in \cref{tab:phd-styles}; some disciplines accept several. \cref{app:citestyles} points to the official guide, or a reliable summary, for each style.
 
-The table of style codes in \texttt{packages.tex} gives the \texttt{style=} value for each style; Chicago is loaded differently, as the comment there explains. \texttt{biblatex} has no ACM, AIP, or AMA style of its own, so the template supplies three: \texttt{njit-acm}, \texttt{njit-aip}, and \texttt{njit-ama}, in the files with those names in the template folder. AMA citations are superscript numbers that go after a period or comma; write \verb+as shown\autocite{Halmos1973}.+ and the period moves in front of the number. To compare the styles before you choose, open the folder \texttt{citation-styles} and compile \texttt{citation-styles.tex}: it shows every style in the table applied to the same sources, one style per page.
+The table of style codes in \texttt{packages.tex} gives the \texttt{style=} value for each style; Chicago is loaded differently, as the comment there explains. \texttt{biblatex} has no ACM, AIP, AMA, or ASCE style of its own, so the template supplies four: \texttt{njit-acm}, \texttt{njit-aip}, \texttt{njit-ama}, and \texttt{njit-asce}, in the files with those names in the template folder. ASCE citations give the author and year, as in ASCE journals. The template's \texttt{njit-vancouver} style separates all authors with commas, as the Vancouver guide asks, where \texttt{biblatex}'s own \texttt{vancouver} style puts ``and'' before the last one. AMA citations are superscript numbers that go after a period or comma; write \verb+as shown\autocite{Halmos1973}.+ and the period moves in front of the number. To compare the styles before you choose, open the folder \texttt{citation-styles} and compile \texttt{citation-styles.tex}: it shows every style in the table applied to the same sources, one style per page.
 
-\begin{table}[htbp]
+\begin{table}
 \centering
 \caption{Acceptable Citation Styles by Discipline}
 \label{tab:phd-styles}
@@ -121,7 +121,7 @@ Most documents the GSO returns have one of a handful of problems. Before you sen
 \cref{table:landscape_sample} lists the problems that most often cause the GSO to return a document, and how to avoid each one. It is also the sample's landscape table (\cref{subsec:landscape}).
 
 \begin{landscape}
-\begin{table}[htbp]
+\begin{table}
 \centering
 \caption{Common Reasons the GSO Returns a Document and How to Avoid Them}
 \label{table:landscape_sample}

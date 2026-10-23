@@ -32,7 +32,7 @@ For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.t
    - Body text double-spaced, including the abstract and acknowledgments, with 0.5-inch paragraph indents; headings, captions, tables, footnotes, lists, code, algorithms, and references single-spaced.
    - Front matter in the GSO's order: Abstract (unnumbered), Title Page (counts as i, unnumbered), Copyright Page (unnumbered; blank for a master's thesis), Approval Page (unnumbered), Biographical Sketch (first page number shown, iv), Dedication (optional), Acknowledgments, Table of Contents, List of Tables, List of Figures, List of Algorithms (optional), List of Symbols (optional), Glossary of Terms (optional).
    - Table of Contents starting at Chapter 1, with dot leaders and "(Continued)" headers on later pages.
-   - Five numbered heading levels, with four blank lines above each level 2 heading and three above each level 3 heading; untitled headings stop the build, and unnumbered ones are flagged.
+   - Five numbered heading levels, with one blank line above each level 2 heading and none above levels 3 to 5; untitled headings stop the build, and unnumbered ones are flagged.
    - Captions with a bold label and no colon, table titles above and figure captions below, numbered by chapter. `\floatsource{...}` puts the source of a borrowed figure on a 10 pt line below the caption, where it stays out of the List of Figures.
 
 2. **Information entered once.** The title, name, degree, and date are set in `biography.tex` and printed on the abstract, title, copyright, approval, and biography pages, so the pages cannot disagree. The title and author are also written into the PDF's document properties.
@@ -87,6 +87,8 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── njit-acm.bbx, .cbx      # ACM citation style (biblatex has none)
 ├── njit-aip.bbx, .cbx      # AIP citation style
 ├── njit-ama.bbx, .cbx      # AMA citation style
+├── njit-asce.bbx, .cbx     # ASCE citation style (author-year)
+├── njit-vancouver.bbx, .cbx # Vancouver style, commas between all authors
 ├── macros.tex              # Your notation and theorem environments
 ├── references.bib          # Bibliography database
 ├── abstract.tex            # Abstract text
@@ -107,6 +109,7 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── appendixC.tex           # Appendix C: the packages and their options
 ├── appendixD.tex           # Appendix D: the template's files
 ├── appendix.tex            # Alternative: a single appendix (see main.tex)
+├── supplementary.tex       # List of supplementary files, after the References
 ├── appendix-rules.tex      # Shared text, \input by appendix.tex and appendixA.tex
 ├── appendix-demo.tex       # Shared equations, figures, and table, \input by the same two
 ├── Graphics/               # Images for the figures

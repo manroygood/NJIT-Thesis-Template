@@ -34,7 +34,7 @@
 % Internal macros start with \njit@ so they cannot clash with packages.
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{njit_thesis}[2026/10/15 NJIT Dissertation LaTeX class]
+\ProvidesClass{njit_thesis}[2026/10/23 NJIT Dissertation LaTeX class]
 
 % =============================================================
 % 1. Class options and base class
@@ -99,13 +99,27 @@
 \captionsetup[table]{position=above, skip=6pt}
 \captionsetup[figure]{position=below, skip=6pt}
 
-% Source of a figure or table that you did not create: \floatsource{...}
-% after the \caption of a figure, or after the tabular of a table. It prints
-% "Source: ..." in 10 pt below the figure description, and it is not
-% copied into the List of Figures or List of Tables (GSO).
+% Source of a figure, table, or algorithm that you did not create:
+% \floatsource{...} after the \caption of a figure, after the tabular of a
+% table, or after the algorithmic environment of an algorithm. It prints
+% "Source: ..." in 10 pt, single-spaced, with no extra space above it, and
+% it is not copied into the List of Figures, Tables, or Algorithms (GSO).
 \newcommand{\floatsource}[1]{%
-  \par\vskip 4\p@
-  {\footnotesize\singlespacing\raggedright\parindent\z@ Source: #1\par}}
+  \par
+  {\footnotesize\setstretch{1}\raggedright\parindent\z@ Source: #1\par}}
+
+% Every figure, table, and algorithm is placed with [htbp] unless you give
+% another placement: here, at the top or bottom of a page, or on a page of
+% floats.
+\def\fps@figure{htbp}
+\def\fps@table{htbp}
+
+% A table too long for one page (longtable environment): put
+% \tablecontinued in the \endhead part, so every page after the first
+% starts with "Table X.x (Continued)" in bold. It is not listed in the
+% List of Tables (GSO).
+\newcommand{\tablecontinued}{%
+  \caption*{\textbf{\tablename~\thetable\ (Continued)}}}
 
 % No widow or orphan lines. Hyphenation uses the LaTeX defaults;
 % \emergencystretch lets TeX loosen a line slightly instead of letting
@@ -161,9 +175,12 @@
 \AtBeginEnvironment{itemize}{\njit@liststyle}
 % Source code and pseudocode are single-spaced (GSO). \par first, so the
 % paragraph before keeps double spacing.
-\AtBeginEnvironment{verbatim}{\par\setstretch{1}}
+% No extra space above or below verbatim text, so a line typed in it sits
+% in the paragraph like any other line (GSO).
+\AtBeginEnvironment{verbatim}{\par\setstretch{1}\topsep\z@\partopsep\z@}
 \AtBeginEnvironment{lstlisting}{\par\setstretch{1}}
 \AtBeginEnvironment{algorithmic}{\par\setstretch{1}}
+\AtBeginEnvironment{longtable}{\setstretch{1}}
 \AtBeginEnvironment{enumerate}{\njit@liststyle}
 
 \AtEndPreamble{%
@@ -256,36 +273,41 @@
     \vskip 20\p@
   }}
 
-% Headings that run over one line are single-spaced (GSO). The before-skips
-% leave four blank single-spaced lines between the preceding text and an
-% X.x heading, and three before an X.x.x heading (GSO).
-% A negative before-skip also keeps the first paragraph after the heading
-% flush left.
+% Headings that run over one line are single-spaced (GSO). An X.x heading
+% has one blank (double-spaced) line above it; X.x.x, X.x.x.x, and
+% X.x.x.x.x headings have none, so they sit on the next line (GSO).
+% The headings use \setstretch{1}, not \singlespacing, which would add a
+% line of space above them. The before-skips are negative, which also keeps
+% the first paragraph after the heading flush left.
+% A heading line is \njit@entrysep (one single-spaced line) below the line
+% before it, so each before-skip adds what is missing to reach the
+% double-spaced \baselineskip (one line) or twice it (one blank line).
 
 % Section headings (level 2, X.x): centered, bold
 \renewcommand\section{\@startsection{section}{1}{\z@}%
-  {-46\p@ \@plus -4\p@ \@minus -2\p@}%
+  {-\dimexpr2\baselineskip-\njit@entrysep\relax \@plus -2\p@}%
   {2.3ex \@plus .2ex}%
-  {\normalfont\normalsize\bfseries\centering\singlespacing}}
+  {\normalfont\normalsize\bfseries\centering\setstretch{1}}}
 
 % Subsection headings (level 3, X.x.x): flush left, bold
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-  {-32\p@ \@plus -4\p@ \@minus -2\p@}%
+  {-\dimexpr\baselineskip-\njit@entrysep\relax \@plus -1\p@}%
   {1.5ex \@plus .2ex}%
-  {\normalfont\normalsize\bfseries\singlespacing}}
+  {\normalfont\normalsize\bfseries\setstretch{1}}}
 
 % Level 4 (subsubsection, X.x.x.x): bold, sentence case, ends with a period,
 % text continues on the same line after a tab (0.5 in, GSO). Not in the TOC.
+% It runs into a double-spaced paragraph, so it needs no extra space above.
 \newcommand\njit@subsubsection{\@startsection{subsubsection}{3}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {-1sp}%
   {-0.5in}%
   {\normalfont\normalsize\bfseries}}
 % Level 5 (paragraph, X.x.x.x.x): italic, not bold, sentence case, ends with
 % a period, text begins on the next line. Not in the TOC.
 \newcommand\njit@paragraph{\@startsection{paragraph}{4}{\z@}%
-  {-3.25ex \@plus -1ex \@minus -.2ex}%
+  {-\dimexpr\baselineskip-\njit@entrysep\relax \@plus -1\p@}%
   {1.5ex \@plus .2ex}%
-  {\normalfont\normalsize\itshape\singlespacing}}
+  {\normalfont\normalsize\itshape\setstretch{1}}}
 % The class adds the closing period; do not type one in the title.
 \def\njit@periodhead#1#2{\@ifstar{\njit@periodhead@s{#1}{#2}}%
   {\@ifnextchar[{\njit@periodhead@o{#1}{#2}}{\njit@periodhead@n{#1}{#2}}}}
@@ -845,6 +867,43 @@
   \par\nobreak\vskip 30\p@
   \@afterindentfalse\@afterheading
 }
+
+% Supplementary files: files such as videos, data, or software archives
+% uploaded to ProQuest with the dissertation are listed in an extra
+% unlabeled appendix after the References (GSO). Put, after
+% \printbibliography,
+%   \supplementaryappendix          (title "Supplementary Files"), or
+%   \supplementaryappendix[Title]
+% followed by a short introduction and a supplementaryfiles table:
+%   \begin{supplementaryfiles}
+%     \suppfile{file name}{description}
+%   \end{supplementaryfiles}
+% The heading is "APPENDIX" over the title, with no letter, and the TOC
+% line reads "APPENDIX  TITLE", like a single appendix. Short text such as
+% computer code may follow the table.
+\newcommand{\supplementaryappendix}[1][Supplementary Files]{%
+  \par
+  \clearpage
+  \thispagestyle{plain}%
+  \addcontentsline{toc}{appendix}{\protect\numberline{\appendixname}\protect\MakeUppercase{#1}}%
+  \begin{center}\singlespacing
+    \bfseries APPENDIX\par
+    \vskip 12pt
+    \MakeUppercase{#1}
+  \end{center}
+  \par\nobreak\vskip 30\p@
+  \@afterindentfalse\@afterheading
+}
+% Two-column list of the supplementary files: file name and description,
+% single-spaced, one blank line between files; it can break across pages.
+\newenvironment{supplementaryfiles}{%
+  \par\setstretch{1}%
+  \longtable{@{}>{\raggedright\arraybackslash}p{0.34\linewidth}
+              >{\raggedright\arraybackslash}p{\dimexpr0.66\linewidth-2\tabcolsep\relax}@{}}
+  \textbf{File} & \textbf{Description} \\[\njit@entrysep]
+  \endhead}%
+  {\endlongtable}
+\newcommand{\suppfile}[2]{\texttt{#1} & #2 \\[\njit@entrysep]}
 
 % =============================================================
 % 11. Footnotes and utility macros

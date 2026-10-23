@@ -18,14 +18,14 @@ Cross-references like \cref{eq:app1} and \cref{eq:app2} resolve cleanly.
 
 Figures placed within the appendix also receive appropriate appendix numbering, as shown in \cref{fig:app_numeral1} and \cref{fig:app_numeral2}.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics[width=2.5in]{drop_cap_1.png}
 \caption{An ornamental numeral 1, the first appendix demonstration figure.}
 \label{fig:app_numeral1}
 \end{figure}
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \includegraphics[width=2.5in]{drop_cap_2.png}
 \caption{An ornamental numeral 2, the second appendix demonstration figure.}
@@ -40,7 +40,7 @@ Here is an example of a table in an appendix showing how you might list websites
 \end{verbatim}
 For an address printed in full, \verb+\url+ breaks long addresses at any character, thanks to the \texttt{xurl} package.
 
-\begin{table}[htbp]
+\begin{table}
 \centering
 \caption{Free Resources for Learning \LaTeX}
 \label{table:latexresources}
@@ -72,3 +72,78 @@ CTAN & \href{https://ctan.org}{\nolinkurl{ctan.org}} & Documentation for every p
 \hline
 \end{tabularx}
 \end{table}
+
+% \clearpage prints the floating Table A.1 first, so the tables stay in
+% order; a longtable does not float and would otherwise come out first.
+\clearpage
+\section{Tables Longer Than One Page}
+
+A table too long for one page is typed with the \texttt{longtable} environment instead of a \texttt{table} environment, as in \cref{table:longsample}. It does not float: it starts where it is typed and continues onto as many pages as it needs. Its title goes in the \verb+\endfirsthead+ part; the \verb+\endhead+ part, which starts with the class command \verb+\tablecontinued+, is repeated at the top of every later page, so each of them begins with ``\textbf{Table X.x (Continued)}'' and the column headings (GSO). The continued title is not listed again in the List of Tables.
+
+\begin{longtable}{>{\centering\arraybackslash}p{0.15\linewidth}l>{\raggedright\arraybackslash}p{0.45\linewidth}}
+\caption{Commands for Common Mathematical Symbols}
+\label{table:longsample} \\
+\toprule
+\textbf{Symbol} & \textbf{Command} & \textbf{Meaning} \\
+\midrule
+\endfirsthead
+\tablecontinued \\
+\toprule
+\textbf{Symbol} & \textbf{Command} & \textbf{Meaning} \\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+$\alpha$ & \verb+\alpha+ & Lowercase alpha \\
+$\beta$ & \verb+\beta+ & Lowercase beta \\
+$\gamma$ & \verb+\gamma+ & Lowercase gamma \\
+$\delta$ & \verb+\delta+ & Lowercase delta \\
+$\epsilon$ & \verb+\epsilon+ & Lowercase epsilon \\
+$\zeta$ & \verb+\zeta+ & Lowercase zeta \\
+$\eta$ & \verb+\eta+ & Lowercase eta \\
+$\theta$ & \verb+\theta+ & Lowercase theta \\
+$\iota$ & \verb+\iota+ & Lowercase iota \\
+$\kappa$ & \verb+\kappa+ & Lowercase kappa \\
+$\lambda$ & \verb+\lambda+ & Lowercase lambda \\
+$\mu$ & \verb+\mu+ & Lowercase mu \\
+$\nu$ & \verb+\nu+ & Lowercase nu \\
+$\xi$ & \verb+\xi+ & Lowercase xi \\
+$\pi$ & \verb+\pi+ & Lowercase pi \\
+$\rho$ & \verb+\rho+ & Lowercase rho \\
+$\sigma$ & \verb+\sigma+ & Lowercase sigma \\
+$\tau$ & \verb+\tau+ & Lowercase tau \\
+$\upsilon$ & \verb+\upsilon+ & Lowercase upsilon \\
+$\phi$ & \verb+\phi+ & Lowercase phi \\
+$\chi$ & \verb+\chi+ & Lowercase chi \\
+$\psi$ & \verb+\psi+ & Lowercase psi \\
+$\omega$ & \verb+\omega+ & Lowercase omega \\
+$\varepsilon$ & \verb+\varepsilon+ & Variant of epsilon \\
+$\vartheta$ & \verb+\vartheta+ & Variant of theta \\
+$\varpi$ & \verb+\varpi+ & Variant of pi \\
+$\varphi$ & \verb+\varphi+ & Variant of phi \\
+$\Gamma$ & \verb+\Gamma+ & Uppercase gamma \\
+$\Delta$ & \verb+\Delta+ & Uppercase delta \\
+$\Theta$ & \verb+\Theta+ & Uppercase theta \\
+$\Lambda$ & \verb+\Lambda+ & Uppercase lambda \\
+$\Xi$ & \verb+\Xi+ & Uppercase xi \\
+$\Pi$ & \verb+\Pi+ & Uppercase pi \\
+$\Sigma$ & \verb+\Sigma+ & Uppercase sigma \\
+$\Upsilon$ & \verb+\Upsilon+ & Uppercase upsilon \\
+$\Phi$ & \verb+\Phi+ & Uppercase phi \\
+$\Psi$ & \verb+\Psi+ & Uppercase psi \\
+$\Omega$ & \verb+\Omega+ & Uppercase omega \\
+$\nabla$ & \verb+\nabla+ & Gradient (nabla) \\
+$\partial$ & \verb+\partial+ & Partial derivative \\
+$\infty$ & \verb+\infty+ & Infinity \\
+$\sum$ & \verb+\sum+ & Summation \\
+$\prod$ & \verb+\prod+ & Product \\
+$\int$ & \verb+\int+ & Integral \\
+$\leq$ & \verb+\leq+ & Less than or equal to \\
+$\geq$ & \verb+\geq+ & Greater than or equal to \\
+$\neq$ & \verb+\neq+ & Not equal to \\
+$\approx$ & \verb+\approx+ & Approximately equal to \\
+$\in$ & \verb+\in+ & Element of \\
+$\forall$ & \verb+\forall+ & For all \\
+$\to$ & \verb+\to+ & Maps to, tends to \\
+$\times$ & \verb+\times+ & Times, cross product \\
+\end{longtable}

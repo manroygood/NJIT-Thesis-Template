@@ -1,10 +1,10 @@
 % !TEX TS-program = pdflatexmk
 % Vancouver. One page of the citation-style samples; see style-page.tex.
 \newcommand{\stylename}{Vancouver}
-\newcommand{\stylecode}{vancouver}
+\newcommand{\stylecode}{njit-vancouver}
 \newcommand{\stylefeatures}{%
   \item Citations are numbers in order of first citation, in square brackets; the reference list numbers them 1., 2., \ldots
-  \item Family name, then initials without periods: Knuth DE. This \texttt{biblatex} style puts ``and'' before the last author, where the Vancouver guide uses only commas.
+  \item Family name, then initials without periods: Knuth DE, Plass MF. Authors are separated by commas only, with no ``and''; the template's \texttt{njit-vancouver} style changes this one detail of the \texttt{biblatex} \texttt{vancouver} style.
   \item No italics or quotation marks: article, book, and journal titles all appear as typed.
   \item An article ends with year, volume, and shortened page range: \emph{1981; 11:1119--84}.
   \item Books give \emph{City: Publisher, Year}; web pages give \emph{Available from:} the URL and the date you accessed it.}

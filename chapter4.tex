@@ -27,12 +27,12 @@ Every figure must be placed in a \texttt{figure} environment with a \verb+\capti
 \item A page that holds only figures or tables starts them at the top of the page.
 \item Refer to every figure in the text, before or near where it appears, using \verb+\cref+ or \verb+\ref+ (\cref{sec:crossrefs}). (Not handled by the class.)
 \item A caption should say what the figure shows and give anything the reader needs to interpret it. Keep advice and discussion in the text, because the whole caption is repeated in the List of Figures.
-\item The source of a figure you did not create does \textbf{not} go in the caption, so it does not appear in the List of Figures. Put it on its own line below the caption, in 10~pt type, with \verb+\floatsource{...}+ after the \verb+\caption+, as in \cref{fig:eberhardt} (GSO).
+\item The source of a figure you did not create does \textbf{not} go in the caption, so it does not appear in the List of Figures. Put it on its own line below the caption, single-spaced, in 10~pt type, with \verb+\floatsource{...}+ after the \verb+\caption+, as in \cref{fig:eberhardt} (GSO).
 \item Run spell-check on the text \emph{inside} your figures, such as axis labels and legends; the GSO checks it. (Not handled by the class.)
 \end{itemize}
-Make sure figures are legible at their printed size: axis labels and legends should be no smaller than about 8--10\,pt after scaling. \Cref{sec:exportplots} explains how to export plots at the right size from MATLAB, Mathematica, and Python. Let \LaTeX\ place floats; the \verb+[htbp]+ placement option used here is a good default, and forcing positions with \verb+[H]+ usually produces large gaps.
+Make sure figures are legible at their printed size: axis labels and legends should be no smaller than about 8--10\,pt after scaling. \Cref{sec:exportplots} explains how to export plots at the right size from MATLAB, Mathematica, and Python. Let \LaTeX\ place floats. The class gives every figure, table, and algorithm the placement option \verb+[htbp]+ by default, which lets \LaTeX\ put it here, at the top or bottom of a page, or on a page of floats, so the sample never types an option after \verb+\begin{figure}+. You should usually not change it: forcing a position, for example with \verb+[h]+ or \verb+[H]+, usually produces large gaps.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 % Place a photograph at Graphics/EberhardtHall.jpg. Until then a framed
 % placeholder of the same size is printed, so the document still compiles.
@@ -46,7 +46,7 @@ Make sure figures are legible at their printed size: axis labels and legends sho
 
 Multiple sub-illustrations can be combined into a single floating figure using the \texttt{subfigure} environment provided by the \texttt{subcaption} package, as shown in \cref{fig:letters}.
 
-\begin{figure}[htbp]
+\begin{figure}
 \centering
 \begin{subfigure}[b]{0.42\textwidth}
     \centering
@@ -96,17 +96,18 @@ ax.plot(x, y)
 fig.savefig("Graphics/plot.pdf")
 \end{verbatim}
 \end{itemize}
+
 Another option is to draw the plot in \LaTeX\ itself with the \texttt{pgfplots} package, which sets the labels in the document's own fonts and accepts any \LaTeX\ math in them. It takes more work, and the package is not loaded by the template. MATLAB users can convert existing figures to \texttt{pgfplots} code with the \texttt{matlab2tikz} script. Whatever you use, check that the fonts in your figures are embedded in the final PDF (\cref{sec:checklist}).
 
 \section{Using Figures You Did Not Create}
 \label{sec:figurepermission}
 
-Credit and permission are separate questions. Every figure, photograph, or table you did not create needs a credit on a source line below its caption, typed with \verb+\floatsource+, as in \cref{fig:eberhardt}. Some also need written permission from the copyright holder, because a dissertation is published, unlike a class paper.
+Credit and permission are separate questions. Every figure, table, or algorithm you did not create needs a credit. Place the credit below the figure description or table, single-spaced. Type it with \verb+\floatsource+, followed by the reference in your chosen citation style, as in \cref{fig:eberhardt} and \cref{alg:bisection}. Some also need written permission from the copyright holder, because a dissertation is published, unlike a class paper.
 \begin{itemize}
-\item \textbf{No permission needed:} works in the public domain, such as most images made by U.S.\ federal agencies, and works under a license that allows reuse, such as most Creative Commons licenses. Follow the license's terms for the credit line.
-\item \textbf{Permission usually needed:} figures copied from journal articles and books. Most publishers grant reuse in a dissertation quickly and without charge; look for a ``Rights and permissions'' link on the article's web page.
-\item \textbf{Your own published papers:} whether you may reuse a paper, or figures from it, depends on the agreement you signed with its publisher. Check the agreement for each paper. A reference librarian at the NJIT Library can help you work out what it allows.
-\item \textbf{Redrawn figures:} a figure you redraw from someone else's design or data is still adapted from their work. It needs a credit, and it may need permission if it closely copies the original.
+\item \textbf{No permission needed:} Works in the public domain, such as most images made by U.S.\ federal agencies, and works under a license that allows reuse, such as most Creative Commons licenses. Follow the license's terms for the credit line.
+\item \textbf{Permission usually needed:} Figures copied from journal articles and books. Most publishers grant reuse in a dissertation quickly and without charge; look for a ``Rights and permissions'' link on the article's web page.
+\item \textbf{Your own published papers:} Whether you may reuse a paper, or figures from it, depends on the agreement you signed with its publisher. Check the agreement for each paper. A reference librarian at the NJIT Library can help you work out what it allows.
+\item \textbf{Redrawn figures:} A figure you redraw from someone else's design or data is still adapted from their work. It needs a credit, and it may need permission if it closely copies the original.
 \end{itemize}
 Typical credit lines are ``Reprinted from [12], with permission from Elsevier'' and ``Adapted from [12].'' Keep the permission letters or license records. If you are unsure whether you need permission, ask the NJIT Library before you submit.
 
@@ -117,10 +118,11 @@ According to NJIT style rules:
 \begin{itemize}
 \item Table titles are placed \textbf{above} the table.
 \item Table titles are formatted in title case and do \textbf{not} end with a period.
-\item The table text is single-spaced.
+\item The table text is single-spaced, and its size can be reduced to 10 points (\verb+\footnotesize+).
 \item Tables are numbered by chapter, like figures.
-\item Do not split a table across pages if it fits on a single page (GSO).
-\item A table too long for one page must show ``Table X.x (Continued)'' at the top of each page after the first (GSO). Set it with the \texttt{longtable} environment and put \verb+\caption[]{(Continued)}+ in its \verb+\endhead+ section.
+\item Do not split a table across pages if it fits on a single page (GSO). A floating \texttt{table} environment is never split: if the table does not fit in the space left on the page, \LaTeX\ moves it to the next page, or to a page of its own.
+\item A table too long for one page must show ``\textbf{Table X.x (Continued)}'' in bold at the top of each page after the first (GSO). Set it with the \texttt{longtable} environment and put the class command \verb+\tablecontinued+ in its \verb+\endhead+ section, as in \cref{table:longsample}. The continued title is not listed again in the List of Tables.
+\item The source of a table you did not create goes on a line below the table itself, not below its title, typed with \verb+\floatsource+ after the \texttt{tabular}.
 \item The title appears word for word in the List of Tables.
 \item Put the column units in the column header, not in every cell.
 \end{itemize}

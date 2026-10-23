@@ -18,7 +18,7 @@ The Graduate Studies Office (GSO) checks every dissertation against its formatti
 
 \section{The Parts of a Dissertation, in Order}
 
-An NJIT dissertation consists of three primary divisions: the preliminary front matter, the main body (chapters and appendices), and the back matter (references). These components appear in the following strict order:
+An NJIT dissertation consists of three primary divisions: the preliminary front matter, the main body (chapters and appendices), and the back matter (references, and an optional list of supplementary files). These components appear in the following strict order:
 
 \begin{itemize}
 \emergencystretch=2em
@@ -54,6 +54,7 @@ An NJIT dissertation consists of three primary divisions: the preliminary front 
 \item \textbf{Appendices}: Supplementary mathematical proofs, data tables, or algorithm listings. NJIT enforces a strict rule: if there is only a \textbf{single appendix}, it must be labeled \textbf{APPENDIX} (without a letter like "A"). If there are \textbf{multiple appendices}, they must be numbered \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc. This template fully automates both cases; \cref{app:appendixA} explains how, and what material belongs in an appendix.
 
 \item \textbf{References}: The bibliography, styled consistently and sorted according to the field's standard conventions. Generated from \texttt{references.bib} via \texttt{biblatex} and \texttt{biber}.
+\item \textbf{Supplementary Files appendix} (optional): Files such as videos, data sets, and software archives can be uploaded to ProQuest along with the dissertation. If you upload any, list them in an extra, unlabeled appendix that comes after the References (GSO). Short sections of text, such as computer code, can be included there as well. The class command \verb+\supplementaryappendix+ prints its heading; \texttt{supplementary.tex} shows how to list the files, and produces the last page of this sample.
 \end{itemize}
 
 \section{What the Template Does for You}

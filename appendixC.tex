@@ -47,7 +47,7 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item \texttt{listings}: Typesets source code, as in \cref{sec:source_code}. The \verb+\lstset+ commands that follow it choose a small typewriter font, no line numbers, MATLAB as the default language, line breaking for long lines, blue keywords, red emphasis for a few control words, and dark green comments, which stay readable when printed. The colors come from \texttt{xcolor}, which the class file loads. Change \texttt{language} to match your own code.
 
-\item \texttt{biblatex}: Formats citations and the bibliography, with \texttt{biber} as the back end. The option \texttt{style=numeric} sets the citation style; change it to one of the codes in the table of styles just above it in \texttt{packages.tex} (see \cref{sec:bibliography}). Three of those codes, \texttt{njit-acm}, \texttt{njit-aip}, and \texttt{njit-ama}, are styles that come with the template (see \cref{sec:filedescriptions}). The other options are:
+\item \texttt{biblatex}: Formats citations and the bibliography, with \texttt{biber} as the back end. The option \texttt{style=numeric} sets the citation style; change it to one of the codes in the table of styles just above it in \texttt{packages.tex} (see \cref{sec:bibliography}). Five of those codes, \texttt{njit-acm}, \texttt{njit-aip}, \texttt{njit-ama}, \texttt{njit-asce}, and \texttt{njit-vancouver}, are styles that come with the template (see \cref{sec:filedescriptions}). The other options are:
   \texttt{backend=biber}, the program that processes \texttt{references.bib};
   \texttt{doi=false}, \texttt{url=false}, and \texttt{isbn=false}, which leave DOIs, URLs, and ISBNs out of the reference list (a URL still prints for an \texttt{@online} entry, or for any entry with the field \verb+options = {url=true}+);
   \texttt{giveninits=true}, which shortens given names to initials (\texttt{njit-acm} ignores it, because ACM spells out given names);
@@ -65,14 +65,14 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 The class file \texttt{njit\_thesis.cls} loads these packages itself, because the NJIT layout depends on them:
 \begin{itemize}
-\item \texttt{geometry}, for the 1.5-inch left margin and 1-inch top, bottom, and right margins;
-\item \texttt{setspace}, for double spacing of the text and single spacing of headings, captions, lists, and references;
-\item \texttt{pdflscape}, for landscape pages;
-\item \texttt{caption}, for the caption layout (bold label, two spaces, no colon; table titles above, figure captions below);
-\item \texttt{etoolbox}, for the hooks the class uses internally;
-\item \texttt{xcolor}, which defines colors by name; the class prints the titles of unnumbered sections in red, and the code listings in \texttt{packages.tex} use it for their colors;
-\item \texttt{array}, which extends column specifications, for example \verb+>{\raggedright}p{2in}+ to set the alignment inside a paragraph column; \texttt{tabularx} depends on it;
-\item \texttt{longtable}, for the two-column List of Symbols and Glossary of Terms, which can break across pages.
+\item \texttt{geometry}: Sets the 1.5-inch left margin and the 1-inch top, bottom, and right margins.
+\item \texttt{setspace}: Double-spaces the text and single-spaces headings, captions, lists, and references.
+\item \texttt{pdflscape}: Provides the \texttt{landscape} environment for landscape pages.
+\item \texttt{caption}: Sets the caption layout: a bold label followed by two spaces and no colon, with table titles above the table and figure captions below the figure.
+\item \texttt{etoolbox}: Provides the hooks the class uses internally.
+\item \texttt{xcolor}: Defines colors by name. The class prints the titles of unnumbered sections in red, and the code listings in \texttt{packages.tex} use it for their colors.
+\item \texttt{array}: Extends column specifications, for example \verb+>{\raggedright}p{2in}+ to set the alignment inside a paragraph column. \texttt{tabularx} depends on it.
+\item \texttt{longtable}: Sets the two-column List of Symbols and Glossary of Terms, and tables too long for one page, such as \cref{table:longsample}, which can break across pages.
 \end{itemize}
 
 \section{If a Package Is Missing}

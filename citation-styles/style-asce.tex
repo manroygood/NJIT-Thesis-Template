@@ -1,10 +1,10 @@
 % !TEX TS-program = pdflatexmk
 % ASCE. One page of the citation-style samples; see style-page.tex.
 \newcommand{\stylename}{ASCE}
-\newcommand{\stylecode}{numeric}
+\newcommand{\stylecode}{njit-asce}
 \newcommand{\stylefeatures}{%
-  \item \texttt{biblatex} has no ASCE style, so this page uses the generic \texttt{numeric} style. ASCE journals cite by author and year, so check your references against the ASCE guide in Appendix~B of the sample.
-  \item Citations are numbers in square brackets, [1]; the reference list is in alphabetical order and numbered in that order.
-  \item Initials come before the family name; article titles are in quotation marks; book and journal titles are italic.
-  \item An article ends with \emph{In: Journal 11.11 (1981), pp.~1119--1184}.}
+  \item Citations give the author and year in parentheses, (Knuth and Plass 1981), with \texttt{\textbackslash cite} or \texttt{\textbackslash autocite}; \texttt{\textbackslash textcite} gives Knuth and Plass (1981).
+  \item \texttt{biblatex} has no ASCE style, so the template supplies \texttt{njit-asce}, built on \texttt{authoryear}.
+  \item Family name, then initials, for every author; the year, in parentheses, follows the authors. Article titles are in quotation marks; book and journal titles are italic.
+  \item ASCE abbreviates journal names, but NJIT dissertations write them out in full.}
 \input{style-page}

@@ -113,9 +113,9 @@ end
 
 Source code and pseudocode are single-spaced (GSO); the class does this for you. Syntax highlighting in color is allowed.
 
-\textbf{Pseudocode.} To describe an algorithm without tying it to one programming language, write it as pseudocode with the \texttt{algorithmic} environment from the \texttt{algpseudocode} package, and put it in an \texttt{algorithm} environment, as in \cref{alg:bisection}. The \texttt{algorithm} environment works like a table: give it a \verb+\caption+, typed in title case, and a \verb+\label+. The class numbers it by chapter, sets its title above it between two rules, and lists it in the List of Algorithms. Do not put an algorithm in a \texttt{figure} environment; the GSO does not count it as a figure. Like a figure, an algorithm must fit on one page.
+\textbf{Pseudocode.} To describe an algorithm without tying it to one programming language, write it as pseudocode with the \texttt{algorithmic} environment from the \texttt{algpseudocode} package, and put it in an \texttt{algorithm} environment, as in \cref{alg:bisection}. The \texttt{algorithm} environment works like a table: give it a \verb+\caption+, typed in title case, and a \verb+\label+. The class numbers it by chapter, sets its title above it between two rules, and lists it in the List of Algorithms. Do not put an algorithm in a \texttt{figure} environment; the GSO does not count it as a figure. Like a figure, an algorithm must fit on one page. An algorithm taken or adapted from another source, such as a textbook, needs a credit line like the one for a figure you did not create (\cref{sec:figurepermission}): type \verb+\floatsource{...}+ after the \texttt{algorithmic} environment, as in \cref{alg:bisection}.
 
-\begin{algorithm}[htbp]
+\begin{algorithm}
 \caption{Bisection Method for a Root of a Continuous Function}
 \label{alg:bisection}
 \begin{algorithmic}[1]
@@ -131,6 +131,7 @@ Source code and pseudocode are single-spaced (GSO); the class does this for you.
 \EndWhile
 \State \Return $(a+b)/2$
 \end{algorithmic}
+\floatsource{Adapted from \cite{BurdenFaires2011}, Algorithm~2.1.}
 \end{algorithm}
 
 \section{Cross-References and Links}

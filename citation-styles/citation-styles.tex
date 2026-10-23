@@ -10,10 +10,11 @@
 % from Terminal, run  latexmk  in this folder.
 
 \documentclass[12pt,letterpaper]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[left=1.5in,right=1in,top=1in,bottom=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext,newtxmath}
 \usepackage{booktabs}
+\usepackage{setspace}
 \usepackage{pdfpages}
 \usepackage[hidelinks]{hyperref}
 
@@ -28,17 +29,25 @@
 
 \begin{document}
 \thispagestyle{empty}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.6\baselineskip}
+% Laid out like a page of the dissertation: 1.5 in left margin, a level 1
+% heading, double-spaced text with 0.5 in paragraph indents, and a
+% single-spaced table.
+\setlength{\parindent}{0.5in}
+\doublespacing
 
-{\Large\bfseries Citation Styles for NJIT Theses and Dissertations\par}
+\begin{center}\setstretch{1}\normalsize\bfseries
+CITATION STYLES FOR NJIT THESES AND DISSERTATIONS
+\end{center}
+\vspace{12pt}
 
-The sample thesis that comes with this template lists, in its Table~5.1, the citation styles that the Graduate Studies Office accepts for each discipline. This document shows a sample of each of those styles, so that you can make an informed decision.
+\noindent The sample dissertation that comes with this template lists, in its Table~5.1, the citation styles that the Graduate Studies Office accepts for each discipline. This document shows a sample of each of those styles, so that you can make an informed decision.
 
 Each of the following pages is devoted to one style. It lists the style's main distinguishing features, then gives a paragraph that cites the same sources from the template's \texttt{references.bib} on every page, and ends with the reference list the style produces from them. Compare the pages for the styles your discipline accepts, and ask your advisor which one your field prefers.
 
+Choose your citation style early, before you write much of the text, because the style changes how you write sentences that mention a source. In a style that cites with superscript numbers, such as AMA, or ACS and AIP when they cite with \verb+\autocite+, the number is not a word of the sentence: you cannot write ``In Reference\textsuperscript{5} it is shown that \ldots'' or ``as shown in\textsuperscript{5}''. You must name the authors instead, as in ``Knuth and Plass\textsuperscript{5} showed that \ldots''. In an author-year style, such as APA, Chicago, or Harvard, the authors' names are already part of the citation, and \verb+\textcite+ makes them part of the sentence: ``Knuth and Plass (1981) showed that \ldots''. Changing to a style of a different kind late in the work means rewriting these sentences by hand throughout the dissertation.
+
 \begin{center}
-\small
+\small\setstretch{1}
 \begin{tabular}{@{}lll@{}}
 \toprule
 \textbf{Style} & \textbf{Setting in \texttt{packages.tex}} & \textbf{Citations in the text} \\
@@ -49,17 +58,17 @@ AIP       & \texttt{style=njit-aip}  & Numbers, [1] or superscript \\
 AMA       & \texttt{style=njit-ama}  & Superscript numbers \\
 AMS       & \texttt{style=alphabetic} & Labels, [KP81] \\
 APA       & \texttt{style=apa}       & Author and year \\
-ASCE      & \texttt{style=numeric}   & Numbers, [1] \\
+ASCE      & \texttt{style=njit-asce} & Author and year \\
 Chicago   & \texttt{biblatex-chicago} package & Author and year \\
 Harvard   & \texttt{style=authoryear} & Author and year \\
 IEEE      & \texttt{style=ieee}      & Numbers, [1] \\
 TRB       & \texttt{style=numeric}   & Numbers, [1] \\
-Vancouver & \texttt{style=vancouver} & Numbers, [1] \\
+Vancouver & \texttt{style=njit-vancouver} & Numbers, [1] \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-To use a style, set \texttt{style=} on the \texttt{biblatex} line in \texttt{packages.tex} to the value in the table, and compile the thesis again; nothing else changes. Chicago is the exception: replace the \texttt{biblatex} line as the comment in \texttt{packages.tex} shows. The ACM, AIP, and AMA styles come with the template, because \texttt{biblatex} has none of its own.
+To use a style, set \texttt{style=} on the \texttt{biblatex} line in \texttt{packages.tex} to the value in the table, and compile the thesis again; nothing else changes. Chicago is the exception: replace the \texttt{biblatex} line as the comment in \texttt{packages.tex} shows. The ACM, AIP, AMA, and ASCE styles come with the template, because \texttt{biblatex} has none of its own, and so does a Vancouver style that separates the authors with commas only, as the Vancouver guide asks.
 
 A style can format only what is in \texttt{references.bib}. Type titles in title case and protect proper nouns and acronyms with braces, as in \texttt{\{NumPy\}}, so that styles which change capitalization keep them; write journal names out in full; and fill in every field a style needs. Appendix~B of the sample points to the official guide for each style, so you can check the output.
 \clearpage
