@@ -8,8 +8,11 @@
 %   period. It appears word for word in the List of Tables.
 % - Tables are numbered by chapter (Table 1.1).
 % - Table text is single-spaced. Do not split a table across pages if it
-%   fits on a single page; a longer table shows "Table X.x (Continued)" on
-%   each page after the first.
+%   fits on a single page; a longer table is a longtable with \tablecontinued
+%   in its \endhead, which prints "Table X.x (Continued)" on each page after
+%   the first (see Table A.2 in appendix-demo.tex).
+% - The source of a borrowed table goes below the table: \floatsource{...}
+%   after the tabular.
 % Refer to every table in the text with \cref{label}.
 
 \begin{table}
@@ -39,7 +42,7 @@ Headings & Every heading numbered and titled; level 2 in title case, levels 3 to
 \hline
 Table of Contents & Starts at Chapter 1; chapter titles in capitals; dot leaders; ``(Continued)'' on later pages & Automatic \\
 \hline
-Captions & Table titles above, figure captions below; numbered by chapter; table titles in title case with no final period; the source of a borrowed figure on a 10 pt line below the caption & Layout automatic; you write the titles and the \texttt{\textbackslash floatsource} line \\
+Captions & Table titles above, figure captions below; numbered by chapter; table titles in title case with no final period; the source of a borrowed figure, table, or algorithm on a single-spaced 10 pt line below it & Layout automatic; you write the titles and the \texttt{\textbackslash floatsource} line \\
 \hline
 Appendices & One appendix is ``APPENDIX''; several are ``APPENDIX A'', ``APPENDIX B'', and so on; each opens with introductory text & Labels automatic; you write the introduction \\
 \hline

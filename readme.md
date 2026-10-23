@@ -32,8 +32,9 @@ For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.t
    - Body text double-spaced, including the abstract and acknowledgments, with 0.5-inch paragraph indents; headings, captions, tables, footnotes, lists, code, algorithms, and references single-spaced.
    - Front matter in the GSO's order: Abstract (unnumbered), Title Page (counts as i, unnumbered), Copyright Page (unnumbered; blank for a master's thesis), Approval Page (unnumbered), Biographical Sketch (first page number shown, iv), Dedication (optional), Acknowledgments, Table of Contents, List of Tables, List of Figures, List of Algorithms (optional), List of Symbols (optional), Glossary of Terms (optional).
    - Table of Contents starting at Chapter 1, with dot leaders and "(Continued)" headers on later pages.
+   - An optional unlabeled appendix after the References that lists supplementary files uploaded to ProQuest (`\supplementaryappendix`, in `supplementary.tex`).
    - Five numbered heading levels, with one blank line above each level 2 heading and none above levels 3 to 5; untitled headings stop the build, and unnumbered ones are flagged.
-   - Captions with a bold label and no colon, table titles above and figure captions below, numbered by chapter. `\floatsource{...}` puts the source of a borrowed figure on a 10 pt line below the caption, where it stays out of the List of Figures.
+   - Captions with a bold label and no colon, table titles above and figure captions below, numbered by chapter. `\floatsource{...}` puts the source of a borrowed figure, table, or algorithm on a single-spaced 10 pt line below it, where it stays out of the lists. Floats are placed with `[htbp]` by default, and `\tablecontinued` gives a table that runs over several pages a bold "Table X.x (Continued)" title on each later page.
 
 2. **Information entered once.** The title, name, degree, and date are set in `biography.tex` and printed on the abstract, title, copyright, approval, and biography pages, so the pages cannot disagree. The title and author are also written into the PDF's document properties.
 
@@ -41,7 +42,7 @@ For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.t
 
 4. **Appendices labeled the GSO's way.** One appendix (`\oneappendix{Title}` in `appendix.tex`) is labeled APPENDIX with no letter; several (`\chapter{Title}` in `appendixA.tex`, `appendixB.tex`, ...) are labeled APPENDIX A, APPENDIX B, and so on.
 
-5. **A sample that teaches.** The sample demonstrates every heading level, theorem environments, numbered equations, figures and subfigures, `booktabs` and grid tables, a landscape table, code listings, numbered algorithms with a List of Algorithms, units with `siunitx`, footnotes, cross-references with `cleveref`, and a two-column List of Symbols and Glossary of Terms. It also covers exporting plots from MATLAB, Mathematica, and Python, permission to reuse figures, choosing a citation style, and a checklist of the problems that most often cause the GSO to return a document.
+5. **A sample that teaches.** The sample demonstrates every heading level, theorem environments, numbered equations, figures and subfigures, `booktabs` and grid tables, a landscape table, a table that runs over several pages, code listings, numbered algorithms with a List of Algorithms, units with `siunitx`, footnotes, cross-references with `cleveref`, and a two-column List of Symbols and Glossary of Terms. It also covers exporting plots from MATLAB, Mathematica, and Python, permission to reuse figures, choosing a citation style, and a checklist of the problems that most often cause the GSO to return a document.
 
 ---
 

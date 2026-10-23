@@ -175,9 +175,14 @@
 \AtBeginEnvironment{itemize}{\njit@liststyle}
 % Source code and pseudocode are single-spaced (GSO). \par first, so the
 % paragraph before keeps double spacing.
-% No extra space above or below verbatim text, so a line typed in it sits
-% in the paragraph like any other line (GSO).
-\AtBeginEnvironment{verbatim}{\par\setstretch{1}\topsep\z@\partopsep\z@}
+% Verbatim text is single-spaced, and the lines just above and below it are
+% one double-spaced line away, as if it were a line of the paragraph, with
+% no extra paragraph space (GSO).
+\AtBeginEnvironment{verbatim}{%
+  \par\topsep\dimexpr\baselineskip-\njit@entrysep\relax\partopsep\z@
+  \setstretch{1}}
+% Below it, the next line already has double-spaced leading of its own.
+\AtEndEnvironment{verbatim}{\@topsepadd\z@}
 \AtBeginEnvironment{lstlisting}{\par\setstretch{1}}
 \AtBeginEnvironment{algorithmic}{\par\setstretch{1}}
 \AtBeginEnvironment{longtable}{\setstretch{1}}

@@ -118,7 +118,7 @@ According to NJIT style rules:
 \begin{itemize}
 \item Table titles are placed \textbf{above} the table.
 \item Table titles are formatted in title case and do \textbf{not} end with a period.
-\item The table text is single-spaced, and its size can be reduced to 10 points (\verb+\footnotesize+).
+\item The table text is single-spaced. It may be set in 10~pt type: put \verb+\footnotesize+ after \verb+\centering+ in the \texttt{table} environment.
 \item Tables are numbered by chapter, like figures.
 \item Do not split a table across pages if it fits on a single page (GSO). A floating \texttt{table} environment is never split: if the table does not fit in the space left on the page, \LaTeX\ moves it to the next page, or to a page of its own.
 \item A table too long for one page must show ``\textbf{Table X.x (Continued)}'' in bold at the top of each page after the first (GSO). Set it with the \texttt{longtable} environment and put the class command \verb+\tablecontinued+ in its \verb+\endhead+ section, as in \cref{table:longsample}. The continued title is not listed again in the List of Tables.
