@@ -44,6 +44,32 @@ Make sure figures are legible at their printed size: axis labels and legends sho
 \floatsource{\cite{EberhardtWiki}. Photograph by Ajay Suresh, licensed under CC~BY~4.0.}
 \end{figure}
 
+A plot is read at its printed size, often on paper and sometimes in black and white. \Cref{fig:badplot,fig:goodplot} plot the same two curves. \Cref{fig:badplot} has faults that are common in dissertations, and the red cross marks it as an example not to follow:
+\begin{itemize}
+\item The curves are hairlines, which almost vanish in print. Draw curves at least 1~pt wide.
+\item The legend text is about 4~pt, and the legend sits on top of the data. Legend text, like all text in a figure, should be about 8 to 10~pt, and the legend should hide nothing.
+\item The labels are in Helvetica and the tick numbers in Computer Modern, and neither matches the Times text around the figure.
+\item The two curves differ only in color, red and green, which look alike in black-and-white print and to readers with the most common kind of color blindness. Use different line styles as well, such as solid and dashed.
+\item The green is pure green, RGB $[0\ 1\ 0]$, the default \texttt{'g'} in MATLAB. It is so light that it nearly disappears against a white background. Choose dark colors, such as MATLAB's default color order, rather than pure red, green, or blue.
+\item The axis labels, t and x1, are variable names from the code, with no units, and the tick numbers carry three meaningless decimal places.
+\item The heavy grid competes with the data.
+\end{itemize}
+\Cref{fig:goodplot} fixes each fault. It was also drawn at its printed size, 4 inches wide, and included without a \texttt{width} option, so its 10~pt labels print at 10~pt (\cref{sec:exportplots}). Both plots were drawn with the \texttt{pgfplots} package; their sources, \texttt{PlotBad.tex} and \texttt{PlotGood.tex}, are in the \texttt{Graphics} folder.
+
+\begin{figure}
+\centering
+\includegraphics{PlotBad.pdf}
+\caption{The damped oscillations of \cref{fig:goodplot}, plotted badly: hairline curves, a tiny legend over the data, fonts that do not match the text, curves told apart only by red and a pale pure green, axis labels without units, and a heavy grid.}
+\label{fig:badplot}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics{PlotGood.pdf}
+\caption{Displacement of a damped oscillator for two damping ratios, plotted well: thick curves in two line styles, a legible legend clear of the data, axis labels with units, and the Times font of the text at 10~pt.}
+\label{fig:goodplot}
+\end{figure}
+
 Multiple sub-illustrations can be combined into a single floating figure using the \texttt{subfigure} environment provided by the \texttt{subcaption} package, as shown in \cref{fig:letters}.
 
 \begin{figure}
