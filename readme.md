@@ -116,7 +116,7 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── appendix-rules.tex      # Shared text, \input by appendix.tex and appendixA.tex
 ├── appendix-demo.tex       # Shared equations, figures, and table, \input by the same two
 ├── Graphics/               # Images for the figures
-└── citation-styles/        # Every citation style on the same sources, one per page
+└── citation-styles/        # Pages of Appendix B: every citation style on the same sources
 ```
 
 ---

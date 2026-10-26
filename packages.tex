@@ -28,6 +28,9 @@
 
 % URL breaking for references and tables
 \usepackage{xurl}
+% Inserts pages of other PDF files. Appendix B of the sample uses it for
+% the citation-style pages; you can use it for a signed form or a reprint.
+\usepackage{pdfpages}
 
 % Quotations
 % This fixes an old-fashioned problem in LaTeX. To get properly formatted
@@ -94,7 +97,8 @@
 % njit-vancouver is biblatex's vancouver style with titles in sentence case
 % and commas between all authors (no "and"), as the Vancouver guide asks.
 % Use the styles with the njit- prefix rather than biblatex's own ones. Each file explains at the top what it does. The folder
-% citation-styles/ shows every style in this table applied to the same sources.
+% Appendix B of the sample shows every style in this table applied to the
+% same sources.
 %
 % Chicago is loaded through its own package, biblatex-chicago, instead of
 % style=. Replace the whole \usepackage[...]{biblatex} line below with

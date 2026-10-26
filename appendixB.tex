@@ -1,10 +1,60 @@
 % !TEX root = main.tex
-% APPENDIX B: guides to the citation styles the GSO accepts. Delete this appendix from your thesis.
+% APPENDIX B: the citation styles the GSO accepts, with a sample page for
+% each and a guide to each. Delete this appendix from your thesis.
+%
+% biblatex allows only one citation style per document, so each sample
+% page is a separate one-page document in the folder citation-styles/
+% (style-acm.tex, style-acs.tex, ...). This appendix inserts their PDFs
+% with \includepdf from the pdfpages package and prints the section
+% heading over the space each page leaves blank at the top. The PDFs come
+% with the template; to rebuild them after changing a style, run latexmk
+% in the citation-styles folder.
 
-\chapter{Citation style guides}
+% \stylesample{Name}{file} inserts citation-styles/style-file.pdf as a
+% section of this appendix, with the heading, Table of Contents line, and
+% page number of the thesis.
+\newcommand{\stylesample}[2]{%
+  \IfFileExists{citation-styles/style-#2.pdf}
+    {\includepdf[pages=1,pagecommand={\thispagestyle{plain}%
+       \section{#1}\label{sec:style-#2}}]{citation-styles/style-#2.pdf}}
+    {\section{#1}\label{sec:style-#2}%
+     The sample page for this style is missing. Run \texttt{latexmk} in the
+     \texttt{citation-styles} folder to build it.\clearpage}}
+
+\chapter{Citation styles}
 \label{app:citestyles}
 
-This appendix supports \cref{sec:citestyles}. \cref{tab:style-resources} points to the official guide, or a reliable summary, for each citation style the GSO accepts. Use it to check the output of the style you set with the \texttt{style=} option of \texttt{biblatex} in \texttt{packages.tex}.
+This appendix supports \cref{sec:citestyles}. \cref{tab:style-settings} lists the citation styles the GSO accepts and how to select each one, and \cref{tab:style-resources} points to the official guide, or a reliable summary, for each. The sections that follow give each style one page. Each page lists the style's main distinguishing features, says how to type your sources in \texttt{references.bib} for it, and shows how two citations look in the text: a journal article, and a single page of a book, typed \verb+\cite[23]{Lamport1994}+. It ends with the reference list the style produces from the same sources from the template's \texttt{references.bib} on every page: two books, a journal article, an article with many authors, a chapter in a book, a dissertation, software documentation, and a website. Compare the pages for the styles your discipline accepts (\cref{tab:phd-styles}), and ask your advisor which one your field prefers. The citations are typed with \verb+\cite+, as in the rest of this sample. Some styles need another command or more care; their pages say so under Special Instructions, so read them before you choose.
+
+Choose your citation style early, before you write much of the text, because the style changes how you write sentences that mention a source. In a style that cites with superscript numbers, such as AMA, or ACS and AIP when they cite with \verb+\autocite+, the number is not a word of the sentence: you cannot write ``In Reference\textsuperscript{5} it is shown that \ldots'' or ``as shown in\textsuperscript{5}''. You must name the authors instead, as in ``Knuth and Plass\textsuperscript{5} showed that \ldots''. In an author-year style, such as APA, Chicago, or Harvard, the authors' names are already part of the citation, and \verb+\textcite+ makes them part of the sentence: ``Knuth and Plass (1981) showed that \ldots''. Changing to a style of a different kind late in the work means rewriting these sentences by hand throughout the dissertation.
+
+To use a style, set \texttt{style=} on the \texttt{biblatex} line in \texttt{packages.tex} to the value in \cref{tab:style-settings}, and compile the thesis again; nothing else changes. Chicago is the exception: replace the \texttt{biblatex} line as the comment in \texttt{packages.tex} shows. The ACM, AIP, AMA, ASCE, and TRB styles come with the template, because \texttt{biblatex} has none of its own. So do Harvard and Vancouver styles that capitalize titles as their guides ask; the Vancouver style also separates the authors with commas only.
+
+A style can format only what is in \texttt{references.bib}. Type titles in title case and protect proper nouns and acronyms with braces, as in \texttt{\{NumPy\}}, so that styles which change capitalization keep them; write journal names out in full; and fill in every field a style needs. A style can change a title typed in title case to sentence case, but not the other way around, so title case works for every style. Each page repeats this advice and says what that style does to titles.
+
+\begin{table}
+\centering
+\caption{Citation Styles and How to Select Them}
+\label{tab:style-settings}
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Style} & \textbf{Setting in \texttt{packages.tex}} & \textbf{Citations in the Text} \\
+\midrule
+ACM       & \texttt{style=njit-acm}  & Numbers, [1] \\
+ACS       & \texttt{style=chem-acs}  & Numbers, [1] or superscript \\
+AIP       & \texttt{style=njit-aip}  & Numbers, [1] or superscript \\
+AMA       & \texttt{style=njit-ama}  & Superscript numbers \\
+AMS       & \texttt{style=alphabetic} & Labels, [KP81] \\
+APA       & \texttt{style=apa}       & Author and year \\
+ASCE      & \texttt{style=njit-asce} & Author and year \\
+Chicago   & \texttt{biblatex-chicago} package & Author and year \\
+Harvard   & \texttt{style=njit-harvard} & Author and year \\
+IEEE      & \texttt{style=ieee}      & Numbers, [1] \\
+TRB       & \texttt{style=njit-trb}  & Author and year \\
+Vancouver & \texttt{style=njit-vancouver} & Numbers, [1] \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \begin{table}
 \centering
@@ -40,3 +90,18 @@ Vancouver & Purdue University Libraries:\newline {\small\url{https://guides.lib.
 \bottomrule
 \end{tabularx}
 \end{table}
+
+% Print the tables above before the first style page.
+\clearpage
+\stylesample{ACM}{acm}
+\stylesample{ACS}{acs}
+\stylesample{AIP}{aip}
+\stylesample{AMA}{ama}
+\stylesample{AMS}{ams}
+\stylesample{APA}{apa}
+\stylesample{ASCE}{asce}
+\stylesample{Chicago}{chicago}
+\stylesample{Harvard}{harvard}
+\stylesample{IEEE}{ieee}
+\stylesample{TRB}{trb}
+\stylesample{Vancouver}{vancouver}

@@ -1,15 +1,10 @@
-# latexmk settings for the citation-style samples.
+# latexmk settings for the citation-style samples in Appendix B.
 
 # The njit-*.bbx and njit-*.cbx styles live in the template folder above.
 ensure_path('TEXINPUTS', '..');
 
 $pdf_mode = 1;
 
-# Running latexmk with no file name builds every page, then the collection.
-@default_files = ('style-*.tex', 'citation-styles.tex');
-
-# When citation-styles.tex needs style-xxx.pdf, build it from style-xxx.tex.
-add_cus_dep('tex', 'pdf', 0, 'style_page');
-sub style_page {
-    return system("latexmk -pdf -interaction=nonstopmode \"$_[0].tex\"");
-}
+# Running latexmk with no file name builds every page, style-acm.pdf,
+# style-acs.pdf, and so on; Appendix B of the sample inserts them.
+@default_files = ('style-*.tex');

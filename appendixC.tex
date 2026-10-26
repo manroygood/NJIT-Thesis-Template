@@ -37,6 +37,8 @@ This appendix lists every package loaded in \texttt{packages.tex}, in the order 
 
 \item \texttt{xurl}: Allows long URLs to break at any character, so URLs in tables and in the bibliography do not run into the margin.
 
+\item \texttt{pdfpages}: Provides \verb+\includepdf+, which inserts pages of another PDF file. \cref{app:citestyles} uses it for the citation-style pages; you might use it for a signed form or a reprint, if your committee and the GSO allow it.
+
 \item \texttt{csquotes}: Handles quotation marks. The command \verb+\MakeOuterQuote+ that follows it lets you type a straight double quote and get correct opening and closing quotation marks. It also makes that character special, so it can clash with some packages, such as \texttt{babel} shorthands for German.
 
 \item \texttt{siunitx}: Typesets numbers and units consistently, with commands such as \verb+\qty+, \verb+\num+, and \verb+\unit+, and provides the \texttt{S} table column, which aligns numbers on the decimal point. See \cref{sec:math}. The template uses the commands of version~3, released in 2021.

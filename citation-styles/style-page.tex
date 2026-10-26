@@ -1,13 +1,14 @@
-% !TEX root = citation-styles.tex
-% One page of the citation-style samples. Each style-*.tex file sets
+% !TEX root = style-acm.tex
+% One page of the citation-style samples in Appendix B of the sample
+% dissertation. Each style-*.tex file sets
 % \stylename, \stylecode, and \stylefeatures (the items of a bulleted list),
 % \stylespecial (Special Instructions, if the style has any),
 % \stylecite (the citation command the page uses, if not \cite),
 % \stylecase (what the style does to the capitalization of titles), and then
 % reads this file, so every page cites the same sources from
 % ../references.bib in the same words. To try another style, copy one of
-% the style-*.tex files, change its definitions, and add it to
-% citation-styles.tex.
+% the style-*.tex files, change its definitions, build it, and add a
+% \stylesample line for it to ../appendixB.tex.
 
 \documentclass[12pt,letterpaper]{article}
 \usepackage[left=1.5in,right=1in,top=1in,bottom=1in]{geometry}
@@ -43,25 +44,28 @@
 \setlength{\emergencystretch}{2em}
 \setlength{\bibitemsep}{\baselineskip}
 \defbibheading{bibliography}[\bibname]{%
-  \par\vspace{0.5\baselineskip}%
-  {\centering\normalsize\bfseries\MakeUppercase{#1}\par}\vspace{0.5\baselineskip}}
+  \par\vspace{0.25\baselineskip}%
+  {\centering\normalsize\bfseries\MakeUppercase{#1}\par}\vspace{0.25\baselineskip}}
 
 \providecommand{\stylecite}{\cite}
+\newlength{\stylehead}\setlength{\stylehead}{1.5\baselineskip}
 \begin{document}
-{\centering\bfseries\MakeUppercase{\stylename}\par}\vspace{0.5\baselineskip}
+% The page is inserted into Appendix B of the sample, which prints the
+% heading (B.1 ACM, ...) in the space left blank here.
+\vspace*{\stylehead}
 \noindent\stylesetup
 
-\begin{itemize}[nosep,leftmargin=1.5em,topsep=0.5\baselineskip]
+\begin{itemize}[nosep,leftmargin=1.5em,topsep=0.25\baselineskip]
 \stylefeatures
 \end{itemize}
 
-\par\medskip\noindent\textbf{In references.bib:} type titles in title case, with braces around names and acronyms (\texttt{\{NumPy\}}), and journal names in full. \stylecase\par
+\par\smallskip\noindent\textbf{In references.bib:} type titles in title case, with braces around names and acronyms (\texttt{\{NumPy\}}), and journal names in full. \stylecase\par
 
 \ifdefined\stylespecial
-  \par\medskip\noindent\textbf{Special Instructions:} \stylespecial\par
+  \par\smallskip\noindent\textbf{Special Instructions:} \stylespecial\par
 \fi
 
-\par\medskip\noindent\textbf{In the text:} an article~\stylecite{KnuthPlass1981}; page~23 of a book~\stylecite[23]{Lamport1994}.
+\par\smallskip\noindent\textbf{In the text:} an article~\stylecite{KnuthPlass1981}; page~23 of a book~\stylecite[23]{Lamport1994}.
 \nocite{Mittelbach2023,Harris2020,Halmos1973,Adriazola2021,biblatex,EberhardtWiki}
 
 \printbibliography[title={References}]

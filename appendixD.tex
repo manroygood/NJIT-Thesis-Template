@@ -45,11 +45,11 @@ NJIT-Thesis-Template/
 |-- Graphics/                Images for figures
 |       FancyA.jpg, FancyB.png, EberhardtHall.jpg,
 |       drop_cap_1.png, drop_cap_2.png
-`-- citation-styles/         Every citation style, one per page
-    |-- citation-styles.tex  Compile this one
+`-- citation-styles/         The pages of Appendix B
     |-- style-page.tex       The page each style is applied to
-    |-- style-acm.tex, ...   One file per style (12 in all)
-    `-- latexmkrc            Builds the pages first
+    |-- style-acm.tex, ...   One file per style (12 in all),
+    |-- style-acm.pdf, ...     and the page it produces
+    `-- latexmkrc            Builds every page
 \end{verbatim}
 }
 
@@ -99,7 +99,7 @@ Here is what each file contains and how to edit it.
 
   \item \texttt{references.bib}: A standard \BibTeX\ database of citations. Any entry with the field \verb+keywords = {me}+ will also be included automatically in the Presentations and Publications section of your Biographical Sketch.
 
-  \item \texttt{citation-styles/}: A separate document that applies every citation style in the table in \texttt{packages.tex} to the same sources from \texttt{references.bib}, so you can compare them. After a short introduction, each page lists one style's distinguishing features and shows its citations and reference list. Compile \texttt{citation-styles.tex} with \texttt{latexmk} (the \texttt{pdflatexmk} engine in TeXShop); it first builds one PDF per style from \texttt{style-acm.tex}, \texttt{style-acs.tex}, and so on, and then collects them. If you change \texttt{style-page.tex} or a style file, delete the \texttt{style-*.pdf} files, or run \texttt{latexmk} in the folder with no file name, to rebuild every page. This folder is not part of your thesis; you can delete it.
+  \item \texttt{citation-styles/}: The pages of \cref{app:citestyles}, one for each citation style, each applying that style to the same sources from \texttt{references.bib}. \texttt{biblatex} allows only one citation style per document, so each page is a separate document, \texttt{style-acm.tex}, \texttt{style-acs.tex}, and so on, all laid out by \texttt{style-page.tex}; \cref{app:citestyles} inserts their PDFs with the \texttt{pdfpages} package. The PDFs come with the template. If you change \texttt{style-page.tex} or a style file, run \texttt{latexmk} in the folder with no file name to rebuild every page. Delete this folder, with \cref{app:citestyles}, from your thesis.
 
   \item \texttt{Graphics/}: Directory containing all figures, plots, and diagrams. If an image that a figure uses is missing, such as \texttt{EberhardtHall.jpg} for \cref{fig:eberhardt}, the sample prints a framed placeholder instead.
 \end{itemize}
