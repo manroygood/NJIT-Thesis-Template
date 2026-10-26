@@ -16,7 +16,8 @@ NJIT-Thesis-Template/
 |-- main.tex                 Master file; compile this one
 |-- packages.tex             Packages and citation style (Appendix C)
 |-- njit-acm, njit-aip,      Citation styles (.bbx and .cbx):
-|   njit-ama, njit-asce,       ACM, AIP, AMA, ASCE, and
+|   njit-ama, njit-asce,       ACM, AIP, AMA, ASCE,
+|   njit-harvard, njit-trb,    Harvard, TRB, and
 |   njit-vancouver             Vancouver
 |-- macros.tex               Your notation and theorem environments
 |-- references.bib           Bibliography database
@@ -67,7 +68,7 @@ Here is what each file contains and how to edit it.
 
   \item \texttt{packages.tex}: Loads optional \LaTeX\ packages (such as \texttt{tabularx}, \texttt{amsmath}, \texttt{amsthm}, the Times fonts \texttt{newtxtext} and \texttt{newtxmath}, \texttt{graphicx}, \texttt{subcaption}, \texttt{booktabs}, \texttt{xurl}, and \texttt{biblatex}). Add any packages your research needs there, before the \texttt{hyperref} line.
 
-  \item The \texttt{njit-*.bbx} and \texttt{njit-*.cbx} files: The ACM, AIP, AMA, and ASCE citation styles, which \texttt{biblatex} lacks, and a Vancouver style that separates authors with commas only, as the Vancouver guide asks. Select one with \texttt{style=njit-acm}, \texttt{style=njit-aip}, \texttt{style=njit-ama}, \texttt{style=njit-asce}, or \texttt{style=njit-vancouver} in \texttt{packages.tex}. The \texttt{.bbx} file formats the reference list and the \texttt{.cbx} file the citations; the comments at the top of each say what it does. \texttt{njit-acm} builds on the \texttt{acmnumeric} style of the \texttt{acmart} package, \texttt{njit-aip} on the \texttt{phys} style of \texttt{biblatex-phys}, \texttt{njit-asce} on the standard \texttt{authoryear} style, and \texttt{njit-vancouver} on the \texttt{vancouver} style of \texttt{biblatex-vancouver}; these packages come with every full \TeX\ installation and with Overleaf.
+  \item The \texttt{njit-*.bbx} and \texttt{njit-*.cbx} files: The ACM, AIP, AMA, ASCE, and TRB citation styles, which \texttt{biblatex} lacks, and Harvard and Vancouver styles that capitalize titles as their guides ask. Select one with \texttt{style=njit-acm}, \texttt{style=njit-harvard}, and so on, in \texttt{packages.tex}. The \texttt{.bbx} file formats the reference list and the \texttt{.cbx} file the citations; the comments at the top of each say what it does. \texttt{njit-acm} builds on the \texttt{acmnumeric} style of the \texttt{acmart} package, \texttt{njit-aip} on the \texttt{phys} style of \texttt{biblatex-phys}, \texttt{njit-asce}, \texttt{njit-harvard}, and \texttt{njit-trb} on the standard \texttt{authoryear} style, and \texttt{njit-vancouver} on the \texttt{vancouver} style of \texttt{biblatex-vancouver}; these packages come with every full \TeX\ installation and with Overleaf.
 
   \item \texttt{macros.tex}: Defines custom mathematical shortcuts and theorem environments (e.g., Theorem, Lemma, Definition, Proposition, Corollary). The file contains some examples. Well-defined and consistently used macros can make writing and editing your thesis much easier.
 
@@ -94,7 +95,7 @@ Here is what each file contains and how to edit it.
 
   \item \texttt{appendix.tex}: The alternative for a document with a single appendix, which starts with \verb+\oneappendix+ instead; switch to it in \texttt{main.tex}. Sample text shared with \texttt{appendixA.tex} lives in \texttt{appendix-rules.tex} and \texttt{appendix-demo.tex}, pulled in with \verb+\input+; delete them when you write your own appendices.
 
-  \item \texttt{supplementary.tex}: The list of supplementary files uploaded to ProQuest with the dissertation, an unlabeled appendix that comes after the References. It starts with \verb+\supplementaryappendix+ and lists the files in a \texttt{supplementaryfiles} table. Delete it and its \verb+\input+ line in \texttt{main.tex} if you upload no supplementary files.
+  \item \texttt{supplementary.tex}: The list of supplementary files uploaded to ProQuest with the dissertation, which the GSO asks for as the last appendix (\cref{app:supplementary} here). It lists the files in a \texttt{supplementaryfiles} table. Delete it and its \verb+\input+ line in \texttt{main.tex} if you upload no supplementary files.
 
   \item \texttt{references.bib}: A standard \BibTeX\ database of citations. Any entry with the field \verb+keywords = {me}+ will also be included automatically in the Presentations and Publications section of your Biographical Sketch.
 

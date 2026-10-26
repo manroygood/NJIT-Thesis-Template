@@ -1,14 +1,14 @@
 % !TEX TS-program = pdflatexmk
 % Harvard. One page of the citation-style samples; see style-page.tex.
 \newcommand{\stylename}{Harvard}
-\newcommand{\stylecode}{authoryear}
+\newcommand{\stylecode}{njit-harvard}
+\newcommand{\stylecase}{This style changes article and book titles to sentence case.}
 \newcommand{\stylefeatures}{%
   \item Citations give the author and year in parentheses: (Knuth and Plass 1981).
-  \item Harvard is a family of similar styles rather than a single standard; \texttt{authoryear} is the generic version in \texttt{biblatex}.
-  \item Family name, then initials; the year, in parentheses, follows the authors.
-  \item Article titles are in quotation marks; book and journal titles are italic.
+  \item Harvard is a family of similar styles. The template's \texttt{njit-harvard} follows Cite Them Right, the guide in Appendix~B of the sample.
+  \item Family name, then initials; the year, in parentheses, follows the authors. Article titles are in quotation marks; book and journal titles are italic.
   \item The reference list is in alphabetical order, with no numbers.}
 \newcommand{\stylespecial}{%
-  \texttt{\textbackslash cite} omits the parentheses, so this page cites with \texttt{\textbackslash autocite}. When the authors are part of the sentence, use \texttt{\textbackslash textcite}: ``\textcite{KnuthPlass1981} showed''.}
+  \texttt{\textbackslash cite} omits the parentheses, so this page cites with \texttt{\textbackslash autocite}; when the authors are part of the sentence, use \texttt{\textbackslash textcite}: ``\textcite{KnuthPlass1981} showed''.}
 \newcommand{\stylecite}{\autocite}
 \input{style-page}

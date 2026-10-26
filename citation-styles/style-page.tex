@@ -1,14 +1,15 @@
 % !TEX root = citation-styles.tex
 % One page of the citation-style samples. Each style-*.tex file sets
 % \stylename, \stylecode, and \stylefeatures (the items of a bulleted list),
-% \stylespecial (Special Instructions, if the style has any), and
-% \stylecite (the citation command the page uses, if not \cite), and then
+% \stylespecial (Special Instructions, if the style has any),
+% \stylecite (the citation command the page uses, if not \cite),
+% \stylecase (what the style does to the capitalization of titles), and then
 % reads this file, so every page cites the same sources from
 % ../references.bib in the same words. To try another style, copy one of
 % the style-*.tex files, change its definitions, and add it to
 % citation-styles.tex.
 
-\documentclass[11pt,letterpaper]{article}
+\documentclass[12pt,letterpaper]{article}
 \usepackage[left=1.5in,right=1in,top=1in,bottom=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{newtxtext,newtxmath}
@@ -34,11 +35,10 @@
 \usepackage[hidelinks]{hyperref}
 
 \pagestyle{empty}
-% Laid out like the dissertation, in 11 pt so that each style fits on one
-% page: 1.5 in left margin; headings bold, centered, and in capitals;
-% single-spaced bullets and references, with a blank line between
-% references; 0.5 in paragraph indent. The text is single-spaced so that
-% each style fits on one page.
+% Laid out like the dissertation, in 12 pt: 1.5 in left margin; headings
+% bold, centered, and in capitals; single-spaced bullets and references,
+% with a blank line between references; 0.5 in paragraph indent. The text
+% is single-spaced so that each style fits on one page.
 \setlength{\parindent}{0.5in}
 \setlength{\emergencystretch}{2em}
 \setlength{\bibitemsep}{\baselineskip}
@@ -48,20 +48,21 @@
 
 \providecommand{\stylecite}{\cite}
 \begin{document}
-{\centering\bfseries\MakeUppercase{\stylename}\par}\vspace{\baselineskip}
+{\centering\bfseries\MakeUppercase{\stylename}\par}\vspace{0.5\baselineskip}
 \noindent\stylesetup
 
-\begin{itemize}[nosep,leftmargin=1.5em,topsep=\baselineskip]
+\begin{itemize}[nosep,leftmargin=1.5em,topsep=0.5\baselineskip]
 \stylefeatures
 \end{itemize}
 
+\par\medskip\noindent\textbf{In references.bib:} type titles in title case, with braces around names and acronyms (\texttt{\{NumPy\}}), and journal names in full. \stylecase\par
+
 \ifdefined\stylespecial
-  \par\smallskip\noindent\textbf{Special Instructions}\par
-  \noindent\stylespecial\par\medskip
+  \par\medskip\noindent\textbf{Special Instructions:} \stylespecial\par
 \fi
 
-
-The sources cited on this page are books~\stylecite{Lamport1994,Knuth1984,Mittelbach2023}, a journal article~\stylecite{KnuthPlass1981}, an article with many authors~\stylecite{Harris2020}, a chapter in a book~\stylecite{Halmos1973}, a dissertation~\stylecite{Adriazola2021}, software documentation~\stylecite{biblatex}, and a website~\stylecite{EberhardtWiki}. A citation of a single page, typed \texttt{\expandafter\string\stylecite[23]\{Lamport1994\}}, looks like this~\stylecite[23]{Lamport1994}.
+\par\medskip\noindent\textbf{In the text:} an article~\stylecite{KnuthPlass1981}; page~23 of a book~\stylecite[23]{Lamport1994}.
+\nocite{Mittelbach2023,Harris2020,Halmos1973,Adriazola2021,biblatex,EberhardtWiki}
 
 \printbibliography[title={References}]
 \end{document}

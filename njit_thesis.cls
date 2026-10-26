@@ -287,6 +287,9 @@
 % A heading line is \njit@entrysep (one single-spaced line) below the line
 % before it, so each before-skip adds what is missing to reach the
 % double-spaced \baselineskip (one line) or twice it (one blank line).
+% Levels 3 and 5 have the same space below as above (GSO): the text that
+% follows starts one double-spaced line below, so the after-skip is 1sp,
+% the smallest value that still puts the text on a new line.
 
 % Section headings (level 2, X.x): centered, bold
 \renewcommand\section{\@startsection{section}{1}{\z@}%
@@ -297,7 +300,7 @@
 % Subsection headings (level 3, X.x.x): flush left, bold
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
   {-\dimexpr\baselineskip-\njit@entrysep\relax \@plus -1\p@}%
-  {1.5ex \@plus .2ex}%
+  {1sp}%
   {\normalfont\normalsize\bfseries\setstretch{1}}}
 
 % Level 4 (subsubsection, X.x.x.x): bold, sentence case, ends with a period,
@@ -311,7 +314,7 @@
 % a period, text begins on the next line. Not in the TOC.
 \newcommand\njit@paragraph{\@startsection{paragraph}{4}{\z@}%
   {-\dimexpr\baselineskip-\njit@entrysep\relax \@plus -1\p@}%
-  {1.5ex \@plus .2ex}%
+  {1sp}%
   {\normalfont\normalsize\itshape\setstretch{1}}}
 % The class adds the closing period; do not type one in the title.
 \def\njit@periodhead#1#2{\@ifstar{\njit@periodhead@s{#1}{#2}}%
@@ -874,31 +877,14 @@
 }
 
 % Supplementary files: files such as videos, data, or software archives
-% uploaded to ProQuest with the dissertation are listed in an extra
-% unlabeled appendix after the References (GSO). Put, after
-% \printbibliography,
-%   \supplementaryappendix          (title "Supplementary Files"), or
-%   \supplementaryappendix[Title]
-% followed by a short introduction and a supplementaryfiles table:
+% uploaded to ProQuest with the dissertation are listed in the LAST
+% appendix, lettered like the others (GSO). Start it with
+% \chapter{Supplementary Files} (or \oneappendix{...} if it is the only
+% appendix), then a short introduction and a supplementaryfiles table:
 %   \begin{supplementaryfiles}
 %     \suppfile{file name}{description}
 %   \end{supplementaryfiles}
-% The heading is "APPENDIX" over the title, with no letter, and the TOC
-% line reads "APPENDIX  TITLE", like a single appendix. Short text such as
-% computer code may follow the table.
-\newcommand{\supplementaryappendix}[1][Supplementary Files]{%
-  \par
-  \clearpage
-  \thispagestyle{plain}%
-  \addcontentsline{toc}{appendix}{\protect\numberline{\appendixname}\protect\MakeUppercase{#1}}%
-  \begin{center}\singlespacing
-    \bfseries APPENDIX\par
-    \vskip 12pt
-    \MakeUppercase{#1}
-  \end{center}
-  \par\nobreak\vskip 30\p@
-  \@afterindentfalse\@afterheading
-}
+% Short text such as computer code may follow the table.
 % Two-column list of the supplementary files: file name and description,
 % single-spaced, one blank line between files; it can break across pages.
 \newenvironment{supplementaryfiles}{%

@@ -75,6 +75,13 @@
 \input{chapter5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography / References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The References come right after the last chapter, before all of the
+% appendices (GSO).
+\printbibliography[heading=bibintoc,title={REFERENCES}]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Appendices
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
@@ -87,23 +94,18 @@
 \input{appendixC}
 \input{appendixD}
 
-% --- Option B: Single Appendix ---
-% With only ONE appendix, comment out the lines above and uncomment the line
-% below. appendix.tex starts with \oneappendix{Title}, which prints the
-% heading as "APPENDIX" with no letter, as NJIT requires.
-%\input{appendix}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Bibliography / References
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\printbibliography[heading=bibintoc,title={REFERENCES}]
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Supplementary files (optional)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Only if you upload supplementary files (videos, data, software archives)
-% to ProQuest: they are listed in an unlabeled appendix after the
-% References. Otherwise delete this line and supplementary.tex.
+% Supplementary files (optional): only if you upload supplementary files
+% (videos, data, software archives) to ProQuest. They are listed in the
+% LAST appendix (GSO), which in this sample is Appendix E. Otherwise delete
+% this line and supplementary.tex.
 \input{supplementary}
+
+% --- Option B: Single Appendix ---
+% With only ONE appendix, comment out the \input lines above and uncomment
+% the line below. appendix.tex starts with \oneappendix{Title}, which prints the
+% heading as "APPENDIX" with no letter, as NJIT requires. If your only
+% appendix lists supplementary files, keep \input{supplementary} instead of
+% this line and change \chapter to \oneappendix in supplementary.tex.
+%\input{appendix}
 
 \end{document}

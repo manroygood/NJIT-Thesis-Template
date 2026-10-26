@@ -1,23 +1,25 @@
 % !TEX root = main.tex
-% SUPPLEMENTARY FILES (included via \input{supplementary} in main.tex, after
-% the References).
+% SUPPLEMENTARY FILES (included via \input{supplementary} in main.tex, as
+% the last appendix).
 %
 % Files such as videos, data sets, and software archives can be uploaded to
 % ProQuest as "Supplementary Files" along with the dissertation. If you
-% upload any, the GSO asks that the dissertation list them in an extra,
-% unlabeled appendix that comes after the References. Short sections of
-% text, such as computer code, can be included in this appendix as well.
+% upload any, the GSO asks that the dissertation list them in the LAST
+% appendix, lettered like the others (Appendix E in this sample). Short
+% sections of text, such as computer code, can be included in this
+% appendix as well.
 %
-% \supplementaryappendix prints the heading "APPENDIX" and the title
-% "SUPPLEMENTARY FILES"; give another title in brackets if you prefer:
-% \supplementaryappendix[Supplementary Videos and Code].
-% List each file with \suppfile{file name}{description}. Type an underscore
-% in a file name as \_.
+% List each file with \suppfile{file name}{description} in a
+% supplementaryfiles table. Type an underscore in a file name as \_.
+% If this is your only appendix, start it with
+% \oneappendix{Supplementary Files} instead of \chapter, so that it is
+% printed as "APPENDIX" with no letter.
 %
 % If you upload no supplementary files, delete this file and its \input
 % line in main.tex.
 
-\supplementaryappendix
+\chapter{Supplementary Files}
+\label{app:supplementary}
 
 The following files were uploaded to ProQuest with this dissertation as supplementary files. Each description says what the file contains and which part of the dissertation it supports.
 

@@ -2,19 +2,28 @@
 % Select it with style=njit-vancouver in packages.tex.
 %
 % A thin layer over the vancouver style of the biblatex-vancouver package
-% (Simon Spiegel), which implements the ICMJE/NLM recommendations. The one
-% change: the last two authors are separated by a comma, as the Vancouver
-% guide asks, not by "and":
-%   Knuth DE, Plass MF.   instead of   Knuth DE and Plass MF.
+% (Simon Spiegel), which implements the ICMJE/NLM recommendations. Two
+% changes:
+%   - the last two authors are separated by a comma, as the Vancouver
+%     guide asks, not by "and":
+%       Knuth DE, Plass MF.   instead of   Knuth DE and Plass MF.
+%   - titles of articles, chapters, and books are printed in sentence case,
+%     as NLM asks ("Breaking paragraphs into lines"). Type them in title
+%     case in references.bib, with braces around words that keep their
+%     capitals, such as {NumPy}.
 % Journal names print exactly as written in references.bib. Write them out
 % in full, as Chapter 5 of the sample asks.
 %
 % Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
 
-\ProvidesFile{njit-vancouver.bbx}[2026/10/23 v1.0 NJIT thesis: Vancouver bibliography style]
+\ProvidesFile{njit-vancouver.bbx}[2026/10/26 v1.1 NJIT thesis: Vancouver bibliography style]
 
 \RequireBibliographyStyle{vancouver}
 
 \DeclareDelimFormat{finalnamedelim}{\addcomma\space}
+\DeclareFieldFormat{titlecase}{%
+  \ifboolexpr{test {\ifcurrentfield{journaltitle}}
+              or test {\ifcurrentfield{journalsubtitle}}}
+    {#1}{\MakeSentenceCase*{#1}}}
 
 \endinput

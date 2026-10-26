@@ -1,0 +1,23 @@
+% njit-trb.bbx: TRB citation style for the NJIT thesis template.
+% Select it with style=njit-trb in packages.tex.
+%
+% The Transportation Research Record cites by author and year. This is a
+% thin layer over biblatex's standard authoryear style. The one change:
+% article and chapter titles are printed in sentence case, as the TRR
+% reference guidelines ask ("Breaking paragraphs into lines"); journal and
+% book titles keep title case. Type every title in title case in
+% references.bib, with braces around words that keep their capitals, such
+% as {NumPy}. Journal names print exactly as written; write them out in
+% full.
+%
+% Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
+
+\ProvidesFile{njit-trb.bbx}[2026/10/26 v1.0 NJIT thesis: TRB bibliography style]
+
+\RequireBibliographyStyle{authoryear}
+
+\DeclareFieldFormat[article,inbook,incollection,inproceedings]{titlecase}{%
+  \ifboolexpr{test {\ifcurrentfield{title}} or test {\ifcurrentfield{subtitle}}}
+    {\MakeSentenceCase*{#1}}{#1}}
+
+\endinput

@@ -1,0 +1,24 @@
+% njit-harvard.bbx: Harvard citation style for the NJIT thesis template.
+% Select it with style=njit-harvard in packages.tex.
+%
+% Harvard is a family of similar author-year styles rather than a single
+% standard. This is a thin layer over biblatex's standard authoryear
+% style. The one change: titles of articles, chapters, and books are
+% printed in sentence case, as in Cite Them Right, the Harvard guide in
+% Appendix B of the sample ("Breaking paragraphs into lines"). Type them
+% in title case in references.bib, with braces around words that keep
+% their capitals, such as {NumPy}. Journal names print exactly as written;
+% write them out in full, in title case.
+%
+% Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
+
+\ProvidesFile{njit-harvard.bbx}[2026/10/26 v1.0 NJIT thesis: Harvard bibliography style]
+
+\RequireBibliographyStyle{authoryear}
+
+\DeclareFieldFormat{titlecase}{%
+  \ifboolexpr{test {\ifcurrentfield{journaltitle}}
+              or test {\ifcurrentfield{journalsubtitle}}}
+    {#1}{\MakeSentenceCase*{#1}}}
+
+\endinput

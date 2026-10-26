@@ -11,14 +11,17 @@
 %   - every author is listed family name first, with initials;
 %   - "and" before the last author follows a comma;
 %   - an author's name is repeated, not replaced by a dash;
-%   - article and chapter titles are printed in quotation marks;
+%   - article and chapter titles are printed in quotation marks and in
+%     sentence case ("Breaking paragraphs into lines"), as in ASCE
+%     journals; type them in title case in references.bib, with braces
+%     around words that keep their capitals, such as {NumPy};
 %   - a journal entry reads Journal, 11(11), 1119-1184 (no "pp.").
 % Journal names print exactly as written in references.bib. Write them out
 % in full, as Chapter 5 of the sample asks (ASCE itself abbreviates them).
 %
 % Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
 
-\ProvidesFile{njit-asce.bbx}[2026/10/23 v1.0 NJIT thesis: ASCE bibliography style]
+\ProvidesFile{njit-asce.bbx}[2026/10/26 v1.1 NJIT thesis: ASCE bibliography style]
 
 \RequireBibliographyStyle{authoryear}
 
@@ -34,6 +37,9 @@
 \DeclareNameAlias{sortname}{family-given}
 \DeclareDelimFormat[bib]{finalnamedelim}{\addcomma\space\bibstring{and}\space}
 \DeclareFieldFormat[article,inbook,incollection,inproceedings]{title}{\mkbibquote{#1\isdot}}
+\DeclareFieldFormat[article,inbook,incollection,inproceedings]{titlecase}{%
+  \ifboolexpr{test {\ifcurrentfield{title}} or test {\ifcurrentfield{subtitle}}}
+    {\MakeSentenceCase*{#1}}{#1}}
 \renewbibmacro*{volume+number+eid}{%
   \printfield{volume}%
   \printfield[parens]{number}%
