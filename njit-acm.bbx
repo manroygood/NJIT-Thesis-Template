@@ -119,6 +119,10 @@
   \newunit\newblock
   \usebibmacro{finentry}}
 
+% The title of a chapter or paper is set upright; only the title of the
+% book or proceedings it appears in is italic.
+\DeclareFieldFormat[inbook,incollection,inproceedings]{title}{#1}
+
 \DeclareBibliographyDriver{inbook}{\usebibmacro{njit@acm@driver@in}}
 \DeclareBibliographyDriver{incollection}{\usebibmacro{njit@acm@driver@in}}
 \DeclareBibliographyDriver{inproceedings}{\usebibmacro{njit@acm@driver@in}}
