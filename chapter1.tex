@@ -1,108 +1,27 @@
 % !TEX root = main.tex
-% Chapter 1: what to do first, the files you edit, how to compile, and what
-% to do when compiling fails.
-%
-% Each chapter lives in its own file, included from main.tex with \input.
-% Start the file with \chapter{Title}; type the title in normal
-% capitalization (the class sets it in capitals). Headings below it:
-%   \section       level 2, Title Case
-%   \subsection    level 3, sentence case
-%   \subsubsection level 4, sentence case, run-in (the class adds the period)
-%   \paragraph     level 5, sentence case, italic (the class adds the period)
-% Every heading needs a title; an empty one stops the build with an error.
+% CHAPTER 1. Replace the title and text with your own. Every chapter needs a
+% title and some text before its first section (GSO). See sample/ for how to
+% write sections, equations, figures, tables, and citations.
 
-\chapter{Getting Started}
-\label{ch:start}
+\chapter{Introduction}
+\label{chap:intro}
 
-This chapter tells you what to do first, explains which files you edit, shows how to compile the project locally and on Overleaf, and explains what to do when compiling fails. \cref{ch:requirements} lists the parts an NJIT dissertation must contain, in the order required by the NJIT Graduate Studies Office (GSO), and summarizes the formatting rules the template applies for you. \cref{ch:writing} covers writing the text, \cref{ch:figtables} covers figures and tables, and \cref{ch:references} covers references and the checks to make before you submit. Four appendices follow. \cref{app:appendixA} explains what belongs in an appendix and how to set one up, \cref{app:citestyles} collects guides to the accepted citation styles, \cref{app:packages} describes the packages the template loads, and \cref{app:filetree} lists the template's files.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua \cite{Lamport1994}. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. \Cref{table:resources} lists a few places to learn more.
 
-This template is maintained by Prof.~Roy Goodman and keeps evolving as students use it. If you find a mistake, learn that the GSO has changed a rule, or work out how to handle something the template does not yet cover, please help the students who come after you. Email Prof.~Goodman at \href{mailto:goodman@njit.edu}{\texttt{goodman@njit.edu}}, or make a pull request on GitHub at \url{https://github.com/manroygood/NJIT-Thesis-Template}. Contributors are credited in the template's history.
-
-\section{Start Here}
-\label{sec:starthere}
-
-If you are new to \LaTeX\ or to writing a dissertation, do these five things first. The rest of this document explains each step in more detail.
-\begin{enumerate}
-\item Compile this sample without changing anything, on Overleaf, in TeXShop, or with \verb+latexmk -pdf main.tex+ (\cref{sec:compiling}), and check that you get the same PDF you are reading now. If you do, your installation works.
-\item In \texttt{biography.tex}, enter your title, name, degrees, and graduation date. In \texttt{approval.tex}, enter your advisor and committee.
-\item Replace the sample text of the abstract, the acknowledgments, and the dedication, in the files named after them.
-\item Replace the text of \texttt{chapter1.tex} through \texttt{chapter5.tex} with your own chapters, and delete the sample material you do not need (\cref{sec:setup}).
-\item Compile again after every few changes. When an error appears, you then know it comes from the lines you just typed (\cref{sec:errors}).
-\end{enumerate}
-Words that may be new to you, such as \emph{float}, \emph{package}, and \emph{preamble}, are explained in the Glossary of Terms before this chapter.
-
-\section{Setting up Your Files}
-\label{sec:setup}
-
-You edit only a few of the template's files; \cref{app:filetree} describes every one. To start your own dissertation:
-\begin{enumerate}
-\item Enter your title, name, degree, department, and graduation date in \texttt{biography.tex}, and your advisor and committee in \texttt{approval.tex}. The class prints them on every page that needs them.
-\item Replace the sample text of the abstract, the dedication, and the acknowledgments, in the files named after them. If you do not want a dedication, comment out its line in \texttt{main.tex}.
-\item Replace the sample entries in \texttt{listofsymbols.tex} and \texttt{listofdefinitions.tex}, or comment out their lines in \texttt{main.tex}.
-\item Delete the sample material you will not reuse: \texttt{appendixB.tex}, \texttt{appendixC.tex}, and \texttt{appendixD.tex} and their \verb+\input+ lines in \texttt{main.tex}; \texttt{appendix-rules.tex} and \texttt{appendix-demo.tex} and their \verb+\input+ lines; \texttt{table.tex}; the sample images in \texttt{Graphics/}; and the sample entries in \texttt{references.bib}. Keeping one entry of each type as a model until you have your own does no harm, because entries you never cite are not printed.
-\item Write each chapter in its own file, \texttt{chapter1.tex}, \texttt{chapter2.tex}, and so on, and list them with \verb+\input+ in \texttt{main.tex}. While drafting, you can comment out finished chapters to compile faster. Start every new \texttt{.tex} file with the line \verb+% !TEX root = main.tex+ (\cref{subsec:editors}).
-\item Put your sources in \texttt{references.bib} and your images in the \texttt{Graphics/} folder.
-\item Set the citation style for your discipline with the \texttt{style=} option on the \texttt{biblatex} line in \texttt{packages.tex}. \cref{tab:phd-styles} in \cref{sec:citestyles} lists the styles each program recommends, and \cref{ch:references} explains how to cite sources and build the bibliography.
-\item Load any packages you need in \texttt{packages.tex}, before the \texttt{hyperref} line, and define your own notation and theorem environments in \texttt{macros.tex}.
-\end{enumerate}
-For a master's thesis, add the \texttt{thesis} option to the \verb+\documentclass+ line at the top of \texttt{main.tex}:
-\begin{verbatim}
-\documentclass[12pt,thesis]{njit_thesis}
-\end{verbatim}
-The title page then reads ``A Thesis'', the advisor is listed as ``Thesis Advisor'' on the approval page, and the copyright page is replaced by the blank page the GSO requires. In \texttt{biography.tex}, change \verb+\thisdegree+ to the full name of your master's degree, and if your degree is not a Master of Science, set the ``Degree:'' line of the Biographical Sketch with \verb+\degreelevel+. Two limits also change: a thesis abstract may be only one page long, where a dissertation abstract may be two, and a thesis committee needs at least three members, including the advisor, where a dissertation committee needs five. You should not need to edit the class file, \texttt{njit\_thesis.cls}.
-
-Keep your work safe from the first day. A lost laptop or an overwritten file a month before the deadline is a common disaster, and an easy one to prevent. Keep the folder under version control with Git (the free GitHub Desktop application is enough), or rely on Overleaf's history, and keep a second copy somewhere other than your own computer.
-
-\section{Compiling the Dissertation}
-\label{sec:compiling}
-The subsections below describe several ways to compile. If compiling stops with an error that a \texttt{.sty} file was not found, a package the template needs is not installed; \cref{sec:missingpackages} explains how to find and install it.
-
-
-\subsection{Recommended: \texttt{latexmk}}
-The easiest and most reliable way to compile your dissertation locally is with \texttt{latexmk}:
-\begin{verbatim}
-latexmk -pdf main.tex
-\end{verbatim}
-\texttt{latexmk} monitors all file dependencies, automatically invokes \texttt{biber} for the bibliography and publications list, and runs \texttt{pdflatex} as many times as necessary to ensure all cross-references, Table of Contents entries, and list page numbers are completely up to date.
-
-\subsection{Manual compilation steps}
-If running commands manually in a terminal:
-\begin{enumerate}
-  \item \verb+pdflatex main.tex+ (generates auxiliary files and bibliography requests)
-  \item \verb+biber main+ (processes \texttt{references.bib} and resolves citations)
-  \item \verb+pdflatex main.tex+ (incorporates bibliography and generates cross-references)
-  \item \verb+pdflatex main.tex+ (resolves final page numbers for TOC and lists)
-\end{enumerate}
-
-\subsection{Using Overleaf}
-The template works on Overleaf without changes:
-\begin{enumerate}
-\item Download the template as a ZIP file and upload it to Overleaf with \emph{New Project}, then \emph{Upload Project}.
-\item In the project's \emph{Menu}, set the compiler to \textbf{pdfLaTeX} and the main document to \texttt{main.tex}.
-\item Overleaf normally detects that the bibliography uses Biber. If the references show as ``??'', look for a bibliography setting in \emph{Menu} and choose \textbf{Biber}.
-\end{enumerate}
-
-\subsection{Using TeXShop, TeXstudio, or VS Code}
-\label{subsec:editors}
-Every \texttt{.tex} file in the template begins with the line
-\begin{verbatim}
-% !TEX root = main.tex
-\end{verbatim}
-This comment tells TeXShop on a Mac, and several other editors, to compile \texttt{main.tex} whichever file is open, so you can compile while editing a chapter. Keep it in every file, including new ones you create. In \texttt{main.tex}, the line \verb+% !TEX TS-program = pdflatexmk+ tells TeXShop to compile with \texttt{latexmk}, which runs Biber when needed. In other editors, choose pdf\LaTeX\ as the engine and Biber as the bibliography tool, or choose \texttt{latexmk}: in TeXstudio, under \emph{Options}, \emph{Configure TeXstudio}, \emph{Build}; in VS Code, with the LaTeX Workshop extension, whose default recipe uses \texttt{latexmk}.
-
-\section{When Compiling Fails}
-\label{sec:errors}
-When \LaTeX\ meets something it cannot handle, it stops and prints an error that begins with an exclamation mark, followed by the line where it noticed the problem:
-\begin{verbatim}
-! Undefined control sequence.
-l.42 The value of \alpah
-\end{verbatim}
-Read the first error only; later errors are often caused by the first one. The number after \texttt{l.} is the line in the file being read, and the error is usually on that line or just before it. If the compiler stops with a \texttt{?} prompt, type \texttt{X} and press Enter to quit, fix the line, and compile again. The most common errors are:
-\begin{itemize}
-\item \textbf{Undefined control sequence}: A command is misspelled, as in \verb+\alpah+ above, or comes from a package that is not loaded.
-\item \textbf{Missing \$ inserted}: A math command such as \verb+^+, \verb+_+, or \verb+\alpha+ is used outside math mode, or a \verb+$+ is missing.
-\item \textbf{Missing \} inserted, or Runaway argument}: A brace \verb+{+ is not closed. Check the lines just before the one reported.
-\item \textbf{File not found}: A package or image is missing, or its name is misspelled. For packages, see \cref{sec:missingpackages}; for images, check the name and the \texttt{Graphics/} folder.
-\item \textbf{Citation or reference undefined (a warning, shown as ``??'')}: Compile again; if it persists, the key in \verb+\cite+ or \verb+\ref+ does not match any \verb+\label+ or \texttt{.bib} entry.
-\end{itemize}
-If the PDF does not change or the errors make no sense, delete the auxiliary files (\cref{app:filetree} lists them) and compile again. If you are stuck, search for the exact error message; TeX Stack Exchange (\url{https://tex.stackexchange.com}) has answers to almost all of them.
+% A table: the title goes ABOVE the table, in title case with no period (GSO).
+\begin{table}
+\centering
+\caption{Free Resources for Learning \LaTeX}
+\label{table:resources}
+\begin{tabularx}{\linewidth}{|>{\raggedright\arraybackslash}p{0.27\linewidth}|>{\raggedright\arraybackslash}p{0.33\linewidth}|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Resource} & \textbf{Address} & \textbf{Good For} \\
+\hline
+learnlatex.org & \href{https://www.learnlatex.org}{\nolinkurl{www.learnlatex.org}} & Short interactive lessons covering the basics \\
+\hline
+Overleaf documentation & \href{https://www.overleaf.com/learn}{\nolinkurl{www.overleaf.com/learn}} & Task-based help on tables, figures, mathematics, and bibliographies \\
+\hline
+TeX Stack Exchange & \href{https://tex.stackexchange.com}{\nolinkurl{tex.stackexchange.com}} & Answers to specific questions; search before asking \\
+\hline
+\end{tabularx}
+\end{table}

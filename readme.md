@@ -2,16 +2,16 @@
 
 A LaTeX template and user's guide for doctoral dissertations and master's theses at the New Jersey Institute of Technology (NJIT). It follows the formatting requirements of the NJIT Graduate Studies Office (GSO) as of October 2026: the GSO's 2025 Front Matter guide and the GSO's feedback on earlier versions of this template. The GSO's current guidelines and its reviewers have the final word; if they differ from the template, follow the GSO and please tell the maintainer (see [Contributing](#contributing)).
 
-The sample document is itself the user's guide. A compiled copy, `main.pdf`, is attached to each release on the repository's [Releases page](https://github.com/manroygood/NJIT-Thesis-Template/releases).
+The template has two parts. The main folder holds a short **starter document** (two chapters, one appendix, a table, a figure, and a citation) in which you write your own thesis. The folder `sample/` holds a **sample dissertation** that is also the user's guide: it explains every feature of the template and every GSO rule, using the same class file and settings. A compiled copy of the sample, `main.pdf`, is attached to each release on the repository's [Releases page](https://github.com/manroygood/NJIT-Thesis-Template/releases).
 
 ---
 
 ## Start Here
 
-1. Compile the sample without changing anything (see [How to Compile](#how-to-compile)) and check that you get the same PDF as the released copy.
+1. Compile the starter document, `main.tex` in the main folder, without changing anything (see [How to Compile](#how-to-compile)).
 2. In `biography.tex`, enter your title, name, degrees, and graduation date. In `approval.tex`, enter your advisor and committee.
-3. Replace the sample text in `abstract.tex`, `acknowledgment.tex`, and `dedication.tex`.
-4. Replace the text of `chapter1.tex` through `chapter5.tex` with your own chapters, and delete the sample appendices and other sample material (Section 1.2 of the sample lists what to delete).
+3. Replace the placeholder text in `abstract.tex` and `acknowledgment.tex`.
+4. Replace the text of `chapter1.tex`, `chapter2.tex`, and `appendix.tex` with your own, and add chapters as you need them. For anything more (a dedication, several appendices, a List of Symbols, theorems, algorithms), read the sample and copy what you need from `sample/`; Section 1.2 of the sample explains how.
 5. Compile again after every few changes, so an error is easy to locate. Section 1.4 of the sample explains the most common errors.
 
 For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.tex`.
@@ -54,7 +54,7 @@ For a master's thesis, use `\documentclass[12pt,thesis]{njit_thesis}` in `main.t
 latexmk -pdf main.tex
 ```
 
-`latexmk` runs `pdflatex` and `biber` as many times as needed for the citations, cross-references, and page numbers to settle.
+Run it in the main folder for your thesis, or in `sample/` to build the sample, which finds the class file and settings in the folder above. `latexmk` runs `pdflatex` and `biber` as many times as needed for the citations, cross-references, and page numbers to settle.
 
 ### Manual compilation
 
@@ -67,7 +67,7 @@ pdflatex main.tex
 
 ### Overleaf
 
-1. Download this repository as a ZIP file and upload it to Overleaf with **New Project**, then **Upload Project**.
+1. Download this repository as a ZIP file and upload it to Overleaf with **New Project**, then **Upload Project**. You may delete the `sample/` folder from the project; on Overleaf, read the sample as the PDF from the Releases page.
 2. In the project's **Menu**, set the compiler to **pdfLaTeX** and the main document to `main.tex`.
 3. Overleaf normally detects that the bibliography uses Biber. If the references show as "??", choose **Biber** in the bibliography setting.
 
@@ -83,8 +83,8 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── readme.md               # This file
 ├── LICENSE                 # LaTeX Project Public License notice
 ├── njit_thesis.cls         # Class file: the NJIT formatting rules
-├── main.tex                # Master file; compile this one
 ├── packages.tex            # Packages and citation style
+├── macros.tex              # Your notation and theorem environments
 ├── njit-acm.bbx, .cbx      # ACM citation style (biblatex has none)
 ├── njit-aip.bbx, .cbx      # AIP citation style
 ├── njit-ama.bbx, .cbx      # AMA citation style
@@ -92,31 +92,38 @@ Every `.tex` file starts with `% !TEX root = main.tex`, which tells TeXShop (and
 ├── njit-harvard.bbx, .cbx  # Harvard style, titles in sentence case
 ├── njit-trb.bbx, .cbx      # TRB citation style (author-year)
 ├── njit-vancouver.bbx, .cbx # Vancouver style, sentence case, commas between authors
-├── macros.tex              # Your notation and theorem environments
-├── references.bib          # Bibliography database
+├── main.tex                # Starter document; compile this one
+├── references.bib          # Your bibliography database
 ├── abstract.tex            # Abstract text
 ├── approval.tex            # Advisor and committee
 ├── biography.tex           # Title, name, degrees, and graduation date
-├── dedication.tex          # Optional dedication
 ├── acknowledgment.tex      # Acknowledgments
-├── listofsymbols.tex       # List of Symbols
-├── listofdefinitions.tex   # Glossary of Terms
-├── chapter1.tex            # Chapter 1: getting started
-├── chapter2.tex            # Chapter 2: what the GSO requires
-├── table.tex               # Sample table, \input by chapter2.tex
-├── chapter3.tex            # Chapter 3: writing the text
-├── chapter4.tex            # Chapter 4: figures and tables
-├── chapter5.tex            # Chapter 5: references and submission
-├── appendixA.tex           # Appendix A: how appendices work (several appendices)
-├── appendixB.tex           # Appendix B: citation style guides
-├── appendixC.tex           # Appendix C: the packages and their options
-├── appendixD.tex           # Appendix D: the template's files
-├── appendix.tex            # Alternative: a single appendix (see main.tex)
-├── supplementary.tex       # Last appendix: list of supplementary files
-├── appendix-rules.tex      # Shared text, \input by appendix.tex and appendixA.tex
-├── appendix-demo.tex       # Shared equations, figures, and table, \input by the same two
-├── Graphics/               # Images for the figures
-└── citation-styles/        # Pages of Appendix B: every citation style on the same sources
+├── chapter1.tex            # Chapter 1 (with a table and a citation)
+├── chapter2.tex            # Chapter 2 (with a figure)
+├── appendix.tex            # A single appendix
+├── Graphics/               # Images for your figures
+└── sample/                 # The sample dissertation and user's guide
+    ├── main.tex            # Its master file
+    ├── references.bib      # Sample bibliography, one entry of each common type
+    ├── abstract.tex, approval.tex, biography.tex, dedication.tex, acknowledgment.tex
+    ├── listofsymbols.tex   # List of Symbols
+    ├── listofdefinitions.tex # Glossary of Terms
+    ├── chapter1.tex        # Chapter 1: getting started
+    ├── chapter2.tex        # Chapter 2: what the GSO requires
+    ├── table.tex           # Sample table, \input by chapter2.tex
+    ├── chapter3.tex        # Chapter 3: writing the text
+    ├── chapter4.tex        # Chapter 4: figures and tables
+    ├── chapter5.tex        # Chapter 5: references and submission
+    ├── appendixA.tex       # Appendix A: how appendices work (several appendices)
+    ├── appendixB.tex       # Appendix B: citation styles
+    ├── appendixC.tex       # Appendix C: the packages and their options
+    ├── appendixD.tex       # Appendix D: the template's files
+    ├── appendix.tex        # Alternative: a single appendix (see sample/main.tex)
+    ├── supplementary.tex   # Last appendix: list of supplementary files
+    ├── appendix-rules.tex  # Shared text, \input by appendix.tex and appendixA.tex
+    ├── appendix-demo.tex   # Shared equations, figures, and table, \input by the same two
+    ├── Graphics/           # Images for the sample's figures
+    └── citation-styles/    # Pages of Appendix B: every citation style on the same sources
 ```
 
 ---
@@ -137,4 +144,4 @@ Maintainer: Prof. Roy Goodman (goodman@njit.edu). If you find a mistake, learn t
 
 ## License
 
-The class file `njit_thesis.cls` is distributed under the [LaTeX Project Public License](https://www.latex-project.org/lppl/), version 1.3c or later; see `LICENSE`. The sample files are meant to be copied and changed: you may use them, with or without changes, for your own thesis or dissertation without restriction.
+The class file `njit_thesis.cls` is distributed under the [LaTeX Project Public License](https://www.latex-project.org/lppl/), version 1.3c or later; see `LICENSE`. The starter document and the sample files are meant to be copied and changed: you may use them, with or without changes, for your own thesis or dissertation without restriction.

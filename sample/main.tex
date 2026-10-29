@@ -1,0 +1,116 @@
+% !TEX TS-program = pdflatexmk
+% !BIB program = biber
+\documentclass[12pt]{../njit_thesis}
+% Master file of the sample dissertation, which is also the guide to the
+% template. It uses the class file, packages.tex, macros.tex, and the
+% citation styles in the folder above, the same ones the starter document
+% there uses. (LaTeX warns that "../njit_thesis" provides "njit_thesis";
+% the warning is harmless.) Start your own thesis from ../main.tex, not
+% from this file.
+
+% ----------------------------------------------------------------------
+% Package Imports and Macros
+% ----------------------------------------------------------------------
+\input{../packages}
+\addbibresource{references.bib}
+\input{../macros}
+
+% Graphics directory
+\graphicspath{{Graphics/}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Front Matter Initialization Pages:
+%       ABSTRACT PAGE       (abstract.tex)
+%       TITLE PAGE          (created by class file)
+%       COPYRIGHT PAGE      (created by class file)
+%       APPROVAL PAGE       (approval.tex)
+%       BIOGRAPHY PAGE      (biography.tex)
+%       DEDICATION PAGE     (dedication.tex, optional)
+%       ACKNOWLEDGMENT PAGE (acknowledgment.tex)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Your title, name, degrees, and graduation date are set in biography.tex;
+% your advisor and committee in approval.tex.
+\abstract{\input{abstract}}
+\input{approval}
+\input{biography}
+\dedication{\input{dedication}}
+\acknowledgment{\input{acknowledgment}}
+
+% Optional preliminary lists data
+\symbols{\input{listofsymbols}}
+\glossaryofterms{\input{listofdefinitions}}
+
+% Generate all front matter pages in NJIT prescribed order
+\initthesis
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Table of Contents and Preliminary Lists:
+%       TABLE OF CONTENTS
+%       LIST OF TABLES
+%       LIST OF FIGURES
+%       LIST OF SYMBOLS (optional)
+%       GLOSSARY OF TERMS (optional)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The titles in the Table of Contents and the Lists of Tables and Figures must
+% match the headings and captions in the text EXACTLY, word for word and in
+% capitalization (GSO). Do not use the optional short forms
+% \caption[short]{long} or \section[short]{long}.
+\tableofcontents
+\listoftables
+\listoffigures
+\listofalgorithms % comment out if you have no algorithms
+\makelistofsymbols % comment out if you have no symbols
+\makeglossaryofterms % comment out if you have no glossary
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% START MAIN BODY OF THESIS
+%% Arabic page numbering (1, 2, 3...) begins here
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\startbody
+
+
+% Dissertation Chapters
+\input{chapter1}
+\input{chapter2}
+\input{chapter3}
+\input{chapter4}
+\input{chapter5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Bibliography / References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The References come right after the last chapter, before all of the
+% appendices (GSO).
+\printbibliography[heading=bibintoc,title={REFERENCES}]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Appendices
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+
+% --- Option A: Multiple Appendices (used by this sample) ---
+% With TWO OR MORE appendices, input one file per appendix. Each file starts
+% with \chapter{Title}; they are printed as APPENDIX A, APPENDIX B, ...
+\input{appendixA}
+\input{appendixB}
+\input{appendixC}
+\input{appendixD}
+
+% Supplementary files (optional): only if you upload supplementary files
+% (videos, data, software archives) to ProQuest. They are listed in the
+% LAST appendix (GSO), which in this sample is Appendix E. Otherwise delete
+% this line and supplementary.tex.
+\input{supplementary}
+
+% --- Option B: Single Appendix ---
+% With only ONE appendix, comment out the \input lines above and uncomment
+% the line below. appendix.tex starts with \oneappendix{Title}, which prints the
+% heading as "APPENDIX" with no letter, as NJIT requires. If your only
+% appendix lists supplementary files, keep \input{supplementary} instead of
+% this line and change \chapter to \oneappendix in supplementary.tex.
+%\input{appendix}
+
+\end{document}

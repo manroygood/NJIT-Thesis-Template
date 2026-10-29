@@ -1,11 +1,19 @@
 % !TEX TS-program = pdflatexmk
 % !BIB program = biber
 \documentclass[12pt]{njit_thesis}
-% Master file for the NJIT Thesis template. Compile this file.
+% STARTER DOCUMENT. Write your thesis or dissertation here: replace the
+% placeholder text in each file with your own. The sample dissertation in
+% sample/ explains every feature of the template and every GSO rule; read
+% its PDF (sample/main.pdf, or the Releases page on GitHub) as a guide, and
+% copy what you need from its .tex files.
+%
+% For a master's thesis, use \documentclass[12pt,thesis]{njit_thesis}.
 
 % ----------------------------------------------------------------------
 % Package Imports and Macros
 % ----------------------------------------------------------------------
+% Add your own packages in packages.tex and your own commands in macros.tex.
+% The citation style is chosen on the biblatex line in packages.tex.
 \input{packages}
 \addbibresource{references.bib}
 \input{macros}
@@ -22,7 +30,7 @@
 %       COPYRIGHT PAGE      (created by class file)
 %       APPROVAL PAGE       (approval.tex)
 %       BIOGRAPHY PAGE      (biography.tex)
-%       DEDICATION PAGE     (dedication.tex, optional)
+%       DEDICATION PAGE     (optional)
 %       ACKNOWLEDGMENT PAGE (acknowledgment.tex)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -31,34 +39,33 @@
 \abstract{\input{abstract}}
 \input{approval}
 \input{biography}
-\dedication{\input{dedication}}
+% Optional dedication: create dedication.tex (see sample/dedication.tex)
+% and uncomment the next line.
+%\dedication{\input{dedication}}
 \acknowledgment{\input{acknowledgment}}
 
-% Optional preliminary lists data
-\symbols{\input{listofsymbols}}
-\glossaryofterms{\input{listofdefinitions}}
+% Optional List of Symbols and Glossary: see sample/listofsymbols.tex and
+% sample/listofdefinitions.tex, copy them here, and uncomment these lines
+% and the matching \make... lines below.
+%\symbols{\input{listofsymbols}}
+%\glossaryofterms{\input{listofdefinitions}}
 
 % Generate all front matter pages in NJIT prescribed order
 \initthesis
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  Table of Contents and Preliminary Lists:
-%       TABLE OF CONTENTS
-%       LIST OF TABLES
-%       LIST OF FIGURES
-%       LIST OF SYMBOLS (optional)
-%       GLOSSARY OF TERMS (optional)
+%  Table of Contents and Preliminary Lists
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The titles in the Table of Contents and the Lists of Tables and Figures must
 % match the headings and captions in the text EXACTLY, word for word and in
 % capitalization (GSO). Do not use the optional short forms
 % \caption[short]{long} or \section[short]{long}.
 \tableofcontents
-\listoftables
-\listoffigures
-\listofalgorithms % comment out if you have no algorithms
-\makelistofsymbols % comment out if you have no symbols
-\makeglossaryofterms % comment out if you have no glossary
+\listoftables  % delete if you have no tables
+\listoffigures % delete if you have no figures
+%\listofalgorithms   % uncomment if you have algorithms
+%\makelistofsymbols  % uncomment if you use \symbols above
+%\makeglossaryofterms % uncomment if you use \glossaryofterms above
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% START MAIN BODY OF THESIS
@@ -66,46 +73,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \startbody
 
-
-% Dissertation Chapters
+% Chapters: one file per chapter; add \input{chapter3} and so on.
 \input{chapter1}
 \input{chapter2}
-\input{chapter3}
-\input{chapter4}
-\input{chapter5}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Bibliography / References
+%% References
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % The References come right after the last chapter, before all of the
 % appendices (GSO).
 \printbibliography[heading=bibintoc,title={REFERENCES}]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Appendices
+%% Appendix
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
-
-% --- Option A: Multiple Appendices (used by this sample) ---
-% With TWO OR MORE appendices, input one file per appendix. Each file starts
-% with \chapter{Title}; they are printed as APPENDIX A, APPENDIX B, ...
-\input{appendixA}
-\input{appendixB}
-\input{appendixC}
-\input{appendixD}
-
-% Supplementary files (optional): only if you upload supplementary files
-% (videos, data, software archives) to ProQuest. They are listed in the
-% LAST appendix (GSO), which in this sample is Appendix E. Otherwise delete
-% this line and supplementary.tex.
-\input{supplementary}
-
-% --- Option B: Single Appendix ---
-% With only ONE appendix, comment out the \input lines above and uncomment
-% the line below. appendix.tex starts with \oneappendix{Title}, which prints the
-% heading as "APPENDIX" with no letter, as NJIT requires. If your only
-% appendix lists supplementary files, keep \input{supplementary} instead of
-% this line and change \chapter to \oneappendix in supplementary.tex.
-%\input{appendix}
+% With ONE appendix, appendix.tex starts with \oneappendix{Title} and is
+% printed as "APPENDIX" with no letter. With two or more, start each file
+% with \chapter{Title} instead (they become APPENDIX A, APPENDIX B, ...), as
+% in sample/appendixA.tex. Delete this line if you have no appendix.
+\input{appendix}
 
 \end{document}

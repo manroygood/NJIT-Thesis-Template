@@ -1,7 +1,8 @@
 # latexmk settings for the citation-style samples in Appendix B.
 
-# The njit-*.bbx and njit-*.cbx styles live in the template folder above.
-ensure_path('TEXINPUTS', '..');
+# The njit-*.bbx and njit-*.cbx styles live in the template's main folder,
+# two levels up.
+ensure_path('TEXINPUTS', '../..');
 
 $pdf_mode = 1;
 

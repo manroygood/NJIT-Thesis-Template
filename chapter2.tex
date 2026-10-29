@@ -1,64 +1,15 @@
 % !TEX root = main.tex
-% Chapter 2: the parts of a dissertation, in the GSO's order, and the
-% formatting rules the template applies for you.
-%
-% Each chapter lives in its own file, included from main.tex with \input.
-% Start the file with \chapter{Title}; type the title in normal
-% capitalization (the class sets it in capitals). Headings below it:
-%   \section       level 2, Title Case
-%   \subsection    level 3, sentence case
-%   \subsubsection level 4, sentence case, run-in (the class adds the period)
-%   \paragraph     level 5, sentence case, italic (the class adds the period)
-% Every heading needs a title; an empty one stops the build with an error.
+% CHAPTER 2. Replace the title and text with your own.
 
-\chapter{What the GSO Requires}
-\label{ch:requirements}
+\chapter{Results}
+\label{chap:results}
 
-The Graduate Studies Office (GSO) checks every dissertation against its formatting rules before accepting it. This chapter lists the parts a dissertation must contain, in the required order, and shows which rules the template applies for you and which are up to you.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat, as shown in \cref{fig:oscillation}. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
-\section{The Parts of a Dissertation, in Order}
-
-An NJIT dissertation consists of three primary divisions: the preliminary front matter, the main body (the chapters), and the back matter (the References and any appendices). These components appear in the following strict order:
-
-\begin{itemize}
-\emergencystretch=2em
-\item \textbf{Abstract}: A concise summary of the research questions, methodology, and conclusions. By NJIT guidelines, this page is unnumbered and precedes the title page. Written in \texttt{abstract.tex}.
-
-\item \textbf{Title Page}: The formal title page declaring degree, department, joint institution (if applicable), and graduation month and year. This page is considered Roman numeral~i, but no number is displayed on the page. Built from the information in \texttt{biography.tex}.
-
-\item \textbf{Copyright Page}: Declares the copyright holder and year. Unnumbered. Required only for doctoral dissertations; a master's thesis has a blank page in its place (GSO), which the \texttt{thesis} class option produces. Built automatically.
-
-\item \textbf{Approval Page}: Contains the signature lines for the dissertation advisor (and co-advisor, if any) and committee members with their official academic titles as listed in the graduate catalog. Unnumbered. Configured in \texttt{approval.tex}.
-
-\item \textbf{Biographical Sketch}: Displays academic background, degrees earned (in reverse chronological order), major field of study, and a listing of presentations and publications. Roman page numbering begins visibly here (typically on page~iv). Configured in \texttt{biography.tex}. The publication list is generated automatically via \BibTeX\ / \texttt{biblatex} using the keyword \texttt{me}.
-
-\item \textbf{Dedication} (optional): A brief personal dedication. Centered and formatted with single spacing. Written in \texttt{dedication.tex}.
-
-\item \textbf{Acknowledgments}: Formal recognition of academic guidance, committee assistance, grant funding and financial support, technical and administrative assistance, and personal gratitude. Written in \texttt{acknowledgment.tex}. The command \verb+\initthesis+ in \texttt{main.tex} prints all of the pages from the Abstract to this one, in this order. (Behind the scenes it calls \verb+\makeabstract+, \verb+\maketitle+, and so on, one command per page.)
-
-\item \textbf{Table of Contents}: Lists the chapters, their sections (X.x) and subsections (X.x.x), the References, and the appendices, with dot leaders connecting titles to page numbers. It starts at Chapter~1: the front matter and the lists that follow the Table of Contents are not included (GSO). Generated automatically by \verb+\tableofcontents+.
-
-\item \textbf{List of Tables}: Generated automatically by \verb+\listoftables+. If your dissertation contains no tables, comment out this command in \texttt{main.tex}.
-
-\item \textbf{List of Figures}: Generated automatically by \verb+\listoffigures+. If your dissertation contains no figures, comment out this command in \texttt{main.tex}.
-
-\item \textbf{List of Algorithms} (optional): Generated automatically by \verb+\listofalgorithms+ from the \texttt{algorithm} environments (\cref{sec:source_code}). If your dissertation contains no algorithms, comment out this command in \texttt{main.tex}.
-
-\item \textbf{List of Symbols} (optional): Defines mathematical symbols and physical constants used throughout the text. Organize the list in one of three ways: by category or function, alphabetically by name, or by frequency of use. An alphabetical list follows the order of the characters themselves, so a symbol such as $*$ comes after $\&$. Configured in \texttt{listofsymbols.tex} and printed by \verb+\makelistofsymbols+ in \texttt{main.tex}.
-
-\item \textbf{Glossary of Terms} (optional): An alphabetical list of definitions. Configured in \texttt{listofdefinitions.tex} and printed by \verb+\makeglossaryofterms+ in \texttt{main.tex}.
-
-
-\item \textbf{Main Body}: The dissertation chapters, beginning with Arabic page number~1 at \verb+\startbody+. Each chapter is housed in its own file (e.g., \texttt{chapter1.tex}, \texttt{chapter2.tex}). Page numbers are centered at the bottom of every page in bold (GSO).
-
-\item \textbf{References}: The bibliography, styled consistently and sorted according to the field's standard conventions. It comes right after the last chapter, before all of the appendices (GSO). Generated from \texttt{references.bib} via \texttt{biblatex} and \texttt{biber}.
-
-\item \textbf{Appendices}: Supplementary mathematical proofs, data tables, or algorithm listings. NJIT enforces a strict rule: if there is only a \textbf{single appendix}, it must be labeled \textbf{APPENDIX} (without a letter like "A"). If there are \textbf{multiple appendices}, they must be numbered \textbf{APPENDIX A}, \textbf{APPENDIX B}, etc. This template fully automates both cases; \cref{app:appendixA} explains how, and what material belongs in an appendix. If you upload supplementary files to ProQuest, such as videos, data sets, or software archives, list them in the last appendix (GSO). Short sections of text, such as computer code, can be included there as well. \texttt{supplementary.tex} shows how to list the files, and produces \cref{app:supplementary} of this sample.
-\end{itemize}
-
-\section{What the Template Does for You}
-\label{sec:template-does}
-
-The class file applies most of the GSO's formatting rules automatically. \cref{table:gso_rules} lists the main rules and shows which ones the template takes care of and which are up to you.
-
-\input{table}
+% A figure: caption BELOW the figure (GSO). The file is in Graphics/.
+\begin{figure}
+\centering
+\includegraphics{PlotGood.pdf}
+\caption{Plot of a decaying oscillation.}
+\label{fig:oscillation}
+\end{figure}

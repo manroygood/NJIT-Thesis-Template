@@ -1,0 +1,124 @@
+% Sample bibliography. It shows one entry of each common type; the comment
+% above each entry names the type. Entries with  keywords = {me}  are also
+% listed under Presentations and Publications in the Biographical Sketch.
+
+% Book
+@book{Lamport1994,
+	author = {Lamport, Leslie},
+	title = {{\LaTeX}: A Document Preparation System},
+	edition = {2},
+	publisher = {Addison-Wesley},
+	address = {Reading, MA},
+	year = {1994}}
+
+% Book
+@book{Knuth1984,
+	author = {Knuth, Donald E.},
+	title = {The {\TeX}book},
+	publisher = {Addison-Wesley},
+	address = {Reading, MA},
+	year = {1984}}
+
+% Book with two authors and an edition
+@book{Mittelbach2023,
+	author = {Mittelbach, Frank and Fischer, Ulrike},
+	title = {The {\LaTeX} Companion},
+	edition = {3},
+	publisher = {Addison-Wesley},
+	address = {Boston, MA},
+	year = {2023}}
+
+% Journal article
+@article{KnuthPlass1981,
+	author = {Knuth, Donald E. and Plass, Michael F.},
+	title = {Breaking Paragraphs into Lines},
+	journal = {Software: Practice and Experience},
+	volume = {11},
+	number = {11},
+	pages = {1119--1184},
+	year = {1981}}
+
+% Chapter in a book whose chapters have different authors. Halmos wrote
+% this chapter; the whole book is by the four authors in bookauthor. For a
+% collection with editors, use @incollection with an editor field instead.
+@inbook{Halmos1973,
+	author = {Halmos, Paul R.},
+	title = {How to Write Mathematics},
+	booktitle = {How to Write Mathematics},
+	bookauthor = {Steenrod, Norman E. and Halmos, Paul R. and Schiffer, Menahem M. and Dieudonn{\'e}, Jean A.},
+	publisher = {American Mathematical Society},
+	address = {Providence, RI},
+	pages = {19--48},
+	year = {1973}}
+
+% PhD dissertation
+@phdthesis{Adriazola2021,
+	author = {Adriazola, Jimmie},
+	title = {Coherent Control of Dispersive Waves},
+	school = {New Jersey Institute of Technology},
+	address = {Newark, NJ},
+	year = {2021},
+	url = {https://digitalcommons.njit.edu/dissertations/1562}}
+
+% Software documentation: give the version and its release date. The
+% template hides URLs (url=false in packages.tex) except for @online entries;
+% options = {url=true} prints this one anyway, since CTAN is where it is found.
+@manual{biblatex,
+	author = {Lehman, Philipp and Kime, Philip and Wemheuer, Moritz},
+	title = {The \texttt{biblatex} Package: Programmable Bibliographies and Citations},
+	version = {3.22a},
+	date = {2026-09-24},
+	url = {https://ctan.org/pkg/biblatex},
+	urldate = {2026-10-15},
+	options = {url=true}}
+
+% Website: give the date the page was last updated in date (Wikipedia shows
+% it at the bottom of every page) and the date you consulted it in urldate.
+% Without date, author-year styles print "n.d." (no date).
+@online{EberhardtWiki,
+	author = {{Wikipedia contributors}},
+	title = {{Eberhardt Hall}, {New Jersey Institute of Technology}},
+	organization = {Wikipedia},
+	date = {2026-04-23},
+	url = {https://en.wikipedia.org/wiki/Eberhardt_Hall,_New_Jersey_Institute_of_Technology},
+	urldate = {2026-10-15}}
+
+% Journal article with many authors. Styles list the first few and add
+% "et al." In the .bib file, list every author, or end the list with
+% "and others" as here. The DOI prints when doi=true is set in packages.tex.
+@article{Harris2020,
+	author = {Harris, Charles R. and Millman, K. Jarrod and van der Walt, St{\'e}fan J. and Gommers, Ralf and Virtanen, Pauli and Cournapeau, David and Wieser, Eric and others},
+	title = {Array Programming with {NumPy}},
+	journal = {Nature},
+	volume = {585},
+	number = {7825},
+	pages = {357--362},
+	year = {2020},
+	doi = {10.1038/s41586-020-2649-2}}
+
+% Book, cited for an adapted algorithm in Chapter 3
+@book{BurdenFaires2011,
+	author = {Burden, Richard L. and Faires, J. Douglas},
+	edition = {9},
+	location = {Boston},
+	publisher = {Brooks/Cole},
+	title = {Numerical Analysis},
+	year = {2011}}
+
+% Talk (keywords = {me}: also listed in the Biographical Sketch)
+@misc{conference2019,
+	author = {Charles C. Highlander},
+	howpublished = {Applied Mathematics Days, Rensselaer Polytechnic Institute, Troy, New York},
+	keywords = {me},
+	month = {4},
+	title = {Fast numerical methods for nonlinear wave equations},
+	year = {2019}}
+
+% Paper under review (keywords = {me}): papers submitted or under review may
+% be listed in the Biographical Sketch.
+@unpublished{Highlander2026,
+	author = {Highlander, Charles C.},
+	keywords = {me},
+	note = {Submitted},
+	title = {Stable time-stepping for dispersive wave equations},
+	year = {2026}}

@@ -18,8 +18,9 @@ The Current Maintainer of this work is Roy Goodman (goodman@njit.edu).
 
 This work consists of the file njit_thesis.cls.
 
-The sample files distributed with it (main.tex, the other .tex files,
-references.bib, readme.md, and the images in Graphics/) are examples meant
-to be copied and changed. You may use them, with or without changes, for
-your own thesis or dissertation, or for any other purpose, without
-restriction.
+The other files distributed with it (the starter document in the main
+folder, the sample dissertation in sample/, the njit-*.bbx and njit-*.cbx
+citation styles, readme.md, and the images in Graphics/ and
+sample/Graphics/) are examples meant to be copied and changed. You may use
+them, with or without changes, for your own thesis or dissertation, or for
+any other purpose, without restriction.
