@@ -2,7 +2,7 @@
 
 A LaTeX template and user's guide for doctoral dissertations and master's theses at the New Jersey Institute of Technology (NJIT). It follows the formatting requirements of the NJIT Graduate Studies Office (GSO) as of October 2026: the GSO's 2025 Front Matter guide and the GSO's feedback on earlier versions of this template. The GSO's current guidelines and its reviewers have the final word; if they differ from the template, follow the GSO and please tell the maintainer (see [Contributing](#contributing)).
 
-The template has two parts. The main folder holds a short **starter document** (two chapters, one appendix, a table, a figure, and a citation) in which you write your own thesis. The folder `sample/` holds a **sample dissertation** that is also the user's guide: it explains every feature of the template and every GSO rule, using the same class file and settings. A compiled copy of the sample, `main.pdf`, is attached to each release on the repository's [Releases page](https://github.com/manroygood/NJIT-Thesis-Template/releases).
+The template has two parts. The main folder holds a short **starter document** (two chapters, one appendix, a table, a figure, and a citation) in which you write your own thesis. The folder `sample/` holds a **sample dissertation** that is also the user's guide: it explains every feature of the template and every GSO rule, using the same class file and settings. The sample shows every feature we could think of, while the starter contains only a minimal set; copy any feature you need from the sample into your own files. A compiled copy of the sample, `main.pdf`, is attached to each release on the repository's [Releases page](https://github.com/manroygood/NJIT-Thesis-Template/releases).
 
 ---
 
