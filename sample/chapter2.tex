@@ -42,11 +42,11 @@ An NJIT dissertation consists of three primary divisions: the preliminary front 
 
 \item \textbf{List of Figures}: Generated automatically by \verb+\listoffigures+. If your dissertation contains no figures, comment out this command in \texttt{main.tex}.
 
-\item \textbf{List of Algorithms} (optional): Generated automatically by \verb+\listofalgorithms+ from the \texttt{algorithm} environments (\cref{sec:source_code}). If your dissertation contains no algorithms, comment out this command in \texttt{main.tex}.
+\item \textbf{List of Algorithms} (optional): Generated automatically by \verb+\listofalgorithms+ from the \texttt{algorithm} environments (\cref{sec:source_code}). The starter document has this command commented out in \texttt{main.tex}; uncomment it if your dissertation contains algorithms.
 
-\item \textbf{List of Symbols} (optional): Defines mathematical symbols and physical constants used throughout the text. Organize the list in one of three ways: by category or function, alphabetically by name, or by frequency of use. An alphabetical list follows the order of the characters themselves, so a symbol such as $*$ comes after $\&$. Configured in \texttt{listofsymbols.tex} and printed by \verb+\makelistofsymbols+ in \texttt{main.tex}.
+\item \textbf{List of Symbols} (optional): Defines mathematical symbols and physical constants used throughout the text. Organize the list in one of three ways: by category or function, alphabetically by name, or by frequency of use. An alphabetical list follows the order of the characters themselves, so a symbol such as $*$ comes after $\&$. Configured in \texttt{listofsymbols.tex} and printed by \verb+\makelistofsymbols+ in \texttt{main.tex}. The starter document leaves it out; \cref{sec:setup} explains how to add it.
 
-\item \textbf{Glossary of Terms} (optional): An alphabetical list of definitions. Configured in \texttt{listofdefinitions.tex} and printed by \verb+\makeglossaryofterms+ in \texttt{main.tex}.
+\item \textbf{Glossary of Terms} (optional): An alphabetical list of definitions. Configured in \texttt{listofdefinitions.tex} and printed by \verb+\makeglossaryofterms+ in \texttt{main.tex}. The starter document leaves it out as well.
 
 
 \item \textbf{Main Body}: The dissertation chapters, beginning with Arabic page number~1 at \verb+\startbody+. Each chapter is housed in its own file (e.g., \texttt{chapter1.tex}, \texttt{chapter2.tex}). Page numbers are centered at the bottom of every page in bold (GSO).
