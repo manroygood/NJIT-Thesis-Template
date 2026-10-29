@@ -2,8 +2,9 @@
 % Select it with style=njit-trb in packages.tex.
 %
 % The Transportation Research Record cites by author and year. This is a
-% thin layer over biblatex's standard authoryear style. The one change:
-% article and chapter titles are printed in sentence case, as the TRR
+% thin layer over biblatex's standard authoryear style. Two changes, from
+% the TRR reference guidelines: given names are spelled out, and article
+% and chapter titles are printed in sentence case, as the TRR
 % reference guidelines ask ("Breaking paragraphs into lines"); journal and
 % book titles keep title case. Type every title in title case in
 % references.bib, with braces around words that keep their capitals, such
@@ -12,9 +13,21 @@
 %
 % Same license as njit_thesis.cls (LPPL 1.3c); see LICENSE.
 
-\ProvidesFile{njit-trb.bbx}[2026/10/26 v1.0 NJIT thesis: TRB bibliography style]
+\ProvidesFile{njit-trb.bbx}[2026/10/29 v1.1 NJIT thesis: TRB bibliography style]
 
 \RequireBibliographyStyle{authoryear}
+
+% Full given names, as the TRR reference guidelines ask (Knuth, Donald E.,
+% and Michael F. Plass). This overrides giveninits=true on the biblatex
+% line in packages.tex, which would otherwise abbreviate them.
+\DeclareNameFormat{family-given/given-family}{%
+  \ifnumequal{\value{listcount}}{1}
+    {\usebibmacro{name:family-given}
+       {\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}
+    {\usebibmacro{name:given-family}
+       {\namepartfamily}{\namepartgiven}{\namepartprefix}{\namepartsuffix}}%
+  \usebibmacro{name:andothers}}
+\DeclareDelimFormat[bib]{finalnamedelim}{\addcomma\space\bibstring{and}\space}
 
 \DeclareFieldFormat[article,inbook,incollection,inproceedings]{titlecase}{%
   \ifboolexpr{test {\ifcurrentfield{title}} or test {\ifcurrentfield{subtitle}}}
